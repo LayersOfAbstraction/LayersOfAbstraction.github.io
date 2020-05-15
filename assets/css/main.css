@@ -3947,8 +3947,7 @@ input, select, textarea {
 
 /* Footer */
 
-	#footer {
-		padding: 10px;
+	#footer {		
 		color: #000000;
 		display: -moz-flex;
 		display: -webkit-flex;
@@ -4186,7 +4185,7 @@ input, select, textarea {
 			color: #e2e2e2;
 		}
 
-		#footer > section {
+		#footer > section {			
 			-moz-flex-basis: 50%;
 			-webkit-flex-basis: 50%;
 			-ms-flex-basis: 50%;
@@ -4208,6 +4207,7 @@ input, select, textarea {
 			}
 
 			#footer > section.split {
+				
 				display: -moz-flex;
 				display: -webkit-flex;
 				display: -ms-flex;
@@ -4216,7 +4216,7 @@ input, select, textarea {
 				-webkit-flex-direction: column;
 				-ms-flex-direction: column;
 				flex-direction: column;
-				padding: 0;
+				padding: 1;
 			}
 
 				#footer > section.split > section {
@@ -4284,11 +4284,11 @@ input, select, textarea {
 						-moz-align-items: -moz-flex-start;
 						-webkit-align-items: -webkit-flex-start;
 						-ms-align-items: -ms-flex-start;
-						align-items: flex-start;
+						align-items: flex-start;						
 					}
 
 						#footer > section.split.contact > section.alt > :last-child {
-							margin-top: -0.325rem;
+							margin-top: -0.325rem;							
 						}
 
 		#footer form label,
