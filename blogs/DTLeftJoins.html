@@ -10,8 +10,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
+			<!-- other content of the head element goes here -->
+			
+			<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/default.min.css">
+			<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/csharp.min.js" integrity="sha512-HAlTwK5Ouxm/PgaQV9e3FeQngOyTpvWAZZiyyTNoqUXBl4GIr4tCH+N5RfEPy1TBkFY07wDBKhSlYcS9WVJBNA==" crossorigin="anonymous"></script>
+			<!-- <script src="../assets/js/node_modules/highlight.js/lib/highlight.js"></script> -->
+			<script src="../assets/js/cshtml-razor.js"></script>
+			<script>
+				hljs.registerLanguage('cshtml-razor', window.hljsDefineCshtmlRazor);
+				hljs.initHighlightingOnLoad();
+			</script>
+			
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-			</head>
+	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
 			<div id="wrapper" class="fade-in">
@@ -46,12 +58,150 @@
 									<br />
 									<p>DataTables takes the heartache out of that. For example I will show you the code for one controller and view built entirely in Entity Framework Core.
 									Don't worry you don't have to memorise all the code in the samples right now especially in EF Core.</p>  
-									<a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a>
+									<!-- <a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a> -->
 									<br/>
+									<h1>The view</h1>
+										<pre><code class="cshtml-razor">
+											@model PaginatedList&lt;Pitcher.Models.Registration&gt;
+
+											@{
+												ViewData[&quot;Title&quot;] = &quot;Registrations&quot;;
+											}
+											
+											&lt;h1&gt;Registrations&lt;/h1&gt;
+											
+											&lt;p&gt;
+												&lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+											&lt;/p&gt;
+											
+											 @*COPY AND PASTE THIS TAG HELPER METHOD TEXTBOX CUSTOMIZATION INTO OTHER VIEWS TO ENABLE SEARCHING.*@
+											&lt;form asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+												&lt;div class=&quot;form-actions no-color&quot;&gt;
+													&lt;p&gt;
+														Find by name: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot; value=&quot;@ViewData[&quot;currentFilter&quot;]&quot; /&gt;
+														&lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;btn btn-primary&quot; /&gt; |
+														&lt;a asp-action=&quot;Index&quot;&gt;Back to Full List&lt;/a&gt;
+													&lt;/p&gt;
+												&lt;/div&gt;
+											&lt;/form&gt;
+											
+											&lt;table class=&quot;table table-hover&quot;&gt;
+												&lt;thead&gt;
+													&lt;tr&gt;
+														&lt;th&gt;
+															&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;RegDateSortParm&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;RegistrationDate&lt;/a&gt;
+														&lt;/th&gt;
+														&lt;th&gt;
+															@* COPY AND PASTE THIS METHOD CUSTOMIZATION INTO OTHER VIEWS BOUND TO COMPOSITE TABLES. Enables sorting. *@
+															 &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;FullNameSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Full Name&lt;/a&gt;
+														&lt;/th&gt;
+														&lt;th&gt;
+															&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;JobTitleSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Job Title&lt;/a&gt;
+														&lt;/th&gt;
+														&lt;th&gt;&lt;/th&gt;
+													&lt;/tr&gt;
+												&lt;/thead&gt;
+												&lt;tbody&gt;
+											@foreach (var item in Model) {
+													&lt;tr&gt;
+														&lt;td&gt;
+															@Html.DisplayFor(modelItem =&gt; item.RegistrationDate)
+														&lt;/td&gt;
+														&lt;td&gt;
+															@Html.DisplayFor(modelItem =&gt; item.User.UserFullname)
+														&lt;/td&gt;
+														&lt;td&gt;
+															@Html.DisplayFor(modelItem =&gt; item.Job.JobTitle)
+														&lt;/td&gt;
+														&lt;td&gt;
+															&lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Edit&lt;/a&gt; 
+															&lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-info btn-block&quot;&gt;Details&lt;/a&gt; 
+															&lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Delete&lt;/a&gt;
+														&lt;/td&gt;
+													&lt;/tr&gt;
+											}
+												&lt;/tbody&gt;
+											&lt;/table&gt;
+											
+											@{
+												var prevDisabled = !Model.HasPreviousPage ? &quot;disabled&quot; : &quot;&quot;;
+												var nextDisabled = !Model.HasNextPage ? &quot;disabled&quot; : &quot;&quot;;
+											}
+											
+											&lt;a asp-action=&quot;Index&quot;
+											   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+											   asp-route-pageNumber=&quot;@(Model.PageIndex - 1)&quot;
+											   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+											   class=&quot;btn btn-secondary @prevDisabled&quot;
+											   button type=&quot;button&quot;&gt;
+												Previous
+											&lt;/a&gt;
+											&lt;a asp-action=&quot;Index&quot;
+											   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+											   asp-route-pageNumber=&quot;@(Model.PageIndex + 1)&quot;
+											   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+											   class=&quot;btn btn-secondary @nextDisabled&quot;
+											   button type=&quot;button&quot;&gt;
+											   
+												Next
+											&lt;/a&gt;													
+										</code></pre>
+
+									<h1>Controller with Index method</h1>
+									<pre><code class="csharp">
+										public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+											{
+												ViewData["CurrentSort"] = sortOrder;
+												ViewData["FullNameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "fullName_desc" : "";           
+												ViewData["JobTitleSortParam"] = sortOrder == "jobTitle" ? "jobTitle_desc" : "jobTitle";
+												ViewData["RegDateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+												ViewData["CurrentFilter"] = searchString;
+												IQueryable <Registration> registrations = _context.Registrations.Include(r => r.Job).Include(r => r.User);
+									
+												if (searchString != null)
+												{
+													pageNumber = 1;
+												}
+												else
+												{
+													searchString = currentFilter;
+												}
+									
+												if (!String.IsNullOrEmpty(searchString))
+												{
+													registrations = registrations.Where(r => r.User.ToString().Contains(searchString)
+																		|| r.Job.ToString().Contains(searchString));
+												}
+												switch (sortOrder)
+												{
+													case "fullName_desc":
+														registrations = registrations.OrderByDescending(r => r.User);
+														break;
+													case "jobTitle_desc":
+														registrations = registrations.OrderByDescending(r => r.Job);
+														break;
+													case "Date":
+													registrations = registrations.OrderBy(r => r.RegistrationDate);
+														break;
+													case "date_desc":
+														registrations = registrations.OrderByDescending(r => r.RegistrationDate);
+														break;
+													case "jobTitle":
+														registrations = registrations.OrderBy(r => r.User);
+														break;
+													//By default FullName is in ascending order when entity is loaded. 
+													default:
+														registrations = registrations.OrderBy(r => r.Job);
+														break;
+												}
+												int pageSize = 20;
+												return View(await  PaginatedList<Registration>.CreateAsync(registrations.AsNoTracking(), pageNumber ?? 1, pageSize));
+											}
+									</code></pre>
 									<p>Now I will show you what the UI looks like when I compile the code.</p>
-									<a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a>
+									<a class="image fit"><img src="../images/DTLeftJoins/demo1.gif"  alt="Pitcher"/></a>
 									<p>Now I will show how the code looks if we do the controller and the view in DataTables Editor server side library which is free.</p>
-									<a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a>
+									<!-- <a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a> -->
 									<br/>
 									<p>Obviously there is heaps more functionality in the UI, the code is cleaner and has less performance penalty.  </p>
 								</article>								
