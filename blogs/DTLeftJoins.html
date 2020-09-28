@@ -52,7 +52,7 @@
 									<header>										
 										<h2><a href="https://github.com/LayersOfAbstraction/Pitcher">How to retrieve data from different in DataTables with ASP.NET MVC Core 2.2<br /></a></h2>
 									</header>
-									<p> You could use a Microsoft tutorial to create the UI for CRUD operations but that would mean more code, a 
+									<p> You could use a Entity Framework to create the UI for CRUD operations but that would mean more code, a 
 										performance reduction and not nearly as elegant if you design it yourself.</p>
 									<br />
 									<p>DataTables takes the heartache out of that. For example I will show you the code for one controller and view built entirely in Entity Framework Core.
@@ -199,10 +199,14 @@
 									</code></pre>
 									<p>Now I will show you what the UI looks like when I compile the code.</p>
 									<a class="image fit"><img src="../images/DTLeftJoins/demo1.gif"  alt="Pitcher"/></a>
-									<p>Now I will show how the code looks if we do the controller and the view in DataTables Editor server side library which is free.</p>
+									<p>Now if we write the code in DataTables Editor in the Index method for the same controller and the view, it will be much shorter. I will show you what it would look like if we run that.</p>
 									<a class="image fit"><img src="../images/DTLeftJoins/demo2.gif"  alt="Pitcher"/></a> 
 									<br/>
-									<p>Obviously there is heaps more functionality in the UI, the code is cleaner and has less performance penalty. Let's replicate this in a new project. You should be able to do this on any operating system as .NET Core is open source. Though I will be using Windows 10. First open Visual Studio Code and use the Explorer window to navigate to whatever folder you want to create the app in. </p>
+									<p>Obviously there is heaps more functionality in the UI, the code (which I will show later) is cleaner and has less performance penalty. Let's replicate this in a new project. I will do this on Windows 10. You should be able to run and Entity Framework Core and  it on Linux too as .NET Core is open source though if you do Mac then you will have to use
+									Docker to install SQL Server which this tutorial sadly does not cover. First open Visual Studio Code and use the Explorer window to navigate 
+									to whatever folder you want to create the app in.  
+									</p>
+									<a class="image fit"><img src="../images/DTLeftJoins/VSCodeNavigateToFolder.jpg"  alt="Pitcher"/></a> 
 								</article>								
 						</div>								
 						<!-- Footer -->
