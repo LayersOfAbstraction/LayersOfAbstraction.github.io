@@ -34,7 +34,7 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="index.html">Home</a></li>						
+							<li class="active"><a href="../#index.html">Home</a></li>						
 							<li class="active"><a href="#footer">Contact</a></li>						
 						</ul>
 						<ul class="icons">							
@@ -45,16 +45,18 @@
 
 				<!-- Main -->
 					<div id="main">
+						<header>										
+							<h2><a href="https://github.com/LayersOfAbstraction/Pitcher">How to retrieve data from different in DataTables with ASP.NET MVC Core 2.2</a></h2>
+						</header>
 						<!-- Posts -->
 						<div id="projects">
 							<section class="posts">
 								<article>
-									<header>										
-										<h2><a href="https://github.com/LayersOfAbstraction/Pitcher">How to retrieve data from different in DataTables with ASP.NET MVC Core 2.2<br /></a></h2>
-									</header>
+									<h1>Intro</h1>
+									<p>Completed demo code here.  
+										<a href="https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git">https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git<a></a></p>																		
 									<p> You could use a Entity Framework to create the UI for CRUD operations but that would mean more code, a 
 										performance reduction and not nearly as elegant if you design it yourself.</p>
-									<br />
 									<p>DataTables takes the heartache out of that. For example I will show you the code for one controller and view built entirely in Entity Framework Core.
 									Don't worry you don't have to memorise all the code in the samples right now especially in EF Core.</p>  
 									<!-- <a href="https://github.com/LayersOfAbstraction/Pitcher" class="image fit"><img src="images/greg-rosenke-yQ9slR8E5jM-unsplash.jpg"  alt="Pitcher"/></a> -->
@@ -202,20 +204,86 @@
 									<p>Now if we write the code in DataTables Editor in the Index method for the same controller and the view, it will be much shorter. I will show you what it would look like if we run that.</p>
 									<a class="image fit"><img src="../images/DTLeftJoins/demo2.gif"  alt="Pitcher"/></a> 
 									<br/>
-									<p>Obviously there is heaps more functionality in the UI, the code (which I will show later) is cleaner and has less performance penalty. Let's replicate this in a new project. I will do this on Windows 10. You should be able to run and Entity Framework Core and  it on Linux too as .NET Core is open source though if you do Mac then you will have to use
-									Docker to install SQL Server which this tutorial sadly does not cover. First open Visual Studio Code and use the Explorer window to navigate 
-									to whatever folder you want to create the app in.  
-									</p>
+									<p>Obviously there is heaps more functionality in the UI, the code (which I will show later) is cleaner and has less performance penalty. Let's replicate this in a new project. I will do this on Windows 10. You should be able to run and Entity Framework Core on Linux too as .NET Core is open source though if you do Mac then you will have to use
+									Docker to install SQL Server which this tutorial sadly does not cover.</p>
+									<br/>
+									<p> First open Visual Studio Code and use the Explorer window to navigate to whatever folder you want to create the app in. Make sure you open the Terminal if it's not already. Make sure you have downloaded .NET Core SDK
+									2.2.</p>
+									<p><a href="https://dotnet.microsoft.com/download/visual-studio-sdks">https://dotnet.microsoft.com/download/visual-studio-sdks</a></p>
 									<a class="image fit"><img src="../images/DTLeftJoins/VSCodeNavigateToFolder.jpg"  alt="Pitcher"/></a> 
-								</article>								
+									<p>Now we will use the .NET Core CLI. If the terminal is not present, left click on Terminal in the and select "New Terminal" then copy these commands into it and press enter.</p>
+									<code>
+										dotnet new mvc -o DTEditorLeftJoinSample 
+										<br/>
+										code -r DTEditorLeftJoinSample
+									</code>	
+									<br/>
+									<br/>			
+									<p>
+										A dialog box appears with<b> Required assets to build and debug are missing from 'DTEditorLeftJoinSample'. Add them?</b> Select <b>Yes</b>.
+										We have now created and loaded the project. Now Press F5 to Debug and 
+										select .Net Core from the command pallet to run the project. It should use the default browser you have. I advise you use Chrome if you are not sure otherwise. 
+										If the sample project displays the home page we are good.
+									</p>
+									<p>
+										We will now create a Recipe database 3 different models, Recipe, RecipeIngredient and Ingredient.										
+									</p>
+									<h1>Recipe</h1>
+									<pre><code class="csharp">
+										using System.Collections.Generic;
+										using System.ComponentModel.DataAnnotations;
+										using System.ComponentModel.DataAnnotations.Schema;
+
+										namespace DTEditorLeftJoinSample.Models
+										{
+											public class Recipe
+											{
+												public int ID { get; set; } 
+												
+												public string Title {get;set;}
+												public string Descriptions {get;set;}
+												public string Directions {get;set;} 
+
+												public ICollection<RecipeIngredient> RecipeIngredients {get;set;}    
+											}
+										}
+									</code></pre>
+									<h1>RecipeIngredient</h1>
+									<pre><code class="csharp">
+										using System.Collections.Generic;
+										using System.ComponentModel.DataAnnotations;
+										using System.ComponentModel.DataAnnotations.Schema;
+
+										namespace DTEditorLeftJoinSample.Models
+										{
+											public class RecipeIngredient
+											{
+												public int ID {get;set;}
+
+												[Display(Name = "Recipe ID")]
+												public int RecipeID { get; set; }
+
+												[Display(Name = "Ingredient ID")]
+												public int IngredientID { get; set; }
+											
+												public int quantity {get;set;}        
+												public Recipe Recipe {get;set;}
+												public Ingredient Ingredient {get;set;}
+											}
+										}
+									</code></pre>
+									<p>
+										To start with Data Tables Editor let's install DataTables. We're going to do this over a Content Delivery Network CDN.
+									</p>
+									<h1>Credit</h1>
+									<p>This problem would not have been solved without the help of Herman Starzhynski who I thank greatly! <a href="https://www.linkedin.com/in/hstarzhynski/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_top%3ByNuB3tWoS9axywKgVuomGg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=%2BxIoAhfqR%2FGIF7YQLL%2BSoQ%3D%3D">https://www.linkedin.com/in/hstarzhynski/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_top%3ByNuB3tWoS9axywKgVuomGg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=%2BxIoAhfqR%2FGIF7YQLL%2BSoQ%3D%3D</a></p>
+								</article>					
 						</div>								
 						<!-- Footer -->
-
-					</div>
-
+					</div>					
 				<!-- Footer -->
 					<footer id="footer">						
-						<section class="split contact">							
+						<section class="split contact">						
 								<h3>Email</h3>
 								<p><a href="mailto:jnash51@live.com">jnash51@live.com</a></p>
 						</section>
