@@ -54,7 +54,7 @@
 								<article>
 									<h1>Intro</h1>
 									<p>Completed demo code here.  
-										<a href="https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git">https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git<a></a></p>																		
+										<a href="https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git">https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git</a></p>																		
 									<p> You could use a Entity Framework to create the UI for CRUD operations but that would mean more code, a 
 										performance reduction and not nearly as elegant if you design it yourself.</p>
 									<p>DataTables takes the heartache out of that. For example I will show you the code for one controller and view built entirely in Entity Framework Core.
@@ -63,218 +63,410 @@
 									<br/>
 									<h1>The view</h1>
 										<pre><code class="cshtml-razor">
-											@model PaginatedList&lt;Pitcher.Models.Registration&gt;
+@model PaginatedList&lt;Pitcher.Models.Registration&gt;
 
-											@{
-												ViewData[&quot;Title&quot;] = &quot;Registrations&quot;;
-											}
-											
-											&lt;h1&gt;Registrations&lt;/h1&gt;
-											
-											&lt;p&gt;
-												&lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
-											&lt;/p&gt;
-											
-											 @*COPY AND PASTE THIS TAG HELPER METHOD TEXTBOX CUSTOMIZATION INTO OTHER VIEWS TO ENABLE SEARCHING.*@
-											&lt;form asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
-												&lt;div class=&quot;form-actions no-color&quot;&gt;
-													&lt;p&gt;
-														Find by name: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot; value=&quot;@ViewData[&quot;currentFilter&quot;]&quot; /&gt;
-														&lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;btn btn-primary&quot; /&gt; |
-														&lt;a asp-action=&quot;Index&quot;&gt;Back to Full List&lt;/a&gt;
-													&lt;/p&gt;
-												&lt;/div&gt;
-											&lt;/form&gt;
-											
-											&lt;table class=&quot;table table-hover&quot;&gt;
-												&lt;thead&gt;
-													&lt;tr&gt;
-														&lt;th&gt;
-															&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;RegDateSortParm&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;RegistrationDate&lt;/a&gt;
-														&lt;/th&gt;
-														&lt;th&gt;
-															@* COPY AND PASTE THIS METHOD CUSTOMIZATION INTO OTHER VIEWS BOUND TO COMPOSITE TABLES. Enables sorting. *@
-															 &lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;FullNameSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Full Name&lt;/a&gt;
-														&lt;/th&gt;
-														&lt;th&gt;
-															&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;JobTitleSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Job Title&lt;/a&gt;
-														&lt;/th&gt;
-														&lt;th&gt;&lt;/th&gt;
-													&lt;/tr&gt;
-												&lt;/thead&gt;
-												&lt;tbody&gt;
-											@foreach (var item in Model) {
-													&lt;tr&gt;
-														&lt;td&gt;
-															@Html.DisplayFor(modelItem =&gt; item.RegistrationDate)
-														&lt;/td&gt;
-														&lt;td&gt;
-															@Html.DisplayFor(modelItem =&gt; item.User.UserFullname)
-														&lt;/td&gt;
-														&lt;td&gt;
-															@Html.DisplayFor(modelItem =&gt; item.Job.JobTitle)
-														&lt;/td&gt;
-														&lt;td&gt;
-															&lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Edit&lt;/a&gt; 
-															&lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-info btn-block&quot;&gt;Details&lt;/a&gt; 
-															&lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Delete&lt;/a&gt;
-														&lt;/td&gt;
-													&lt;/tr&gt;
-											}
-												&lt;/tbody&gt;
-											&lt;/table&gt;
-											
-											@{
-												var prevDisabled = !Model.HasPreviousPage ? &quot;disabled&quot; : &quot;&quot;;
-												var nextDisabled = !Model.HasNextPage ? &quot;disabled&quot; : &quot;&quot;;
-											}
-											
-											&lt;a asp-action=&quot;Index&quot;
-											   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
-											   asp-route-pageNumber=&quot;@(Model.PageIndex - 1)&quot;
-											   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
-											   class=&quot;btn btn-secondary @prevDisabled&quot;
-											   button type=&quot;button&quot;&gt;
-												Previous
-											&lt;/a&gt;
-											&lt;a asp-action=&quot;Index&quot;
-											   asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
-											   asp-route-pageNumber=&quot;@(Model.PageIndex + 1)&quot;
-											   asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
-											   class=&quot;btn btn-secondary @nextDisabled&quot;
-											   button type=&quot;button&quot;&gt;
-											   
-												Next
-											&lt;/a&gt;													
+@{
+	ViewData[&quot;Title&quot;] = &quot;Registrations&quot;;
+}
+
+&lt;h1&gt;Registrations&lt;/h1&gt;
+
+&lt;p&gt;
+	&lt;a asp-action=&quot;Create&quot;&gt;Create New&lt;/a&gt;
+&lt;/p&gt;
+	
+&lt;form asp-action=&quot;Index&quot; method=&quot;get&quot;&gt;
+	&lt;div class=&quot;form-actions no-color&quot;&gt;
+		&lt;p&gt;
+			Find by name: &lt;input type=&quot;text&quot; name=&quot;SearchString&quot; value=&quot;@ViewData[&quot;currentFilter&quot;]&quot; /&gt;
+			&lt;input type=&quot;submit&quot; value=&quot;Search&quot; class=&quot;btn btn-primary&quot; /&gt; |
+			&lt;a asp-action=&quot;Index&quot;&gt;Back to Full List&lt;/a&gt;
+		&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/form&gt;
+
+&lt;table class=&quot;table table-hover&quot;&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;
+				&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;RegDateSortParm&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;RegistrationDate&lt;/a&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				@* COPY AND PASTE THIS METHOD CUSTOMIZATION INTO OTHER VIEWS BOUND TO COMPOSITE TABLES. Enables sorting. *@
+					&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;FullNameSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Full Name&lt;/a&gt;
+			&lt;/th&gt;
+			&lt;th&gt;
+				&lt;a asp-action=&quot;Index&quot; asp-route-sortOrder=&quot;@ViewData[&quot;JobTitleSortParam&quot;]&quot; asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;&gt;Job Title&lt;/a&gt;
+			&lt;/th&gt;
+			&lt;th&gt;&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+@foreach (var item in Model) {
+		&lt;tr&gt;
+			&lt;td&gt;
+				@Html.DisplayFor(modelItem =&gt; item.RegistrationDate)
+			&lt;/td&gt;
+			&lt;td&gt;
+				@Html.DisplayFor(modelItem =&gt; item.User.UserFullname)
+			&lt;/td&gt;
+			&lt;td&gt;
+				@Html.DisplayFor(modelItem =&gt; item.Job.JobTitle)
+			&lt;/td&gt;
+			&lt;td&gt;
+				&lt;a asp-action=&quot;Edit&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Edit&lt;/a&gt; 
+				&lt;a asp-action=&quot;Details&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-info btn-block&quot;&gt;Details&lt;/a&gt; 
+				&lt;a asp-action=&quot;Delete&quot; asp-route-id=&quot;@item.ID&quot; button type=&quot;button&quot; class=&quot;btn btn-primary btn-block&quot;&gt;Delete&lt;/a&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+}
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+@{
+	var prevDisabled = !Model.HasPreviousPage ? &quot;disabled&quot; : &quot;&quot;;
+	var nextDisabled = !Model.HasNextPage ? &quot;disabled&quot; : &quot;&quot;;
+}
+
+&lt;a asp-action=&quot;Index&quot;
+	asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+	asp-route-pageNumber=&quot;@(Model.PageIndex - 1)&quot;
+	asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+	class=&quot;btn btn-secondary @prevDisabled&quot;
+	button type=&quot;button&quot;&gt;
+	Previous
+&lt;/a&gt;
+&lt;a asp-action=&quot;Index&quot;
+	asp-route-sortOrder=&quot;@ViewData[&quot;CurrentSort&quot;]&quot;
+	asp-route-pageNumber=&quot;@(Model.PageIndex + 1)&quot;
+	asp-route-currentFilter=&quot;@ViewData[&quot;CurrentFilter&quot;]&quot;
+	class=&quot;btn btn-secondary @nextDisabled&quot;
+	button type=&quot;button&quot;&gt;
+	
+	Next
+&lt;/a&gt;													
 										</code></pre>
 
 									<h1>Controller with Index method</h1>
 									<pre><code class="csharp">
-										public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
-											{
-												ViewData["CurrentSort"] = sortOrder;
-												ViewData["FullNameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "fullName_desc" : "";           
-												ViewData["JobTitleSortParam"] = sortOrder == "jobTitle" ? "jobTitle_desc" : "jobTitle";
-												ViewData["RegDateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
-												ViewData["CurrentFilter"] = searchString;
-												IQueryable <Registration> registrations = _context.Registrations.Include(r => r.Job).Include(r => r.User);
-									
-												if (searchString != null)
-												{
-													pageNumber = 1;
-												}
-												else
-												{
-													searchString = currentFilter;
-												}
-									
-												if (!String.IsNullOrEmpty(searchString))
-												{
-													registrations = registrations.Where(r => r.User.ToString().Contains(searchString)
-																		|| r.Job.ToString().Contains(searchString));
-												}
-												switch (sortOrder)
-												{
-													case "fullName_desc":
-														registrations = registrations.OrderByDescending(r => r.User);
-														break;
-													case "jobTitle_desc":
-														registrations = registrations.OrderByDescending(r => r.Job);
-														break;
-													case "Date":
-													registrations = registrations.OrderBy(r => r.RegistrationDate);
-														break;
-													case "date_desc":
-														registrations = registrations.OrderByDescending(r => r.RegistrationDate);
-														break;
-													case "jobTitle":
-														registrations = registrations.OrderBy(r => r.User);
-														break;
-													//By default FullName is in ascending order when entity is loaded. 
-													default:
-														registrations = registrations.OrderBy(r => r.Job);
-														break;
-												}
-												int pageSize = 20;
-												return View(await  PaginatedList<Registration>.CreateAsync(registrations.AsNoTracking(), pageNumber ?? 1, pageSize));
-											}
+public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+{
+	ViewData["CurrentSort"] = sortOrder;
+	ViewData["FullNameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "fullName_desc" : "";           
+	ViewData["JobTitleSortParam"] = sortOrder == "jobTitle" ? "jobTitle_desc" : "jobTitle";
+	ViewData["RegDateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+	ViewData["CurrentFilter"] = searchString;
+	IQueryable <Registration> registrations = _context.Registrations.Include(r => r.Job).Include(r => r.User);
+
+	if (searchString != null)
+	{
+		pageNumber = 1;
+	}
+	else
+	{
+		searchString = currentFilter;
+	}
+
+	if (!String.IsNullOrEmpty(searchString))
+	{
+		registrations = registrations.Where(r => r.User.ToString().Contains(searchString)
+							|| r.Job.ToString().Contains(searchString));
+	}
+	switch (sortOrder)
+	{
+		case "fullName_desc":
+			registrations = registrations.OrderByDescending(r => r.User);
+			break;
+		case "jobTitle_desc":
+			registrations = registrations.OrderByDescending(r => r.Job);
+			break;
+		case "Date":
+		registrations = registrations.OrderBy(r => r.RegistrationDate);
+			break;
+		case "date_desc":
+			registrations = registrations.OrderByDescending(r => r.RegistrationDate);
+			break;
+		case "jobTitle":
+			registrations = registrations.OrderBy(r => r.User);
+			break;
+		//By default FullName is in ascending order when entity is loaded. 
+		default:
+			registrations = registrations.OrderBy(r => r.Job);
+			break;
+	}
+	int pageSize = 20;
+	return View(await  PaginatedList<Registration>.CreateAsync(registrations.AsNoTracking(), pageNumber ?? 1, pageSize));
+}
 									</code></pre>
 									<p>Now I will show you what the UI looks like when I compile the code.</p>
-									<a class="image fit"><img src="../images/DTLeftJoins/demo1.gif"  alt="Pitcher"/></a>
+									<a class="image fit"><img src="../images/DTLeftJoins/demo1.gif"  /></a>
 									<p>Now if we write the code in DataTables Editor in the Index method for the same controller and the view, it will be much shorter. I will show you what it would look like if we run that.</p>
-									<a class="image fit"><img src="../images/DTLeftJoins/demo2.gif"  alt="Pitcher"/></a> 
+									<a class="image fit"><img src="../images/DTLeftJoins/demo2.gif"  /></a> 
 									<br/>
 									<p>Obviously there is heaps more functionality in the UI, the code (which I will show later) is cleaner and has less performance penalty. Let's replicate this in a new project. I will do this on Windows 10. You should be able to run and Entity Framework Core on Linux too as .NET Core is open source though if you do Mac then you will have to use
 									Docker to install SQL Server which this tutorial sadly does not cover.</p>
 									<br/>
-									<p> First open Visual Studio Code and use the Explorer window to navigate to whatever folder you want to create the app in. Make sure you open the Terminal if it's not already. Make sure you have downloaded .NET Core SDK
-									2.2.</p>
-									<p><a href="https://dotnet.microsoft.com/download/visual-studio-sdks">https://dotnet.microsoft.com/download/visual-studio-sdks</a></p>
-									<a class="image fit"><img src="../images/DTLeftJoins/VSCodeNavigateToFolder.jpg"  alt="Pitcher"/></a> 
-									<p>Now we will use the .NET Core CLI. If the terminal is not present, left click on Terminal in the and select "New Terminal" then copy these commands into it and press enter.</p>
-									<code>
-										dotnet new mvc -o DTEditorLeftJoinSample 
-										<br/>
-										code -r DTEditorLeftJoinSample
-									</code>	
-									<br/>
-									<br/>			
+									<h1>Download .NetCore</h1>
+									<p>Make sure you have downloaded .NET Core SDK 2.2.</p>
+									<p> I would advise you do NOT do this using Visual Studio Code as even Microsoft does not bother to generate EF Core objects in MVC such as Views/Controllers using VS Code. Make sure you have downloaded .NET Core SDK
+									2.2.</p> 
+									<h1>Create app in Visual Studio 2019</h1>
 									<p>
-										A dialog box appears with<b> Required assets to build and debug are missing from 'DTEditorLeftJoinSample'. Add them?</b> Select <b>Yes</b>.
-										We have now created and loaded the project. Now Press F5 to Debug and 
-										select .Net Core from the command pallet to run the project. It should use the default browser you have. I advise you use Chrome if you are not sure otherwise. 
-										If the sample project displays the home page we are good.
+										Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. So let’s first open Visual Studio 2019 and create ASP.NET Core WebApplication Template. You can always play around with this app in VS Code later if you want once you complete it.
+									</p>											
+										<p><a class="image fit"><img src="../images/DTLeftJoins/VSNavigateToFolder.png"/></a></p>
+									<br/>
+									<p>Make sure you have selected 2.2, have no authentication and have configured for HTTPS.</p>		
+									<p><a class="image fit"><img src="../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png"/></a></p>
+									<p>
+										After that create the project. We will now create a Recipe database 3 different models, Recipe, RecipeIngredient and Ingredient. Create each of these classes in the model folder.
 									</p>
 									<p>
 										We will now create a Recipe database 3 different models, Recipe, RecipeIngredient and Ingredient.										
 									</p>
 									<h1>Recipe</h1>
-									<pre><code class="csharp">
-										using System.Collections.Generic;
-										using System.ComponentModel.DataAnnotations;
-										using System.ComponentModel.DataAnnotations.Schema;
+									<pre><code class="csharp">using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-										namespace DTEditorLeftJoinSample.Models
-										{
-											public class Recipe
-											{
-												public int ID { get; set; } 
-												
-												public string Title {get;set;}
-												public string Descriptions {get;set;}
-												public string Directions {get;set;} 
+namespace DTEditorLeftJoinSample.Models
+{
+	public class Recipe
+	{
+		public int ID { get; set; } 
+		
+		public string Title {get;set;}
+		public string Descriptions {get;set;}
+		public string Directions {get;set;} 
 
-												public ICollection<RecipeIngredient> RecipeIngredients {get;set;}    
-											}
-										}
+		public ICollection<RecipeIngredient> RecipeIngredients {get;set;}    
+	}
+}
+</code></pre>
+<h1>RecipeIngredient</h1>
+<pre><code class="csharp">
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTEditorLeftJoinSample.Models
+{
+	public class RecipeIngredient
+	{
+		public int ID {get;set;}
+
+		[Display(Name = "Recipe ID")]
+		public int RecipeID { get; set; }
+
+		[Display(Name = "Ingredient ID")]
+		public int IngredientID { get; set; }
+	
+		public int quantity {get;set;}        
+		public Recipe Recipe {get;set;}
+		public Ingredient Ingredient {get;set;}
+	}
+}
 									</code></pre>
-									<h1>RecipeIngredient</h1>
+									<h1>Create Ingredient class</h1>
 									<pre><code class="csharp">
-										using System.Collections.Generic;
-										using System.ComponentModel.DataAnnotations;
-										using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-										namespace DTEditorLeftJoinSample.Models
-										{
-											public class RecipeIngredient
-											{
-												public int ID {get;set;}
+namespace DTEditorLeftJoinSample.Models
+{
+	public class Ingredient
+	{
+		public int ID {get;set;}
+		[Display(Name = "Ingredient Name")]
+		public string IngredientName {get;set;}
 
-												[Display(Name = "Recipe ID")]
-												public int RecipeID { get; set; }
-
-												[Display(Name = "Ingredient ID")]
-												public int IngredientID { get; set; }
-											
-												public int quantity {get;set;}        
-												public Recipe Recipe {get;set;}
-												public Ingredient Ingredient {get;set;}
-											}
-										}
+		public ICollection<RecipeIngredient> RecipeIngredient {get;set;}    
+	}
+}										
 									</code></pre>
 									<p>
-										To start with Data Tables Editor let's install DataTables. We're going to do this over a Content Delivery Network CDN.
+										Create the connection string in appsettings.json then copy and paste this connection string there.
 									</p>
+									<h1>Insert connection string into appsettings.json</h1>									<h1>RecipeIngredient</h1>
+									<pre><code class="json">
+{
+	"ConnectionStrings": {
+		"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=RecipeDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+	},
+	"Logging": {
+		"LogLevel": {
+		"Default": "Warning"
+		}
+	},
+	"AllowedHosts": "*"
+}										  
+									</code></pre>
+									<p>Even though we cannot integrate Entity Framework Core directly with DataTables Editor, we can still generate the database via EF Core to use with the library. We will do this by creating the database context class. Create a Data folder and add this class.</p>
+									<h1>Create CookingContext</h1>
+									<pre><code class="csharp">
+using DTEditorLeftJoinSample.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DTEditorLeftJoinSample.Data
+{
+	public class CookingContext : DbContext
+	{
+		public CookingContext(DbContextOptions<CookingContext> options) : base(options)
+		{
+		}
+
+		public DbSet<Recipe> Recipe { get; set; }
+		public DbSet<Ingredient> Ingredient {get;set;}
+		public DbSet<RecipeIngredient> RecipeIngredient {get;set;}  
+		
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Recipe>().ToTable("tblRecipe");
+			modelBuilder.Entity<Ingredient>().ToTable("tblIngredient");
+			modelBuilder.Entity<RecipeIngredient>().ToTable("tblRecipeIngredient ");
+		}
+	}
+}																			  
+									</code></pre>
+									<h1>Register CookingContext as service in Startup.cs</h1>
+									<p>Register the CookingContext as a service in Startup.cs using dependency injection where the ConfigureServices method is. You can do that by adding this code to the method. Go to Startup.cs now.</p>
+									<pre><code class="csharp">services.AddDbContext<CookingContext>(options => 
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));									
+									</code></pre>
+									<p>Now add these statements to the startup file.</p>
+									<pre><code class="csharp">using DTEditorLeftJoinSample.Data;
+using Microsoft.EntityFrameworkCore;
+									</code></pre>
+									<h1>Create data seed</h1>
+									<p>Now we want to seed the database with test data. This is an optional step but highly beneficial. If it does not work for you, the data can be entered manually. In the Data folder create this file DbInitializer.cs and insert this code. </p>
+									<h1>DbInitializer</h1>
+									<pre><code class="csharp">using DTEditorLeftJoinSample.Models;
+using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace DTEditorLeftJoinSample.Data
+{
+	public static class DbInitializer
+	{
+		public static void Initialize(CookingContext context)
+		{
+			context.Database.EnsureCreated();
+
+			// Look for any tables.
+			if (context.Recipe.Any() && context.Ingredient.Any() && context.RecipeIngredient.Any())
+			{
+				return;   // DB has been seeded
+			}
+
+			var recipes = new Recipe[]
+			{
+				new Recipe { Title =" Korean-Style Steak and Noodles with Kimchi", 
+				Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed pharetra neque. Curabitur laoreet eu lectus eu tempus. Fusce elementum arcu ut justo tincidunt mattis.", 
+				Direction="1.Cras dignissim in neque a placerat." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut." 
+				},
+				new Recipe { Title =" Mashed Potatoes with Savory Thyme Granola", 
+				Description=" Etiam aliquam, magna quis lobortis facilisis, lorem eros dignissim nulla, ultrices pulvinar orci lectus a ligula.", 
+				Direction="1. Morbi fringilla, justo eu venenatis tempus, mauris leo ultricies magna, et aliquet mi lectus at nisi. Pellentesque vel gravida nunc. Donec in tortor lectus." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."},
+				new Recipe { Title ="Lemon Garlic Mashed Potatoes", 
+				Description="Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", 
+				Direction="1. Maecenas ultricies pretium quam id placerat. Mauris in ligula gravida, vehicula justo faucibus, semper neque." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Morbi consectetur libero id sagittis vestibulum."},
+				new Recipe { Title =" Sour Cream and Corn Mashers", 
+				Description=" Donec posuere pellentesque mi, ac suscipit tellus finibus id.", 
+				Direction="1. Nulla placerat erat lorem, eget pellentesque dolor egestas vitae." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Suspendisse ac purus lacinia, mollis velit aliquet, finibus arcu. Pellentesque molestie est in diam pulvinar, quis mattis justo volutpat."}
+							};
+			foreach (Recipe r in recipes)
+			{
+				context.Recipe.AddRange(r);
+			}
+			context.SaveChanges();
+
+			var ingredients = new Ingredient[]
+			{
+				new Ingredient{IngredientName="Duis eu ligula felis"},
+				new Ingredient{IngredientName="Donec id mollis arcu"},
+				new Ingredient{IngredientName="Cras nec enim luctus"}
+			};
+			foreach (Ingredient i in ingredients)
+			{
+				context.Ingredient.AddRange(i);
+			}
+			context.SaveChanges();
+
+			var recipeIngredients = new RecipeIngredient[]
+			{
+				new RecipeIngredient{RecipeID=1, IngredientID=1, Quantity =4},
+				new RecipeIngredient{RecipeID=2, IngredientID=2, Quantity =3},
+				new RecipeIngredient{RecipeID=3, IngredientID=3, Quantity =15}
+			};
+			
+			foreach (RecipeIngredient ri in recipeIngredients)
+			{
+				context.RecipeIngredient.AddRange(ri);
+			}
+			context.SaveChanges();             
+		}
+	}
+}																				
+									</code></pre>
+									<p>We want to get the database context instance from dependency injection container. </p>
+									<h1>Call context and seed method</h1>
+									<p>Now we call the context instance, the seed method and pass it to the context. Then dispose the context when the seeding is complete. In <b>Program.cs</b> delete any code in the Main method and add this all to the method.</p>
+									<h1>Program.cs</h1>
+									<pre class="csharp"><code>
+public static void Main(string[] args)
+{
+	var host = CreateWebHostBuilder(args).Build();
+	using (var scope = host.Services.CreateScope())
+	{
+		var services = scope.ServiceProvider;
+		try
+		{
+			var context = services.GetRequiredService<CookingContext>();
+			DbInitializer.Initialize(context);
+		}
+		catch (Exception ex)
+		{
+			var logger = services.GetRequiredService<ILogger<Program>>();
+			logger.LogError(ex, "An error occurred while seeding the database.");
+		}
+	}
+
+	host.Run();
+}
+								
+									</code></pre>
+									<p>Now add these statements</p>
+									<pre class="csharp"><code>using DTEditorLeftJoinSample.Data;
+using Microsoft.Extensions.DependencyInjection;
+									</code></pre>
+									<h1>Generate controllers and views with scaffolding engine</h1>
+									<p>You could write it all the views in DataTables but it is easier to first auto generate all the CRUD view pages and controllers using Entity Framework Core from the models we made and edit the pages later. We will generate in the scaffolding engine. To that:</p>
+									<ul>
+										<li>Right-click the <b>Controllers</b> folder in <b>Solution Explorer</b> and select <b>Add > New Scaffolded Item</b></li>
+										<li>In the <b>Add Scaffold</b> dialog box:</li>
+										<li>Select MVC controller with views, using Entity Framework.</li>
+										<li>Click Add. The Add MVC Controller with views, using Entity Framework dialog box appears.</li>
+									</ul>
+									<a class="image fit"><img src="../images/DTLeftJoins/demo3.gif"  /></a> 
+									<ul>
+										<li>In <b>Model class</b> select <b>RecipeIngredient.</b></li>
+										<li>In <b>Data context class</b> select <b>CookingContext</b>.</li>
+										<li>Accept the default <b>CookingController</b> as the name.</li>
+										<li>Click <b>Add</b>. The <b>Add MVC Controller with views, using Entity Framework</b> dialog box appears.</li>
+									</ul>
+									<p>If all is ok then the RecipeIngredient folder generates with all the views, Index, Edit, Details, Delete. Notice in the Controllers folder the new generated controller RecipeIngredientsController.cs.</p>
+									<h1>Add RecipeIngredient to navbar</h1>
+									<p>We want to be able to go to it from or home page to our _layout.cshtml file. In the second div tag of the header add this list item to the navbar.</p>
+									<pre class="cshtml-razor"><code>&lt;li class=&quot;nav-item&quot;&gt;
+	&lt;a class=&quot;nav-link text-dark&quot; asp-area=&quot;&quot; asp-controller=&quot;RecipeIngredients&quot; asp-action=&quot;Index&quot;&gt;Recipe Ingredient&lt;/a&gt;
+&lt;/li&gt;							</code></pre>
+									<p>Press F5. Running the program will generate the database and fill out the tables. If it doesn’t work please use the SQL Server Object Explorer to fill the tables manually.</p>
+									<p>If all goes well you should be able to go directly to the table in the Index view and render the project. But as I said there is no sorting, paging and searching. Not only that, we want to render the RecipeTitle and the IngredientName fields from the other tables not the foreign key IDs! </p>
+									
+									
 									<h1>Credit</h1>
 									<p>This problem would not have been solved without the help of Herman Starzhynski who I thank greatly! <a href="https://www.linkedin.com/in/hstarzhynski/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_top%3ByNuB3tWoS9axywKgVuomGg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=%2BxIoAhfqR%2FGIF7YQLL%2BSoQ%3D%3D">https://www.linkedin.com/in/hstarzhynski/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_top%3ByNuB3tWoS9axywKgVuomGg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=%2BxIoAhfqR%2FGIF7YQLL%2BSoQ%3D%3D</a></p>
 								</article>					
