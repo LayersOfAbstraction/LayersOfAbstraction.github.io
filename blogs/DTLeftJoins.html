@@ -488,7 +488,7 @@ DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.In
 									<h1>Bypass model and bind tblRecipeIngredient from controller </h1>
 									<pre><code class="csharp">using DataTables;
 using Microsoft.Extensions.Configuration;</code></pre>
-									<p>Add an IConfiguration object to get the connection string and make sure to set it’s value is set in the constructor.</p>
+									<p>Add an IConfiguration object to get the connection string and make sure it’s value is set in the constructor.</p>
 									<p>Now go and add this method.</p>
 									<p>LeftJoinJobsAndUsersOntoRegistrations()</p>
 									<p>I will break it down for you with comments. As you can see I am bypassing Entity Framework models, the database context and instead connecting to the database directly from this method. Make sure your RecipeIngredientsController constructor matches mine and make sure your Index method matches! It will look different.</p>
