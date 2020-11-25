@@ -1,15 +1,32 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    {% feed_meta %}
-    {% seo %}
+    <link rel="stylesheet" href="/../../assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="../../assets/css/noscript.css" /></noscript>
+	<style>
+		body, html {
+		  height: 100%;
+		  margin: 0;
+		}
+		
+		.bg {
+		  /* The image used */
+		  background-image: url("/../../images/marcus-lenk-2_unsplash.jpg");
+		
+		  /* Full height */
+		  height: 100%; 
+		
+		  /* Center and scale the image nicely */
+		  background-position: center;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		}
+	  </style>
   </head>
-  <body class="is-preload">
+  <body class="bg">
     <!-- Wrapper -->
 			<div id="wrapper" class="fade-in">
 				<!-- Header -->
@@ -27,19 +44,18 @@
 							<li><a href="https://github.com/LayersOfAbstraction/" title="Github" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 						</ul>
 					</nav>
-
-        <!-- Main -->
-        <div id="main">
-
-          <!-- Posts -->
-          <div id="projects">
-            <section class="posts">
-              <article>
-				{% include navigation.html %}
-				{{ content }}
-              </article>								
-          </div>
-        </div>
+				<!-- Main -->
+				<div id="main">
+					<!-- Posts -->
+					<div id="projects">
+						<section class="posts">
+						<article>
+							{% include navigation.html %}
+							{{ content }}
+						</article>	
+						</section>								
+					</div>
+				</div>
         				<!-- Footer -->
 					<footer id="footer">						
 						<section class="split contact">							
