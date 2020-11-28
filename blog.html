@@ -1,0 +1,28 @@
+---
+layout: default
+title: Blog
+---
+<h1>Blogs</h1>
+
+  <!--#region hardcoded blog  -->
+  <header>										
+    <h2><a href="/blogs/DTLeftJoins.html">How to retrieve data from different in DataTables with ASP.NET Core 2.2<br /></a></h2>
+  </header>
+  <p>I noticed how DataTables results in way less code and more functionality out of the box.
+    When you retrieve data from more than one related table that's where the heartache begins for many. This blog takes the frustration out of that, by showing you how to create a Left Join in DataTables Editor.
+  </p>
+  <a href="/blogs/DTLeftJoins.html" class="image fit"><img src="images/jeremy-bishop-EwKXn5CapA4-unsplash.jpg"  alt="Pitcher"/></a>
+
+  <ul class="actions special">
+    <li><a href="/blogs/DTLeftJoins.html" class="button">Check it out</a></li>
+  </ul>
+  <!--#endregion -->
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
