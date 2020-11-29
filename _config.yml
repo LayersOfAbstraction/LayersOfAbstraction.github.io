@@ -53,12 +53,12 @@
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-defaults:
+permalink: /:title.html
+defaults:      
   - scope:
       path: ""
       type: "posts"
-    values:
+    values:    
       layout: "post"
   - scope:
       path: ""
