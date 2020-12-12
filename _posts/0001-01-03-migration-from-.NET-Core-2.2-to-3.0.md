@@ -9,6 +9,8 @@ I once read a Shakespearean inspired technical quote "To update or not to update
 
 Simply put this post is going to focus on improving the security of my demo application by ensuring it receives Long Term Support (LTS) from .NET Core 3.1.
 
+If you get stuck in this tutorial you can download the demo I made and compare the code to yours to ensure you are properly migrating from 2.2 to 3.0. We will focus on 3.1 later.
+
 First make sure you have installed the [.NET Core 3.0 SDK 3.0.100](https://dotnet.microsoft.com/download/dotnet-core/3.0#sdk-3.0.100:~:text=SDK%203.0.100,-Visual) we can download 3.1 later.
 
 In the Terminal we will ensure that we are using .NET Core 2.2 and not just using the latest framework version. Write this code into the terminal to check which version of the .NET Core SDK you are using. 
@@ -57,6 +59,17 @@ Now load the project file.
 
 `code -r 2.2_to_3.0_migration_project`
 
-Now before we continue. 
+Now before we continue we must ensure we have a trusted certificate if you don't already have one.
 
 `dotnet dev-certs https --trust`
+
+## Run new project ##
+
+Fire up the project with the command `dotnet watch run` and you should be able to navigate to the url that is listed in the terminal that ASP.NET Core is listening on. Click on it and make sure the template is functioning ok before continuing.  
+
+With watches you should be able to make changes to the app and simultaneously read this article without stopping and starting the debugger. 
+
+From the documentation in microsoft you have a large number of obsolete packages that are not needed. We need to change files around. 
+
+We will be following the majority of what is in this tutorial but it also shows you information related to SignalR and health checks which confused me and wasn't related to the MVC at all so those parts I am cutting out of the blog.
+
