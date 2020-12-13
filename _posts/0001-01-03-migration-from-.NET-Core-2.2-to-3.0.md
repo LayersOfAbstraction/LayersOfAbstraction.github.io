@@ -77,7 +77,7 @@ We will be following the majority of what is in this tutorial but it also shows 
 
 Anyway go to the .csproj file in your project. It should look similar to this.
 
-{{ "{% highlight xml linenos "}}%}
+<pre><code class="xml">
 &lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
 
   &lt;PropertyGroup&gt;
@@ -93,4 +93,5 @@ Anyway go to the .csproj file in your project. It should look similar to this.
   &lt;/ItemGroup&gt;
 
 &lt;/Project&gt;
-{{ "{% endhighlight "}}%}
+
+</code></pre>
