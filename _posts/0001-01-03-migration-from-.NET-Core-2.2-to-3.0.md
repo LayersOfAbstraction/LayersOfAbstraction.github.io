@@ -77,21 +77,20 @@ We will be following the majority of what is in this tutorial but it also shows 
 
 Anyway go to the .csproj file in your project. It should look similar to this.
 
-<pre><code class="xml">
-&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+```
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  &lt;PropertyGroup&gt;
-    &lt;TargetFramework&gt;netcoreapp2.2&lt;/TargetFramework&gt;
-    &lt;AspNetCoreHostingModel&gt;InProcess&lt;/AspNetCoreHostingModel&gt;
-    &lt;RootNamespace&gt;_2._2_to_3._0_migration_project&lt;/RootNamespace&gt;
-  &lt;/PropertyGroup&gt;
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RootNamespace>_2._2_to_3._0_migration_project</RootNamespace>
+  </PropertyGroup>
 
 
-  &lt;ItemGroup&gt;
-    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.App&quot; /&gt;
-    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Razor.Design&quot; Version=&quot;2.2.0&quot; PrivateAssets=&quot;All&quot; /&gt;
-  &lt;/ItemGroup&gt;
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
 
-&lt;/Project&gt;
-
-</code></pre>
+</Project>
+```
