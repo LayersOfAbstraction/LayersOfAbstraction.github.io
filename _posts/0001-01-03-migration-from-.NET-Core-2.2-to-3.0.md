@@ -71,5 +71,27 @@ With watches you should be able to make changes to the app and simultaneously re
 
 From the documentation in microsoft you have a large number of obsolete packages that are not needed. We need to change files around. 
 
-We will be following the majority of what is in this tutorial but it also shows you information related to SignalR and health checks which confused me and wasn't related to the MVC at all so those parts I am cutting out of the blog.
+We will be following the majority of what is in this tutorial but it also shows you information related to SignalR and health checks which for me wasn't related to MVC so those parts I am cutting out of the blog. If you want to check them out, [click here](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-5.0&tabs=visual-studio). 
 
+## Update .csproj file for .NET Core 3.0 ##
+
+Anyway go to the .csproj file in your project. It should look similar to this.
+
+{{ "{% highlight xml linenos "}}%}
+
+&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;netcoreapp2.2&lt;/TargetFramework&gt;
+    &lt;AspNetCoreHostingModel&gt;InProcess&lt;/AspNetCoreHostingModel&gt;
+    &lt;RootNamespace&gt;_2._2_to_3._0_migration_project&lt;/RootNamespace&gt;
+  &lt;/PropertyGroup&gt;
+
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.App&quot; /&gt;
+    &lt;PackageReference Include=&quot;Microsoft.AspNetCore.Razor.Design&quot; Version=&quot;2.2.0&quot; PrivateAssets=&quot;All&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+&lt;/Project&gt;
+{{ "{% endhighlight "}}%}
