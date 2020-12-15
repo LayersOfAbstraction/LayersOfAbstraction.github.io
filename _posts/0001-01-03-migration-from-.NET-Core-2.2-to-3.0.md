@@ -75,6 +75,8 @@ We will be following the majority of what is in this tutorial but it also shows 
 
 So those parts I am cutting out of the blog. If you want to check them out, [click here](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-5.0&tabs=visual-studio). Just don't let them confuse you like they did with me.
 
+If that all works then delete your global.json file so we don't get versions confused. 
+
 ## Update .csproj file for .NET Core 3.0 ##
 
 Anyway go to the .csproj file in your project. It should look similar to this.
@@ -276,10 +278,20 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ```
 
-### Use Newtonsoft.Json in an ASP.NET Core 3.0 MVC project ###
+### Integrate Newtonsoft.Json into 3.0 ###
 
-This one will be a little more complex. If you've read the docs like my you'll know that Newtonsoft.Json is not being used as much by Microsoft and they use System.Text.Json instead.
-With that said there are still issues with System.Text.Json for some. You can read it here if you want. ![should be able](https://visualstudiomagazine.com/articles/2020/07/28/json-serializers.aspx)
+This one will be a little more complex. If you've read the microsoft migration docs you'll know that Newtonsoft.Json is not being used as much by Microsoft and they use System.Text.Json instead.
+With that said there Newtonsoft.Json is still more popular than System.Text.Json. You can read about it [here](https://visualstudiomagazine.com/articles/2020/07/28/json-serializers.aspx) if you want.
 
- That said I will be covering Newtonsoft.Json setup instead. So please it using this console command.
+ That said I will be covering Newtonsoft.Json setup instead. Use this console command.
 
+`dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson --version 3.0.0`
+
+Now go Startup.ConfigureServices and add this call to call json libraries.  
+
+```
+services.AddMvc()
+    .AddNewtonsoftJson(options =>
+           options.SerializerSettings.ContractResolver =
+              new CamelCasePropertyNamesContractResolver());
+```
