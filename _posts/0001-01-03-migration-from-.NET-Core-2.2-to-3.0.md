@@ -255,3 +255,31 @@ Here are the changes.
 * `app.UseAuthorization` was added. If the app doesn't use authorization, you can safely remove the call to app.* UseAuthorization.
 * `app.UseEndpoints` was added.
 
+## Kestrel configuration setup ##
+
+Because Kestrel supports a wide array of platforms, it would be a virtue to get it up and running in our development environment. If you have it already setup in 2.2. Else if you only plan on using IIS you can skip this section. 
+
+Anyway to port Kestrel from 2.2 to 3.0 open `Program.cs` and migrate kestrel configuration to the IHostBuilder class provided by ConfigureWebHostDefaults.
+
+```
+
+public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.ConfigureKestrel(serverOptions =>
+            {
+                // Set properties and call methods on options
+            })
+            .UseStartup<Startup>();
+        });
+
+```
+
+### Use Newtonsoft.Json in an ASP.NET Core 3.0 MVC project ###
+
+This one will be a little more complex. If you've read the docs like my you'll know that Newtonsoft.Json is not being used as much by Microsoft and they use System.Text.Json instead.
+With that said there are still issues with System.Text.Json for some. You can read it here if you want. ![should be able](https://visualstudiomagazine.com/articles/2020/07/28/json-serializers.aspx)
+
+ That said I will be covering Newtonsoft.Json setup instead. So please it using this console command.
+
