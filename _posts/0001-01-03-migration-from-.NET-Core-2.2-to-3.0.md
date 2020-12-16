@@ -290,9 +290,48 @@ With that said there Newtonsoft.Json is still more popular than System.Text.Json
 Now go Startup and add `using Newtonsoft.Json.Serialization;` and then to ConfigureServices and add a call to the json libraries.  
 
 ```
+services.AddRazorPages();
 services.AddMvc()
-    .AddNewtonsoftJson(options =>
-           options.SerializerSettings.ContractResolver =
-              new CamelCasePropertyNamesContractResolver());
+.AddNewtonsoftJson(options =>
+    options.SerializerSettings.ContractResolver =
+        new CamelCasePropertyNamesContractResolver());
+services.AddControllersWithViews();
+services.AddRazorPages();        
 ```
 
+### Register MVC extension methods ### 
+
+Add these extension methods in the `ConfigureServices` method. The following example is equivalent to calling AddMvc in ASP.NET Core 2.2: 
+
+```
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    services.AddRazorPages();
+}
+```
+
+### Migrate Startup.Configure ###
+
+Does your app uses authentication/authorization features like `AuthorizePage` or `[Authorize]`? 
+
+If so place the call to the extension methods UseAuthentication and UseAuthorization after, UseRouting and UseCors, but before UseEndpoints:
+
+
+```
+public void Configure(IApplicationBuilder app)
+{
+  ...
+
+  app.UseStaticFiles();
+
+  app.UseRouting();
+  app.UseCors();
+
+  app.UseAuthentication();
+  app.UseAuthorization();
+
+  app.UseEndpoints(endpoints => {
+     endpoints.MapControllers();
+  });
+```
