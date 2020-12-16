@@ -287,7 +287,7 @@ With that said there Newtonsoft.Json is still more popular than System.Text.Json
 
 `dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson --version 3.0.0`
 
-Now go Startup.ConfigureServices and add this call to call json libraries.  
+Now go Startup and add `using Newtonsoft.Json.Serialization;` and then to ConfigureServices and add a call to the json libraries.  
 
 ```
 services.AddMvc()
@@ -295,3 +295,4 @@ services.AddMvc()
            options.SerializerSettings.ContractResolver =
               new CamelCasePropertyNamesContractResolver());
 ```
+
