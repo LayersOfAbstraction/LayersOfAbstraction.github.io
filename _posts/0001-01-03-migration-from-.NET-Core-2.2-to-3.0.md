@@ -334,4 +334,10 @@ public void Configure(IApplicationBuilder app)
   app.UseEndpoints(endpoints => {
      endpoints.MapControllers();
   });
+
+  app.UseEndpoints(endpoints =>
+  {
+    endpoints.MapControllerRoute("default", "controller=Home}/{action=Index}/{id?}");
+  });
 ```
+
