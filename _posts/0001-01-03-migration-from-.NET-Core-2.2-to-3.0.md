@@ -79,7 +79,7 @@ We will be following the majority of what is in this tutorial but it also shows 
 
 So those parts I am cutting out of the blog. If you want to check them out, [click here](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-5.0&tabs=visual-studio). Just don't let them confuse you like they did with me.
 
-If that all works then delete your global.json file so we don't get versions confused. 
+If that all works then **_PLEASE DELETE_** your `global.json` file so we don't get versions confused. 
 
 ## Update .csproj file for .NET Core 3.0 ##
 
@@ -201,9 +201,8 @@ namespace _2._2_to_3._0_migration_project
 We replace the file with the following code. I will explain the changes below so you know what I have changed.
 
 ```
+using Microsoft.Extensions.Hosting
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -267,17 +266,23 @@ Because Kestrel supports a wide array of platforms, it would be a virtue to get 
 Anyway to port Kestrel from 2.2 to 3.0 open `Program.cs` and migrate kestrel configuration to the IHostBuilder class provided by ConfigureWebHostDefaults.
 
 ```
+// requires using Microsoft.AspNetCore.Hosting;
+// requires using Microsoft.Extensions.Hosting;
 
-public static IHostBuilder CreateHostBuilder(string[] args) =>
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.ConfigureKestrel(serverOptions =>
-            {
-                // Set properties and call methods on options
-            })
-            .UseStartup<Startup>();
+            webBuilder.UseStartup<Startup>();
         });
+}
 
 ```
 
