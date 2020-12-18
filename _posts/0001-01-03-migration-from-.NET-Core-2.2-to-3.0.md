@@ -45,7 +45,11 @@ You may get warned that creating this template will make changes to existing fil
 
 `dotnet new globaljson --sdk-version 2.2.401 --force`
 
-Now check if we have successfully switched versions `dotnet --version`. If we have, then we are ready to create a new ASP.NET Core MVC app in that version. 
+Now check if we have successfully switched versions `dotnet --version`. We should get the following number. 
+
+`2.2.401`
+
+If we have, then we are ready to create a new ASP.NET Core MVC app in that version. 
 
 ## Create new project ##
 
@@ -116,7 +120,6 @@ To continue using features provided by packages references we removed, you need 
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </ItemGroup>
 
 </Project>
