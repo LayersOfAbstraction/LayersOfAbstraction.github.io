@@ -55,9 +55,9 @@ If we have, then we are ready to create a new ASP.NET Core MVC app in that versi
 
 Use this command to create project folder and files. `dotnet new mvc -o 2.2_to_3.0_migration_project`
 
-Switch to project directory. 
+Load project directory in VS Code and watch a new window open that displays only the project folder and files. When you execute this command you can close the previous VS Code window. 
 
-`cd 2.2_to_3.0_migration_project`
+`code 2.2_to_3.0_migration_project`
 
 Now before we continue we must ensure we have a trusted certificate if you don't already have one.
 
