@@ -79,7 +79,7 @@ We will be following the majority of what is in this tutorial but it also shows 
 
 So those parts I am cutting out of the blog. If you want to check them out, [click here](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-5.0&tabs=visual-studio). Just don't let them confuse you like they did with me.
 
-If that all works then **_PLEASE DELETE_** your `global.json` file so we don't get versions confused. 
+If that all works then **_PLEASE DELETE_** your `global.json` file so we don't get versions confused. Also I suggest you terminate your watch using Ctrl + c.
 
 ## Update .csproj file for .NET Core 3.0 ##
 
@@ -201,7 +201,8 @@ namespace _2._2_to_3._0_migration_project
 We replace the file with the following code. I will explain the changes below so you know what I have changed.
 
 ```
-using Microsoft.Extensions.Hosting
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -244,7 +245,7 @@ namespace _2._2_to_3._0_migration_project
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
@@ -334,7 +335,6 @@ public void Configure(IApplicationBuilder app)
   app.UseStaticFiles();
 
   app.UseRouting();
-  app.UseCors();
 
   app.UseAuthentication();
   app.UseAuthorization();
@@ -349,3 +349,6 @@ public void Configure(IApplicationBuilder app)
   });
 ```
 
+Run it again with  and it should work. If it doesn't work with watches, try pressing F5 and use the debugger. Another instance may be running, if so terminate any watches you have else open and close Visual Studio Code.
+
+Well hopefully this made things easier for you. In my next upcoming blog we will learn how to convert 3.0 apps to 3.1. Stay tuned!
