@@ -27,7 +27,7 @@ If it is not returning that and you have something later than 2.2 installed than
 
 I will revert to 2.2.401 for the project we have built. Open a folder and call it what you want. I called mine `2.2_to_3.0_migration_project`. Check to make sure we have it installed by using this command.
 
-`dotnet --version`
+`dotnet --info`
 
 And something similar to this should display.
 
