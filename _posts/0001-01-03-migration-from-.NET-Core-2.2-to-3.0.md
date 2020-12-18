@@ -71,7 +71,7 @@ With watches you should be able to make changes to the app and simultaneously re
 
 From the documentation in microsoft you have a large number of obsolete packages that are not needed. We need to change files around. 
 
-We will be following the majority of what is in this tutorial but it also shows you information related to SignalR and health checks which for me wasn't related to MVC and I found so confusing I had to redo my project.
+We will be following the majority of what is in the microsoft docs but it also shows you information related to SignalR and health checks which for me wasn't related to MVC and I found so confusing I had to redo my project.
 
 So those parts I am cutting out of the blog. If you want to check them out, [click here](https://docs.microsoft.com/en-us/aspnet/core/migration/22-to-30?view=aspnetcore-5.0&tabs=visual-studio). Just don't let them confuse you like they did with me.
 
@@ -258,7 +258,7 @@ Here are the changes.
 
 ## Kestrel configuration setup ##
 
-Because Kestrel supports a wide array of platforms, it would be a virtue to get it up and running in our development environment. If you have it already setup in 2.2. Else if you only plan on using IIS you can skip this section. 
+Because Kestrel supports a wide array of platforms, it would be beneficial to get it up and running in our development environment. If you have it already setup in 2.2. Else if you only plan on using IIS you can skip this section. 
 
 Anyway to port Kestrel from 2.2 to 3.0 open `Program.cs` and migrate kestrel configuration to the IHostBuilder class provided by ConfigureWebHostDefaults.
 
