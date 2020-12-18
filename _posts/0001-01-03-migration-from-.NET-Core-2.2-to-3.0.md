@@ -59,10 +59,6 @@ Switch to project directory.
 
 `cd 2.2_to_3.0_migration_project`
 
-Now load the project file. 
-
-`code -r 2.2_to_3.0_migration_project`
-
 Now before we continue we must ensure we have a trusted certificate if you don't already have one.
 
 `dotnet dev-certs https --trust`
@@ -345,7 +341,7 @@ public void Configure(IApplicationBuilder app)
 
   app.UseEndpoints(endpoints =>
   {
-    endpoints.MapControllerRoute("default", "controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute("default", {"controller=Home}/{action=Index}/{id?}");
   });
 ```
 
