@@ -347,4 +347,4 @@ public void Configure(IApplicationBuilder app)
 
 Run it again with  and it should work. If it doesn't work with watches, try pressing F5 and use the debugger. Another instance may be running, if so terminate any watches you have else open and close Visual Studio Code.
 
-Well hopefully this made things easier for you. In my next upcoming blog we will learn how to convert 3.0 apps to 3.1. Stay tuned!
+Well hopefully this made things easier for you. In my next upcoming blog we will learn how to convert 3.0 apps to 3.1. Stay tuned! You can notified via my LinkedIn profile. I will be providing a link here when I'm ready.
