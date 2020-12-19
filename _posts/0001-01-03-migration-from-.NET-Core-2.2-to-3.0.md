@@ -9,7 +9,7 @@ I once read a Shakespearean inspired technical quote "To update or not to update
 
 Simply put this post is going to focus on improving the security of my demo application by ensuring it receives Long Term Support (LTS) from .NET Core 3.1.
 
-If you get stuck in this tutorial you can download the demo I made and compare the code to yours to ensure you are properly migrating from 2.2 to 3.0. We will focus on 3.1 later.
+If you get stuck in this tutorial you can [download the demo](https://github.com/LayersOfAbstraction/2.2_to_3.0_migration_project) I made and compare the code to yours to ensure you are properly migrating from 2.2 to 3.0. We will focus on 3.1 in the next blog.
 
 First make sure you have installed the [.NET Core 3.0 SDK 3.0.100](https://dotnet.microsoft.com/download/dotnet-core/3.0#sdk-3.0.100:~:text=SDK%203.0.100,-Visual) we can download 3.1 later.
 
