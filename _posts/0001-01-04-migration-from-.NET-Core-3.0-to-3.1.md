@@ -82,5 +82,8 @@ To this.
 </Project>
 ```
 
-Interestingly enough in ASP.NET Core 3.0 they (Microsoft) advise you to use NewtonsoftJson again. As the majority of users preferred it over the later version known as System.Text.Json. Use `dotnet watch run` and check the localhost url. If it runs in Chrome then you should have successfully ported the project from 3.0 to 3.1. Nice work. Hopefully this will serve as the groundwork port more complex projects over to 3.1! If you are having problems, this project show show what I have done.
+Interestingly enough in ASP.NET Core 3.0 they (Microsoft) advise you to use NewtonsoftJson again. As the majority of users preferred it over the later version known as System.Text.Json. Use `dotnet watch run` and check the localhost url. If it runs in Chrome then you should have successfully ported the project from 3.0 to 3.1. Nice work.
 
+Again I have a [demo of the project](https://github.com/LayersOfAbstraction/3.0_to_3.1_migration_project) I converted myself from 3.0 to 3.1 in case you got problems. 
+
+Hopefully this will serve as the groundwork for you to port more complex projects over to 3.1!
