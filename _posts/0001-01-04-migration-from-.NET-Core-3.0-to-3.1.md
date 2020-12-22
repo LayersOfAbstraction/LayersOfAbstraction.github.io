@@ -7,9 +7,9 @@ title:  "Migrate from ASP.NET Core MVC 3.0 to 3.1"
 
 ## Download my project or continue with the one you made from the previous blog. ##
 
-I could tell you how to create a new ASP.NET Core MVC 3.0 app but if you're not in the mood feel free to [download my 3.0 demo](https://github.com/LayersOfAbstraction/2.2_to_3.0_migration_project) (migrated from 2.2) and use that as a template.
+In the last blog I have already shown how you can create a new ASP.NET Core MVC app by version. Here you can just [download my 3.0 demo](https://github.com/LayersOfAbstraction/2.2_to_3.0_migration_project) (migrated from 2.2) and use that as a template.
 
-Again just like the previous blog, we're going to use the KISS principle (Keep it simple stupid) or as I like to say (Keep it Stupid Simple). So we're just focusing on getting it up and running in 3.1. Nothing fancy.
+Again just like the previous blog, we're going to use the KISS principle (Keep it Simple Stupid) or as I like to say (Keep It Stupid Simple). So we're just focusing on getting it up and running in 3.1. Nothing fancy.
 
 ## Download and setup .NET Core 3.1 ##
 
@@ -84,6 +84,6 @@ To this.
 
 Interestingly enough in ASP.NET Core 3.0 they (Microsoft) advise you to use NewtonsoftJson again. As the majority of users preferred it over the later version known as System.Text.Json. Use `dotnet watch run` and check the localhost url. If it runs in Chrome then you should have successfully ported the project from 3.0 to 3.1. Nice work.
 
-Again I have a [demo of the project](https://github.com/LayersOfAbstraction/3.0_to_3.1_migration_project) I converted myself from 3.0 to 3.1 in case you got problems. 
+Again I have a [completed demo of this project](https://github.com/LayersOfAbstraction/3.0_to_3.1_migration_project) I converted myself from 3.0 to 3.1 so if you got problems you can look at it. 
 
 Hopefully this will serve as the groundwork for you to port more complex projects over to 3.1!
