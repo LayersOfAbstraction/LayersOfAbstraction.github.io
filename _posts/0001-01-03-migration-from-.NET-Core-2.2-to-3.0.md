@@ -345,6 +345,6 @@ public void Configure(IApplicationBuilder app)
   });
 ```
 
-Run it again with  and it should work. If it doesn't work with watches, try pressing F5 and use the debugger. Another instance may be running, if so terminate any watches you have else open and close Visual Studio Code.
+Run it again  and it should work. If it doesn't work with watches, try pressing F5 and use the debugger. Another instance may be running, if so terminate any watches you have else open and close Visual Studio Code.
 
 Well hopefully this made things easier for you. In my [next upcoming blog]({% link _posts/0001-01-04-migration-from-.NET-Core-3.0-to-3.1.md %}) we will learn how to convert 3.0 apps to 3.1. 
