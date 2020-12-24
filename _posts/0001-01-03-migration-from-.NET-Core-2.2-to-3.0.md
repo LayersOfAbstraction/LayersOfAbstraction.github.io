@@ -250,7 +250,7 @@ namespace _2._2_to_3._0_migration_project
 
 Here are the changes.
 
-* `services.AddMvc` to `services.AddRazorPages`
+* `services.AddMvc` to `services.AddRazorPages()`
 * `CompatibilityVersion` replaced with `services.AddRazorPages();`.
 * `IHostingEnvironment` to `IWebHostEnvironment`.
 * `app.UseAuthorization` was added. If the app doesn't use authorization, you can safely remove the call to app.* UseAuthorization.
@@ -300,8 +300,7 @@ services.AddMvc()
 .AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver =
         new CamelCasePropertyNamesContractResolver());
-services.AddControllersWithViews();
-services.AddRazorPages();        
+services.AddControllersWithViews();       
 ```
 
 ### Register MVC extension methods ### 
