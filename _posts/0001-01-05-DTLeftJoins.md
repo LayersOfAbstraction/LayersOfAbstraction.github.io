@@ -459,7 +459,7 @@ public static void Main(string[] args)
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService();
+            var context = services.GetRequiredService<CookingContext>();
             DbInitializer.Initialize(context);
         }
         catch (Exception ex)
