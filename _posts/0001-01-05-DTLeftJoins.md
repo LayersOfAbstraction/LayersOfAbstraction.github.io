@@ -1,30 +1,9 @@
 ---
 layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET MVC Core 2.2"
-published: false
+published: true
 ---
-::: {#wrapper .fade-in}
-[Blogs]{.logo}
 
--   [Home](../#index.html)
--   [Contact](#footer)
--   [Blog](../blog.html)
-
-```{=html}
-<!-- -->
-```
--   [[linked
-    In]{.label}](https://www.linkedin.com/in/jordan-nash-87b042173/ "Linked In"){.icon
-    .brands .fa-linkedin}
--   [[GitHub]{.label}](https://github.com/LayersOfAbstraction/ "Github"){.icon
-    .brands .fa-github}
-
-::: {#main}
-# [How to retrieve data from related tables in DataTables with ASP.NET MVC Core 2.2](https://github.com/LayersOfAbstraction/Pitcher)
-
-::: {#projects}
-::: {.section .posts}
-## Intro
 
 Completed demo code here.
 <https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git>
@@ -38,9 +17,8 @@ the code for one controller and view built entirely in Entity Framework
 Core. Don\'t worry you don\'t have to memorise all the code in the
 samples right now especially in EF Core.
 
-\
-
 ## The view
+
 
     @model PaginatedList<Pitcher.Models.Registration>
 
@@ -124,7 +102,7 @@ samples right now especially in EF Core.
         
         Next
     </a>                                                  
-                                            
+                                       
 
 ## Controller with Index method
 
@@ -176,17 +154,17 @@ samples right now especially in EF Core.
         int pageSize = 20;
         return View(await  PaginatedList.CreateAsync(registrations.AsNoTracking(), pageNumber ?? 1, pageSize));
     }
-                                        
+                                    
 
 Now I will show you what the UI looks like when I compile the code.
 
-[![](../images/DTLeftJoins/demo1.gif)]{.image .fit}
+![demo1](../images/DTLeftJoins/demo1.gif){:width="780px"}
 
 Now if we write the code in DataTables Editor in the Index method for
 the same controller and the view, it will be much shorter. I will show
 you what it would look like if we run that.
 
-[![](../images/DTLeftJoins/demo2.gif)]{.image .fit}\
+![demo2](../images/DTLeftJoins/demo2.gif){:width="780px"}
 
 Obviously there is heaps more functionality in the UI, the code (which I
 will show later) is cleaner too. Let\'s replicate this in a new project.
@@ -194,8 +172,6 @@ I will do this on Windows 10. You should be able to run and Entity
 Framework Core on Linux too as .NET Core is open source though if you do
 Mac then you will have to use Docker to install SQL Server which this
 tutorial sadly does not cover.
-
-\
 
 ## Download .NetCore
 
@@ -215,14 +191,12 @@ EF Core. So let's first open Visual Studio 2019 and create ASP.NET Core
 WebApplication Template. You can always play around with this app in VS
 Code later if you want once you complete it.
 
-[![](../images/DTLeftJoins/VSNavigateToFolder.png)]{.image .fit}
-
-\
+![VSNavigateToFolder](../images/DTLeftJoins/VSNavigateToFolder.png)
 
 Make sure you have selected 2.2, have no authentication and have
 configured for HTTPS.
 
-[![](../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png)]{.image .fit}
+![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png)
 
 After that create the project. We will now create a Recipe database 3
 different models, Recipe, RecipeIngredient and Ingredient. Create each
@@ -459,7 +433,7 @@ public static void Main(string[] args)
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService<CookingContext>();
+            var context = services.GetRequiredService();
             DbInitializer.Initialize(context);
         }
         catch (Exception ex)
@@ -497,7 +471,7 @@ generate in the scaffolding engine. To that:
 -   Click Add. The Add MVC Controller with views, using Entity Framework
     dialog box appears.
 
-[![](../images/DTLeftJoins/demo3.gif)]{.image .fit}
+![demo3](../images/DTLeftJoins/demo3.gif){:width="780px"}
 
 -   In **Model class** select **RecipeIngredient.**
 -   In **Data context class** select **CookingContext**.
@@ -531,7 +505,7 @@ paging and searching. Not only that, we want to render the RecipeTitle
 and the IngredientName fields from the other tables not the foreign key
 IDs!
 
-[![](../images/DTLeftJoins/demo4.gif)]{.image .fit}
+![demo4](../images/DTLeftJoins/demo4.gif){:width="780px"}
 
 ## Install DataTables
 
@@ -834,55 +808,9 @@ shown.
 If we did that all in Entity Framework Core the code required would be
 substantially longer and give us nowhere as much functionality.
 
-[![](../images/DTLeftJoins/demo5.gif)]{.image .fit}
+![demo5](../images/DTLeftJoins/demo5.gif){:width="780px"}
 
 ## Credit
 
 This problem would not have been solved without the help of Herman
-Starzhynski who I thank greatly!
-<https://www.linkedin.com/in/hstarzhynski/?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_top%3ByNuB3tWoS9axywKgVuomGg%3D%3D&licu=urn%3Ali%3Acontrol%3Ad_flagship3_search_srp_top-search_srp_result&lici=%2BxIoAhfqR%2FGIF7YQLL%2BSoQ%3D%3D>
-
-::: {.section .split .contact}
-### Email
-
-<jnash51@live.com>
-:::
-
-::: {.section .split .contact}
-### Social
-
--   [[Instagram]{.label}](https://www.linkedin.com/in/jordan-nash-87b042173/ "LinkedIn"){.icon
-    .brands .alt .fa-linkedin}
--   [[GitHub]{.label}](https://github.com/LayersOfAbstraction "Github"){.icon
-    .brands .alt .fa-github}
-:::
-
-::: {.section .split .contact}
-### Credits
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Marcus
-Lenk]{style="display:inline-block;padding:2px 3px"}](https://unsplash.com/@marcuslenk?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge "Download free do whatever you want high-resolution photos from Marcus Lenk")
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Helloquence]{style="display:inline-block;padding:2px 3px"}](https://unsplash.com/@helloquence?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge "Download free do whatever you want high-resolution photos from Helloquence")
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Cameron
-Stewart]{style="display:inline-block;padding:2px 3px"}](https://unsplash.com/@cameronstewart?utm_medium=referral&utm_campaign=photographer-credit&utm_content=creditBadge "Download free do whatever you want high-resolution photos from Cameron Stewart")
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Sam
-Noonan]{style="display:inline-block;padding:2px 3px"}](https://www.samnoonan.com.au/ "Please seek permission to use photos from Sam Noonan")
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Woods
-Bagot]{style="display:inline-block;padding:2px 3px"}](https://www.woodsbagot.com/ "Please seek permission to use photos from  Woods Bagot")
-
-[[![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHN0eWxlPSJoZWlnaHQ6MTJweDt3aWR0aDphdXRvO3Bvc2l0aW9uOnJlbGF0aXZlO3ZlcnRpY2FsLWFsaWduOm1pZGRsZTt0b3A6LTJweDtmaWxsOndoaXRlIiB2aWV3Ym94PSIwIDAgMzIgMzIiPjx0aXRsZT51bnNwbGFzaC1sb2dvPC90aXRsZT48cGF0aCBkPSJNMTAgOVYwaDEydjlIMTB6bTEyIDVoMTB2MThIMFYxNGgxMHY5aDEydi05eiI+PC9wYXRoPjwvc3ZnPg==)]{style="display:inline-block;padding:2px 3px"}[Greg
-Rosenke]{style="display:inline-block;padding:2px 3px"}](https://unsplash.com/@greg_rosenke "Download free do whatever you want high-resolution photos from Greg Rosenke")
-:::
-
-::: {#copyright}
--   © Jordan Nash
--   Design: <https://html5up.net>
-:::
-:::
-:::
-:::
-:::
+Starzhynski who I thank greatly!<https://www.linkedin.com/in/hstarzhynski>
