@@ -3,7 +3,7 @@ layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET MVC Core 2.2"
 published: true
 ---
-
+I noticed how DataTables results in way less code and more functionality out of the box. When you retrieve data from more than one related table that's where the heartache begins for many. This blog takes the frustration out of that, by showing you how to create a Left Join in DataTables Editor.
 
 Completed demo code here.
 <https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample.git>
