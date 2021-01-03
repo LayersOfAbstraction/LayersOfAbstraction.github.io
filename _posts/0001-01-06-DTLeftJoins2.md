@@ -43,15 +43,15 @@ Not seeing it? Then go here [download and install it](https://dotnet.microsoft.c
 
 Let us manually set our version to our target version by creating a json file in our project directory with these commands. 
 
-`dotnet new globaljson --sdk-version 3.1.402`
+`dotnet new globaljson --sdk-version 3.1.100`
 
 You may get warned that creating this template will make changes to existing files. If so just run this command else skip to the next instruction.
 
-`dotnet new globaljson --sdk-version 3.1.402 --force`
+`dotnet new globaljson --sdk-version 3.1.100 --force`
 
 Now check if we have successfully switched versions `dotnet --version`. We should get the following number. 
 
-`3.1.402`
+`3.1.100`
 
 If we have, then we are ready to create a new ASP.NET Core MVC app in that version. 
 
@@ -74,4 +74,6 @@ Fire up the project with the command `dotnet watch run` and you should be able t
 If that all works then **_PLEASE DELETE_** your `global.json` file so we don't get versions confused. Also I suggest you terminate your watch using Ctrl + c.
 
 ## Update .csproj file ##
+
+Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like this.
 
