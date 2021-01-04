@@ -1,12 +1,12 @@
 ---
 layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET MVC Core 3.1"
-published: false
+# published: false
 ---
 
 [Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET MVC Core 2.2.]({% link _posts/0001-01-05-DTLeftJoins.md  %}) Now that 2.2 is no longer getting security updates it is time to upgrade to 3.1.
 
-I have completed demo which you can download [here in 3.1](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 as that is how Microsoft have done it in their migration tutorial guides.
+I have completed demo which you can [download here in 3.1](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 as that is how Microsoft have done it in their migration tutorial guides.
 
 Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. That's no way to treat a reader!
 
@@ -75,5 +75,136 @@ If that all works then **_PLEASE DELETE_** your `global.json` file so we don't g
 
 ## Update .csproj file ##
 
-Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like this.
+Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like this. And make sure you hit yes to restore assets else you can reopen the project again to do it.
 
+```
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="DataTables-Editor-Server" Version="1.9.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+  </ItemGroup>
+</Project>
+```
+
+We will now create a Recipe database 3
+different models, Recipe, RecipeIngredient and Ingredient. Create each
+of these classes in the model folder.
+
+## Recipe
+```
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTEditorLeftJoinSample.Models
+{
+    public class Recipe
+    {
+        public int ID { get; set; } 
+        
+        public string Title {get;set;}
+        public string Descriptions {get;set;}
+        public string Directions {get;set;} 
+
+        public ICollection<RecipeIngredient> RecipeIngredient { get; set; }
+    }
+}
+```
+## RecipeIngredient
+
+```
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTEditorLeftJoinSample.Models
+{
+    public class RecipeIngredient
+    {
+        public int ID { get; set; }
+
+        [Display(Name = "Recipe ID")]
+        public int RecipeID { get; set; }
+
+        [Display(Name = "Ingredient ID")]
+        public int IngredientID { get; set; }
+
+        public int Quantity { get; set; }
+        public Recipe Recipe { get; set; }
+        public Ingredient Ingredient { get; set; }
+    }
+}
+```                                        
+
+## Create Ingredient class
+
+```
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DTEditorLeftJoinSample.Models
+{
+    public class Ingredient
+    {
+        public int ID { get; set; }
+        [Display(Name = "Ingredient Name")]
+        public string IngredientName { get; set; }
+
+        public ICollection<RecipeIngredient> RecipeIngredient { get; set; }
+    }
+}                                  
+```                                        
+
+## Insert connection string into appsettings.json
+
+Create the connection string in appsettings.json then copy and paste
+this connection string there.
+```
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=RecipeDB;Trusted_Connection=True;MultipleActiveResultSets=true"
+    },
+    "Logging": {
+        "LogLevel": {
+        "Default": "Warning"
+        }
+    },
+    "AllowedHosts": "*"
+}  
+```
+
+## Create CookingContext
+Even though we cannot integrate Entity Framework Core directly with DataTables Editor, we can still generate the database via EF Core to use with the library. We will do this by creating the database context class. Create a Data folder and add this class.
+
+using DTEditorLeftJoinSample.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace DTEditorLeftJoinSample.Data
+{
+    public class CookingContext : DbContext
+    {
+        public CookingContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public DbSet Recipe { get; set; }
+        public DbSet Ingredient {get;set;}
+        public DbSet RecipeIngredient {get;set;}  
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity().ToTable("tblRecipe");
+            modelBuilder.Entity().ToTable("tblIngredient");
+            modelBuilder.Entity().ToTable("tblRecipeIngredient ");
+        }
+    }
+}  
