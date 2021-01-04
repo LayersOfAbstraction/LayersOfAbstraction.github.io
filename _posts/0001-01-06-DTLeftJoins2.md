@@ -185,6 +185,7 @@ this connection string there.
 ## Create CookingContext
 Even though we cannot integrate Entity Framework Core directly with DataTables Editor, we can still generate the database via EF Core to use with the library. We will do this by creating the database context class. Create a Data folder and add this class.
 
+```
 using DTEditorLeftJoinSample.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -192,19 +193,177 @@ namespace DTEditorLeftJoinSample.Data
 {
     public class CookingContext : DbContext
     {
-        public CookingContext(DbContextOptions options) : base(options)
+        public CookingContext(DbContextOptions<CookingContext> options) : base(options)
         {
         }
 
-        public DbSet Recipe { get; set; }
-        public DbSet Ingredient {get;set;}
-        public DbSet RecipeIngredient {get;set;}  
-        
+        public DbSet<Recipe> Recipe { get; set; }
+        public DbSet<Ingredient> Ingredient { get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredient { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity().ToTable("tblRecipe");
-            modelBuilder.Entity().ToTable("tblIngredient");
-            modelBuilder.Entity().ToTable("tblRecipeIngredient ");
+            modelBuilder.Entity<Recipe>().ToTable("tblRecipe");
+            modelBuilder.Entity<Ingredient>().ToTable("tblIngredient");
+            modelBuilder.Entity<RecipeIngredient>().ToTable("tblRecipeIngredient ");
         }
     }
-}  
+}
+```
+
+
+
+
+
+
+
+
+## Register CookingContext as service in Startup.cs
+
+Register the CookingContext as a service in Startup.cs using dependency
+injection where the ConfigureServices method is. You can do that by
+adding this code to the method. Go to Startup.cs now.
+
+```
+services.AddDbContext<CookingContext>(options =>
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));                                     
+```                                        
+
+Now add these statements to the startup file.
+
+```
+using DTEditorLeftJoinSample.Data;
+using Microsoft.EntityFrameworkCore;
+```                                        
+
+## Create data seed
+
+Now we want to seed the database with test data. This is an optional
+step but highly beneficial. If it does not work for you, the data can be
+entered manually. In the Data folder create this file DbInitializer.cs
+and insert this code.
+
+## DbInitializer
+
+```
+using DTEditorLeftJoinSample.Models;
+using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace DTEditorLeftJoinSample.Data
+{
+    public static class DbInitializer
+    {
+        public static void Initialize(CookingContext context)
+        {
+            context.Database.EnsureCreated();
+
+            // Look for any tables.
+            if (context.Recipe.Any() && context.Ingredient.Any() && context.RecipeIngredient.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var recipes = new Recipe[]
+            {
+                new Recipe { Title =" Korean-Style Steak and Noodles with Kimchi", 
+                Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed pharetra neque. Curabitur laoreet eu lectus eu tempus. Fusce elementum arcu ut justo tincidunt mattis.", 
+                Direction="1.Cras dignissim in neque a placerat." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut." 
+                },
+                new Recipe { Title =" Mashed Potatoes with Savory Thyme Granola", 
+                Description=" Etiam aliquam, magna quis lobortis facilisis, lorem eros dignissim nulla, ultrices pulvinar orci lectus a ligula.", 
+                Direction="1. Morbi fringilla, justo eu venenatis tempus, mauris leo ultricies magna, et aliquet mi lectus at nisi. Pellentesque vel gravida nunc. Donec in tortor lectus." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."},
+                new Recipe { Title ="Lemon Garlic Mashed Potatoes", 
+                Description="Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.", 
+                Direction="1. Maecenas ultricies pretium quam id placerat. Mauris in ligula gravida, vehicula justo faucibus, semper neque." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Morbi consectetur libero id sagittis vestibulum."},
+                new Recipe { Title =" Sour Cream and Corn Mashers", 
+                Description=" Donec posuere pellentesque mi, ac suscipit tellus finibus id.", 
+                Direction="1. Nulla placerat erat lorem, eget pellentesque dolor egestas vitae." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Suspendisse ac purus lacinia, mollis velit aliquet, finibus arcu. Pellentesque molestie est in diam pulvinar, quis mattis justo volutpat."}
+                            };
+            foreach (Recipe r in recipes)
+            {
+                context.Recipe.AddRange(r);
+            }
+            context.SaveChanges();
+
+            var ingredients = new Ingredient[]
+            {
+                new Ingredient{IngredientName="Duis eu ligula felis"},
+                new Ingredient{IngredientName="Donec id mollis arcu"},
+                new Ingredient{IngredientName="Cras nec enim luctus"}
+            };
+            foreach (Ingredient i in ingredients)
+            {
+                context.Ingredient.AddRange(i);
+            }
+            context.SaveChanges();
+
+            var recipeIngredients = new RecipeIngredient[]
+            {
+                new RecipeIngredient{RecipeID=1, IngredientID=1, Quantity =4},
+                new RecipeIngredient{RecipeID=2, IngredientID=2, Quantity =3},
+                new RecipeIngredient{RecipeID=3, IngredientID=3, Quantity =15}
+            };
+            
+            foreach (RecipeIngredient ri in recipeIngredients)
+            {
+                context.RecipeIngredient.AddRange(ri);
+            }
+            context.SaveChanges();             
+        }
+    }
+}                                                                               
+```                                        
+
+We want to get the database context instance from dependency injection
+container.
+
+## Call context and seed method
+
+Now we call the context instance, the seed method and pass it to the
+context. Then dispose the context when the seeding is complete. In
+**Program.cs** delete any code in the `Main` method and add this all to
+the method.
+
+## Program.cs
+
+```
+public static void Main(string[] args)
+{
+    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+
+    var host = CreateHostBuilder(args).Build();
+        using (var scope = host.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+        try
+        {
+            var context = services.GetRequiredService<CookingContext>();
+            DbInitializer.Initialize(context);
+        }
+        catch (Exception ex)
+        {
+            var logger = services.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred while seeding the database.");
+        }
+    }
+    host.Run();
+}
+```
+
+Now add these statements
+
+```
+using DTEditorLeftJoinSample.Data;
+using Microsoft.Extensions.DependencyInjection;
+                                    
+```
+
+## Generate controllers and views with scaffolding engine
+
+You could write it all the views in DataTables but it is easier to first
+auto generate all the CRUD view pages and controllers using Entity
+Framework Core from the models we made and edit the pages later. We will
+generate in the scaffolding engine. To that:
