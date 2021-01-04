@@ -363,7 +363,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 ## Generate controllers and views with scaffolding engine
 
-You could write it all the views in DataTables but it is easier to first
+You could write all the views in DataTables but it is easier to first
 auto generate all the CRUD view pages and controllers using Entity
 Framework Core from the models we made and edit the pages later. We will
-generate in the scaffolding engine. To that:
+generate in the scaffolding engine.
+
+The scafolding engine on Windows CLI 3.1 Core still has problems so if this command...
+
+`dotnet aspnet-codegenerator controller -name IngredientController -m Ingredient -dc CookingContext -outDir Controllers`
+
+Does not work for you like it didn't for me and results in this error: 
+`No code generators found with the name 'controller'
+   at Microsoft.VisualStudio.Web.CodeGeneration.CodeGeneratorsLocator.GetCodeGenerator(String codeGeneratorName)`
+
+Then it would mean you need to generate the controller and views in Visual Studio which works easier. However because the interface is harder to navigate, cumbersome and because we are not using Visual Studio and I don't want to put you through more pain, how about I just give you the Controller code instead so you can use to generate the Views. 
