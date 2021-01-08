@@ -363,10 +363,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 ## Generate controllers and views with scaffolding engine
 
-You could write all the views in DataTables but it is easier to first
-auto generate all the CRUD view pages and controllers using Entity
-Framework Core from the models we made and edit the pages later. We will
-generate in the scaffolding engine.
+You could write all the views in DataTables but it is easier to first auto generate all the CRUD view pages and controllers using Entity Framework Core from the models we made and edit the pages later. We will generate in the scaffolding engine.
 
 The scafolding engine on Windows CLI 3.1 Core still has problems so if this command...
 
