@@ -52,15 +52,6 @@ If you see any `3.1.100` or `3.1.402` listed then you should be ok to skip to th
 
 Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if either `3.1.100` or `3.1.402` is listed.
 
-
-
-
-## Run new project ##
-
-Fire up the project with the command `dotnet watch run` and you should be able to navigate to the url that is listed in the terminal that ASP.NET Core is listening on. Click on it and make sure the template is functioning ok before continuing.  
-
-If that all works then **_PLEASE DELETE_** your `global.json` file so we don't get versions confused. Also I suggest you terminate your watch using Ctrl + c.
-
 ## Update .csproj file ##
 
 Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like this. And make sure you hit yes to restore assets else you can reopen the project again to do it.
@@ -74,7 +65,6 @@ Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like
 
 
   <ItemGroup>
-    <PackageReference Include="DataTables-Editor-Server" Version="1.9.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />    
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
@@ -199,13 +189,6 @@ namespace DTEditorLeftJoinSample.Data
 }
 ```
 
-
-
-
-
-
-
-
 ## Register CookingContext as service in Startup.cs
 
 Register the CookingContext as a service in Startup.cs using dependency
@@ -230,8 +213,6 @@ Now we want to seed the database with test data. This is an optional
 step but highly beneficial. If it does not work for you, the data can be
 entered manually. In the Data folder create this file DbInitializer.cs
 and insert this code.
-
-## DbInitializer
 
 ```
 using DTEditorLeftJoinSample.Models;
@@ -308,19 +289,17 @@ namespace DTEditorLeftJoinSample.Data
 We want to get the database context instance from dependency injection
 container.
 
-## Call context and seed method
+## Call context and seed method and register factory for DataTables
 
-Now we call the context instance, the seed method and pass it to the
+Now we call the context instance, the seed method and pass it to the 
 context. Then dispose the context when the seeding is complete. In
-**Program.cs** delete any code in the `Main` method and add this all to
-the method.
+**Program.cs** delete any code in the `Main` method and add this all to the method.
 
 ## Program.cs
 
 ```
 public static void Main(string[] args)
 {
-    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 
     var host = CreateHostBuilder(args).Build();
         using (var scope = host.Services.CreateScope())
@@ -351,218 +330,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 ## Generate controllers and views with scaffolding engine
 
-You could write all the views in DataTables but it is easier to first
-auto generate all the CRUD view pages and controllers using Entity
-Framework Core from the models we made and edit the pages later. We will
-generate in the scaffolding engine.
-
-The scafolding engine on Windows CLI 3.1 Core still has problems so if this command...
-
-`dotnet aspnet-codegenerator controller -name IngredientController -m Ingredient -dc CookingContext -outDir Controllers`
-
-Does not work for you like it didn't for me and results in this error: 
-`No code generators found with the name 'controller'
-   at Microsoft.VisualStudio.Web.CodeGeneration.CodeGeneratorsLocator.GetCodeGenerator(String codeGeneratorName)`
-
-Then it would mean you need to generate the controller and views in Visual Studio which works easier. However because the interface is harder to navigate, cumbersome and because we are not using Visual Studio and I don't want to put you through more pain, how about I just give you the Controller code instead so you can use it to generate the Views. Just incase that
-command doesn't work. 
-
-Create a new  `RecipeIngredientsController.cs` in the Controllers folder and add this code.  
-
-```
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using DTEditorLeftJoinSample.Data;
-using DTEditorLeftJoinSample.Models;
-using DataTables;
-using Microsoft.Extensions.Configuration;
-
-namespace DTEditorLeftJoinSample.Controllers
-{
-    public class RecipeIngredientsController : Controller
-    {
-        private readonly CookingContext _context;
+The scafolding engine on Windows CLI 3.1 Core still has problems so we will have to use Visual Studio's GUI to access the scaffolding engine and generate the items.
 
 
-        private readonly IConfiguration _config;
 
-        public RecipeIngredientsController(CookingContext context, IConfiguration config)
-        {
-            _context = context;
-            _config = config;
-        }
-
-        // GET: RecipeIngredients
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
-        {
-            //DECLARE database connection.
-            string connectionString = _config.GetConnectionString("DefaultConnection");
-            //CREATE debatable instance.
-            using (var db = new Database("sqlserver", connectionString))
-            {
-                //CREATE Editor instance with starting table.
-                var response = new Editor(db, "tblRecipeIngredient")
-                    .Field(new Field("tblRecipeIngredient.Quantity"))
-                    .Field(new Field("tblRecipe.Description"))                     
-                    .Field(new Field("tblIngredient.IngredientName"))
-                     //JOIN from tblIngredient column RecipeID linked from tblRecipe column ID
-                    //and IngredientID linked from tblUser column ID.                    
-                    .LeftJoin("tblRecipe ", " tblRecipe.ID ", "=", " tblRecipeIngredient.RecipeID")
-                    .LeftJoin("tblIngredient ", " tblIngredient.ID ", "=", " tblRecipeIngredient.IngredientID")
-                    .Process(HttpContext.Request)
-                    .Data();
-                return Json(response);
-            }
-        }
-
-
-        // GET: RecipeIngredients/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var recipeIngredient = await _context.RecipeIngredient
-                .Include(r => r.Ingredient)
-                .Include(r => r.Recipe)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (recipeIngredient == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipeIngredient);
-        }
-
-        // GET: RecipeIngredients/Create
-        public IActionResult Create()
-        {
-            ViewData["IngredientID"] = new SelectList(_context.Ingredient, "ID", "ID");
-            ViewData["RecipeID"] = new SelectList(_context.Recipe, "ID", "ID");
-            return View();
-        }
-
-        // POST: RecipeIngredients/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,RecipeID,IngredientID,Quantity")] RecipeIngredient recipeIngredient)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(recipeIngredient);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IngredientID"] = new SelectList(_context.Ingredient, "ID", "ID", recipeIngredient.IngredientID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipe, "ID", "ID", recipeIngredient.RecipeID);
-            return View(recipeIngredient);
-        }
-
-        // GET: RecipeIngredients/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var recipeIngredient = await _context.RecipeIngredient.FindAsync(id);
-            if (recipeIngredient == null)
-            {
-                return NotFound();
-            }
-            ViewData["IngredientID"] = new SelectList(_context.Ingredient, "ID", "ID", recipeIngredient.IngredientID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipe, "ID", "ID", recipeIngredient.RecipeID);
-            return View(recipeIngredient);
-        }
-
-        // POST: RecipeIngredients/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,RecipeID,IngredientID,Quantity")] RecipeIngredient recipeIngredient)
-        {
-            if (id != recipeIngredient.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(recipeIngredient);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RecipeIngredientExists(recipeIngredient.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["IngredientID"] = new SelectList(_context.Ingredient, "ID", "ID", recipeIngredient.IngredientID);
-            ViewData["RecipeID"] = new SelectList(_context.Recipe, "ID", "ID", recipeIngredient.RecipeID);
-            return View(recipeIngredient);
-        }
-
-        // GET: RecipeIngredients/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var recipeIngredient = await _context.RecipeIngredient
-                .Include(r => r.Ingredient)
-                .Include(r => r.Recipe)
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (recipeIngredient == null)
-            {
-                return NotFound();
-            }
-
-            return View(recipeIngredient);
-        }
-
-        // POST: RecipeIngredients/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var recipeIngredient = await _context.RecipeIngredient.FindAsync(id);
-            _context.RecipeIngredient.Remove(recipeIngredient);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool RecipeIngredientExists(int id)
-        {
-            return _context.RecipeIngredient.Any(e => e.ID == id);
-        }
-    }
-}
-```
 
