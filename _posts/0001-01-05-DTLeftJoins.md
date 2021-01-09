@@ -218,33 +218,33 @@ of these classes in the model folder.
             public string Descriptions {get;set;}
             public string Directions {get;set;} 
 
-            public ICollection RecipeIngredients {get;set;}    
+            public ICollection<RecipeIngredient> RecipeIngredient { get; set; }   
         }
     }
 
 ## RecipeIngredient
 
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-    namespace DTEditorLeftJoinSample.Models
+namespace DTEditorLeftJoinSample.Models
+{
+    public class RecipeIngredient
     {
-        public class RecipeIngredient
-        {
-            public int ID {get;set;}
+        public int ID { get; set; }
 
-            [Display(Name = "Recipe ID")]
-            public int RecipeID { get; set; }
+        [Display(Name = "Recipe ID")]
+        public int RecipeID { get; set; }
 
-            [Display(Name = "Ingredient ID")]
-            public int IngredientID { get; set; }
-        
-            public int quantity {get;set;}        
-            public Recipe Recipe {get;set;}
-            public Ingredient Ingredient {get;set;}
-        }
+        [Display(Name = "Ingredient ID")]
+        public int IngredientID { get; set; }
+
+        public int Quantity { get; set; }
+        public Recipe Recipe { get; set; }
+        public Ingredient Ingredient { get; set; }
     }
+}
                                         
 
 ## Create Ingredient class
@@ -261,7 +261,7 @@ of these classes in the model folder.
             [Display(Name = "Ingredient Name")]
             public string IngredientName {get;set;}
 
-            public ICollection RecipeIngredient {get;set;}    
+            public ICollection<RecipeIngredient> RecipeIngredient { get; set; }    
         }
     }                                       
                                         
