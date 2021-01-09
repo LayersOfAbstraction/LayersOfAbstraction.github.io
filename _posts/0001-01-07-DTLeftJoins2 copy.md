@@ -16,12 +16,12 @@ Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. 
 
 You can always play around with this app in VS Code later if you want once you complete it.
 
-![VSNavigateToFolder](../images/DTLeftJoins/VSNavigateToFolder.png)
+![VSNavigateToFolder](../images/DTLeftJoins2/VSNavigateToFolder.png)
 
 Make sure you have selected 3.1, have no authentication and have
 configured for HTTPS.
 
-![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png)
+![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png){:width="780px"}
 
 After that create the project. We will now create a Recipe database 3 
 different models, Recipe, RecipeIngredient and Ingredient. Create each 
@@ -295,6 +295,8 @@ Now we call the context instance, the seed method and pass it to the
 context. Then dispose the context when the seeding is complete. In
 **Program.cs** delete any code in the `Main` method and add this all to the method.
 
+To use DataTables also we must register the database driver either in Startup.cs or Program.cs which is `System.Data.SqlClient`. We will do it all in Program.cs
+
 ## Program.cs
 
 ```
@@ -325,6 +327,9 @@ Now add these statements
 ```
 using DTEditorLeftJoinSample.Data;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.Common;
+using Microsoft.Data.SqlClient;
+using DTEditorLeftJoinSample.Data;
                                     
 ```
 
@@ -332,6 +337,24 @@ using Microsoft.Extensions.DependencyInjection;
 
 The scafolding engine on Windows CLI 3.1 Core still has problems so we will have to use Visual Studio's GUI to access the scaffolding engine and generate the items.
 
+Rather than write it manually it is easier to first auto generate all the CRUD view pages and controllers using Entity Framework Core from the models we made and edit the pages later. We will generate in the scaffolding engine. To that:
 
+-   Right-click the **Controllers** folder in **Solution Explorer** and
+    select **Add \> New Scaffolded Item**
+-   In the **Add Scaffold** dialog box:
+-   Select MVC controller with views, using Entity Framework.
+-   Click Add. The Add MVC Controller with views, using Entity Framework
+    dialog box appears.
 
+![demo3](../images/DTLeftJoins2/demo3.gif){:width="780px"}
+
+-   In **Model class** select **RecipeIngredient.**
+-   In **Data context class** select **CookingContext**.
+-   Accept the default **CookingController** as the name.
+-   Click **Add**. The **Add MVC Controller with views, using Entity
+    Framework** dialog box appears.
+
+If all is ok then the RecipeIngredient folder generates with all the
+views, Index, Edit, Details, Delete. Notice in the Controllers folder
+the new generated controller RecipeIngredientsController.cs.
 
