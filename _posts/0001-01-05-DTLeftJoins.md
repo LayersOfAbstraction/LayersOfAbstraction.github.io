@@ -433,12 +433,12 @@ public static void Main(string[] args)
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService();
+            var context = services.GetRequiredService<CookingContext>();
             DbInitializer.Initialize(context);
         }
         catch (Exception ex)
         {
-            var logger = services.GetRequiredService>();
+            var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error occurred while seeding the database.");
         }
     }
