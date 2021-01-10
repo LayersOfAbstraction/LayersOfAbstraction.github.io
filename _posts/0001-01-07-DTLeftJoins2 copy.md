@@ -1,38 +1,20 @@
 ---
 layout: post
-title: "How to retrieve data from related tables in DataTables with ASP.NET MVC Core 3.1"
+title: "How to retrieve data from related tables in DataTables with ASP.NET Core 5.0"
 # published: false
 ---
 
-[Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET MVC Core 2.2.]({% link _posts/0001-01-05-DTLeftJoins.md  %}) Now that 2.2 is no longer getting security updates it is time to upgrade to 3.1.
+[Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET MVC Core 2.2.]({% link _posts/0001-01-05-DTLeftJoins.md  %}) Now that 2.2 is no longer getting security updates it is time to upgrade to .NET 5.0, (not called .NET Core).
 
-I have completed demo which you can [download here in 3.1](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 as that is how Microsoft have done it in their migration tutorial guides.
+I have completed demo which you can [download here in .NET 5](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5.0 as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
-Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. That's no way to treat a reader!
+Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. 
 
-## Create App In Visual Studio 2019 ##
+## Download and setup .NET 5 ##
 
-Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2019 and create ASP.NET Core WebApplication Template. 
+First check in the command line to see if you have .NET 5 already installed by typing cmd into the windows Start search bar to bring it up and then running the command `dotnet --info`.
 
-You can always play around with this app in VS Code later if you want once you complete it.
-
-![VSNavigateToFolder](../images/DTLeftJoins2/VSNavigateToFolder.png)
-
-Make sure you have selected 3.1, have no authentication and have
-configured for HTTPS.
-
-![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png){:width="780px"}
-
-After that create the project. We will now create a Recipe database 3 
-different models, Recipe, RecipeIngredient and Ingredient. Create each 
-of these classes in the model folder.
-
-## Download and setup .NET Core 3.1 ##
-
-First check to see if you have .NET Core 3.1 already installed by using in the Package Manager console `dotnet --info`.
-
-
-If you see any `3.1.100` or `3.1.402` listed then you should be ok to skip to the next heading.
+If you see any `5.0.100` or `5.0.101` listed then you should be ok to skip to the next heading.
 
 
 ```
@@ -50,7 +32,25 @@ If you see any `3.1.100` or `3.1.402` listed then you should be ok to skip to th
   5.0.101 [C:\Program Files\dotnet\sdk]
 ```
 
-Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if either `3.1.100` or `3.1.402` is listed.
+Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if either `5.0.100` or `5.0.101` is listed.
+
+
+## Create App In Visual Studio 2019 ##
+
+Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2019 and create ASP.NET Core WebApplication Template. 
+
+You can always play around with this app in VS Code later if you want once you complete it.
+
+![VSNavigateToFolder](../images/DTLeftJoins2/VSNavigateToFolder.png)
+
+Make sure you have selected `ASP.NET Core 5.0` and have `no authentication` selected and have
+`configure for HTTPS` selected as well.
+
+![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png){:width="780px"}
+
+After that create the project. We will now create a Recipe database 3 
+different models, Recipe, RecipeIngredient and Ingredient. Create each 
+of these classes in the model folder.
 
 ## Update .csproj file ##
 
@@ -59,15 +59,16 @@ Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like
 ```
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />    
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
   </ItemGroup>
 </Project>
 ```
@@ -189,6 +190,24 @@ namespace DTEditorLeftJoinSample.Data
 }
 ```
 
+## Install Entity Framework Core and other packages
+
+Depending on which .NET Core SDK you installed, go to. 
+
+- Tools. 
+- Click on **NuGet package manager** then select **Manage NuGet Packages for Solution** Microsoft.EntityFrameworkCore.
+- Select the **Browse** tab and type into the search bar "Microsoft.EntityFrameworkCore"
+- If you don't know the version, please select, type into the package manager console `dotnet --info`
+
+Also install depending on version:
+
+- Microsoft.AspNetCore.Mvc.NewtonsoftJson
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+The errors in CookingContext.cs and in Startup.cs should disappear.
+
 ## Register CookingContext as service in Startup.cs
 
 Register the CookingContext as a service in Startup.cs using dependency
@@ -302,7 +321,7 @@ To use DataTables also we must register the database driver either in Startup.cs
 ```
 public static void Main(string[] args)
 {
-
+    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);    
     var host = CreateHostBuilder(args).Build();
         using (var scope = host.Services.CreateScope())
     {
@@ -335,7 +354,7 @@ using DTEditorLeftJoinSample.Data;
 
 ## Generate controllers and views with scaffolding engine
 
-The scafolding engine on Windows CLI 3.1 Core still has problems so we will have to use Visual Studio's GUI to access the scaffolding engine and generate the items.
+The scafolding engine on Windows CLI still has problems so we will have to use Visual Studio's GUI to access the scaffolding engine and generate the items.
 
 Rather than write it manually it is easier to first auto generate all the CRUD view pages and controllers using Entity Framework Core from the models we made and edit the pages later. We will generate in the scaffolding engine. To that:
 
@@ -358,3 +377,8 @@ If all is ok then the RecipeIngredient folder generates with all the
 views, Index, Edit, Details, Delete. Notice in the Controllers folder
 the new generated controller RecipeIngredientsController.cs.
 
+I would like to note if you are getting painfully unclear errors like this:
+
+`There was an error running the selected code generator. Package restore failed. Rolling back package...`
+
+It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated even to the latest version which helped.
