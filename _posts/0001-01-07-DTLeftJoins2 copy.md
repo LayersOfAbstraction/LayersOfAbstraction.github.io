@@ -381,4 +381,66 @@ I would like to note if you are getting painfully unclear errors like this:
 
 `There was an error running the selected code generator. Package restore failed. Rolling back package...`
 
-It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated even to the latest version which helped.
+It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated to the latest version which helped.
+
+## Add Recipeingredient To Navbar
+
+We want to be able to go to it from or home page to our _layout.cshtml file. In the second div tag of the header add this list item to the navbar.
+
+```
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="RecipeIngredients" asp-action="Index">Recipe Ingredient</a>
+</li>  
+```
+
+Press F5. Running the program will generate the database and fill out the tables. If it doesn’t work please use the SQL Server Object Explorer to fill the tables manually.
+
+If all goes well you should be able to go directly to the table in the Index view and render the project. But as I said there is no sorting, paging and searching. Not only that, we want to render the RecipeTitle and the IngredientName fields from the other tables not the foreign key IDs!
+
+![demo4](../images/DTLeftJoins2/demo4.gif){:width="780px"}
+
+## Install DataTables
+
+We will have to edit the index and install DataTables Editor server-side
+libraries to render the related fields from another table. Enter this
+into the Package Management Console.
+
+`dotnet add package DataTables-Editor-Server`
+
+Our priority is to activate DataTables Editor in the backend controller
+and then write the code to link the View up to our controller. Remember
+the backend will use DataTables Editor server-side libraries which are
+free.
+
+The front-end DataTables Editor libraries are not free so we won't use
+that. The front end will instead use DataTables which is also free and
+is compatible with EF Core as long as you aren't rendering foreign keys.
+
+We need to install DataTables into the front end. We just have to
+reference the javascript and css libraries from DataTables Content
+Delivery Network. Add the following code to the head in our
+_Layout.cshtml file.
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+
+Go ahead and add this under the footer in the body with all the other
+scripts.
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+## Call database directly from Program or Startup
+
+Now will need to bypass our RecipeIngredient model and bind our
+controller directly to the database using
+DbProviderFactories.RegisterFactory. Remember you can't use entity
+framework with DataTables Editor libraries. Enter this into either your
+startup.cs or program.cs file. I have chosen to add it to Program.cs.
+
+    // using statement at top of Program.cs
+    using System.Data.SqlClient;
+    using System.Data.Common;
+
+    // Register the factory in `Main`
+    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+
+## Bypass model and bind tblRecipeIngredient from controller
