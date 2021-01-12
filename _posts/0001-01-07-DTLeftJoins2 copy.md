@@ -90,8 +90,8 @@ namespace DTEditorLeftJoinSample.Models
         public int ID { get; set; } 
         
         public string Title {get;set;}
-        public string Descriptions {get;set;}
-        public string Directions {get;set;} 
+        public string Description {get;set;}
+        public string Direction {get;set;} 
 
         public ICollection<RecipeIngredient> RecipeIngredient { get; set; }
     }
@@ -257,18 +257,18 @@ namespace DTEditorLeftJoinSample.Data
             var recipes = new Recipe[]
             {
                 new Recipe { Title =" Korean-Style Steak and Noodles with Kimchi",
-                Descriptions="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed pharetra neque. Curabitur laoreet eu lectus eu tempus. Fusce elementum arcu ut justo tincidunt mattis.",
-                Directions="1.Cras dignissim in neque a placerat." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."
+                Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed pharetra neque. Curabitur laoreet eu lectus eu tempus. Fusce elementum arcu ut justo tincidunt mattis.",
+                Direction="1.Cras dignissim in neque a placerat." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."
                 },
                 new Recipe { Title =" Mashed Potatoes with Savory Thyme Granola",
-                Descriptions=" Etiam aliquam, magna quis lobortis facilisis, lorem eros dignissim nulla, ultrices pulvinar orci lectus a ligula.",
-                Directions="1. Morbi fringilla, justo eu venenatis tempus, mauris leo ultricies magna, et aliquet mi lectus at nisi. Pellentesque vel gravida nunc. Donec in tortor lectus." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."},
+                Description=" Etiam aliquam, magna quis lobortis facilisis, lorem eros dignissim nulla, ultrices pulvinar orci lectus a ligula.",
+                Direction="1. Morbi fringilla, justo eu venenatis tempus, mauris leo ultricies magna, et aliquet mi lectus at nisi. Pellentesque vel gravida nunc. Donec in tortor lectus." + "\r\n" + "2.Vestibulum vel vestibulum nunc." + "\r\n" +  "3. Vestibulum interdum est tellus, nec porta metus dignissim ut."},
                 new Recipe { Title ="Lemon Garlic Mashed Potatoes",
-                Descriptions="Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-                Directions="1. Maecenas ultricies pretium quam id placerat. Mauris in ligula gravida, vehicula justo faucibus, semper neque." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Morbi consectetur libero id sagittis vestibulum."},
+                Description="Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+                Direction="1. Maecenas ultricies pretium quam id placerat. Mauris in ligula gravida, vehicula justo faucibus, semper neque." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Morbi consectetur libero id sagittis vestibulum."},
                 new Recipe { Title =" Sour Cream and Corn Mashers",
-                Descriptions=" Donec posuere pellentesque mi, ac suscipit tellus finibus id.",
-                Directions="1. Nulla placerat erat lorem, eget pellentesque dolor egestas vitae." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Suspendisse ac purus lacinia, mollis velit aliquet, finibus arcu. Pellentesque molestie est in diam pulvinar, quis mattis justo volutpat."}
+                Description=" Donec posuere pellentesque mi, ac suscipit tellus finibus id.",
+                Direction="1. Nulla placerat erat lorem, eget pellentesque dolor egestas vitae." + "\r\n" + "2. Proin sodales aliquam erat quis venenatis." + "\r\n" +  "3. Suspendisse ac purus lacinia, mollis velit aliquet, finibus arcu. Pellentesque molestie est in diam pulvinar, quis mattis justo volutpat."}
             };
             foreach (Recipe r in recipes)
             {
@@ -444,3 +444,4 @@ startup.cs or program.cs file. I have chosen to add it to Program.cs.
     DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 
 ## Bypass model and bind tblRecipeIngredient from controller
+
