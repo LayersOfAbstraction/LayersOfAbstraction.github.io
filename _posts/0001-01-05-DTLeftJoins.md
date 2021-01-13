@@ -722,7 +722,7 @@ object. Below that we are making an ajax request to get the name of our
 controller method which will display all the data we specified in the
 backend controller.
 
-When we fire up the program we should be able to tell if our back end is
+When we fire up the program we should be able to tell if our backend is
 communicating with our frontend.
 
 In DataTables Editor it is different in regard to getting the primary
