@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET Core 5.0"
-# published: false
 ---
 
 [Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET MVC Core 2.2.]({% link _posts/0001-01-05-DTLeftJoins.md  %}) Now that 2.2 is no longer getting security updates it is time to upgrade to .NET 5.0, (not called .NET Core).
