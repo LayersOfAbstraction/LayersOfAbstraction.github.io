@@ -52,7 +52,7 @@ After that create the project. We will now create a Recipe database 3
 different models, Recipe, RecipeIngredient and Ingredient. Create each 
 of these classes in the model folder.
 
-## Update .csproj file ##
+<!-- ## Update .csproj file ##
 
 Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like this. And make sure you hit yes to restore assets else you can reopen the project again to do it.
 
@@ -71,7 +71,7 @@ Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
   </ItemGroup>
 </Project>
-```
+``` -->
 
 We will now create a Recipe database 3
 different models, Recipe, RecipeIngredient and Ingredient. Create each
@@ -212,11 +212,13 @@ The errors in CookingContext.cs and in Startup.cs should disappear.
 
 Register the CookingContext as a service in Startup.cs using dependency
 injection where the ConfigureServices method is. You can do that by
-adding this code to the method. Go to Startup.cs now.
+adding this code to the method including Newtonsoft.Json features so we can use json on the client side. Go to Startup.cs now.
 
 ```
 services.AddDbContext<CookingContext>(options =>
-options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));                                     
+    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+services.AddControllersWithViews();
+services.AddControllers().AddNewtonsoftJson();                                     
 ```                                        
 
 Now add these statements to the startup file.
@@ -344,12 +346,10 @@ public static void Main(string[] args)
 Now add these statements
 
 ```
-using DTEditorLeftJoinSample.Data;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using Microsoft.Data.SqlClient;
-using DTEditorLeftJoinSample.Data;
-                                    
+using DTEditorLeftJoinSample.Data;                                    
 ```
 
 ## Generate controllers and views with scaffolding engine
@@ -457,13 +457,37 @@ Add an IConfiguration object to get the connection string and make sure it's val
 Now go and add this method.
 
 ```
-LeftJoinJobsAndUsersOntoRegistrations()
+public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
+{
+    //DECLARE database connection.
+    string connectionString = _config.GetConnectionString("DefaultConnection");
+
+    //CREATE database instance.
+    using (var db = new Database("sqlserver", connectionString))
+    {
+        //CREATE Editor instance with starting table.
+        var response = new Editor(db, "tblRecipeIngredient")
+            .Field(new Field("tblRecipeIngredient.Quantity"))
+            .Field(new Field("tblRecipe.Description"))
+            .Field(new Field("tblIngredient.IngredientName"))
+
+            //JOIN from tblIngredient column RecipeID linked from tblRecipe column ID
+            //and IngredientID linked from tblUser column ID.  
+            .LeftJoin("tblRecipe ", " tblRecipe.ID ", "=", " tblRecipeIngredient.RecipeID")
+            .LeftJoin("tblIngredient ", " tblIngredient.ID ", "=", " tblRecipeIngredient.IngredientID")
+            .Process(HttpContext.Request)
+            .Data();
+        return Json(response);
+    }
+}
 ```
 I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. Make sure your
 RecipeIngredientsController constructor matches mine and make sure your
 Index method matches! It will look different.
 ```
+private readonly CookingContext _context;
 private readonly IConfiguration _config;
+
 public RecipeIngredientsController(CookingContext context, IConfiguration config)
 {
     _context = context;
@@ -598,9 +622,9 @@ will break it down as much as possible.
             "url": "@Url.Action("LeftJoinRecipesAndIngredientsOntoRecipeIngredient")"
         },
         "columns": [
-            { "data": "tblIngredient.ingredientName"},
-            { "data": "tblRecipe.description"},
-            { "data": "tblRecipeIngredient.quantity" },
+            { "data": "tblIngredient.IngredientName"},
+            { "data": "tblRecipe.Description"},
+            { "data": "tblRecipeIngredient.Quantity" },
             {
                 "data": null,
                 "render": function (value) {
@@ -710,8 +734,3 @@ If we did that all in Entity Framework Core the code required would be
 substantially longer and give us nowhere as much functionality.
 
 ![demo5](../images/DTLeftJoins/demo5.gif){:width="780px"}
-
-## Credit
-
-This problem would not have been solved without the help of Herman
-Starzhynski who I thank greatly!<https://www.linkedin.com/in/hstarzhynski>
