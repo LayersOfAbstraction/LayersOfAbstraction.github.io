@@ -379,7 +379,9 @@ the new generated controller RecipeIngredientsController.cs.
 
 I would like to note if you are getting painfully unclear errors like this:
 
-`There was an error running the selected code generator. Package restore failed. Rolling back package...`
+`There was an error running the selected code generator.`
+
+`Package restore failed. Rolling back package...`
 
 It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated to the latest version which helped.
 
@@ -420,14 +422,14 @@ We need to install DataTables into the front end. We just have to
 reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
 _Layout.cshtml file.
-
+```
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
-
+```
 Go ahead and add this under the footer in the body with all the other
-scripts.
-
+scripts. Make sure you load it AFTER any jquery libraries you have in your project.
+```
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-
+```
 ## Call database directly from Program or Startup
 
 Now will need to bypass our RecipeIngredient model and bind our
@@ -435,13 +437,281 @@ controller directly to the database using
 DbProviderFactories.RegisterFactory. Remember you can't use entity
 framework with DataTables Editor libraries. Enter this into either your
 startup.cs or program.cs file. I have chosen to add it to Program.cs.
-
+```
     // using statement at top of Program.cs
     using System.Data.SqlClient;
     using System.Data.Common;
-
-    // Register the factory in `Main`
+```
+```
+    // Register the factory in the method `Main`
     DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
-
+```
 ## Bypass model and bind tblRecipeIngredient from controller
 
+
+    using DataTables;
+    using Microsoft.Extensions.Configuration;
+
+Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
+
+Now go and add this method.
+
+```
+LeftJoinJobsAndUsersOntoRegistrations()
+```
+I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. Make sure your
+RecipeIngredientsController constructor matches mine and make sure your
+Index method matches! It will look different.
+```
+private readonly IConfiguration _config;
+public RecipeIngredientsController(CookingContext context, IConfiguration config)
+{
+    _context = context;
+    _config = config;
+}
+
+// GET: RecipeIngredients
+public IActionResult Index()
+{
+    return View();
+}
+
+public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
+{
+    //DECLARE database connection.
+    string connectionString = _config.GetConnectionString("DefaultConnection");
+
+    //CREATE database instance.
+    using (var db = new Database("sqlserver", connectionString))
+    {
+        //CREATE Editor instance with starting table.
+        var response = new Editor(db, "tblRecipeIngredient")
+            .Field(new Field("tblRecipeIngredient.Quantity"))
+            .Field(new Field("tblRecipe.Description"))
+            .Field(new Field("tblIngredient.IngredientName"))
+
+            //JOIN from tblIngredient column RecipeID linked from tblRecipe column ID
+            //and IngredientID linked from tblUser column ID.  
+            .LeftJoin("tblRecipe ", " tblRecipe.ID ", "=", " tblRecipeIngredient.RecipeID")
+            .LeftJoin("tblIngredient ", " tblIngredient.ID ", "=", " tblRecipeIngredient.IngredientID")
+            .Process(HttpContext.Request)
+            .Data();
+        return Json(response);
+    }
+}
+```
+Most of the comments should explain what is happening. I am specifying a
+single table for editing with additional optional data inserted into the
+table from other tables. i.e I am joining up tables to
+tblRecipeIngredient by performing an SQL Left Join and then formatting
+it into a json object which will be passed to the front end. Notice I am
+creating a DataTables Editor server instance which is free. The front
+end ones however are not so we will have to use DataTables to fix that
+in the front-end.
+
+With the back end code complete let's go to our front end.
+
+# Rewrite view Index in DataTables
+
+Go to this directory Views\\RecipeIngredients\\ and look at the code now
+in the Index.cshtml.
+
+```
+@model IEnumerable<DTEditorLeftJoinSample.Models.RecipeIngredient>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredient)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipe.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredient.ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+```
+
+We are going to edit most of this. So change the model title to this.
+```
+@model DTEditorLeftJoinSample.Models.RecipeIngredient
+```
+
+Now change the html table class value “table” to the ID value of recipeIngredientTable.
+
+```
+<table id="recipeIngredientTable">
+```
+
+Erase all the code in the tbody tag so it looks like this.
+
+```
+<tbody></tbody>
+```
+
+Now add all this just under the outside of the closing **</table>** tag. We
+will break it down as much as possible.
+
+```
+@section scripts{
+    <script>
+    $.fn.dataTable.ext.errMode = 'throw';
+    function renderDT_RowId(data) {
+        return data.replace('row_', '');
+    };
+    var oTable = $('#recipeIngredientTable').DataTable({
+        "ajax": {
+            type: "POST",
+            "url": "@Url.Action("LeftJoinRecipesAndIngredientsOntoRecipeIngredient")"
+        },
+        "columns": [
+            { "data": "tblIngredient.ingredientName"},
+            { "data": "tblRecipe.description"},
+            { "data": "tblRecipeIngredient.quantity" },
+            {
+                "data": null,
+                "render": function (value) {
+                    return '<a href="/RecipeIngredients/Details/' + renderDT_RowId(value.dT_RowId) + '"button type="button" class="btn btn-primary btn-block">Details</a> <br> '
+                        + '<a href="/RecipeIngredients/Edit/' + renderDT_RowId(value.dT_RowId) + '"button type="button" class="btn btn-info btn-block">Edit </a> <br> '
+                        + '<a href="/RecipeIngredients/Delete/' + renderDT_RowId(value.dT_RowId) + '"button type="button" class="btn btn-primary btn-block">Delete</a>';
+                }
+            }
+            ]
+    });
+    </script>
+}
+```
+
+The oTable object contains the ID of our table header which is more
+maintainable. We can link the header up with the rest of our oTable
+object. Below that we are making an ajax request to get the name of our
+controller method which will display all the data we specified in the
+backend controller.
+
+When we fire up the program we should be able to tell if our backend is
+communicating with our frontend.
+
+In DataTables Editor it is different in regard to getting the primary
+key and there are some limitations there.
+
+This would be ok if we used DataTables only but we are not. We need the
+PK value so ASP knows which record to request from our database when we
+perform CRUD operations. Notice the renderDT_RowId method where I am
+calling the buttons that link to the other views Details, Edit and
+Delete.
+
+renderDT_RowId(value.DT_RowId)
+
+That will store each PK value in RAM which also allows us to render the
+records.
+
+Now your entire Index.cshtml view should look like this.
+
+```
+@model DTEditorLeftJoinSample.Models.RecipeIngredient
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table id="recipeIngredientTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Recipe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ingredient)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts{
+    <script>
+    function renderDT_RowId(data) {
+        return data.replace('row_', '');
+    };
+    var oTable = $('#recipeIngredientTable').DataTable({
+        "ajax": {
+            type: "POST",
+            "url": "@Url.Action("LeftJoinRecipesAndIngredientsOntoRecipeIngredient")",
+            "dataSrc": function (result) {
+                return result.data;
+                }
+        },
+        "columns": [
+            { "data": "tblIngredient.IngredientName"},
+            { "data": "tblRecipe.Description" },
+            { "data": "tblRecipeIngredient.Quantity" },
+            { "data": null,
+                "render": function (value) {
+                    return '<a href="/RecipeIngredients/Details/' + renderDT_RowId(value.DT_RowId) + '"button type="button" class="btn btn-primary btn-block">Details</a> <br> '
+                        + '<a href="/RecipeIngredients/Edit/' + renderDT_RowId(value.DT_RowId) + '"button type="button" class="btn btn-info btn-block">Edit </a> <br> '
+                        + '<a href="/RecipeIngredients/Delete/' + renderDT_RowId(value.DT_RowId) + '"button type="button" class="btn btn-primary btn-block">Delete</a>';
+                }
+            }
+            ]
+    });
+    </script>
+}
+```
+
+## Run it one last time and enjoy 😊
+
+Run your program now and go to the Index. It should work perfectly. You
+can see the power and functionality that DataTables brings. As you can
+see it has sorting searching and if you put in more records you will
+even be able to divide it up into multiple pages and decide how many get
+shown.
+
+If we did that all in Entity Framework Core the code required would be
+substantially longer and give us nowhere as much functionality.
+
+![demo5](../images/DTLeftJoins/demo5.gif){:width="780px"}
+
+## Credit
+
+This problem would not have been solved without the help of Herman
+Starzhynski who I thank greatly!<https://www.linkedin.com/in/hstarzhynski>
