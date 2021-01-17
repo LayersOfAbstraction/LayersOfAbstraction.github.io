@@ -296,12 +296,11 @@ With that said there Newtonsoft.Json is still more popular than System.Text.Json
 Now go Startup and add `using Newtonsoft.Json.Serialization;` and then to ConfigureServices and add a call to the json libraries.  
 
 ```
-services.AddRazorPages();
+
 services.AddMvc()
 .AddNewtonsoftJson(options =>
     options.SerializerSettings.ContractResolver =
-        new CamelCasePropertyNamesContractResolver());
-services.AddControllersWithViews();       
+        new CamelCasePropertyNamesContractResolver());  
 ```
 
 ### Register MVC extension methods ### 
