@@ -255,6 +255,7 @@ Here are the changes.
 * `IHostingEnvironment` to `IWebHostEnvironment`.
 * `app.UseAuthorization` was added. If the app doesn't use authorization, you can safely remove the call to app.* UseAuthorization.
 * `app.UseEndpoints` was added.
+* `using Microsoft.Extensions.Hosting;` was added. 
 
 ## Kestrel configuration setup ##
 
