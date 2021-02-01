@@ -19,7 +19,7 @@ Login to the Auth0 Dashboard. Highly advise you use the new interface when you a
 
 ## Create Test data ##
 
-We need to create email aliases which are basically different user names that link to the same user which is you. There are lots of tools out there for this. I recommend you use gamil to set up your email aliases. Outlook does not support this. Here is how to do it:
+We need to create email aliases which are basically different user names that link to the same user which is you. There are lots of tools out there for this. I use Gmail to set up email aliases. Outlook does not support this. You can use whatever tool you're already comfortable with to do this but here is how to do it in Gmail:
 
 * Go to your Gmail dashboard.
 * Click the dropdown arrow (just next to the search box).
@@ -27,8 +27,9 @@ We need to create email aliases which are basically different user names that li
 * If you just don’t want to see messages sent to your Gmail account, select the ‘Skip the inbox’ option. If you’ve used a specific address to identify (say) a mailing list, you might want to apply a Gmail label instead.
 * Click on ‘Create Filter’ and you’re done.
 
-Let's get back to the project and create the users. On the left navigate to the User Management tab and select Users and create the following users. 
+Let's get back to Auth0 and create the users. On the left navigate to the User Management tab and select Users and create the following users. 
 
+![CreateUsers](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CreateAuth0User.gif){:width="580px"}
 
 
 
