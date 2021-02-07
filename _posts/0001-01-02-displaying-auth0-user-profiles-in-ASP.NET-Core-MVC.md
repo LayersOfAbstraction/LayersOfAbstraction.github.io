@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0"
-#published: false
+published: false
 ---
 
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (not called .NET Core).
@@ -108,14 +108,18 @@ var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN
 You should already replace the dummy domain name with the one for your tenant. If you forgot, you just need to go back up the page. I provide all the steps for that. 
 
 It's more tricky with generating the API JSON Web Tokens (JWTs) and inputing the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
-Let's do that now. [This link already shows how to do that](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
+Let's do that now. 
 
 ## Create & Authorize a Test Application ## 
+
+[This link already shows how to do that](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
 
 Make sure you selected the "Read Users" grant for now or have all the default ones enabled.
 If you don't know which API to use, just use the Auth0 Management API.
 
-When you are done return to this blog.  
+## Create a JWT ## 
 
- 
+[Go here to learn how to generate the token and then copy it into memory.](https://auth0.com/docs/tokens/management-api-access-tokens/get-management-api-access-tokens-for-testing)
+
+Now that you have generated the token it is time to copy it into a class. It is  
 
