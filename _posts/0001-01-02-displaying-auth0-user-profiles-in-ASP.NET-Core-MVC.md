@@ -112,7 +112,7 @@ Let's do that now.
 
 ## Create & Authorize a Test Application ## 
 
-[This link already shows how to do that](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
+[This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
 
 Make sure you selected the "Read Users" grant for now or have all the default ones enabled.
 If you don't know which API to use, just use the Auth0 Management API.
@@ -120,6 +120,8 @@ If you don't know which API to use, just use the Auth0 Management API.
 ## Create a JWT ## 
 
 [Go here to learn how to generate the token and then copy it into memory.](https://auth0.com/docs/tokens/management-api-access-tokens/get-management-api-access-tokens-for-testing)
+
+Make sure you set the tokens to a max of 2592000.
 
 Now that you have generated the token it is time to copy it into a class. It is  
 
