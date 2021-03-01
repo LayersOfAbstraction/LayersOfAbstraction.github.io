@@ -113,8 +113,8 @@ Let's do that now.
 
 I assume you want to create a token that auto-renews. For that matter we need to create a production token. But in the chance you want to create a test token I will already show you how to do that.
 
-If you just want to create a Production token. Skip to the next heading
-** Create & Authorize a Testing Token. **
+If you just want to create a Production token. Skip to the heading
+**Create & Authorize a Production Token.**
 ## Create & Authorize a Testing Token ## 
 
 [This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
@@ -124,11 +124,12 @@ If you don't know which API to use, just use the Auth0 Management API.
 
 ## Create a JWT ## 
 
+Keep in mind if you commit the JWT to a public version control system like Github make sure you then generate a new token else hackers can use the publicly accessible JWT to access your application when you run it. 
 [Go here to learn how to generate the token and then copy it into memory.](https://auth0.com/docs/tokens/management-api-access-tokens/get-management-api-access-tokens-for-testing)
 
 Make sure you set the tokens to a max of 2592000.
 
-Now that you have generated the token it is time to copy it into a class. Let's create the class in models called ConstantString.  
+Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString.  
 
 ```
     public static class ConstantStrings
@@ -136,3 +137,29 @@ Now that you have generated the token it is time to copy it into a class. Let's 
         public const string strToken = "{INSERT TOKEN HERE}"
     }
 ```
+
+You possibly had the computer lag when you copied in the string into the class. It happened with me and the results in the Task Manager don't paint a pretty picture with the VS Code process going to the top in terms of CPU and RAM usage.
+
+![After_Token_edit_reading](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/After editing or first reading token in VS Code.png){:width="925px"}
+
+We are merely going to reference that string now so as not to display it.
+
+This is how we are going to do that. 
+
+```
+public async Task <IActionResult> GetAllAuth0Users()
+{
+    //Get token
+    var apiClient = new ManagementApiClient(Pitcher.Models.ConstantStrings.strToken, new Uri ("https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"));
+    var allUsers = await apiClient.Users.GetAllAsync(new Auth0.ManagementApi.Models.GetUsersRequest(), new Auth0.ManagementApi.Paging.PaginationInfo());
+    var renderedUsers = allUsers.Select(u => new User
+    {                
+        UserFirstName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[0] : "no space",
+        UserLastName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[1] : "no space",
+        UserContactEmail = u.Email
+    }).ToList();
+
+    return Json(renderedUsers);
+}
+```
+The code is mostly 
