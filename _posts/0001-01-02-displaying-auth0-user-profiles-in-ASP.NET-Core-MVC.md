@@ -107,10 +107,15 @@ var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN
 
 You should already replace the dummy domain name with the one for your tenant. If you forgot, you just need to go back up the page. I provide all the steps for that. 
 
-It's more tricky with generating the API JSON Web Tokens (JWTs) and inputing the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
+
+It's more tricky with generating the API JSON Web Tokens (JWTs) and inputting the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
 Let's do that now. 
 
-## Create & Authorize a Test Application ## 
+I assume you want to create a token that auto-renews. For that matter we need to create a production token. But in the chance you want to create a test token I will already show you how to do that.
+
+If you just want to create a Production token. Skip to the next heading
+** Create & Authorize a Testing Token. **
+## Create & Authorize a Testing Token ## 
 
 [This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
 
@@ -123,5 +128,11 @@ If you don't know which API to use, just use the Auth0 Management API.
 
 Make sure you set the tokens to a max of 2592000.
 
-Now that you have generated the token it is time to copy it into a class. It is  
+Now that you have generated the token it is time to copy it into a class. Let's create the class in models called ConstantString.  
 
+```
+    public static class ConstantStrings
+    {        
+        public const string strToken = "{INSERT TOKEN HERE}"
+    }
+```
