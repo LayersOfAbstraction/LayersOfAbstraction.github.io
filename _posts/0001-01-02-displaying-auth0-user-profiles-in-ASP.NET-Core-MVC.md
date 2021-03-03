@@ -4,7 +4,7 @@ title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0"
 published: false
 ---
 
-So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (not called .NET Core).
+So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (no longer called .NET Core).
 
 You can use what you want here. VS Code or Visual Studio. I will use VS Code in this blog.
 
@@ -22,7 +22,7 @@ If you accidentally close the prompt and don't enable the new dashboard interfac
 
 If you are new to Auth0 I highly recommend you create an [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
 
-You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3/02-user-profile) Because there is no .NET 5 quickstart I have migrated it into a [simple starter sample in .NET 5](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit) you can use alongside this blog. 
+You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3/02-user-profile) Because there is no .NET 5 quickstart I have migrated it into a [simple starter sample in .NET 5 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit) you can use alongside this blog. 
 
 ## Create Application on the Auth0 server ##
 
@@ -86,11 +86,11 @@ To get a list of users from Auth0 and read them in our application we have three
 
 We will use the API for this tutorial. Please note Auth0 limits the number of users you can return. If you exceed that limit [please click here and wait a few seconds before Auth0 automatically scrolls to the desired heading.](https://auth0.com/docs/api/management/v2#!/Users/get_users)
 
-Go into the console windows and type this.
+In case you are starting a project from scratch instead of using my Auth0UserProfileDisplayStarterKit go into the console windows and type this.
 
 `dotnet add package Auth0.ManagementApi`
 
-Now it should have installed into your project. We have declare the Management API namespace in the C# controller where we are going to render the users. 
+Now it should have installed Auth0 Management API into your project. We have declared the Management API namespace in the C# controller where we are going to render the users. 
 
 We use do this in HomeController in the sample you downloaded. Go to `HomeController.cs` now and add the Auth0 Management API namespace.
 
@@ -129,13 +129,100 @@ Keep in mind if you commit the JWT to a public version control system like Githu
 
 Make sure you set the tokens to a max of 2592000.
 
+## Create our model fields to bind the Auth0 user data to ##
+
+We are going to start with our ASP.NET application and ensure it can connect to our app. Go to the models folder if you're using the start kit I made, it should show this model.
+```
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Auth0UserProfileDisplayStarterKit.ViewModels
+{
+    public class User
+    {
+        public int ID { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "* First Name be bettween 2 to 20 characters.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "First Name")]
+        [Column("UserFirstName")]
+        public string UserFirstName { get; set; }   
+
+        [Required]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "* Last Name be bettween 2 to 30 characters.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Last Name")]
+        [Column("UserLastName")]
+        public string UserLastName { get; set; }        
+                
+        [Required]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Email address must be bettween 3 to 30 characters.")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        [Column("UserContactEmail")]
+        public string UserContactEmail{get;set;}      
+        
+        // [Required(AllowEmptyStrings = true)]
+        [Display(Name = "Phone Number")]
+        [Phone()]
+        [Column("UserPhoneNumber")]
+        public string UserPhoneNumber{get;set;}
+        
+        [StringLength(37,ErrorMessage = "Address cannot be longer than 37 characters.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Address")]
+        [Column("UserAddress")]
+        public string UserAddress{get;set;}
+        
+        //This regular expression allows valid postcodes and not just USA Zip codes.        
+        [Display(Name = "Post Code")]
+        [Column("UserPostCode")][DataType(DataType.PostalCode)]
+        public string UserPostCode { get; set; }
+
+        [StringLength(15,ErrorMessage = "Country cannot be longer than 15 characters.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Country")]
+        [Column("UserCountry")] 
+        public string UserCountry {get;set;}
+        
+        
+        [Phone()]
+        [Display(Name = "Mobile Number")]
+        [Column("UserMobileNumber")]
+        public string UserMobileNumber {get;set;}
+
+        [StringLength(3,ErrorMessage = "State cannot be longer than 3 characters.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "State")]
+        [Column("UserState")]
+        public string UserState {get;set;}           
+        
+        public string UserFullname => string.Format("{0} {1}", UserFirstName, UserLastName);
+    }
+}
+```
+
+## Bind Token to our ASP.NET client application ##
+
 Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString.  
 
 ```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web;
+
+namespace Auth0UserProfileDisplayStarterKit.Models
+{  
     public static class ConstantStrings
     {        
-        public const string strToken = "{INSERT TOKEN HERE}"
+        public const string strToken = "{INSERT TOKEN HERE}";    
     }
+}
 ```
 
 You possibly had the computer lag when you copied in the string into the class. It happened with me and the results in the Task Manager don't paint a pretty picture with the VS Code process going to the top in terms of CPU and RAM usage.
@@ -146,11 +233,21 @@ We are merely going to reference that string now so as not to display it.
 
 This is how we are going to do that. 
 
+## Call the token in our controller ##
+
+
+If you are starting from scratch make sure you have inserted these statements at the top of the HomeController.cs class and have inserted this code. 
+
+```
+using Auth0.ManagementApi;
+using Auth0UserProfileDisplayStarterKit.ViewModels;
+```
 ```
 public async Task <IActionResult> GetAllAuth0Users()
 {
     //Get token
     var apiClient = new ManagementApiClient(Pitcher.Models.ConstantStrings.strToken, new Uri ("https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"));
+    //Get Auth0 Users
     var allUsers = await apiClient.Users.GetAllAsync(new Auth0.ManagementApi.Models.GetUsersRequest(), new Auth0.ManagementApi.Paging.PaginationInfo());
     var renderedUsers = allUsers.Select(u => new User
     {                
@@ -162,4 +259,4 @@ public async Task <IActionResult> GetAllAuth0Users()
     return Json(renderedUsers);
 }
 ```
-The code is mostly 
+The code will act as the bridge between Auth0 and our client application and will retrieve our user profiles from Auth0 when a client sends a request from this client application.
