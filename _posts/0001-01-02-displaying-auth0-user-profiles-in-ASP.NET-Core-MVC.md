@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0"
-published: false
 ---
 
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (no longer called .NET Core).
@@ -259,4 +258,234 @@ public async Task <IActionResult> GetAllAuth0Users()
     return Json(renderedUsers);
 }
 ```
-The code will act as the bridge between Auth0 and our client application and will retrieve our user profiles from Auth0 when a client sends a request from this client application.
+The code will act as the bridge between Auth0 and our client application and will retrieve our user profiles from Auth0 when a client sends a request from this client application. So we have created the backend server code. Now we have to create the client View cshtml file. 
+
+I am going to install DataTables on the front end which is a javascript library capable of integrating advanced functionality into the front end of our project. You don't have to use it if you don't want to but I find it to be highly useful.
+
+## Call DataTables library in _Layout ##
+
+We just have to reference the javascript and css libraries from DataTables Content Delivery Network. Add the following code to the head in our _Layout.cshtml file. 
+
+ <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+
+In our the starter kit notice I have added this under the footer in the body with all the other scripts. Make sure you load it AFTER any jquery libraries you have in your project. I put mine just above the `@RenderSection` tag.
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+## Call DataTables Library in Views/Home/Index.cshtml ##
+
+Go to Views in Auth0UserProfileDisplayStarterKit and under the Home folder open Index.cshtml This code should be there.
+
+```
+@model Auth0UserProfileDisplayStarterKit.ViewModels.User
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Welcome to the Auth0 ASP.NET Core MVC Starter Project</h2>
+        <p>To follow along in building this sample please <a href="https://auth0.com/docs/quickstart/webapp/aspnet-core">refer to the Quickstart</a>.
+    </div>
+</div>
+
+<h1>Auth0 Users</h1>
+<p>Please select Auth0 user from table and enter any additional information into database.</p>
+<table id ="auth0UsersTable" style="width: 200px;">
+        <thead>
+        <tr>
+            <th>
+               First name
+            </th>
+            <th>
+                Last name
+            </th>   
+            <th>
+                Email
+            </th>    
+            <th>                
+            </th> 
+        </tr>        
+        </thead>
+        <tbody></tbody>
+</table>
+<h4>Create New User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="UserFirstName" class="control-label"></label>
+                <input id="UFirstNameInput" readonly="true" disabled="true" asp-for="UserFirstName" class="form-control"/>
+                <span asp-validation-for="UserFirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserLastName" class="control-label"></label>
+                <input id="ULastNameInput" readonly="true" disabled="true" asp-for="UserLastName" class="form-control"/>
+                <span asp-validation-for="UserLastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserContactEmail" class="control-label"></label>
+                <input id="UEmailInput" readonly="true" disabled="true" asp-for="UserContactEmail" class="form-control"/>
+                <span asp-validation-for="UserContactEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPhoneNumber" class="control-label"></label>
+                <input asp-for="UserPhoneNumber" class="form-control" />
+                <span asp-validation-for="UserPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress" class="control-label"></label>
+                <input asp-for="UserAddress" class="form-control" />
+                <span asp-validation-for="UserAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPostCode" class="control-label"></label>
+                <input asp-for="UserPostCode" class="form-control" />
+                <span asp-validation-for="UserPostCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserCountry" class="control-label"></label>
+                <input asp-for="UserCountry" class="form-control" />
+                <span asp-validation-for="UserCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMobileNumber" class="control-label"></label>
+                <input asp-for="UserMobileNumber" class="form-control" />
+                <span asp-validation-for="UserMobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserState" class="control-label"></label>
+                <input asp-for="UserState" class="form-control" />
+                <span asp-validation-for="UserState" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+            $.fn.dataTable.ext.errMode = 'throw';
+            var Auth0Table = $('#auth0UsersTable').DataTable({
+                    "ajax": {
+                    'type': 'get',
+                    'dataType': "json",                  
+                    "url": "@Url.Action("GetAllAuth0Users")",
+                    "dataSrc": function (result) {
+                        return result;
+                        }
+                    },            
+                    "columns": [                
+                    { "data": "userFirstName"},
+                    { "data": "userLastName"},
+                    { "data": "userContactEmail"}
+                    ]
+            });
+
+        
+        $('#auth0UsersTable').on( 'click', 'tbody tr', function DisplaySelectedRowItems() {            
+            //IF table row you click on is already selected. 
+            if ( $(this).hasClass('selected') ) {
+                //deselect the row you already selected.
+                $(this).removeClass('selected');
+            }
+            else {
+                //Search all visible rows and deselect them.  
+                Auth0Table.$('tr.selected').removeClass('selected');
+                //Select new row you clicked.
+                $(this).addClass('selected');
+
+                //Get ID of table and some property.
+                var table = document.querySelector('#auth0UsersTable');
+                var firstName = document.querySelector('#UFirstNameInput');
+                var lastName = document.querySelector('#ULastNameInput');
+                var email = document.querySelector('#UEmailInput');        
+                
+                //Add listener for table click event.
+                table.addEventListener('click', onTableClick);  
+
+                //Get click of Table.
+                function onTableClick (e) 
+                {
+                    var tr = e.target.parentElement;        
+                    var data = [];
+                    
+                    for (var td of tr.children) 
+                    {
+                        data.push(td.innerHTML);
+                    }
+                
+                    firstName.value = data[0];
+                    lastName.value = data[1];
+                    email.value = data[2];
+                }
+            }        
+        });
+    </script>
+}
+```
+
+I'll break it all down for you. We are creating the cshtml layout of the DataTable that will contain all the Auth0 users. The users are from the Auth0 dashboard that are connected to and can be accessed from this application.
+
+```
+<h1>Auth0 Users</h1>
+<p>Please select Auth0 user from table and enter any additional information into database.</p>
+<table id ="auth0UsersTable" style="width: 200px;">
+        <thead>
+        <tr>
+            <th>
+               First name
+            </th>
+            <th>
+                Last name
+            </th>   
+            <th>
+                Email
+            </th>    
+            <th>                
+            </th> 
+        </tr>        
+        </thead>
+        <tbody></tbody>
+</table>
+
+```
+
+Further along we creating a form full of textboxes. The ones you really need to pay attention to are the ones with the Input id of UFirstNameInput, ULastNameInput and UEmailInput. Why those? I will explain in a second.
+
+Go down to the asp.net @Section tag and observe this script. 
+
+```
+$.fn.dataTable.ext.errMode = 'throw';
+var Auth0Table = $('#auth0UsersTable').DataTable({
+        "ajax": {
+        'type': 'get',
+        'dataType': "json",                  
+        "url": "@Url.Action("GetAllAuth0Users")",
+        "dataSrc": function (result) {
+            return result;
+            }
+        },            
+        "columns": [                
+        { "data": "userFirstName"},
+        { "data": "userLastName"},
+        { "data": "userContactEmail"}
+        ]
+});
+```
+
+Simply put this will render the table if you have done two thing:
+
+1. Change the value of strToken with your own token into the the ContstantStrings class we talked about earlier.
+2. Changed all the values of "Domain","ClientId" and "ClientSecret"
+to match the values of your Auth0 dashboard by going to "Applications"
+"Your application Name" and going to Settings and then copying the "Domain","ClientId" and "ClientSecret" values from their server to your appsettings.json file. 
+
+
+If you followed along with this tutorial that's really all you need to do.
+Hoped that work. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+
