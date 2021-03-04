@@ -142,21 +142,21 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
         public int ID { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 2, ErrorMessage = "* First Name be bettween 2 to 20 characters.")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "* First Name be between 2 to 20 characters.")]
         [DataType(DataType.Text)]
         [Display(Name = "First Name")]
         [Column("UserFirstName")]
         public string UserFirstName { get; set; }   
 
         [Required]
-        [StringLength(30, MinimumLength = 2, ErrorMessage = "* Last Name be bettween 2 to 30 characters.")]
+        [StringLength(30, MinimumLength = 2, ErrorMessage = "* Last Name be between 2 to 30 characters.")]
         [DataType(DataType.Text)]
         [Display(Name = "Last Name")]
         [Column("UserLastName")]
         public string UserLastName { get; set; }        
                 
         [Required]
-        [StringLength(30, MinimumLength = 3, ErrorMessage = "Email address must be bettween 3 to 30 characters.")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Email address must be between 3 to 30 characters.")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         [Column("UserContactEmail")]
