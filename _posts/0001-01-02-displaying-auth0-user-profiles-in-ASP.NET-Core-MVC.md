@@ -504,5 +504,5 @@ to match the values of your Auth0 dashboard by going to "Applications"
 
 If you followed along with this tutorial that's really all you need to do in the client application. Most of work you did was setting up everything in the Auth0 dashboard.
 
-Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle [DataAccess in ASP.NET](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/) . Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in thier ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
