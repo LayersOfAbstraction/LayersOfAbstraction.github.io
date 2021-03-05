@@ -13,9 +13,6 @@ Make sure you've read through the entire quickstart before going further in this
 
 You can start at the beginning of that quickstart if you want to better understand. Download the quickstart and run it to make sure it works. Once you're done we will create all the users in Auth0.
 
-
-
-
 Login to Auth0 Dashboard. Highly advise you use the new interface when you are prompted to switch to it. It's much less cumbersome from the previous design. 
 
 If you accidentally close the prompt and don't enable the new dashboard interface then this [doc will tell you how to enable it.](https://auth0.com/docs/get-started/dashboard/upcoming-dashboard-changes#december-2020) 
@@ -504,5 +501,5 @@ to match the values of your Auth0 dashboard by going to "Applications"
 
 If you followed along with this tutorial that's really all you need to do in the client application. Most of work you did was setting up everything in the Auth0 dashboard.
 
-Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in thier ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
