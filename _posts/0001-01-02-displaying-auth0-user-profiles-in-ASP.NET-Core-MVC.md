@@ -13,6 +13,9 @@ Make sure you've read through the entire quickstart before going further in this
 
 You can start at the beginning of that quickstart if you want to better understand. Download the quickstart and run it to make sure it works. Once you're done we will create all the users in Auth0.
 
+
+
+
 Login to Auth0 Dashboard. Highly advise you use the new interface when you are prompted to switch to it. It's much less cumbersome from the previous design. 
 
 If you accidentally close the prompt and don't enable the new dashboard interface then this [doc will tell you how to enable it.](https://auth0.com/docs/get-started/dashboard/upcoming-dashboard-changes#december-2020) 
@@ -21,7 +24,15 @@ If you accidentally close the prompt and don't enable the new dashboard interfac
 
 If you are new to Auth0 I highly recommend you create an [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
 
-You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3/02-user-profile) Because there is no .NET 5 quickstart I have migrated it into a [simple starter sample in .NET 5 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit) you can use alongside this blog. 
+You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3) Because there is no .NET 5 quickstart I have migrated it into a [simple starter sample in .NET 5 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit) you can use alongside this blog. 
+
+Afterwards you will have two ways of completing this tutorial. 
+
+1. You can attempt to migrate the quickstart from .NET Core 3.1 to 5.0 to match this blog and add all the code I display. 
+
+2. You can download my Auth0UserProfileDisplayStarterKit and do minimal amount of work to change things around to match.
+
+Obviously I recommend you pick option 2 and use my starter kit to complete this tutorial and keep things stupid simple. But if you feel you still don't understand after it, you can pick option 1. 
 
 ## Create Application on the Auth0 server ##
 
@@ -110,7 +121,7 @@ You should already replace the dummy domain name with the one for your tenant. I
 It's more tricky with generating the API JSON Web Tokens (JWTs) and inputting the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
 Let's do that now. 
 
-I assume you want to create a token that auto-renews. For that matter we need to create a production token. But in the chance you want to create a test token I will already show you how to do that.
+I assume you want to create a token that auto-renews. For that matter we need to create a production token which I plan to show in the next tutorial. But if you want to create a test token I will already show you how to do that.
 
 If you just want to create a Production token. Skip to the heading
 **Create & Authorize a Production Token.**
@@ -478,14 +489,20 @@ var Auth0Table = $('#auth0UsersTable').DataTable({
 });
 ```
 
+If you have done everything correctly up to this point, this should occur.
+
+![Application_Complete](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif){:width="625px"}
+
 Simply put this will render the table if you have done two thing:
 
-1. Change the value of strToken with your own token into the the ContstantStrings class we talked about earlier.
+1. Change the value of strToken with your own token into the the ConstantStrings class we talked about earlier.
+
 2. Changed all the values of "Domain","ClientId" and "ClientSecret"
 to match the values of your Auth0 dashboard by going to "Applications"
 "Your application Name" and going to Settings and then copying the "Domain","ClientId" and "ClientSecret" values from their server to your appsettings.json file. 
 
 
-If you followed along with this tutorial that's really all you need to do.
-Hoped that work. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+If you followed along with this tutorial that's really all you need to do in the client application. Most of work you did was setting up everything in the Auth0 dashboard.
+
+Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle [DataAccess in ASP.NET](https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/) . Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
