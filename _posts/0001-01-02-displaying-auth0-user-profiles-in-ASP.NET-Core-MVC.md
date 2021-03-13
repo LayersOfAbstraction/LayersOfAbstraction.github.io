@@ -503,3 +503,4 @@ If you followed along with this tutorial that's really all you need to do in the
 
 Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
+This blog will not have being possible without the help of [Herman Starzhynski](https://www.linkedin.com/in/hstarzhynski/) who's input proved invaluable in solving the problem I originally faced before turning this into a blog.
