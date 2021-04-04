@@ -120,10 +120,6 @@ Let's do that now.
 
 I assume you want to create a token that auto-renews. For that matter we need to create a production token which I plan to show in the next tutorial. But if you want to create a test token I will already show you how to do that.
 
-If you just want to create a Production token. Skip to the heading
-**Create & Authorize a Production Token.**
-## Create & Authorize a Testing Token ## 
-
 [This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
 
 Make sure you selected the "Read Users" grant for now or have all the default ones enabled.
@@ -138,7 +134,7 @@ Make sure you set the tokens to a max of 2592000.
 
 ## Create our model fields to bind the Auth0 user data to ##
 
-We are going to start with our ASP.NET application and ensure it can connect to our app. Go to the models folder if you're using the start kit I made, it should show this model.
+We are going to start with our ASP.NET application and ensure it can connect to our Auth0 server. Go to the models folder if you're using the start kit I made, it should show this model.
 ```
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
