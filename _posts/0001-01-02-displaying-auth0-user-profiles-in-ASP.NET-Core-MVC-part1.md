@@ -99,7 +99,7 @@ In case you are starting a project from scratch instead of using my Auth0UserPro
 
 Now it should have installed Auth0 Management API into your project. We have declared the Management API namespace in the C# controller where we are going to render the users. 
 
-We use do this in HomeController in the sample you downloaded. Go to `HomeController.cs` now and add the Auth0 Management API namespace.
+We do this in HomeController in the sample you downloaded. Go to `HomeController.cs` now and add the Auth0 Management API namespace.
 
 ```
 using Auth0.ManagementApi;
