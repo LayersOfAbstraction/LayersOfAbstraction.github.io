@@ -208,7 +208,7 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 
 ## Bind Token to our ASP.NET client application ##
 
-Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString. Yes there are safer methods of doing this which I will cover in the next tutorial. For now let's keep it simple and keep this out of   
+Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString. Yes there are safer methods of doing this which I will cover in the next tutorial. For now let's keep it simple and keep this out of source control at all costs! If you accidentally commit it, you can also rotate the secret in the Auth0 dashboard so the token value is no longer functional.  
 
 ```
 using System;
