@@ -208,7 +208,7 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 
 ## Bind Token to our ASP.NET client application ##
 
-Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString.  
+Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString. Yes there are safer methods of doing this which I will cover in the next tutorial. For now let's keep it simple and keep this out of   
 
 ```
 using System;
@@ -264,7 +264,7 @@ public async Task <IActionResult> GetAllAuth0Users()
 ```
 The code will act as the bridge between Auth0 and our client application and will retrieve our user profiles from Auth0 when a client sends a request from this client application. So we have created the backend server code. Now we have to create the client View cshtml file. 
 
-I am going to install DataTables on the front end which is a javascript library capable of integrating advanced functionality into the front end of our project. You don't have to use it if you don't want to but I find it to be highly useful.
+I am going to install DataTables on the front end which is an open source javascript library capable of integrating advanced functionality into the front end of our project. 
 
 ## Call DataTables library in _Layout ##
 
