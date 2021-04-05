@@ -459,7 +459,7 @@ I'll break it all down for you. We are creating the cshtml layout of the DataTab
 
 ```
 
-Further along we creating a form full of textboxes. The ones you really need to pay attention to are the ones with the Input id of UFirstNameInput, ULastNameInput and UEmailInput. Why those? I will explain in a second.
+Further along we create a form full of textboxes. The ones you really need to pay attention to are the ones with the Input id of UFirstNameInput, ULastNameInput and UEmailInput. Why those? I will explain in a second.
 
 Go down to the asp.net @Section tag and observe this script. 
 
@@ -495,7 +495,7 @@ to match the values of your Auth0 dashboard by going to "Applications"
 "Your application Name" and going to Settings and then copying the "Domain","ClientId" and "ClientSecret" values from their server to your appsettings.json file. 
 
 
-If you followed along with this tutorial that's really all you need to do in the client application. Most of work you did was setting up everything in the Auth0 dashboard.
+If you followed along with this tutorial that's really all you need to do in the client application. Most of the work you did was setting up everything in the Auth0 dashboard.
 
 Hoped that work. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
