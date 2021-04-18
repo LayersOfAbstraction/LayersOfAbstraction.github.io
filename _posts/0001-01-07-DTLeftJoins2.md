@@ -72,10 +72,6 @@ Open `DTEditorLeftJoinSample.csproj` and add all these packages so it looks like
 </Project>
 ``` -->
 
-We will now create a Recipe database 3
-different models, Recipe, RecipeIngredient and Ingredient. Create each
-of these classes in the model folder.
-
 ## Recipe
 ```
 using System.Collections.Generic;
