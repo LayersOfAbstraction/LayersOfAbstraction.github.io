@@ -13,13 +13,11 @@ Make sure you've read through the entire quickstart before going further in this
 
 You can start at the beginning of that quickstart if you want to better understand. Download the quickstart and run it to make sure it works. Once you're done we will create all the users in Auth0.
 
-Login to Auth0 Dashboard. Highly advise you use the new interface when you are prompted to switch to it. It's much less cumbersome from the previous design. 
-
-If you accidentally close the prompt and don't enable the new dashboard interface then this [doc will tell you how to enable it.](https://auth0.com/docs/get-started/dashboard/upcoming-dashboard-changes#december-2020) 
+Login to Auth0 Dashboard. 
 
 ## Login ##
 
-If you are new to Auth0 I highly recommend you create an [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
+If you are new to Auth0 I highly recommend you create a [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
 
 You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3) Because there is no .NET 5 quickstart I have migrated it into a [simple starter sample in .NET 5 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit) you can use alongside this blog. 
 
