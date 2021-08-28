@@ -33,7 +33,7 @@ Obviously I recommend you pick option 2 and use my starter kit to complete this 
 
 ## Create Application on the Auth0 server ##
 
-Look at `appsettings.json` in you client app and make sure you replace the Domain Name, ClientID and ClientSecret with the one who have made for your application you have made in the Auth0 server. If you do not know how to do that:
+Look at `appsettings.json` in you client app and make sure you replace the Domain Name, ClientID and ClientSecret with the one you have made for your application you have made in the Auth0 server. If you do not know how to do that:
 
 1. Go to Auth0 Dashboard and select Applications. And under that select Applications and then pick a name like "User_Profile_Client_Display_App"
 or My App.
@@ -77,7 +77,7 @@ Let's create the users now in the same dashboard.
 
 1. On the left navigate to the User Management tab and select Users and create the following users. 
 
-2. Copy and paste the password you wrote down and email. In this case you could use a password manager like I am or just some password book. NOTE: Might want to make a new folder for your Auth0 users in your password manager if you create them so they don't get mixed up with your real password accounts info.  
+2. Copy and paste the password you wrote down and email. In this case you could use a password manager like I have or just some password book. NOTE: Might want to make a new folder for your Auth0 users in your password manager if you create them so they don't get mixed up with your real password accounts info.  
 
 3. Choose the connection that you created earlier in the Database connections.  
 
