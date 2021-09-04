@@ -139,7 +139,7 @@ So you can delete that ConstantStrings class.
 We are instead using the Auth0ManagementApi methods to get the Users Profiles we have 
 connected to our application in Auth0 Dashboard. And we are using the IUserService which we
 declared in the constructor to interface with the Identity Model library and get us a 
-a refresh token.
+refresh token.
 
 We also get the CancellationToken using this method.
 
@@ -151,7 +151,43 @@ public async Task OnGet(CancellationToken cancellationToken)
 ```
 
 
-[//]: # (Up to step 6)
+## Get Access Token ##
+
+Now we need to create two models to help us create access token. Here is the code for class LoginAuthentication.
+
+```
+using Auth0.AuthenticationApi;
+
+//Insert into your own namespace 
+
+    public class LoginAuthentication
+    {
+
+        public static Auth0Token Login(string ClientID, string ClientSecret, string domain)
+        {
+            var authenticationApiClient = new AuthenticationApiClient(domain);
+            var token =  authenticationApiClient.GetTokenAsync(new Auth0.AuthenticationApi.Models.ClientCredentialsTokenRequest
+            {                
+                ClientId = ClientID,
+                ClientSecret = ClientSecret,
+                Audience = "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"
+            }).Result;
+            return new Auth0Token {strAuthToken = token.AccessToken};   
+        }
+    }
+
+```
+
+Now we need to add AcccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
+
+```
+services.AddAccessTokenManagement(Configuration); 
+services.AddTransient<IUserService, UserService>();
+```
+
+## Make token globally accessible ##
+
+[//]: # (Up to step 8/10)
 
 
 
