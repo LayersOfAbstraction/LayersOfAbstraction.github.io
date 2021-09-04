@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-published: false
+#published: false
 ---
 Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
 
@@ -186,6 +186,31 @@ services.AddTransient<IUserService, UserService>();
 ```
 
 ## Make token globally accessible ##
+
+Add a single model to make our token globally accessible throughout our client side application. 
+
+```
+public class Auth0Token
+{
+    public string strAuthToken {get; set;}
+}
+```
+
+## Create machine to machine application and Authorise an API ##
+
+Now we need to login to the Auth0 dashboard server and create a machine application to act as an API between the Auth0 server and our ASP.NET client application. 
+
+In the Auth0 Dashboard go to:
+
+1. Applications
+2. Create Application
+3. Select Machine to Machine Applications. We will call it "User_Profile_Service"
+4. Authorize Machine to Machine Application. Select the API in the list. If you don't know
+which to use that's ok. Just use the default Auth0 API which is called Auth0 Management API.
+5. Select one scope to make the 
+5. Hit the Create button. API connection more secure. Select "read:users" and hit authorize. 
+
+
 
 [//]: # (Up to step 8/10)
 
