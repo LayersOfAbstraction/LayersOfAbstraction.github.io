@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-#published: false
+published: false
 ---
 Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
 
@@ -212,7 +212,7 @@ which to use that's ok. Just use the default Auth0 API which is called Auth0 Man
 
 
 
-[//]: # (Up to step 8/10)
+[//]: # (Up to step 10/10)
 
 
 
