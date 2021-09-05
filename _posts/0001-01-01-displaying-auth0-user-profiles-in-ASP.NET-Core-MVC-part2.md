@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-published: false
+#published: false
 ---
 Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
 
@@ -28,7 +28,7 @@ There are two ways you can complete this tutorial. You can:
 
 1. Use the project you downloaded from the Auth0UserProfileDisplayStarterKit part1 blog and continue using that to follow along and complete this tutorial.
 
-2. You can start from scratch and use the Part2 branch project I created for our Auth0UserProfileDisplayStarterKit with a link to the [starter kit project here](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part2). The project branch in that repository is created solely for this part2 blog.
+2. You can start from scratch and use the Part2 branch project I created for our Auth0UserProfileDisplayStarterKit with a link to the [starter kit project here](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part2). The project branch in that repository is created solely for this part 2 blog.
 
 I would personally use option 1 to get the most out of this tutorial.
 If you haven't already seen my [Part1 blog](https://layersofabstraction.github.io/displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.html) for this tutorial you are advised to go through it to understand how to use Auth0.   
@@ -38,7 +38,7 @@ In this blog we are going to update our previous logic and use new technologies.
 ## Install Auth0 Authentication API SDK ##
 
 We need access to the ClientCredentialsTokenRequest Class which lies in the Auth0.AuthenticationApi.
-Download this into one your project to access. 
+Download this into your project to access the library. 
 
 ```
 dotnet add package Auth0.AuthenticationApi --version 7.7.0
@@ -86,7 +86,7 @@ public HomeController(IUserService userService)
 
 Now let's get to the action method being passed to the view which is GetAllAuth0Users()
 
-This is what looked like in our part one to this tutorial.
+This is what the action method looked like in part one of this tutorial.
 
 ```
 public async Task <IActionResult> GetAllAuth0Users()
@@ -158,7 +158,8 @@ Now we need to create two models to help us create access token. Here is the cod
 ```
 using Auth0.AuthenticationApi;
 
-//Insert into your own namespace 
+namespace Auth0UserProfileDisplayStarterKit.ViewModels
+{
 
     public class LoginAuthentication
     {
@@ -175,6 +176,7 @@ using Auth0.AuthenticationApi;
             return new Auth0Token {strAuthToken = token.AccessToken};   
         }
     }
+}
 
 ```
 
@@ -185,14 +187,24 @@ services.AddAccessTokenManagement(Configuration);
 services.AddTransient<IUserService, UserService>();
 ```
 
+And for those references to work we will have to add our own using statements
+
+```
+using Example.Auth0.AuthenticationApi.AccessTokenManagement;
+using Example.Auth0.AuthenticationApi.Services;
+```
+
 ## Make token globally accessible ##
 
 Add a single model to make our token globally accessible throughout our client side application. 
 
 ```
-public class Auth0Token
+namespace Auth0UserProfileDisplayStarterKit.ViewModels
 {
-    public string strAuthToken {get; set;}
+    public class Auth0Token
+    {
+        public string strAuth0Token {get;set;}
+    }
 }
 ```
 
@@ -210,9 +222,31 @@ which to use that's ok. Just use the default Auth0 API which is called Auth0 Man
 5. Select one scope to make the 
 5. Hit the Create button. API connection more secure. Select "read:users" and hit authorize. 
 
+![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/CreateMachineToMachineApp.gif){:width="539px"}
 
+Notice how you can see the ClientSecret? That is something you should not be able to see. Luckily I have Rotated it which can be done in the client application.
 
-[//]: # (Up to step 10/10)
+## Bind Auth0 API keys to ASP.NET Secret Manager ##
+
+Speaking of ClientSecrets, did you know We can keep the information out of source control without renaming the
+property values to nonsensical names in appsettings.json?
+
+The answer is to use the ASP.NET Core Secret Manager. 
+
+Look for the Auth0 server application you have made
+for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET5. 
+
+I will show you how to set the values for those 3 properties outside of the project quickly and easily so the API keys stay on your local environment away from the hackers prying eyes.
+
+Fire up the .NET CLI and write each value into these properties by hand so as to insert your
+own values. If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) 
+```
+dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
+dotnet user-secrets set "Auth0:ClientID" "INSERT CLIENTID VALUE HERE!"
+dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
+```
+
+[//]: # (Up to step 10/10. Add instrctions for hiding user secrets. i.e client values.)
 
 
 
