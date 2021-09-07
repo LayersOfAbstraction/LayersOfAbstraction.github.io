@@ -180,7 +180,7 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 
 ```
 
-Now we need to add AcccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
+Now we need to add AccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
 
 ```
 // Add the Auth0 HttpClientManagementConnection.
@@ -228,7 +228,7 @@ which to use that's ok. Just use the default Auth0 API which is called Auth0 Man
 
 ![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/CreateMachineToMachineApp.gif){:width="539px"}
 
-Notice how you can see the ClientSecret? That is something you should not be able to see. Luckily I have Rotated it which can be done in the client application.
+Notice how you can see the ClientSecret? That is something you should not be able to see. Luckily I have rotated it which can be done in the client application.
 
 ## Bind Auth0 API keys to ASP.NET Secret Manager ##
 
@@ -238,7 +238,7 @@ Speaking of ClientSecrets, did you know we can keep the information out of sourc
 
 The answer is to use the ASP.NET Core Secret Manager. 
 
-Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now. It's actually worse than giving your password away for your Auth0 account apparently.
+Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
 
 ```
   "Auth0": {
@@ -259,6 +259,7 @@ Fire up the .NET CLI and initialize the Secret Manager Tool which should appear 
 dotnet user-secrets init
 ```
 
+Do NOT copy and paste this into terminal!
 Write each value into these properties by hand so as to insert your
 own values. If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) 
 ```
@@ -267,8 +268,34 @@ dotnet user-secrets set "Auth0:ClientID" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 ```
 
+Now run the code to ensure no runtime error occurs that stops the screen from showing.
 
-[//]: # (Up to step 10/10. Add instrctions for hiding user secrets. i.e client values.)
+
+The data in the table won't load yet and you should get these one or two of these errors in the properties inspector.
+
+_Failed to load resource: the server responded with a status of 500 (Internal Server Error)_
+
+_jquery.dataTables.js:6522 Uncaught Error: DataTables warning: table id=auth0UsersTable - Ajax error. For more information about this error, please see http://datatables.net/tn/7_
+
+All you need to know is that wile we have inserted the keys to connect Auth0 to our client
+app, we have not inserted the values to connect the Auth0 Management API to the client.
+
+In appsetting.json insert this just above your Auth0 values. 
+
+```
+  "AccessTokenManagement": {
+    "Domain": "{DOMAIN}",
+    "Clients": [
+      {
+        "Name": "UserService",
+        "ClientId": "{CLIENT_ID}",
+        "ClientSecret": "{CLIENT_SECRET}",
+        "Audience": "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"
+      }
+    ]
+  },
+```
+[//]: # (Up to step 10/10. Add instructions for hiding user secrets. i.e client values.)
 
 
 
