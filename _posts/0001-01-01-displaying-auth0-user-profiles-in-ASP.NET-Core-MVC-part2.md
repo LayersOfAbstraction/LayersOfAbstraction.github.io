@@ -183,6 +183,9 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 Now we need to add AcccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
 
 ```
+// Add the Auth0 HttpClientManagementConnection.
+services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
+// Add JWT renewal references  
 services.AddAccessTokenManagement(Configuration); 
 services.AddTransient<IUserService, UserService>();
 ```
@@ -192,6 +195,7 @@ And for those references to work we will have to add our own using statements
 ```
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
 using Example.Auth0.AuthenticationApi.Services;
+using Auth0.ManagementApi;
 ```
 
 ## Make token globally accessible ##
@@ -228,23 +232,41 @@ Notice how you can see the ClientSecret? That is something you should not be abl
 
 ## Bind Auth0 API keys to ASP.NET Secret Manager ##
 
-Speaking of ClientSecrets, did you know We can keep the information out of source control without renaming the
-property values to nonsensical names in appsettings.json?
+Speaking of ClientSecrets, did you know we can keep the information out of source control without renaming the property values to nonsensical names in appsettings.json?
+
+
 
 The answer is to use the ASP.NET Core Secret Manager. 
+
+Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now. It's actually worse than giving your password away for your Auth0 account apparently.
+
+```
+  "Auth0": {
+    "Domain": "{DOMAIN}",
+    "ClientId": "{CLIENT_ID}",
+    "ClientSecret": "{CLIENT_SECRET}"
+  }
+```
 
 Look for the Auth0 server application you have made
 for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET5. 
 
 I will show you how to set the values for those 3 properties outside of the project quickly and easily so the API keys stay on your local environment away from the hackers prying eyes.
 
-Fire up the .NET CLI and write each value into these properties by hand so as to insert your
+Fire up the .NET CLI and initialize the Secret Manager Tool which should appear with a unique ID in your project file.
+
+```
+dotnet user-secrets init
+```
+
+Write each value into these properties by hand so as to insert your
 own values. If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) 
 ```
 dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientID" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 ```
+
 
 [//]: # (Up to step 10/10. Add instrctions for hiding user secrets. i.e client values.)
 
