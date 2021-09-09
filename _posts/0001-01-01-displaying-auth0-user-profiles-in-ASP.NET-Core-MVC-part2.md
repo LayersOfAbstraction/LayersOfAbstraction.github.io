@@ -196,6 +196,7 @@ And for those references to work we will have to add our own using statements
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
 using Example.Auth0.AuthenticationApi.Services;
 using Auth0.ManagementApi;
+using Auth0.ManagementApi.Models;
 ```
 
 ## Make token globally accessible ##
@@ -234,17 +235,17 @@ Notice how you can see the ClientSecret? That is something you should not be abl
 
 Speaking of ClientSecrets, did you know we can keep the information out of source control without renaming the property values to nonsensical names in appsettings.json?
 
-
-
-The answer is to use the ASP.NET Core Secret Manager. 
+The answer is to use the ASP.NET Core Secret Manager. Warning, this is where it can get frustrating if done wrong, advise you backup your project now.
 
 Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
 
 ```
-  "Auth0": {
-    "Domain": "{DOMAIN}",
-    "ClientId": "{CLIENT_ID}",
-    "ClientSecret": "{CLIENT_SECRET}"
+  "Auth0": {    
+    "ManagementApi": {
+      "BaseUri": "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/",
+      "Domain": "{DOMAIN}",
+      "ClientId": "{CLIENT_ID}",
+      "ClientSecret": "{CLIENT_SECRET}"
   }
 ```
 
@@ -261,14 +262,14 @@ dotnet user-secrets init
 
 Do NOT copy and paste this into terminal!
 Write each value into these properties by hand so as to insert your
-own values. If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) 
+own values. 
 ```
 dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
-dotnet user-secrets set "Auth0:ClientID" "INSERT CLIENTID VALUE HERE!"
+dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 ```
 
-Now run the code to ensure no runtime error occurs that stops the screen from showing.
+If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
 
 
 The data in the table won't load yet and you should get these one or two of these errors in the properties inspector.
@@ -279,8 +280,8 @@ _jquery.dataTables.js:6522 Uncaught Error: DataTables warning: table id=auth0Use
 
 All you need to know is that wile we have inserted the keys to connect Auth0 to our client
 app, we have not inserted the values to connect the Auth0 Management API to the client.
-
-In appsetting.json insert this just above your Auth0 values. 
+  
+In appsetting.json insert this block that we call our _AccessTokenManagement_ code you can insert it just above your Auth0 block. 
 
 ```
   "AccessTokenManagement": {
@@ -294,6 +295,15 @@ In appsetting.json insert this just above your Auth0 values.
       }
     ]
   },
+```
+
+Setting these properties are going to look different from the previous code block so here
+is how we do it in the terminal.
+
+```
+dotnet user-secrets set "AccessTokenManagement:Clients:0:Domain" "INSERT DOMAIN VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 ```
 [//]: # (Up to step 10/10. Add instructions for hiding user secrets. i.e client values.)
 
