@@ -174,11 +174,25 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
                 ClientSecret = ClientSecret,
                 Audience = "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"
             }).Result;
-            return new Auth0Token {strAuthToken = token.AccessToken};   
+            return new Auth0Token {strAuth0Token = token.AccessToken};   
         }
     }
 }
 
+```
+
+## Make token globally accessible ##
+
+Add the 2nd model to make our token globally accessible throughout our client side application. 
+
+```
+namespace Auth0UserProfileDisplayStarterKit.ViewModels
+{
+    public class Auth0Token
+    {
+        public string strAuth0Token {get;set;}
+    }
+}
 ```
 
 Now we need to add AccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
@@ -197,20 +211,6 @@ And for those references to work we will have to add our own using statements
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
 using Example.Auth0.AuthenticationApi.Services;
 using Auth0.ManagementApi;
-```
-
-## Make token globally accessible ##
-
-Add a single model to make our token globally accessible throughout our client side application. 
-
-```
-namespace Auth0UserProfileDisplayStarterKit.ViewModels
-{
-    public class Auth0Token
-    {
-        public string strAuth0Token {get;set;}
-    }
-}
 ```
 
 ## Create machine to machine application and Authorise an API ##
