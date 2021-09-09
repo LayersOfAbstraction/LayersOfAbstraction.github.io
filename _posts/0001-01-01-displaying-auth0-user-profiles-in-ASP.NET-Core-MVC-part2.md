@@ -66,6 +66,7 @@ the namespace.
 using Auth0.ManagementApi.Paging;
 using Example.Auth0.AuthenticationApi.Services;
 using System.Threading;
+using Auth0.ManagementApi.Models;
 ```
 
 We need to create a list and tell C# that we are using IUserService. So in the controller
@@ -196,7 +197,6 @@ And for those references to work we will have to add our own using statements
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
 using Example.Auth0.AuthenticationApi.Services;
 using Auth0.ManagementApi;
-using Auth0.ManagementApi.Models;
 ```
 
 ## Make token globally accessible ##
