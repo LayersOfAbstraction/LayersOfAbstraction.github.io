@@ -241,8 +241,8 @@ Open appsettings.json. No no don't set any values yet. Just notice how dangerous
 
 ```
   "Auth0": {    
-    "ManagementApi": {
-      "BaseUri": "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/",
+    "ManagementApi": 
+      "BaseUri": "{BASE_URI}",
       "Domain": "{DOMAIN}",
       "ClientId": "{CLIENT_ID}",
       "ClientSecret": "{CLIENT_SECRET}"
@@ -252,7 +252,13 @@ Open appsettings.json. No no don't set any values yet. Just notice how dangerous
 Look for the Auth0 server application you have made
 for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET5. 
 
-I will show you how to set the values for those 3 properties outside of the project quickly and easily so the API keys stay on your local environment away from the hackers prying eyes.
+Also you need the value for the Auth0 Management API. To find the value on the dashboard go to: 
+-Applications 
+-APIs
+-And you should see the value right there.
+
+![Get_ManagementAPI_value](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/Get ManagementAPIValue.png){:width="739px"}
+I will show you how to set the values for those 4 properties outside of the project quickly and easily so the API keys stay on your local environment away from the hackers prying eyes.
 
 Fire up the .NET CLI and initialize the Secret Manager Tool which should appear with a unique ID in your project file.
 
@@ -267,6 +273,7 @@ own values.
 dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
+dotnet user-secrets set "Auth0:BaseUri" "INSERT CLIENTSECRET VALUE HERE!"
 ```
 
 If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
@@ -291,21 +298,20 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
         "Name": "UserService",
         "ClientId": "{CLIENT_ID}",
         "ClientSecret": "{CLIENT_SECRET}",
-        "Audience": "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"
+        "BaseUri": "{BASE_URI}"
       }
     ]
   },
 ```
 
-Setting these properties are going to look different from the previous code block so here
-is how we do it in the terminal.
+Setting these properties are going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
 
 ```
-dotnet user-secrets set "AccessTokenManagement:Clients:0:Domain" "INSERT DOMAIN VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!"
 dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 ```
-[//]: # (Up to step 10/10. Add instructions for hiding user secrets. i.e client values.)
+[//]: # (Up to step 10/10. TODO: - Add user-secret for Audience and BaseUri)
 
 
 
