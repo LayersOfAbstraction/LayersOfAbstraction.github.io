@@ -320,12 +320,6 @@ dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT C
 dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
 ```
 
+Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
-
-
-
-
-
-
-
-
+In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. <Link will be here> in at some point. 
