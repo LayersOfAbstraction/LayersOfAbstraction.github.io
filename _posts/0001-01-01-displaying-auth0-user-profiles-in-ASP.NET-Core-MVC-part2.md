@@ -154,7 +154,7 @@ public async Task OnGet(CancellationToken cancellationToken)
 
 ## Get Access Token ##
 
-Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience". I will show how we create the this value and store it later.
+Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience" with our static method Auth0Token. I will show how we create the this value and store it later.
 
 ```
 using System.IO;
@@ -322,4 +322,4 @@ dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE V
 
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
-In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. <Link will be here> in at some point. 
+In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. >Link will be here< at some point. 
