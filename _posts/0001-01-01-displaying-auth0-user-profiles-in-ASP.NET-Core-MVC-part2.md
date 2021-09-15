@@ -154,31 +154,41 @@ public async Task OnGet(CancellationToken cancellationToken)
 
 ## Get Access Token ##
 
-Now we need to create two models to help us create access token. Here is the code for class LoginAuthentication.
+Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience". I will show how we create the this value and store it later.
 
 ```
+using System.IO;
 using Auth0.AuthenticationApi;
-
+using Microsoft.Extensions.Configuration;
 namespace Auth0UserProfileDisplayStarterKit.ViewModels
 {
-
     public class LoginAuthentication
     {
+       //Allow value keys pair access to this class.
+      public static IConfiguration AppSetting { get; }
 
-        public static Auth0Token Login(string ClientID, string ClientSecret, string domain)
+        //Setup static constructor to get uri from appsettings
+        static LoginAuthentication()
+        {
+            AppSetting = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+        }
+        public static Auth0Token Login(string ClientID, string ClientSecret, string domain, string Audience)
         {
             var authenticationApiClient = new AuthenticationApiClient(domain);
             var token =  authenticationApiClient.GetTokenAsync(new Auth0.AuthenticationApi.Models.ClientCredentialsTokenRequest
             {                
                 ClientId = ClientID,
                 ClientSecret = ClientSecret,
-                Audience = "https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"
+                //Get uri using the static constructor.
+                Audience = LoginAuthentication.AppSetting["AccessTokenManagement:Audience"],
             }).Result;
             return new Auth0Token {strAuth0Token = token.AccessToken};   
         }
     }
 }
-
 ```
 
 ## Make token globally accessible ##
@@ -186,13 +196,10 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 Add the 2nd model to make our token globally accessible throughout our client side application. 
 
 ```
-namespace Auth0UserProfileDisplayStarterKit.ViewModels
-{
     public class Auth0Token
     {
         public string strAuth0Token {get;set;}
     }
-}
 ```
 
 Now we need to add AccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
@@ -273,10 +280,10 @@ own values.
 dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!"
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
-dotnet user-secrets set "Auth0:BaseUri" "INSERT CLIENTSECRET VALUE HERE!"
+dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
 ```
 
-If you mess up, [please click here.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
+If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
 
 
 The data in the table won't load yet and you should get these one or two of these errors in the properties inspector.
@@ -309,9 +316,10 @@ Setting these properties are going to look different from the previous code bloc
 ```
 dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!"
 dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
 ```
-[//]: # (Up to step 10/10. TODO: - Add user-secret for Audience and BaseUri)
+
 
 
 
