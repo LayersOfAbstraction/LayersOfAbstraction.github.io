@@ -3,7 +3,7 @@ layout: post
 title:  "Migrate from ASP.NET Core MVC 3.0 to 3.1"
 ---
 
-[_NOTE: This is a continuation of our previous post_]({% link _posts/0001-01-03-migration-from-.NET-Core-2.2-to-3.0.md  %}) that showed us how to convert our ASP.NET MVC Core 2.2 application to 3.0. As 3.0 is not supported any longer we must upgrade the framework to 3.1 which still has LTS.
+[_NOTE: This is a continuation of our previous post_]({% link _posts/0001-01-01-migration-from-.NET-Core-2.2-to-3.0.md  %}) that showed us how to convert our ASP.NET MVC Core 2.2 application to 3.0. As 3.0 is not supported any longer we must upgrade the framework to 3.1 which still has LTS.
 
 ## Download my project or continue with the one you made from the previous blog. ##
 
