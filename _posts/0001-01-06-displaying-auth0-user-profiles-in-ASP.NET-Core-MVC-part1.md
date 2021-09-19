@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 1)"
-published: False
+#published: False
 ---
 
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (no longer called .NET Core).
@@ -498,6 +498,6 @@ to match the values of your Auth0 dashboard by going to "Applications"
 
 If you followed along with this tutorial that's really all you need to do in the client application. Most of the work you did was setting up everything in the Auth0 dashboard.
 
-Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. Later I will show how to use a Production Token so we don't have manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. [Next blog here I will show how to use a Production Token so we don't have manually renew the Testing token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) Stay tuned I will insert a link here when I'm ready!
 
 This blog will not have being possible without the help of [Herman Starzhynski](https://www.linkedin.com/in/hstarzhynski/) who's input proved invaluable in solving the problem I originally faced before turning this into a blog.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-published: False
+#published: False
 ---
 Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
 
@@ -31,7 +31,7 @@ There are two ways you can complete this tutorial. You can:
 2. You can start from scratch and use the Part2 branch project I created for our Auth0UserProfileDisplayStarterKit with a link to the [starter kit project here](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part2). The project branch in that repository is created solely for this part 2 blog.
 
 I would personally use option 1 to get the most out of this tutorial.
-If you haven't already seen my [Part1 blog](https://layersofabstraction.github.io/displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.html) for this tutorial you are advised to go through it to understand how to use Auth0.   
+If you haven't already seen my [Part1 blog]({% link  _posts/0001-01-06-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.md %}) for this tutorial you are advised to go through it to understand how to use Auth0.   
 
 In this blog we are going to update our previous logic and use new technologies. 
 
@@ -322,4 +322,5 @@ dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE V
 
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
-In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. >Link will be here< at some point. 
+In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. [Part3 blog here!](
+{% link _posts/0001-01-08-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part3.md %})
