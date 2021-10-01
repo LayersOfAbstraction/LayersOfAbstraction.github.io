@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-published: False
+#published: False
 ---
 Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
 
@@ -31,7 +31,7 @@ There are two ways you can complete this tutorial. You can:
 2. You can start from scratch and use the Part2 branch project I created for our Auth0UserProfileDisplayStarterKit with a link to the [starter kit project here](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part2). The project branch in that repository is created solely for this part 2 blog.
 
 I would personally use option 1 to get the most out of this tutorial.
-If you haven't already seen my [Part1 blog]({% link  _posts/0001-01-06-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.md %}) for this tutorial you are advised to go through it to understand how to use Auth0.   
+If you haven't already seen my [Part1 blog](https://layersofabstraction.github.io/displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.html) for this tutorial you are advised to go through it to understand how to use Auth0.   
 
 In this blog we are going to update our previous logic and use new technologies. 
 
