@@ -3,6 +3,7 @@ layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 3)"
 #published: false
 ---
+<h1>>Work in progress<</h1>
 
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance and as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database.
 
