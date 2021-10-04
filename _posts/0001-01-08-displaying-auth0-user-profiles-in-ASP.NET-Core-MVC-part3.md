@@ -189,9 +189,9 @@ Install the package in the terminal using this command:
 
 `dotnet add package Microsoft.Extensions.Caching.SqlServer --version 5.0.0`
 
-You should have done part 2 of that in this series. If not go there now. In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExtensions.cs`
+In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExtensions.cs`.
 
-we swap the following. Delete this line.
+We swap the following. Delete this line.
  
 ```
 services.AddDistributedMemoryCache();
@@ -230,8 +230,30 @@ dotnet tool install --global dotnet-sql-cache
 
 We have to setup the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
 
- Use this command to create our sql cache with our connection to table tblAccessTokenCache.
+Here is the connection string we are going to use. Enter it just after the first brace character `{` at the top so you don't get errors.
+```
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PartThree_DB;Trusted_Connection=True;MultipleActiveResultSets=true" 
+  },
+```
+
+Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus! The backend database token that was generated. 
+
+![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif){:width="1239px"}
+
+
+If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension which should appear in the Extension explorer. To learn how to use it to see the token please read the tutorial for it. 
+
+To make things a little easier I will let you know that what server and database values you can use when trying to connect to the database.
+
+Server name: "(localdb)\mssqllocaldb"
+Database name: "PartThree_DB"
+
+And that should work as you have already installed SQL Server.
+
+If you created the database before inserting the table then you will get an error. You need to do a migration. Use this command to create our sql cache with our connection to table tblAccessTokenCache.
 
  ```
-dotnet sql-cache create "Server=(localdb)\\mssqllocaldb;Database=part3db;Trusted_Connection=True;MultipleActiveResultSets=true;" dbo tblAccessTokenCache
+dotnet sql-cache create "Server=(localdb)\\mssqllocaldb;Database=part3db;Trusted_Connection=True;MultipleActiveResultSets=true" dbo tblAccessTokenCache
 ```
