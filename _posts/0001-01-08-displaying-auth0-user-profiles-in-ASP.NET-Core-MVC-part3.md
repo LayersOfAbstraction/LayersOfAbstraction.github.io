@@ -238,22 +238,30 @@ Here is the connection string we are going to use. Enter it just after the first
   },
 ```
 
+## Fire it up! ##
+
 Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus! The backend database token that was generated. 
 
 ![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif){:width="1239px"}
 
 
-If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension which should appear in the Extension explorer. To learn how to use it to see the token please read the tutorial for it. 
+If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension which should appear in the Extension explorer. To learn how to use it to see the token please read the tutorial for it.  
 
 To make things a little easier I will let you know that what server and database values you can use when trying to connect to the database.
 
 Server name: "(localdb)\mssqllocaldb"
 Database name: "PartThree_DB"
 
-And that should work as you have already installed SQL Server.
+And that should work as you have already installed SQL Server. If you don't want to install another VS Code Extension then you can do all this in Visual Studio instead.
 
-If you created the database before inserting the table then you will get an error. You need to do a migration. Use this command to create our sql cache with our connection to table tblAccessTokenCache.
+## Didn't work? ##
+
+If you created the database before inserting the table then you will get an error. You need to do a migration. Use this command to create a sql cache with our connection to table tblAccessTokenCache if the table did not appear in the SQL Server database explorer.
 
  ```
 dotnet sql-cache create "Server=(localdb)\\mssqllocaldb;Database=part3db;Trusted_Connection=True;MultipleActiveResultSets=true" dbo tblAccessTokenCache
 ```
+
+Hope that helped. Reach out by email if you have problems. Cheers. 
+
+Jordan
