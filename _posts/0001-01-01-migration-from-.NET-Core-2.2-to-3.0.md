@@ -31,7 +31,10 @@ I will revert to 2.2.401 for the project we have built. Open a folder and call i
 
 And something similar to this should display.
 
-![VersionInfo](../images/MigrateFrom.NETCore2.2To3.1/VersionInfo.png)
+
+{% responsive_image path: ..images/MigrateFrom.NETCore2.2To3.1/VersionInfo.jpg %}
+
+<!-- ![VersionInfo](../images/MigrateFrom.NETCore2.2To3.1/VersionInfo.jpg) -->
 
 As you can see .NET Core 5.0 is our current version. I'm not going to the latest version until I am guaranteed LTS which I'm not yet. You will notice the version I have marked as our target version which is 2.2.401. 
 
