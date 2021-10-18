@@ -39,12 +39,12 @@ Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. 
 
 You can always play around with this app in VS Code later if you want once you complete it.
 
-![VSNavigateToFolder](../images/DTLeftJoins2/VSNavigateToFolder.png)
+<img src="../images/DTLeftJoins2/VSNavigateToFolder.png" class="image fit" alt="VSNavigateToFolder"/>
 
 Make sure you have selected `ASP.NET Core 5.0` and have `no authentication` selected and have
 `configure for HTTPS` selected as well.
 
-![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png){:width="780px"}
+<img src="../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png" class="image fit" alt="CreateNewASP.NETCoreWebApp"/>
 
 After that create the project. We will now create a Recipe database 3 
 different models, Recipe, RecipeIngredient and Ingredient. Create each 
@@ -338,7 +338,7 @@ Rather than write it manually it is easier to first auto generate all the CRUD v
 -   Click Add. The Add MVC Controller with views, using Entity Framework
     dialog box appears.
 
-![demo3](../images/DTLeftJoins2/demo3.gif){:width="780px"}
+<img src="../images/DTLeftJoins2/demo3.gif" class="image fit" alt="demo3"/>
 
 -   In **Model class** select **RecipeIngredient.**
 -   In **Data context class** select **CookingContext**.
