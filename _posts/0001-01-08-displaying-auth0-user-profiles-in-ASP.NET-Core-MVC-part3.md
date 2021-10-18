@@ -242,8 +242,7 @@ Here is the connection string we are going to use. Enter it just after the first
 
 Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus! The backend database token that was generated. 
 
-![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif){:width="1239px"}
-
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
 If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension which should appear in the Extension explorer. To learn how to use it to see the token please read the tutorial for it.  
 
