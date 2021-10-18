@@ -706,4 +706,4 @@ shown.
 If we did that all in Entity Framework Core the code required would be
 substantially longer and give us nowhere as much functionality.
 
-![demo5](../images/DTLeftJoins/demo5.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo5.gif" class="image fit" alt="demo5"/>
