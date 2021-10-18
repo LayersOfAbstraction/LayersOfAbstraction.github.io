@@ -158,13 +158,14 @@ samples right now especially in EF Core.
 
 Now I will show you what the UI looks like when I compile the code.
 
-![demo1](../images/DTLeftJoins/demo1.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo1.gif" class="image fit" alt="demo1"/>
 
 Now if we write the code in DataTables Editor in the Index method for
 the same controller and the view, it will be much shorter. I will show
 you what it would look like if we run that.
 
-![demo2](../images/DTLeftJoins/demo2.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo2.gif" class="image fit" alt="demo2"/>
+
 
 Obviously there is heaps more functionality in the UI, the code (which I
 will show later) is cleaner too. Let\'s replicate this in a new project.
@@ -191,12 +192,12 @@ EF Core. So let's first open Visual Studio 2019 and create ASP.NET Core
 WebApplication Template. You can always play around with this app in VS
 Code later if you want once you complete it.
 
-![VSNavigateToFolder](../images/DTLeftJoins/VSNavigateToFolder.png)
+<img src="../images/DTLeftJoins/VSNavigateToFolder.png" class="image fit" alt="VSNavigateToFolder"/>
 
 Make sure you have selected 2.2, have no authentication and have
 configured for HTTPS.
 
-![CreateNewASP.NETCoreWebApp](../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png)
+<img src="../images/DTLeftJoins/CreateNewASP.NETCoreWebApp.png" class="image fit" alt="CreateNewASP.NETCoreWebApp"/>
 
 After that create the project. We will now create a Recipe database 3
 different models, Recipe, RecipeIngredient and Ingredient. Create each
@@ -471,7 +472,7 @@ generate in the scaffolding engine. To that:
 -   Click Add. The Add MVC Controller with views, using Entity Framework
     dialog box appears.
 
-![demo3](../images/DTLeftJoins/demo3.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo3.gif" class="image fit" alt="demo3"/>
 
 -   In **Model class** select **RecipeIngredient.**
 -   In **Data context class** select **CookingContext**.
@@ -505,7 +506,7 @@ paging and searching. Not only that, we want to render the RecipeTitle
 and the IngredientName fields from the other tables not the foreign key
 IDs!
 
-![demo4](../images/DTLeftJoins/demo4.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo4.gif" class="image fit" alt="demo4"/>
 
 ## Install DataTables
 
@@ -808,7 +809,7 @@ shown.
 If we did that all in Entity Framework Core the code required would be
 substantially longer and give us nowhere as much functionality.
 
-![demo5](../images/DTLeftJoins/demo5.gif){:width="780px"}
+<img src="../images/DTLeftJoins/demo5.gif" class="image fit" alt="demo5"/>
 
 ## Credit
 
