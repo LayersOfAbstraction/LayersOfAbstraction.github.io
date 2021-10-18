@@ -234,7 +234,7 @@ which to use that's ok. Just use the default Auth0 API which is called Auth0 Man
 5. Select one scope to make the 
 5. Hit the Create button. API connection more secure. Select "read:users" and hit authorize. 
 
-![Create_Machine_To_Machine_App](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/CreateMachineToMachineApp.gif){:width="539px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/CreateMachineToMachineApp.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
 Notice how you can see the ClientSecret? That is something you should not be able to see. Luckily I have rotated it which can be done in the client application.
 
@@ -264,7 +264,8 @@ Also you need the value for the Auth0 Management API. To find the value on the d
 -APIs
 -And you should see the value right there.
 
-![Get_ManagementAPI_value](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/Get ManagementAPIValue.png){:width="739px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/Get ManagementAPIValue.png" class="image fit" alt="Get_ManagementAPI_value"/>
+
 I will show you how to set the values for those 4 properties outside of the project quickly and easily so the API keys stay on your local environment away from the hackers prying eyes.
 
 Fire up the .NET CLI and initialize the Secret Manager Tool which should appear with a unique ID in your project file.
