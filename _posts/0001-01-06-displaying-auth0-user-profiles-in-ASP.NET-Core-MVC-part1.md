@@ -3,7 +3,7 @@ layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 1)"
 #published: False
 ---
-<a class="image fit"><img src="images/tonsley.jpg" alt="Idea for undercover multipurpose space"/></a>
+
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (no longer called .NET Core).
 
 You can use what you want here. VS Code or Visual Studio. I will use VS Code in this blog.
@@ -45,7 +45,7 @@ or My App.
 
 4. Once created select the app where the triple dot is and and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
 
-![Create_User_and_Db_conn](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif){:width="539px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif" alt="Create_User_and_Db_conn" class="image fit"/>
 
 ## Create Test email ##
 
@@ -86,7 +86,7 @@ Let's create the users now in the same dashboard.
 
 Steps clear as mud? Don't know how to navigate? That's why I made an image showing how to do everything here.
 
-![Create_User_and_Db_conn](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif){:width="539px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" alt="Create_User_and_Db_conn" class="image fit"/>
 
 ## Install and configure Auth0 Authentication Management API ##
 
@@ -231,7 +231,7 @@ namespace Auth0UserProfileDisplayStarterKit.Models
 
 You possibly had the computer lag when you copied in the string into the class. It happened with me and the results in the Task Manager don't paint a pretty picture with the VS Code process going to the top in terms of CPU and RAM usage.
 
-![After_Token_edit_reading](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/After editing or first reading token in VS Code.png){:width="925px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/After editing or first reading token in VS Code.png" alt="After_Token_edit_reading" class="image fit"/>
 
 We are merely going to reference that string now so as not to display it.
 
@@ -485,7 +485,7 @@ var Auth0Table = $('#auth0UsersTable').DataTable({
 
 If you have done everything correctly up to this point, this should occur.
 
-![Application_Complete](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif){:width="625px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif" alt="Application_Complete" class="image fit"/>
 
 Simply put this will render the table if you have done two thing:
 
