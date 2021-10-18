@@ -45,7 +45,7 @@ or My App.
 
 4. Once created select the app where the triple dot is and and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
 
-<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif" alt="Create_User_and_Db_conn" class="image fit"/>
+![Create_User_and_Db_conn](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif){:width="539px"}
 
 ## Create Test email ##
 
@@ -86,7 +86,7 @@ Let's create the users now in the same dashboard.
 
 Steps clear as mud? Don't know how to navigate? That's why I made an image showing how to do everything here.
 
-<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" alt="Create_User_and_Db_conn" class="image fit"/>
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" class="image fit" alt="Create_User_and_Db_conn"/>
 
 ## Install and configure Auth0 Authentication Management API ##
 
@@ -231,7 +231,7 @@ namespace Auth0UserProfileDisplayStarterKit.Models
 
 You possibly had the computer lag when you copied in the string into the class. It happened with me and the results in the Task Manager don't paint a pretty picture with the VS Code process going to the top in terms of CPU and RAM usage.
 
-<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/After editing or first reading token in VS Code.png" alt="After_Token_edit_reading" class="image fit"/>
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/After editing or first reading token in VS Code.png" class="image fit" alt="After_Token_edit_reading"/>
 
 We are merely going to reference that string now so as not to display it.
 
@@ -485,7 +485,7 @@ var Auth0Table = $('#auth0UsersTable').DataTable({
 
 If you have done everything correctly up to this point, this should occur.
 
-<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif" alt="Application_Complete" class="image fit"/>
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif" class="image fit" alt="Application_Complete"/>
 
 Simply put this will render the table if you have done two thing:
 
