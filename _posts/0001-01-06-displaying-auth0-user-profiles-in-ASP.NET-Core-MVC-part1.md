@@ -45,7 +45,7 @@ or My App.
 
 4. Once created select the app where the triple dot is and and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
 
-![Create_User_and_Db_conn](../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif){:width="539px"}
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif" class="image fit" alt="ChangeAppValuesToMatchProject"/>
 
 ## Create Test email ##
 
@@ -86,7 +86,7 @@ Let's create the users now in the same dashboard.
 
 Steps clear as mud? Don't know how to navigate? That's why I made an image showing how to do everything here.
 
-<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" class="image fit" alt="Create_User_and_Db_conn"/>
+<img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" class="image fit" alt="Create_Auth0_User_and_DB_conn"/>
 
 ## Install and configure Auth0 Authentication Management API ##
 
