@@ -372,7 +372,7 @@ Press F5. Running the program will generate the database and fill out the tables
 
 If all goes well you should be able to go directly to the table in the Index view and render the project. But as I said there is no sorting, paging and searching. Not only that, we want to render the RecipeTitle and the IngredientName fields from the other tables not the foreign key IDs!
 
-![demo4](../images/DTLeftJoins2/demo4.gif){:width="780px"}
+<img src="../images/DTLeftJoins2/demo4.gif" class="image fit" alt="demo4"/>
 
 ## Install DataTables
 
