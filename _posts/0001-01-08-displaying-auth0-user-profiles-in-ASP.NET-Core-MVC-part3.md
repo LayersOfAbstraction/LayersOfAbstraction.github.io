@@ -121,7 +121,7 @@ using Microsoft.EntityFrameworkCore;
 
 ## (OPTIONAL) Add Creation to methods to Home class ##
 
-So you can skip to the heading if you don't want to create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
+So you can skip to the next heading if you don't want to create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
 
 ```
         private readonly TeamContext _context;
@@ -244,7 +244,7 @@ Now run the database. If you have done everything correctly the application shou
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
-If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension which should appear in the Extension explorer. To learn how to use it to see the token please read the tutorial for it.  
+If you want to know how to see the token your self in the backend of VS Code then you need to install the "SQL Server (mssql)" extension.  
 
 To make things a little easier I will let you know that what server and database values you can use when trying to connect to the database.
 
