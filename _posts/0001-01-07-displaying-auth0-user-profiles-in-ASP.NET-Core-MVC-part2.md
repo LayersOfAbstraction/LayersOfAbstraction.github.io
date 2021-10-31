@@ -3,7 +3,7 @@ layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
 #published: False
 ---
-Earlier I showed you how to Display Auth0 user profiles in ASP.NET Core 5.0 but did not show you how to automatically renew the token. 
+Earlier I showed you [how to Display Auth0 user profiles in ASP.NET Core 5.0]({% link _posts/0001-01-06-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.md %}) but did not show you how to automatically renew the token. 
 
 If you haven't noticed yet you'll see you can't get the users and will be returned this exception.
 
