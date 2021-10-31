@@ -246,10 +246,10 @@ Now run the database. If you have done everything correctly the application shou
 If you want to know how to see the token yourself in the backend of VS Code then you need to install the "SQL Server (mssql)" extension.  
 
 To make things a little easier I will let you know that what server and database values you can use when trying to connect to the database.
-```
+
 Server name: "(localdb)\mssqllocaldb"
 Database name: "PartThree_DB"
-```
+
 And that should work as you have already installed SQL Server. If you don't want to install another VS Code Extension then you can do all this in Visual Studio instead.
 
 ## Didn't work? ##
