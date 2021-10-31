@@ -293,7 +293,7 @@ _Failed to load resource: the server responded with a status of 500 (Internal Se
 
 _jquery.dataTables.js:6522 Uncaught Error: DataTables warning: table id=auth0UsersTable - Ajax error. For more information about this error, please see http://datatables.net/tn/7_
 
-All you need to know is that wile we have inserted the keys to connect Auth0 to our client
+All you need to know is that while we have inserted the keys to connect Auth0 to our client
 app, we have not inserted the values to connect the Auth0 Management API to the client.
   
 In appsetting.json insert this block that we call our _AccessTokenManagement_ code you can insert it just above your Auth0 block. 
