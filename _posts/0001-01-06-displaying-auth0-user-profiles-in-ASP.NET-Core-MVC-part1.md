@@ -43,7 +43,7 @@ or My App.
 
 3. Hit Create.
 
-4. Once created select the app where the triple dot is and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
+4. Once created select the app where the triple dot is and go to Settings. The application should contain each of the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif" class="image fit" alt="ChangeAppValuesToMatchProject"/>
 
@@ -498,6 +498,6 @@ to match the values of your Auth0 dashboard by going to "Applications"
 
 If you followed along with this tutorial that's really all you need to do in the client application. Most of the work you did was setting up everything in the Auth0 dashboard.
 
-Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the Microsoft tutorials how to handle DataAccess in their ASP.NET 5 Contoso University sample application. [Next blog here I will show how to use a Production Token so we don't have manually renew the Testing token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) Stay tuned I will insert a link here when I'm ready!
+Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the Microsoft tutorials how to handle Data Access in their ASP.NET 5 Contoso University sample application. [Next blog here I will show how to use a Production Token so we don't have to manually renew the Testing token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) Stay tuned I will insert a link here when I'm ready!
 
 This blog will not have been possible without the help of [Herman Starzhynski](https://www.linkedin.com/in/hstarzhynski/) who's input proved invaluable in solving the problem I originally faced before turning this into a blog.
