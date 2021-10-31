@@ -312,7 +312,7 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
   },
 ```
 
-Setting these properties are going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
+Setting these properties is going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
 
 ```
 dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!"
