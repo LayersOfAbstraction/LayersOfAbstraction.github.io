@@ -61,9 +61,9 @@ internal partial class AccessTokenCache
 If you are familiar with the DbContext class for dependency injection then know that we will
 not use that to configure the properties of this class. Instead we will use an EF Core interface called IEntityTypeConfiguration to:
 
- - Setup the schema type for the table and call it `security`. 
- - Setup some default values and whether they are required.
- - Use it to setup the table name.  
+ - Set up the schema type for the table and call it `security`. 
+ - Set up some default values and whether they are required.
+ - Use it to set up the table name.  
 
 Here is the code for that. Notice the class acts as a child to AccessTokenCache but it uses an EF Core interface. 
 
@@ -90,7 +90,7 @@ internal class AccessTokenCacheConfiguration : IEntityTypeConfiguration<AccessTo
 } 
 ```
 
-We still have to use a database context class to setup the AccessTokenCacheConfiguration 
+We still have to use a database context class to set up the AccessTokenCacheConfiguration 
 class which will be used to intermediate with the database. AccessTokenCache is just
 telling it what to do.
 
@@ -207,9 +207,9 @@ options.TableName = "tblAccessTokenCache";
 
 Now we have to set up the code for the cache. We are going to use code migrations to set the cache and install it with the sql server dotnet commands. Use this terminal tool to install sql-cache.
 
-## Setup SQL Server localdb ##
+## Set up SQL Server localdb ##
 
-We will need to setup the Microsoft SQL Server database
+We will need to set up the Microsoft SQL Server database
 to store the JWT. To set it up we will use Entity Framework Core and the scaffolding engine in the terminal.  
 
 Let us now install the packages.
@@ -227,7 +227,7 @@ dotnet tool install --global dotnet-sql-cache
 
 ## Use Dependency Injection to create the models ##
 
-We have to setup the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
+We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
 
 Here is the connection string we are going to use. Enter it just after the first brace character `{` at the top so you don't get errors.
 ```
