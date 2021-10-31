@@ -42,7 +42,7 @@ private async Task<TResponse> MakeCallAsync<TResponse>(Func<ManagementApiClient,
 
 ## Create models to manage JWT data ##
 
-Create a sub folder named `Data` now under our main folder.
+Create a subfolder named `Data` now under our main folder.
 
 Create the model `AccessTokenCache.cs` with this code so we can store the properties of the token in the database.   
 
