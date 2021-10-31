@@ -43,7 +43,7 @@ or My App.
 
 3. Hit Create.
 
-4. Once created select the app where the triple dot is and and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
+4. Once created select the app where the triple dot is and go to Settings. The application should contain each the values to copy and paste into your `appsettings.json` file on the client side. Copy them across now.
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/ChangeAuth0AppValuesToMatchProject.gif" class="image fit" alt="ChangeAppValuesToMatchProject"/>
 
