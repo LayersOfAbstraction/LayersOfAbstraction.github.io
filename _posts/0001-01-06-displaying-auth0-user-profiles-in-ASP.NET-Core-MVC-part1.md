@@ -30,7 +30,7 @@ Afterwards you will have two ways of completing this tutorial.
 
 2. You can download my Auth0UserProfileDisplayStarterKit and do minimal amount of work to change things around to match.
 
-Obviously I recommend you pick option 2 and use my starter kit to complete this tutorial and keep things stupid simple. But if you feel you still don't understand after it, you can pick option 1. 
+I recommend you pick option 2 and use my starter kit to complete this tutorial and keep things stupid simple. But if you feel you still don't understand after it, you can pick option 1. 
 
 ## Create Application on the Auth0 server ##
 
