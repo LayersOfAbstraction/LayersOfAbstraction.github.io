@@ -287,7 +287,7 @@ dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE 
 If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
 
 
-The data in the table won't load yet and you should get these one or two of these errors in the properties inspector.
+The data in the table won't load yet and you should get one or two of these errors in the properties inspector.
 
 _Failed to load resource: the server responded with a status of 500 (Internal Server Error)_
 
