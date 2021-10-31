@@ -120,7 +120,7 @@ using Microsoft.EntityFrameworkCore;
 
 ## (OPTIONAL) Add Creation methods to Home class ##
 
-So you can skip to the next heading if you don't want to create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
+So you can skip to the next heading if you don't want to a create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
 
 ```
         private readonly TeamContext _context;
