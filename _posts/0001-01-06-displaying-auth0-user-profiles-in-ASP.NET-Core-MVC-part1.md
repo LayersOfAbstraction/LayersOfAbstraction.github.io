@@ -322,17 +322,17 @@ Go to Views in Auth0UserProfileDisplayStarterKit and under the Home folder open 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
                 <label asp-for="UserFirstName" class="control-label"></label>
-                <input id="UFirstNameInput" readonly="true" disabled="true" asp-for="UserFirstName" class="form-control"/>
+                <input id="UFirstNameInput" readonly="true" asp-for="UserFirstName" class="form-control"/>
                 <span asp-validation-for="UserFirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserLastName" class="control-label"></label>
-                <input id="ULastNameInput" readonly="true" disabled="true" asp-for="UserLastName" class="form-control"/>
+                <input id="ULastNameInput" readonly="true" asp-for="UserLastName" class="form-control"/>
                 <span asp-validation-for="UserLastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserContactEmail" class="control-label"></label>
-                <input id="UEmailInput" readonly="true" disabled="true" asp-for="UserContactEmail" class="form-control"/>
+                <input id="UEmailInput" readonly="true" asp-for="UserContactEmail" class="form-control"/>
                 <span asp-validation-for="UserContactEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
