@@ -239,7 +239,7 @@ Here is the connection string we are going to use. Enter it just after the first
 
 ## Fire it up! ##
 
-Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus! The backend database token that was generated. 
+Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus, the backend database token was generated. 
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
