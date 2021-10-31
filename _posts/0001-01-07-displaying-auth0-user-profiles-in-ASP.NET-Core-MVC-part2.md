@@ -154,7 +154,7 @@ public async Task OnGet(CancellationToken cancellationToken)
 
 ## Get Access Token ##
 
-Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience" with our static method Auth0Token. I will show how we create the this value and store it later.
+Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience" with our static method Auth0Token. I will show how we create this value and store it later.
 
 ```
 using System.IO;
