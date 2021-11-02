@@ -271,11 +271,15 @@ I am going to install DataTables on the front end which is an open source javasc
 
 We just have to reference the javascript and css libraries from DataTables Content Delivery Network. Add the following code to the head in our _Layout.cshtml file. 
 
+```
  <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+```
 
 In our starter kit notice I have added this under the footer in the body with all the other scripts. Make sure you load it AFTER any jquery libraries you have in your project. I put mine just above the `@RenderSection` tag.
 
+```
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+```
 
 ## Call DataTables Library in Views/Home/Index.cshtml ##
 
