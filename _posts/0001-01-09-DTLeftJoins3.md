@@ -5,7 +5,7 @@ title: "How to retrieve data from related tables in DataTables with ASP.NET 6"
 
 [Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET 5 MVC]({% link _posts/0001-01-04-DTLeftJoins2.md  %}) Now that .NET 5 is no longer getting security updates it is time to upgrade to .NET 6, (not called .NET Core).
 
-I have completed demo which you can [download here in .NET 5](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5...
+I have completed demo which you can [download here in .NET 6](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5...
 
 And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
@@ -55,9 +55,6 @@ of these classes in the model folder.
 
 ## Recipe
 ```
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTEditorLeftJoinSample.Models
 {
@@ -76,9 +73,6 @@ namespace DTEditorLeftJoinSample.Models
 ## RecipeIngredient
 
 ```
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTEditorLeftJoinSample.Models
 {
@@ -102,9 +96,6 @@ namespace DTEditorLeftJoinSample.Models
 ## Create Ingredient class
 
 ```
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTEditorLeftJoinSample.Models
 {
@@ -168,39 +159,36 @@ namespace DTEditorLeftJoinSample.Data
 
 ## Install Entity Framework Core and other packages
 
-Depending on which .NET Core SDK you installed, go to. 
+Go to the bottom of the screen and to the Developer PowerShell. Enter the following commands to install the required packages for this tutorial. The directory path should be pointing to the application already unless you changed directories in the PowerShell.
 
-- Tools. 
-- Click on **NuGet package manager** then select **Manage NuGet Packages for Solution** Microsoft.EntityFrameworkCore.
-- Select the **Browse** tab and type into the search bar "Microsoft.EntityFrameworkCore"
-- If you don't know the version, please select, type into the package manager console `dotnet --info`
-
-Also install depending on version:
-
-- Microsoft.AspNetCore.Mvc.NewtonsoftJson
-- Microsoft.EntityFrameworkCore.Design
-- Microsoft.EntityFrameworkCore.SqlServer
-- Microsoft.VisualStudio.Web.CodeGeneration.Design
-
+```
+dotnet add package Microsoft.EntityFrameworkCore --version 6.0.0
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.0
+```
 The errors in CookingContext.cs and in Startup.cs should disappear.
 
 ## Register CookingContext as service in Startup.cs
 
-Register the CookingContext as a service in Startup.cs using dependency
-injection where the ConfigureServices method is. You can do that by
-adding this code to the method including Newtonsoft.Json features so we can use json on the client side. Go to Startup.cs now.
+Register the CookingContext as a service in Program using dependency
+injection. You can do that by adding this code to the method including Newtonsoft.Json features so we can use json on the client side.
 
 ```
-services.AddDbContext<CookingContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-services.AddControllersWithViews();
-services.AddControllers().AddNewtonsoftJson();                                     
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CookingContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddControllersWithViews();                        
 ```                                        
 
 Now add these statements to the startup file.
 
 ```
-using DTEditorLeftJoinSample.Data;
+using WebApplication2.Data;
 using Microsoft.EntityFrameworkCore;
 ```                                        
 
@@ -212,12 +200,6 @@ entered manually. In the Data folder create this file DbInitializer.cs
 and insert this code.
 
 ```
-using DTEditorLeftJoinSample.Models;
-using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace DTEditorLeftJoinSample.Data
 {
     public static class DbInitializer
@@ -359,7 +341,7 @@ I would like to note if you are getting painfully unclear errors like this:
 
 `Package restore failed. Rolling back package...`
 
-It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated to the latest version which helped.
+It's highly likely you need to update all packages to the latest version in .NET 6. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated to the latest version which helped.
 
 ## Add Recipeingredient To Navbar
 
