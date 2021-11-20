@@ -170,15 +170,10 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.
 ```
 The errors in CookingContext.cs and in Startup.cs should disappear.
 
-## Register CookingContext as service in Startup.cs
+## Register CookingContext in Program.cs
 
 Register the CookingContext as a service in Program using dependency
-<<<<<<< HEAD
-injection. You can do that by adding this code to the method including Newtonsoft.Json features so we can use json on the client side.
-=======
-injection. You can do that by
-adding this code to the method including Newtonsoft.Json features so we can use json on the client side.
->>>>>>> 02320b64fc1626a1c589c72af2d452f799ab0748
+injection. You can do that by adding this code to the Program.cs including Newtonsoft.Json features so we can use json on the client side.
 
 ```
 // Add services to the container.
@@ -284,25 +279,22 @@ To use DataTables also we must register the database driver either in Startup.cs
 ## Program.cs
 
 ```
-public static void Main(string[] args)
+DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);    
+var host = CreateHostBuilder(args).Build();
+    using (var scope = host.Services.CreateScope())
 {
-    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);    
-    var host = CreateHostBuilder(args).Build();
-        using (var scope = host.Services.CreateScope())
+    var services = scope.ServiceProvider;
+    try
     {
-        var services = scope.ServiceProvider;
-        try
-        {
-            var context = services.GetRequiredService<CookingContext>();
-            DbInitializer.Initialize(context);
-        }
-        catch (Exception ex)
-        {
-            var logger = services.GetRequiredService<ILogger<Program>>();
-            logger.LogError(ex, "An error occurred while seeding the database.");
-        }
+        var context = services.GetRequiredService<CookingContext>();
+        context.Database.EnsureCreated();
+        DbInitializer.Initialize(context);
     }
-    host.Run();
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
+    }
 }
 ```
 
