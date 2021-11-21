@@ -274,7 +274,7 @@ Now we call the context instance, the seed method and pass it to the
 context. Then dispose the context when the seeding is complete. In
 **Program.cs** delete any code in the `Main` method and add this all to the method.
 
-To use DataTables also we must register the database driver either in Startup.cs or Program.cs which is `System.Data.SqlClient`. We will do it all in Program.cs
+To use DataTables also we must register the database driver which is `System.Data.SqlClient`. We will do it all in Program.cs and also log any exceptions to do with seeding the database.  
 
 ## Program.cs
 
@@ -319,14 +319,13 @@ Rather than write it manually it is easier to first auto generate all the CRUD v
 -   Select MVC controller with views, using Entity Framework.
 -   Click Add. The Add MVC Controller with views, using Entity Framework
     dialog box appears.
-
-<img src="../images/DTLeftJoins2/demo3.gif" class="image fit" alt="demo3"/>
-
 -   In **Model class** select **RecipeIngredient.**
 -   In **Data context class** select **CookingContext**.
 -   Accept the default **CookingController** as the name.
 -   Click **Add**. The **Add MVC Controller with views, using Entity
     Framework** dialog box appears.
+
+<img src="../images/DTLeftJoins2/demo3.gif" class="image fit" alt="demo3"/>
 
 If all is ok then the RecipeIngredient folder generates with all the
 views, Index, Edit, Details, Delete. Notice in the Controllers folder
