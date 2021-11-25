@@ -382,12 +382,17 @@ and then write the code to link the View up to our controller. Remember
 the backend will use DataTables Editor server-side libraries which are
 free.
 
+
+
 The front-end DataTables Editor libraries are not free so we won't use
 that. The front end will instead use DataTables which is also free and
 is compatible with EF Core as long as you aren't rendering foreign keys.
 
-We need to install DataTables into the front end. We just have to
-reference the javascript and css libraries from DataTables Content
+We need to install DataTables too. There are two ways of doing that. 
+
+## OPTION 1 host it from DataTables CND 
+
+We reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
 _Layout.cshtml file.
 ```
@@ -398,11 +403,36 @@ scripts. Make sure you load it AFTER any jquery libraries you have in your proje
 ```
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 ```
+
+## OPTION 2 Local download 
+
+The other way is by doing a local download which can be useful should you need everthing to run offline during a demo where you want to convince your team or boss to use it and present it in a prototype so you could get the funding to use the client side libraries eventually.
+
+### OPTION 2.1 Go to Library Manager (LibMan) to install DataTables.
+
+We can use Visual Studio's built in library acquisition tool (LibMan)
+to download DataTables. We will do that now.
+
+1. Go to Project in Solution explorer.
+2. Right Click Project and select Add.
+3. Select Client-Side Library.
+4. In the new windows Do not change provider and leave as cdnjs.
+5. Type into the "Library" field, ``datatables.net@1.10.25`` unless
+a later value is available. 
+
+The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline. 
+
+<img src="../images/DTLeftJoins2/Use_(LibMan)_to_install_DataTables.gif" class="image fit" alt="Use LibMan to install DT"/>
+
+### OPTION 2.2 Go to website to download and install files.
+
+We can download the library from here to go [here to download the files.](https://datatables.net/download/) and leave the defaults. There should be steps on what to do.
+
 ## Call database directly from Program or Startup
 
-Now we will need to bypass our RecipeIngredient model to later bind our controller directly to the database using
-`DbProviderFactories.RegisterFactory`. Remember you can't use entity
-framework with DataTables Editor serverside libraries. To do it you would have to pay for the clientside libraries but we can do that, we just have to break a MVC rule.
+Now we will need to bypass our RecipeIngredient model to later bind our controller directly to the database using 
+
+``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries. To do it you would have to pay for the clientside libraries but we can do that, we just have to break a MVC rule.
 
  Enter this into Program.cs.
 ```
