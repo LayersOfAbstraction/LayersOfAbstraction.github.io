@@ -279,33 +279,36 @@ To use DataTables also we must register the database driver which is `System.Dat
 ## Program.cs
 
 ```
-DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);    
 var host = CreateHostBuilder(args).Build();
-    using (var scope = host.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<CookingContext>();
-        context.Database.EnsureCreated();
-        DbInitializer.Initialize(context);
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while seeding the database.");
-    }
+    var context = services.GetRequiredService<CookingContext>();
+    context.Database.EnsureCreated();
+    DbInitializer.Initialize(context);
 }
 ```
 
-Now add these statements
+It is immperative that you write this and any over code above `app.Run` else C# will ignore any code below it upon compliling.
+
+Now in the Data folder add a empty .cs file called `GobalNamespaces.cs` delete anything inside the file and copy and paste this into it.
 
 ```
-using Microsoft.Extensions.DependencyInjection;
-using System.Data.Common;
-using Microsoft.Data.SqlClient;
-using DTEditorLeftJoinSample.Data;                                    
+global using DTEditorLeftJoinSample.Models;
+global using Microsoft.EntityFrameworkCore;
+global using System.ComponentModel.DataAnnotations;
+global using DTEditorLeftJoinSample.Data;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Hosting;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Data.Common;
+global using Microsoft.Data.SqlClient;                                 
 ```
+
+Goodbye repetitive namespaces. C# 10 gives us the ability to minimize all the code files containing namespaces by centralizing them all into one file throughout our entire application. 
 
 ## Generate controllers and views with scaffolding engine
 
@@ -341,7 +344,7 @@ It's highly likely you need to update all packages to the latest version in .NET
 
 ## Add Recipeingredient To Navbar
 
-We want to be able to go to it from or home page to our _layout.cshtml file. In the second div tag of the header add this list item to the navbar.
+We want to be able to go the form in our _layout.cshtml file. In the second div tag of the header add this list item to the navbar.
 
 ```
 <li class="nav-item">
@@ -349,6 +352,17 @@ We want to be able to go to it from or home page to our _layout.cshtml file. In 
 </li>  
 ```
 
+Now we got to add the migrations and update the database before we can run it. Enter this into our PowerShell.
+
+```
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+You may have to update the to update the global tools to the latest available version if these commands do not work, which at the time is 6.0.0.
+``
+dotnet tool update --global dotnet-ef
+``
 Press F5. Running the program will generate the database and fill out the tables. If it doesn’t work please use the SQL Server Object Explorer to fill the tables manually.
 
 If all goes well you should be able to go directly to the table in the Index view and render the project. But as I said there is no sorting, paging and searching. Not only that, we want to render the RecipeTitle and the IngredientName fields from the other tables not the foreign key IDs!
@@ -368,12 +382,17 @@ and then write the code to link the View up to our controller. Remember
 the backend will use DataTables Editor server-side libraries which are
 free.
 
+
+
 The front-end DataTables Editor libraries are not free so we won't use
 that. The front end will instead use DataTables which is also free and
 is compatible with EF Core as long as you aren't rendering foreign keys.
 
-We need to install DataTables into the front end. We just have to
-reference the javascript and css libraries from DataTables Content
+We need to install DataTables too. There are two ways of doing that. 
+
+## OPTION 1 host it from DataTables CND 
+
+We reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
 _Layout.cshtml file.
 ```
@@ -384,18 +403,38 @@ scripts. Make sure you load it AFTER any jquery libraries you have in your proje
 ```
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 ```
+
+## OPTION 2 Local download 
+
+The other way is by doing a local download which can be useful should you need everthing to run offline during a demo where you want to convince your team or boss to use it and present it in a prototype so you could get the funding to use the client side libraries eventually.
+
+### OPTION 2.1 Go to Library Manager (LibMan) to install DataTables.
+
+We can use Visual Studio's built in library acquisition tool (LibMan)
+to download DataTables. We will do that now.
+
+1. Go to Project in Solution explorer.
+2. Right Click Project and select Add.
+3. Select Client-Side Library.
+4. In the new windows Do not change provider and leave as cdnjs.
+5. Type into the "Library" field, ``datatables.net@1.10.25`` unless
+a later value is available. 
+
+The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline. 
+
+<img src="../images/DTLeftJoins2/Use_(LibMan)_to_install_DataTables.gif" class="image fit" alt="Use LibMan to install DT"/>
+
+### OPTION 2.2 Go to website to download and install files.
+
+We can download the library from here to go [here to download the files.](https://datatables.net/download/) and leave the defaults. There should be steps on what to do.
+
 ## Call database directly from Program or Startup
 
-Now will need to bypass our RecipeIngredient model and bind our
-controller directly to the database using
-DbProviderFactories.RegisterFactory. Remember you can't use entity
-framework with DataTables Editor libraries. Enter this into either your
-startup.cs or program.cs file. I have chosen to add it to Program.cs.
-```
-    // using statement at top of Program.cs
-    using System.Data.SqlClient;
-    using System.Data.Common;
-```
+Now we will need to bypass our RecipeIngredient model to later bind our controller directly to the database using 
+
+``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries. To do it you would have to pay for the clientside libraries but we can do that, we just have to break a MVC rule.
+
+ Enter this into Program.cs.
 ```
     // Register the factory in the method `Main`
     DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
@@ -403,8 +442,8 @@ startup.cs or program.cs file. I have chosen to add it to Program.cs.
 ## Bypass model and bind tblRecipeIngredient from controller
 
 
-    using DataTables;
-    using Microsoft.Extensions.Configuration;
+using DataTables;
+using Microsoft.Extensions.Configuration;
 
 Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
 
