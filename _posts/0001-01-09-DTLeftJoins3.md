@@ -396,17 +396,30 @@ We reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
 _Layout.cshtml file.
 ```
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
 ```
 Go ahead and add this under the footer in the body with all the other
 scripts. Make sure you load it AFTER any jquery libraries you have in your project.
 ```
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 ```
 
 ## OPTION 2 Local download 
 
 The other way is by doing a local download which can be useful should you need everthing to run offline during a demo where you want to convince your team or boss to use it and present it in a prototype so you could get the funding to use the client side libraries eventually.
+
+Make sure you declare the following code in the head of our ``_Layout.cshtml`` file. Add this in the ``head`` tag.
+```
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+```
+Go ahead and add this under the footer in the body with all the other
+scripts. Make sure you load it AFTER any jquery libraries you have in your project.
+```
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+```
+
+I will show you the two options in regard to local download. If you want the easiest download, you can just use option 2.1 and skip the next option.
 
 ### OPTION 2.1 Go to Library Manager (LibMan) to install DataTables.
 
@@ -427,6 +440,8 @@ The files will be aquried through LibMan and delivered through a CDN(Conent Deli
 ### OPTION 2.2 Go to website to download and install files.
 
 We can download the library from here to go [here to download the files.](https://datatables.net/download/) and leave the defaults. There should be steps on what to do.
+
+
 
 ## Call database directly from Program or Startup
 
