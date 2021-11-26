@@ -422,7 +422,7 @@ a later value is available.
 
 The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline. 
 
-<img src="../images/DTLeftJoins2/Use_(LibMan)_to_install_DataTables.gif" class="image fit" alt="Use LibMan to install DT"/>
+<img src="../images/DTLeftJoins3/Use_(LibMan)_to_install_DataTables.gif" class="image fit" alt="Use LibMan to install DT"/>
 
 ### OPTION 2.2 Go to website to download and install files.
 
