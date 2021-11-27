@@ -21,7 +21,6 @@ If you see any `6.0` listed then you should be ok to skip to the next heading.
 ```
 //.NET Core CLI output
 .NET SDKs installed:
-.NET SDKs installed:
   3.1.415 [C:\Program Files\dotnet\sdk]
   5.0.209 [C:\Program Files\dotnet\sdk]
   5.0.301 [C:\Program Files\dotnet\sdk]
