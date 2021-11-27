@@ -184,14 +184,7 @@ builder.Services.AddDbContext<CookingContext>(options =>
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddControllersWithViews();                        
-```                                        
-
-Now add these statements to the startup file.
-
-```
-using WebApplication2.Data;
-using Microsoft.EntityFrameworkCore;
-```                                        
+```                              
 
 ## Create data seed
 
@@ -617,7 +610,7 @@ We are going to edit most of this. So change the model title to this.
 Now change the html table class value “table” to the ID value of recipeIngredientTable.
 
 ```
-<table id="recipeIngredientTable">
+<table id="RecipeIngredientTable">
 ```
 
 Erase all the code in the tbody tag so it looks like this.
@@ -668,16 +661,14 @@ backend controller.
 When we fire up the program we should be able to tell if our backend is
 communicating with our frontend.
 
-In DataTables Editor it is different in regard to getting the primary
-key and there are some limitations there.
-
-This would be ok if we used DataTables only but we are not. We need the
-PK value so ASP knows which record to request from our database when we
+We need the primary key value so ASP knows which record to request from our database when we
 perform CRUD operations. Notice the renderDT_RowId method where I am
 calling the buttons that link to the other views Details, Edit and
 Delete.
 
+```
 renderDT_RowId(value.DT_RowId)
+```
 
 That will store each PK value in RAM which also allows us to render the
 records.
