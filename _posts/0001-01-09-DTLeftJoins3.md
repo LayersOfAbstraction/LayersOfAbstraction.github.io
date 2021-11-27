@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET 6"
-published: false
+#published: false
 ---
 
 [Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET 5 MVC]({% link _posts/0001-01-04-DTLeftJoins2.md  %}) Now that .NET 5 is no longer getting security updates it is time to upgrade to .NET 6, (not called .NET Core).
@@ -306,7 +306,10 @@ global using Microsoft.Extensions.Hosting;
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Data.Common;
-global using Microsoft.Data.SqlClient;                                 
+global using Microsoft.Data.SqlClient;
+global using System.Threading.Tasks;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Rendering;                              
 ```
 
 Goodbye repetitive namespaces. C# 10 gives us the ability to minimize all the code files containing namespaces by centralizing them all into one file throughout our entire application. 
@@ -448,22 +451,26 @@ We can download the library from here to go [here to download the files.](https:
 
 Now we will need to bypass our RecipeIngredient model to later bind our controller directly to the database using 
 
-``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries. To do it you would have to pay for the clientside libraries but we can do that, we just have to break a MVC rule.
+``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries unless you edit the controller to bypass our dependency injection models and hardcode the database tables directly from SQL Server. 
+
+To avoid all that you would have to pay for the clientside libraries so instead we just have to break a few MVC rules to use DataTables Editor for free.
 
  Enter this into Program.cs.
 ```
     // Register the factory in the method `Main`
     DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 ```
-## Bypass model and bind tblRecipeIngredient from controller
+## Bypass model and hardcode tblRecipeIngredient from controller
 
+We have declare that we are using DataTables in the application. Go to our ``Data/GlobalNamespaces.cs`` folder and add this. 
 
-using DataTables;
-using Microsoft.Extensions.Configuration;
+```
+global using DataTables;
+```
 
-Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
+Then go to your our RecipeIngredient controller. 
 
-Now go and add this method.
+Now and add this method.
 
 ```
 public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
@@ -481,7 +488,7 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
             .Field(new Field("tblIngredient.IngredientName"))
 
             //JOIN from tblIngredient column RecipeID linked from tblRecipe column ID
-            //and IngredientID linked from tblUser column ID.  
+            //AND IngredientID linked from tblIngredient column ID.  
             .LeftJoin("tblRecipe ", " tblRecipe.ID ", "=", " tblRecipeIngredient.RecipeID")
             .LeftJoin("tblIngredient ", " tblIngredient.ID ", "=", " tblRecipeIngredient.IngredientID")
             .Process(HttpContext.Request)
@@ -490,8 +497,12 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
     }
 }
 ```
-I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. Make sure your
-RecipeIngredientsController constructor matches mine and make sure your
+
+Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
+
+I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. 
+
+Make sure your RecipeIngredientsController constructor matches mine and make sure your
 Index method matches! It will look different.
 ```
 private readonly CookingContext _context;
