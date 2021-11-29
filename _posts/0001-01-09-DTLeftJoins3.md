@@ -547,7 +547,7 @@ in the front-end.
 
 With the back end code complete let's go to our front end.
 
-# Rewrite view Index in DataTables
+## Rewrite view Index in DataTables
 
 Go to this directory Views\\RecipeIngredients\\ and look at the code now
 in the Index.cshtml.
