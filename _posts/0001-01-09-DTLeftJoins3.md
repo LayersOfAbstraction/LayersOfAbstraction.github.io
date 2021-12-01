@@ -132,9 +132,6 @@ this connection string there.
 Even though we cannot integrate Entity Framework Core directly with DataTables Editor, we can still generate the database via EF Core to use with the library. We will do this by creating the database context class. Create a Data folder and add this class.
 
 ```
-using DTEditorLeftJoinSample.Models;
-using Microsoft.EntityFrameworkCore;
-
 namespace DTEditorLeftJoinSample.Data
 {
     public class CookingContext : DbContext
