@@ -10,7 +10,7 @@ I have completed demo which you can [download here in .NET 6](https://github.com
 
 And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
-Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. 
+Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. [NOTE, I have the sample project to download here if you get stuck!](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample/tree/master)
 
 ## Download and setup .NET 6 ##
 
