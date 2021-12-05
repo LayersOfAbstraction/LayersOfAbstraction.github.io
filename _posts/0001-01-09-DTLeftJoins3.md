@@ -713,7 +713,7 @@ Now your entire Index.cshtml view should look like this.
         },
         "columns": [
             { "data": "tblIngredient.IngredientName"},
-            { "data": "tblRecipe.Description" },
+            { "data": "tblRecipe.Title" },
             { "data": "tblRecipeIngredient.Quantity" },
             { "data": null,
                 "render": function (value) {
