@@ -605,7 +605,7 @@ We are going to edit most of this. So change the model title to this.
 Now change the html table class value “table” to the ID value of recipeIngredientTable.
 
 ```
-<table id="RecipeIngredientTable">
+<table id="RecipeIngredientTable" class="table thead-light table-bordered dt-responsive">
 ```
 
 Erase all the code in the tbody tag so it looks like this.
@@ -631,7 +631,7 @@ will break it down as much as possible.
         },
         "columns": [
             { "data": "tblIngredient.IngredientName"},
-            { "data": "tblRecipe.Description"},
+            { "data": "tblRecipe.Title"},
             { "data": "tblRecipeIngredient.Quantity" },
             {
                 "data": null,
@@ -681,7 +681,7 @@ Now your entire Index.cshtml view should look like this.
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table id="recipeIngredientTable">
+<table id="recipeIngredientTable" class="table thead-light table-bordered dt-responsive">
     <thead>
         <tr>
             <th>
