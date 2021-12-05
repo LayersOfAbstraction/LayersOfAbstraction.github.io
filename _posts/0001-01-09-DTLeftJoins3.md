@@ -269,7 +269,6 @@ To use DataTables also we must register the database driver which is `System.Dat
 ## Program.cs
 
 ```
-var host = CreateHostBuilder(args).Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -281,7 +280,7 @@ using (var scope = app.Services.CreateScope())
 
 It is immperative that you write this and any over code above `app.Run` else C# will ignore any code below it upon compliling.
 
-Now in the Data folder add a empty .cs file called `GobalNamespaces.cs` delete anything inside the file and copy and paste this into it.
+Now in the Data folder add a empty .cs file called `GlobalNamespaces.cs` delete anything inside the file and copy and paste this into it.
 
 ```
 global using DTEditorLeftJoinSample.Models;
@@ -423,7 +422,7 @@ to download DataTables. We will do that now.
 2. Right Click Project and select Add.
 3. Select Client-Side Library.
 4. In the new windows Do not change provider and leave as cdnjs.
-5. Type into the "Library" field, ``datatables.net@1.10.25`` unless
+5. Type into the "Library" field, ``datatables@1.10.25`` unless
 a later value is available. 
 
 The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline. 
@@ -520,7 +519,7 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
         //CREATE Editor instance with starting table.
         var response = new Editor(db, "tblRecipeIngredient")
             .Field(new Field("tblRecipeIngredient.Quantity"))
-            .Field(new Field("tblRecipe.Description"))
+            .Field(new Field("tblRecipe.Title"))
             .Field(new Field("tblIngredient.IngredientName"))
 
             //JOIN from tblIngredient column RecipeID linked from tblRecipe column ID
