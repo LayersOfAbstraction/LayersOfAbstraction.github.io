@@ -422,7 +422,7 @@ to download DataTables. We will do that now.
 2. Right Click Project and select Add.
 3. Select Client-Side Library.
 4. In the new windows Do not change provider and leave as cdnjs.
-5. Type into the "Library" field, ``datatables@1.10.25`` unless
+5. Type into the "Library" field, ``datatables@1.10.21`` unless
 a later value is available. 
 
 The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline. 
