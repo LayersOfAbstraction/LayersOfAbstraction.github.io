@@ -6,7 +6,7 @@ title: "How to retrieve data from related tables in DataTables with ASP.NET 6"
 
 [Previously I showed you how to create an SQL Left Join using DataTables in ASP.NET 5 MVC]({% link _posts/0001-01-04-DTLeftJoins2.md  %}) Now that .NET 5 is no longer getting security updates it is time to upgrade to .NET 6, (not called .NET Core).
 
-I have a [completed demo which you can download here in .NET 6]https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample/tree/DT_local_version_.NET6). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5...
+I have a [completed demo which you can download here in .NET 6](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample/tree/DT_local_version_.NET6) . You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5...
 
 And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
