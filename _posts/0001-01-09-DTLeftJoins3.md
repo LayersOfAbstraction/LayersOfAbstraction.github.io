@@ -630,8 +630,8 @@ will break it down as much as possible.
             "url": "@Url.Action("LeftJoinRecipesAndIngredientsOntoRecipeIngredient")"
         },
         "columns": [
+             "data": "tblRecipe.Title"},
             { "data": "tblIngredient.IngredientName"},
-            { "data": "tblRecipe.Title"},
             { "data": "tblRecipeIngredient.Quantity" },
             {
                 "data": null,
@@ -712,8 +712,8 @@ Now your entire Index.cshtml view should look like this.
                 }
         },
         "columns": [
-            { "data": "tblIngredient.IngredientName"},
             { "data": "tblRecipe.Title" },
+            { "data": "tblIngredient.IngredientName"},
             { "data": "tblRecipeIngredient.Quantity" },
             { "data": null,
                 "render": function (value) {
