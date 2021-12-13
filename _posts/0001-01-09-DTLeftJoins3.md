@@ -10,7 +10,7 @@ I have a [completed demo which you can download here in .NET 6](https://github.c
 
 And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
-Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. 
+Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks.
 
 ## Download and setup .NET 6 ##
 
@@ -31,7 +31,6 @@ If you see any `6.0` listed then you should be ok to skip to the next heading.
 
 Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if `6.0`  is listed.
 
-
 ## Create App In Visual Studio 2022 ##
 
 Microsoft's ASP.NET team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2022 and create ASP.NET WebApplication Template. 
@@ -45,15 +44,15 @@ Make sure you have selected `ASP.NET 6.0 (Long-term support)` and have `no authe
 
 <img src="../images/DTLeftJoins3/VSNavigateToFolder.png" class="image fit" alt="VSNavigateToFolder"/>
 
-After that create the project. 
+After that create the project.
 
 <img src="../images/DTLeftJoins3/CreateNewASP.NETCoreWebApp_.net6_HTTPS.png" class="image fit" alt="VSNavigateToFolder"/>
 
-We will now create a Recipe database 3 
-different models, Recipe, RecipeIngredient and Ingredient. Create each 
+We will now create a Recipe database 3 different models, Recipe, RecipeIngredient and Ingredient. Create each
 of these classes in the model folder.
 
-## Recipe
+## Recipe ##
+
 ```csharp
 
 namespace DTEditorLeftJoinSample.Models
@@ -109,7 +108,7 @@ namespace DTEditorLeftJoinSample.Models
         public ICollection<RecipeIngredient> RecipeIngredient { get; set; }
     }
 }                                  
-```                                        
+```
 
 ## Insert connection string into appsettings.json ##
 
@@ -176,7 +175,7 @@ The errors in CookingContext.cs and in Startup.cs should disappear.
 Register the CookingContext as a service in Program using dependency
 injection. You can do that by adding this code to the Program.cs including Newtonsoft.Json features so we can use json on the client side.
 
-```
+```csharp
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CookingContext>(options =>
@@ -364,7 +363,7 @@ If all goes well you should be able to go directly to the table in the Index vie
 
 <img src="../images/DTLeftJoins2/demo4.gif" class="image fit" alt="demo4"/>
 
-## Install DataTables
+## Install DataTables ##
 
 We will have to edit the index and install DataTables Editor server-side
 libraries to render the related fields from another table. Enter this
@@ -431,7 +430,7 @@ to download DataTables. We will do that now.
 3. Select Client-Side Library.
 4. In the new windows Do not change provider and leave as cdnjs.
 5. Type into the "Library" field, ``datatables@1.10.21`` unless
-a later value is available. 
+a later value is available.
 
 The files will be aquried through LibMan and delivered through a CDN(Conent Delivery Network) to your local system at which point they can be used locally, and offline.
 
@@ -445,24 +444,26 @@ We can download the library from here to go [here to download the files.](https:
 
 Now we will need to bypass our RecipeIngredient model to later bind our controller directly to the database using 
 
-``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries unless you edit the controller to bypass our dependency injection models and hardcode the database tables directly from SQL Server. 
+``DbProviderFactories.RegisterFactory``. Remember you can't use entity framework with DataTables Editor server-side libraries unless you edit the controller to bypass our dependency injection models and hardcode the database tables directly from SQL Server.
 
 To avoid all that you would have to pay for the clientside libraries so instead we just have to break a few MVC rules to use DataTables Editor for free.
 
  Enter this into Program.cs.
-```
-    // Register the factory in the method `Main`
-    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
-```
-## Bypass model and hardcode tblRecipeIngredient from controller
 
-We have declare that we are using DataTables in the application. Go to our ``Data/GlobalNamespaces.cs`` folder and add this. 
+```csharp
+// Register the factory in the method `Main`
+DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+```
+
+## Bypass model and hardcode tblRecipeIngredient from controller ##
+
+We have declare that we are using DataTables in the application. Go to our ``Data/GlobalNamespaces.cs`` folder and add this.
 
 ```csharp
 global using DataTables;
 ```
 
-Then go to your our RecipeIngredient controller. 
+Then go to your our RecipeIngredient controller.
 
 Now and add this method.
 
@@ -494,12 +495,12 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
 
 Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
 
-I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. 
+I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method.
 
 Make sure your RecipeIngredientsController constructor matches mine and make sure your
 Index method matches! It will look different.
 
-```charp
+```csharp
 private readonly CookingContext _context;
 private readonly IConfiguration _config;
 
