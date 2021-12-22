@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Assigning Users In ASP.NET Core MVC 6 with DataTables Editor"
-#published: false
+published: false
 ---
 
 ## Introduction ##
