@@ -33,7 +33,7 @@ Not seeing it? Then go here [download and install it](https://dotnet.microsoft.c
 
 ## Create App In Visual Studio 2022 ##
 
-Microsoft's ASP.NET team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2022 and create ASP.NET WebApplication Template. 
+Microsoft's ASP.NET team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2022 and create ASP.NET WebApplication Template.
 
 You can always play around with this app in VS Code later if you want once you complete it.
 
@@ -382,7 +382,7 @@ is compatible with EF Core as long as you aren't rendering foreign keys.
 
 We need to install DataTables too. There are two ways of doing that.
 
-## OPTION 1 host it from DataTables CND ##
+## OPTION 1 host it from DataTables CDN ##
 
 We reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
