@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Assigning Users In ASP.NET Core MVC 6 with DataTables Editor"
-published: false
+#published: false
 ---
 
 ## Introduction ##
@@ -12,7 +12,7 @@ We will be dealing with at least 3 SQL Server database tables as shown in this d
 
 <p><img src="../images/UserAssigningInASP.NETCore/ERD.png" class="image fit" alt="Entity relationship diagram png file"/></p>
 
-In most of my tutorials we have used Visual Studio. With the upgrades in Visual Studio. This time I will demo this in VS Code.
+In most of my tutorials we have used Visual Studio. This time I will demo this in VS Code simply because we don't have to leave the command line nearly as much to get stuff done and the interface more scalable.
 
 ## Perquisites ##
 
@@ -35,10 +35,20 @@ If you see any `6.0` listed then you should be ok to skip to the next heading.
 
 Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if `6.0`  is listed.
 
-## Create ASP.NET Core template ##
+## Create ASP.NET Core template and run it ##
 
 We will use MVC here. Yes you could do Razor Pages yes, and I have no problems with it but if you want more job opportunities using MVC over Razor Pages is better because:
 
 - Razor Pages is easier to switch to later.
 - The company you are interviewing may want to just stick with MVC.
-- Later if you if you are not happy in your job using MVC you could create a presentation after you gain public speaking experience at meetups. You can show why Razor or why a JS SPA like Angular, React or Vue are better choices (in the top 5 of the Stack Overflow Survey.)
+- Later if you are not happy in your job using MVC you could create a presentation after you gain public speaking experience at meetups and respect in your team. You can show why Razor or why a JS framework like Angular, React or Vue are better choices (in the top 5 of the Stack Overflow Survey.)
+
+.NET 6 is largely improved as it uses the minimal hosting model to allow us to have only the Program.cs file which will really reduce complexity.
+
+Run this command.
+
+```text
+dotnet new mvc -o UserAssignDemo 
+```
+
+That will create the project folder with all the files required.
