@@ -7,7 +7,7 @@ title: "How to retrieve data from related tables in DataTables with ASP.NET Core
 
 I have completed demo which you can [download here in .NET 5](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample). You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5.0 as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
 
-Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks. 
+Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks.
 
 ## Download and setup .NET 5 ##
 
@@ -15,7 +15,7 @@ First check in the command line to see if you have .NET 5 already installed by t
 
 If you see any `5.0.100` or `5.0.101` listed then you should be ok to skip to the next heading.
 
-```
+```text
 //.NET Core CLI output
 .NET SDKs installed:
   2.1.202 [C:\Program Files\dotnet\sdk]
@@ -32,7 +32,6 @@ If you see any `5.0.100` or `5.0.101` listed then you should be ok to skip to th
 
 Not seeing it? Then go here [download and install it](https://dotnet.microsoft.com/download), then use the same command to see if either `5.0.100` or `5.0.101` is listed.
 
-
 ## Create App In Visual Studio 2019 ##
 
 Microsoft's ASP.NET Core team use Visual Studio for MVC tutorials with EF Core. So let's first open Visual Studio 2019 and create ASP.NET Core WebApplication Template. 
@@ -46,12 +45,11 @@ Make sure you have selected `ASP.NET Core 5.0` and have `no authentication` sele
 
 <img src="../images/DTLeftJoins2/CreateNewASP.NETCoreWebApp.png" class="image fit" alt="CreateNewASP.NETCoreWebApp"/>
 
-After that create the project. We will now create a Recipe database 3 
-different models, Recipe, RecipeIngredient and Ingredient. Create each 
-of these classes in the model folder.
+After that create the project. We will now create a Recipe database 3 different models, Recipe, RecipeIngredient and Ingredient. Create each of these classes in the model folder.
 
-## Recipe
-```
+## Recipe ##
+
+```csharp
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -70,9 +68,10 @@ namespace DTEditorLeftJoinSample.Models
     }
 }
 ```
-## RecipeIngredient
 
-```
+## RecipeIngredient ##
+
+```csharp
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -94,11 +93,11 @@ namespace DTEditorLeftJoinSample.Models
         public Ingredient Ingredient { get; set; }
     }
 }
-```                                        
-
-## Create Ingredient class
-
 ```
+
+## Create Ingredient class ##
+
+```csharp
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -114,13 +113,14 @@ namespace DTEditorLeftJoinSample.Models
         public ICollection<RecipeIngredient> RecipeIngredient { get; set; }
     }
 }                                  
-```                                        
+```
 
-## Insert connection string into appsettings.json
+## Insert connection string into appsettings.json ##
 
 Create the connection string in appsettings.json then copy and paste
 this connection string there.
-```
+
+```json
 {
     "ConnectionStrings": {
         "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=RecipeDB;Trusted_Connection=True;MultipleActiveResultSets=true"
@@ -134,10 +134,11 @@ this connection string there.
 }  
 ```
 
-## Create CookingContext
+## Create CookingContext ##
+
 Even though we cannot integrate Entity Framework Core directly with DataTables Editor, we can still generate the database via EF Core to use with the library. We will do this by creating the database context class. Create a Data folder and add this class.
 
-```
+```csharp
 using DTEditorLeftJoinSample.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -163,14 +164,14 @@ namespace DTEditorLeftJoinSample.Data
 }
 ```
 
-## Install Entity Framework Core and other packages
+## Install Entity Framework Core and other packages ##
 
-Depending on which .NET Core SDK you installed, go to. 
+Depending on which .NET Core SDK you installed, go to.
 
-- Tools. 
+- Tools.
 - Click on **NuGet package manager** then select **Manage NuGet Packages for Solution** Microsoft.EntityFrameworkCore.
-- Select the **Browse** tab and type into the search bar "Microsoft.EntityFrameworkCore"
-- If you don't know the version, please select, type into the package manager console `dotnet --info`
+- Select the **Browse** tab and type into the search bar "Microsoft.EntityFrameworkCore".
+- If you don't know the version, please select, type into the package manager console `dotnet --info`.
 
 Also install depending on version:
 
@@ -181,34 +182,32 @@ Also install depending on version:
 
 The errors in CookingContext.cs and in Startup.cs should disappear.
 
-## Register CookingContext as service in Startup.cs
+## Register CookingContext as service in Startup.cs ##
 
 Register the CookingContext as a service in Startup.cs using dependency
 injection where the ConfigureServices method is. You can do that by
 adding this code to the method including Newtonsoft.Json features so we can use json on the client side. Go to Startup.cs now.
 
-```
+```csharp
 services.AddDbContext<CookingContext>(options =>
     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 services.AddControllersWithViews();
 services.AddControllers().AddNewtonsoftJson();                                     
-```                                        
+```
 
 Now add these statements to the startup file.
 
 ```
 using DTEditorLeftJoinSample.Data;
 using Microsoft.EntityFrameworkCore;
-```                                        
+```
 
-## Create data seed
+## Create data seed ##
 
-Now we want to seed the database with test data. This is an optional
-step but highly beneficial. If it does not work for you, the data can be
-entered manually. In the Data folder create this file DbInitializer.cs
+Now we want to seed the database with test data. This is an optional step but highly beneficial. If it does not work for you, the data can be entered manually. In the Data folder create this file DbInitializer.cs
 and insert this code.
 
-```
+```csharp
 using DTEditorLeftJoinSample.Models;
 using System;
 using System.Linq;
@@ -291,9 +290,9 @@ context. Then dispose the context when the seeding is complete. In
 
 To use DataTables also we must register the database driver either in Startup.cs or Program.cs which is `System.Data.SqlClient`. We will do it all in Program.cs
 
-## Program.cs
+## Program.cs ##
 
-```
+```csharp
 public static void Main(string[] args)
 {
     DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);    
@@ -318,24 +317,24 @@ public static void Main(string[] args)
 
 Now add these statements
 
-```
+```csharp
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 using Microsoft.Data.SqlClient;
 using DTEditorLeftJoinSample.Data;                                    
 ```
 
-## Generate controllers and views with scaffolding engine
+## Generate controllers and views with scaffolding engine ##
 
 The scafolding engine on Windows CLI still has problems so we will have to use Visual Studio's GUI to access the scaffolding engine and generate the items.
 
 Rather than write it manually it is easier to first auto generate all the CRUD view pages and controllers using Entity Framework Core from the models we made and edit the pages later. We will generate in the scaffolding engine. To that:
 
--   Right-click the **Controllers** folder in **Solution Explorer** and
+- Right-click the **Controllers** folder in **Solution Explorer** and
     select **Add \> New Scaffolded Item**
--   In the **Add Scaffold** dialog box:
--   Select MVC controller with views, using Entity Framework.
--   Click Add. The Add MVC Controller with views, using Entity Framework
+- In the **Add Scaffold** dialog box:
+- Select MVC controller with views, using Entity Framework.
+- Click Add. The Add MVC Controller with views, using Entity Framework
     dialog box appears.
 
 <img src="../images/DTLeftJoins2/demo3.gif" class="image fit" alt="demo3"/>
@@ -358,11 +357,11 @@ I would like to note if you are getting painfully unclear errors like this:
 
 It's highly likely you need to update all packages to the latest version in .NET 5. That's what helped me. I originally wrote this blog for .NET 3.1 Core and had problems generating the controllers and views in the VS Code CLI. Going to Visual Studio didn't help either so I migrated to the latest version which helped.
 
-## Add Recipeingredient To Navbar
+## Add Recipeingredient To Navbar ##
 
 We want to be able to go to it from or home page to our _layout.cshtml file. In the second div tag of the header add this list item to the navbar.
 
-```
+```html
 <li class="nav-item">
     <a class="nav-link text-dark" asp-area="" asp-controller="RecipeIngredients" asp-action="Index">Recipe Ingredient</a>
 </li>  
@@ -374,7 +373,7 @@ If all goes well you should be able to go directly to the table in the Index vie
 
 <img src="../images/DTLeftJoins2/demo4.gif" class="image fit" alt="demo4"/>
 
-## Install DataTables
+## Install DataTables ##
 
 We will have to edit the index and install DataTables Editor server-side
 libraries to render the related fields from another table. Enter this
@@ -395,41 +394,49 @@ We need to install DataTables into the front end. We just have to
 reference the javascript and css libraries from DataTables Content
 Delivery Network. Add the following code to the head in our
 _Layout.cshtml file.
-```
+
+```html
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
 ```
+
 Go ahead and add this under the footer in the body with all the other
 scripts. Make sure you load it AFTER any jquery libraries you have in your project.
+
+```html
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 ```
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-```
-## Call database directly from Program or Startup
+
+## Call database directly from Program or Startup ##
 
 Now will need to bypass our RecipeIngredient model and bind our
 controller directly to the database using
 DbProviderFactories.RegisterFactory. Remember you can't use entity
 framework with DataTables Editor libraries. Enter this into either your
 startup.cs or program.cs file. I have chosen to add it to Program.cs.
-```
-    // using statement at top of Program.cs
-    using System.Data.SqlClient;
-    using System.Data.Common;
-```
-```
-    // Register the factory in the method `Main`
-    DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
-```
-## Bypass model and bind tblRecipeIngredient from controller
 
+```csharp
+// using statement at top of Program.cs
+using System.Data.SqlClient;
+using System.Data.Common;
+```
 
-    using DataTables;
-    using Microsoft.Extensions.Configuration;
+```csharp
+// Register the factory in the method `Main`
+DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+```
+
+## Bypass model and bind tblRecipeIngredient from controller ##
+
+```csharp
+using DataTables;
+using Microsoft.Extensions.Configuration;
+```
 
 Add an IConfiguration object to get the connection string and make sure it's value is set in the constructor.
 
 Now go and add this method.
 
-```
+```csharp
 public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
 {
     //DECLARE database connection.
@@ -454,10 +461,12 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
     }
 }
 ```
+
 I will break it down for you with comments. As you can see I am breaking MVC traditions here and instead are connecting  the database directly from this method. Make sure your
 RecipeIngredientsController constructor matches mine and make sure your
 Index method matches! It will look different.
-```
+
+```csharp
 private readonly CookingContext _context;
 private readonly IConfiguration _config;
 
@@ -497,6 +506,7 @@ public ActionResult LeftJoinRecipesAndIngredientsOntoRecipeIngredient()
     }
 }
 ```
+
 Most of the comments should explain what is happening. I am specifying a
 single table for editing with additional optional data inserted into the
 table from other tables. i.e I am joining up tables to
@@ -508,12 +518,12 @@ in the front-end.
 
 With the back end code complete let's go to our front end.
 
-# Rewrite view Index in DataTables
+# Rewrite view Index in DataTables ##
 
 Go to this directory Views\\RecipeIngredients\\ and look at the code now
 in the Index.cshtml.
 
-```
+```html
 @model IEnumerable<DTEditorLeftJoinSample.Models.RecipeIngredient>
 @{
     ViewData["Title"] = "Index";
@@ -563,26 +573,26 @@ in the Index.cshtml.
 ```
 
 We are going to edit most of this. So change the model title to this.
-```
+```html
 @model DTEditorLeftJoinSample.Models.RecipeIngredient
 ```
 
 Now change the html table class value “table” to the ID value of recipeIngredientTable.
 
-```
+```html
 <table id="recipeIngredientTable">
 ```
 
 Erase all the code in the tbody tag so it looks like this.
 
-```
+```html
 <tbody></tbody>
 ```
 
 Now add all this just under the outside of the closing **</table>** tag. We
 will break it down as much as possible.
 
-```
+```html
 @section scripts{
     <script>
     $.fn.dataTable.ext.errMode = 'throw';
@@ -637,7 +647,7 @@ records.
 
 Now your entire Index.cshtml view should look like this.
 
-```
+```html
 @model DTEditorLeftJoinSample.Models.RecipeIngredient
 @{
     ViewData["Title"] = "Index";
@@ -695,7 +705,7 @@ Now your entire Index.cshtml view should look like this.
 }
 ```
 
-## Run it one last time and enjoy 😊
+## Run it one last time and enjoy 😊 ##
 
 Run your program now and go to the Index. It should work perfectly. You
 can see the power and functionality that DataTables brings. As you can
