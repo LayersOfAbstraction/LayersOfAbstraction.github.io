@@ -55,6 +55,18 @@ dotnet new mvc -o UserAssignDemo
 
 That will create the project folder with all the files required.
 
+## Install following packages. ##
+
+Go to the terminal and copy and paste these commands.
+
+```text
+dotnet add package Microsoft.EntityFrameworkCore --version 6.0.0
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.0
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.0
+```
+
 ## Structure our namespaces ##
 
 We need to create a Data folder in the root of our directory. After that create the class `Global namespaces`
@@ -76,7 +88,8 @@ global using System.Data.Common;
 global using Microsoft.Data.SqlClient;
 global using System.Threading.Tasks;
 global using Microsoft.AspNetCore.Mvc;
-global using Microsoft.AspNetCore.Mvc.Rendering;                              
+global using Microsoft.AspNetCore.Mvc.Rendering;  
+global using System.ComponentModel.DataAnnotations.Schema;                            
 ```
 
 Goodbye repetitive namespaces. C# 10 gives us the ability to minimize all the code files containing namespaces by centralizing them all into one file throughout our entire application.
@@ -87,6 +100,57 @@ We will create these 3 models in C# application. The structure of them looks lik
 
 <img src="../images/UserAssigningInASP.NETCore/ERD.png" class="image fit" alt="Diagram showing 3 table relationship in PNG format"/>
 
-We will start with one of them.
+We will start with one of them now. Instead of developing them in SQL Server Management Studio we will use Entity Framework to develop the database using the models made in C#. WARNING! Don't do this for big projects or projects that you feel may get big. Only do it when you are showing simple demos like this one.
 
-We will create only one view and one controller in the .NET Core CLI.
+### User.cs ###
+
+Create a new empty file in the ```Models``` folder and call it this. The 3 properties UserFirstName, UserLastName, UserContactEmail will only display when we select a User that we have. 
+
+```csharp
+public class User
+{
+    public int ID { get; set; }
+    public string? UserFirstName { get; set; }
+    public string? UserLastName { get; set; }  
+    public string? UserContactEmail{get;set;}          
+    public string UserFullname => string.Format("{0} {1}", UserFirstName, UserLastName);
+    public ICollection<Registration>? Registrations {get;set;}
+}
+```
+
+### Job.cs ###
+
+Same thing here.
+
+```csharp
+public class Job
+{        
+    
+    public int ID { get; set; }
+    public string? JobTitle { get; set; }
+    public string? JobDescription { get; set; }
+    public DateTime JobStartDate {get;set;}
+    public DateTime JobDeadline {get;set;}
+    public bool JobIsComplete{get;set;}
+
+    public ICollection<Registration>? Registrations {get;set;}
+}   
+```
+
+### Registration.cs ###
+
+
+
+```csharp
+public class Registration
+{
+    public int? ID {get;set;}
+    public int? UserID { get; set; }
+    public int? JobID { get; set; }
+    public DateTime RegistrationDate {get;set;}        
+    public User? User {get;set;}
+    public Job? Job {get;set;}
+}
+```
+
+We will create only one view and one controller in the .NET Core CLI from one of our models.
