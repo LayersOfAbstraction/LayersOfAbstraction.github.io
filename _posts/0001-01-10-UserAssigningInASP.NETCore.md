@@ -104,7 +104,7 @@ We will start with one of them now. Instead of developing them in SQL Server Man
 
 ### User.cs ###
 
-Create a new empty file in the ```Models``` folder and call it this. The 3 properties UserFirstName, UserLastName, UserContactEmail will only display when we select a User that we have. 
+Create a new empty file in the ```Models``` folder and call it this. The 3 properties UserFirstName, UserLastName, UserContactEmail will only display when we select a User that we have.
 
 ```csharp
 public class User
@@ -120,7 +120,7 @@ public class User
 
 ### Job.cs ###
 
-Same thing here.
+Same thing here. We just need to make sure we display the user
 
 ```csharp
 public class Job
@@ -139,7 +139,7 @@ public class Job
 
 ### Registration.cs ###
 
-
+Renember this class serves as our intermediary.
 
 ```csharp
 public class Registration
@@ -153,4 +153,7 @@ public class Registration
 }
 ```
 
-We will create only one view and one controller in the .NET Core CLI from one of our models.
+We will create only one view and one controller in the .NET Core CLI from this model which we can do now.
+
+## Generate View and Controller for Registration model ##
+
