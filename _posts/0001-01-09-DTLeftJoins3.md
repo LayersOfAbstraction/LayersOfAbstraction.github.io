@@ -12,6 +12,8 @@ And now .NET 6. as that is how Microsoft have done it in their migration tutoria
 
 Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks.
 
+If you know how to build an [ASP.NET Core CRUD App please skip to here to learn how to integrate them](with DataTables Editor.)
+
 ## Download and setup .NET 6 ##
 
 First check in the command line to see if you have .NET 6 already installed by typing cmd into the windows Start search bar to bring it up and then running the command `dotnet --info`.
@@ -363,5 +365,5 @@ If all goes well you should be able to go directly to the table in the Index vie
 
 <img src="../images/DTLeftJoins2/demo4.gif" class="image fit" alt="demo4"/>
 
-Now that we have set up our project in .NET 6 it is time to setup DataTables. Join me in the [next blog in part 2 where we do this.]({% link _posts/0001-01-12-DTLeftJoins3_2.md %})
+Now that we have set up our project in .NET 6 it is time to setup DataTables. Join me in the [next blog in part 2 where we do this.](https://consolecommando.net/DTLeftJoins3_2.html)
 
