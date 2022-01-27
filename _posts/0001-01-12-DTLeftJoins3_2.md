@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Assigning Users In ASP.NET Core MVC 6 with DataTables Editor PART 2"
-published: false
+published: true
 ---
 
 Earlier I showed you [how to set up your ASP.NET Core project for basic CRUD operations. Now we will customize the UI to use DataTables Editor]({% link _posts/0001-01-09-DTLeftJoins3.md %}) Let 
