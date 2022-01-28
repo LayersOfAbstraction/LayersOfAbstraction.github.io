@@ -12,7 +12,7 @@ And now .NET 6. as that is how Microsoft have done it in their migration tutoria
 
 Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks.
 
-If you know how to build an [ASP.NET Core CRUD App please skip to here to learn how to integrate them](with DataTables Editor.)
+If you know how to build an [ASP.NET Core CRUD App please skip to here to learn how to integrate them with DataTables Editor.](https://consolecommando.net/DTLeftJoins3_2.html)
 
 ## Download and setup .NET 6 ##
 
