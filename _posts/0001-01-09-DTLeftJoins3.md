@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "How to retrieve data from related tables in DataTables with ASP.NET 6"
+abstract: Here you will be shown how to use DataTables Editor in a full stack ASP.NET 6 MVC application complete with an SQL Server database where we will be combining 3 tables into 1 and displaying their adjacent properties in ASP.NET. By using DataTables Editor for this you will be shown how to easily paginate, search, sort and display different amounts of records all from the one screen.
 published: true
 ---
 
@@ -8,7 +9,7 @@ published: true
 
 I have a [completed demo which you can download here in .NET 6](https://github.com/LayersOfAbstraction/DTEditorLeftJoinSample/tree/DT_local_version_.NET6) . You can also go back through previous commits in the demo where I have listed the version it has upgraded to. You should know that I have methodically upgraded it from 2.2 to 3.0 and 3.1 to 5...
 
-And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was upgrading the project from 2.2 to 3.0. After that it's a breeze!
+And now .NET 6. as that is how Microsoft have done it in their migration tutorial guides. The hard part was **upgrading** the project from 2.2 to 3.0. After that it's a breeze!
 
 Don't worry I will show you how to build the project from scratch so you don't have to migrate it from different frameworks.
 

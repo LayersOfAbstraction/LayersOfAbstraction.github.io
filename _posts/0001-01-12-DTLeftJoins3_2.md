@@ -1,6 +1,8 @@
----
+﻿---
+title: Assigning Users In ASP.NET Core MVC 6 with DataTables Editor PART 2
+weblogName: Paginate, search, sort related data in DataTables Editor with ASP.NET 6 part 2
+postDate: 2022-01-31T21:18:53.2975779+10:00
 layout: post
-title: "Assigning Users In ASP.NET Core MVC 6 with DataTables Editor PART 2"
 published: true
 ---
 
