@@ -87,3 +87,55 @@ This is optional if you want to update the Gatsby CLI.
 npm install -g gatsby-cli
 ```
 
+You will be directed to go through a series of prompts in the once you install.
+
+```
+What would you like to call your site?
+✔ · Portfolio Blogging site
+```
+
+
+You can just select the default area to save the site to. As long as it does not exist outside of your porfolio project.
+```
+What would you like to name the folder where your site will be created?
+✔ Desktop/ my-first-gatsby-site
+```
+
+After that you just select the JavaScript prompt and you have generated the site.
+
+```
+Will you be using JavaScript or TypeScript?
+❯ JavaScript
+  TypeScript
+```
+
+Select no I will add it later. Yes a Content Management System is more powerful than a Static Site Generator but if you are not using something like Wordpress as some sort of back end then there isn't much point especially if you're just trying to write some blogs.
+
+```
+✔ Will you be using a CMS?
+· No (or I'll add it later)
+```
+
+When it asks if you want to add a styling system, your answer is likely no unless you are creating styling template from Gatsby as in you are not using the styling we already have.
+
+```
+✔ Would you like to install a styling system?
+· No (or I'll add it later)
+```
+
+In this case we are using a HTML5Up theme with some Unsplash photos so we want to reuse the theme we made. Not have to create a new one and fiddle with the styling. Select no.
+
+Now just select done. We can install plugins later.
+
+```
+✔ Would you like to install additional features with other plugins?
+· Done
+```
+
+I'm not going to explain the next prompt, just press "y" when you see it.
+
+It should tell you if your site got set up.
+
+## Run the site ##
+
+The Gatsby site should run when we fire up the local development server.
