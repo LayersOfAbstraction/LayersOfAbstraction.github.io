@@ -138,4 +138,14 @@ It should tell you if your site got set up.
 
 ## Run the site ##
 
-The Gatsby site should run when we fire up the local development server.
+The Gatsby site should run when we fire up the local development server. First we have to navigate to the subfolder Gatsby made. Once we have done that we can go to the folder for we run the following command. You will be using this a lot!
+
+```
+gatsby develop
+```
+
+IF that didn't work then you may need the Gatsby development server.
+
+```
+npm run develop
+```
