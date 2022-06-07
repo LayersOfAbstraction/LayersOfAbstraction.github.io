@@ -149,3 +149,19 @@ IF that didn't work then you may need the Gatsby development server.
 ```
 npm run develop
 ```
+
+## Link up the web pages WITHOUT Styles ##
+
+We are starting without any styles so we'll work without any CSS to manage our workload better. Go go to index.js and please add this code at the top.
+
+```
+import { Link } from 'gatsby'
+```
+
+## Create Reusable layout component ##
+
+ Now let's create a layout component in the following directory. Run this command.
+
+ ```
+src/components/l
+ ```
