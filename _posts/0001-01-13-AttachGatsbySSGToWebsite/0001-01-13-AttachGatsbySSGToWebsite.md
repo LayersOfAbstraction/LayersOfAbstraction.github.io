@@ -38,7 +38,7 @@ gatsby --version
 
 ```
 
-If one of these commands does not return a version number than you need to go here to install the dependencies.
+If one of these commands does not return a version number then you need to go here to install the dependencies.
 
 - [Node.js](https://nodejs.dev/download)
 - [git](https://git-scm.com/download/win)
@@ -150,9 +150,23 @@ IF that didn't work then you may need the Gatsby development server.
 npm run develop
 ```
 
-## Link up the web pages WITHOUT Styles ##
+## Copy Joshua's repo into src  ##
 
-We are starting without any styles so we'll work without any CSS to manage our workload better. Go go to index.js and please add this code at the top.
+From the root of the Gatsby site you go here.
+
+```
+cd src
+git clone https://github.com/JoshuaFluke/joshuafluke.github.io
+```
+
+Or if you already have the project cloned just copy into the src folder. You can delete the following files. generic.html and elements.html. We will not use them.
+
+## Transform the raw html to JSX ##
+
+An arduous task? There is a way. In fact most what you see will simply get thrown into the <></> section. We would have to rewrite a few key words, for example class is a reserved html word so in JSX it will become className.
+
+We can use Find and Replace for some of these words. Which we will do but there is a better way though it only takes some of the effort away.
+
 
 ```
 import { Link } from 'gatsby'
@@ -165,3 +179,5 @@ import { Link } from 'gatsby'
  ```
 src/components/l
  ```
+
+ 
