@@ -243,6 +243,7 @@ namespace DTEditorLeftJoinSample.Data
                 context.Ingredient.AddRange(i);
             }
             context.SaveChanges();
+
             var recipeIngredients = new RecipeIngredient[]
             {
                 new RecipeIngredient{RecipeID=1, IngredientID=1, Quantity =4},

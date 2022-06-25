@@ -531,7 +531,7 @@ export const Foo = () => (
 
 ```
 
-## Create Reusable layout component ##
+## Create Link up the ##
 
  Now let's create a layout component in the following directory. Run this command.
 
