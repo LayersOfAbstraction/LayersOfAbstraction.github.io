@@ -156,7 +156,7 @@ It should tell you if your site got set up.
 
 ## Put the gatsby generated files in the root ##
 
-You heard right. After all we're doing a merge here. Just go inside the folder `gatsby-integration` and cut and paste everything into the root.
+You heard right. After all we're doing a merge here. Just go inside the folder `gatsby-integration` and cut and paste everything into the root. Delete. `index.js` in the following folder `src\pages`.
 
 ## Run the site ##
 
@@ -538,12 +538,6 @@ export const Foo = () => (
 
 ```
 
-## Create Link up the ##
+## import the styles ##
 
- Now let's create a layout component in the following directory. Run this command.
-
- ```
-src/components/l
- ```
-
- 
+Time to import the styles.
