@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -24,9 +24,23 @@ you can use Gatsby to not only write awesome blogs but also learn about React co
 
 So today we are going to use a portfolio website from Joshua Fluke's original tutorial and turn it into a blogging platform.
 
-And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and done a pull request. It may or may not be accepted. So I will give you a link to my fork.
+And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and done a pull request. It may or may not be accepted. So I will give you a link to my fork as the completed project but if you want to do this from scratch here's Joshua's repo.
 
-_______INSERT LINK_______
+## Clone Joshua's repo ##
+
+```html
+cd src
+git clone https://github.com/JoshuaFluke/joshuafluke.github.io
+cd joshuafluke.github.io
+```
+
+Let's begin!
+
+You can delete the following files. generic.html and elements.html. We will not use them.
+
+//TODO
+
+_______INSERT COMPLETED PROJECT LINK_______
 
 ## Install the dependencies ##
 
@@ -102,7 +116,7 @@ What would you like to call your site?
 You can just select the default area to save the site to. As long as it does not exist outside of your porfolio project.
 ```
 What would you like to name the folder where your site will be created?
-✔ Desktop/ my-first-gatsby-site
+✔ Desktop/ gatsby-integration
 ```
 
 After that you just select the JavaScript prompt and you have generated the site.
@@ -116,8 +130,8 @@ Will you be using JavaScript or TypeScript?
 Select no I will add it later. Yes a Content Management System is more powerful than a Static Site Generator but if you are not using something like Wordpress as some sort of back end then there isn't much point especially if you're just trying to write some blogs.
 
 ```
-✔ Will you be using a CMS?
-· No (or I'll add it later)
+· Will you be using a CMS?
+✔ No (or I'll add it later)
 ```
 
 When it asks if you want to add a styling system, your answer is likely no unless you are creating styling template from Gatsby as in you are not using the styling we already have.
@@ -140,9 +154,13 @@ I'm not going to explain the next prompt, just press "y" when you see it.
 
 It should tell you if your site got set up.
 
+## Put the gatsby generated files in the root ##
+
+You heard right. After all we're doing a merge here. Just go inside the folder `gatsby-integration` and cut and paste everything into the root.
+
 ## Run the site ##
 
-The Gatsby site should run when we fire up the local development server. First we have to navigate to the subfolder Gatsby made. Once we have done that we can go to the folder for we run the following command. You will be using this a lot!
+The Gatsby site should run when we fire up the local development server. First we have to go to the root the folder  we run the following command. You will be using this a lot!
 
 ```
 gatsby develop
@@ -153,17 +171,6 @@ IF that didn't work then you may need the Gatsby development server.
 ```
 npm run develop
 ```
-
-## Copy Joshua's repo into src  ##
-
-From the root of the Gatsby site you go here.
-
-```html
-cd src
-git clone https://github.com/JoshuaFluke/joshuafluke.github.io
-```
-
-Or if you already have the project cloned just copy into the src folder. You can delete the following files. generic.html and elements.html. We will not use them.
 
 ## Transform the raw html to JSX ##
 
