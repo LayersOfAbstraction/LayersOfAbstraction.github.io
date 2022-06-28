@@ -325,15 +325,14 @@ We will take a bottom up approach here. Copy your entire index.html file into th
 You will see the JSX appear on the JSX window. Notice the changes. Some words like class have been changed to className, this is because class is a reserved word for implementing JavaScript
 classes and transform is avoiding those conflict. Also you will notice the bootstrap class image fit
 
-Now go to the settings button and tick the section `Create Function Component` then press confirm. I will do a snapshot to make sure you know where to go just below this next snippet.
+Now go to the settings button and tick the section `Create Function Component` then press confirm. I will do a snapshot to make sure you know where to go just below this next snippet. Keep in mind the component's name is Foo.
 
 <img src="../images/AttachGatsbySSGToWebsite/UsingTransform.gif" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
 
-Now copy the entire JSX file contents and create a new file under your pages folder called
-index.js. As you may have guessed this will hold the JSX code. In case that URL no longer works the code should look like this. Very similar!
+Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL no longer works the code should look like this. Very similar!
 
 ```jsx
-export const Foo = () => (
+export const Home = () => (
   <>
     {/*
 	Massively by HTML5 UP
@@ -538,6 +537,38 @@ export const Foo = () => (
 
 ```
 
-## import the styles ##
+## Import the assets ##
 
-Time to import the styles.
+Assets can be images, fonts and files etc. We will use Webpack to import those assets into our component. Webpack is already built into Gatsby. You don't have to npm install more here for that.
+
+Declare the following in Gatsby now at the top.
+
+```jsx
+import React from "react"
+import { Helmet } from "react-helmet"
+import { Link } from "gatsby"
+import pic1 from "../images/pic01.jpg"
+import pic2 from "../images/pic02.jpg"
+import pic3 from "../images/pic03.jpg"
+```
+
+Now CTRL + H + F to find and replace the string path for the names of the string identifier for our image source attributes.
+
+```html
+<img src="images/pic01.jpg" alt="" />
+
+<img src="images/pic02.jpg" alt="" />
+
+<img src="images/pic03.jpg" alt="" />
+```
+
+After you have Each of these attributes will contain will now contain the imported path name and not the actual path...
+
+<img src={pic1} alt="" />
+
+<img src={pic2} alt="" />
+
+<img src={pic3} alt="" />
+
+If you plan to host this later remember your comrades with disabilities and provide some text in the alt attribute to describe what the image means. I haven't done so yet.
+
