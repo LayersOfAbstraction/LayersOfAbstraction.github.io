@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-#published: false
+published: false
 layout: post
 ---
 
@@ -13,9 +13,15 @@ How cool! To think a few years ago I was paying to host my portfolio on Winhost 
 knowledge of people who busted their guts
 trying to assist me. I wanted to make a blog about it.
 
-But I didn't want to host the blogs on hackernoon
-or another platform when I had a working domain
-I had brought for the github Pages repo.
+But I didn't want to host the blogs on someone's 
+platform when I had a working domain because 
+
+1. I don't have programming job and I want to potentially host them on places later where I can make money.
+2. Even if I don't make anything I can get some street cred.
+3. When I have enough content Google will allow me to use google addsense so I can get dime or 2 when someone visits my site.
+
+
+I used my domain on a github Pages repo but no blogging engine. Had to manually enclose every single paragrah in html tags. 
 
 To get around that I used Jekyll which works well but if you want to learn React or have trouble grasping the concepts that's where
 you can use Gatsby to not only write awesome blogs but also learn about React components on the side and syntax.
@@ -24,23 +30,9 @@ you can use Gatsby to not only write awesome blogs but also learn about React co
 
 So today we are going to use a portfolio website from Joshua Fluke's original tutorial and turn it into a blogging platform.
 
-And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and done a pull request. It may or may not be accepted. So I will give you a link to my fork as the completed project but if you want to do this from scratch here's Joshua's repo.
+And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and done a pull request. It may or may not be accepted. So I will give you a link to my fork.
 
-## Clone Joshua's repo ##
-
-```html
-cd src
-git clone https://github.com/JoshuaFluke/joshuafluke.github.io
-cd joshuafluke.github.io
-```
-
-Let's begin!
-
-You can delete the following files. generic.html and elements.html. We will not use them.
-
-//TODO
-
-_______INSERT COMPLETED PROJECT LINK_______
+_______INSERT LINK_______
 
 ## Install the dependencies ##
 
@@ -116,7 +108,7 @@ What would you like to call your site?
 You can just select the default area to save the site to. As long as it does not exist outside of your porfolio project.
 ```
 What would you like to name the folder where your site will be created?
-✔ Desktop/ gatsby-integration
+✔ Desktop/ gatsby-companion-site
 ```
 
 After that you just select the JavaScript prompt and you have generated the site.
@@ -130,8 +122,8 @@ Will you be using JavaScript or TypeScript?
 Select no I will add it later. Yes a Content Management System is more powerful than a Static Site Generator but if you are not using something like Wordpress as some sort of back end then there isn't much point especially if you're just trying to write some blogs.
 
 ```
-· Will you be using a CMS?
-✔ No (or I'll add it later)
+✔ Will you be using a CMS?
+· No (or I'll add it later)
 ```
 
 When it asks if you want to add a styling system, your answer is likely no unless you are creating styling template from Gatsby as in you are not using the styling we already have.
@@ -154,13 +146,9 @@ I'm not going to explain the next prompt, just press "y" when you see it.
 
 It should tell you if your site got set up.
 
-## Put the gatsby generated files in the root ##
-
-You heard right. After all we're doing a merge here. Just go inside the folder `gatsby-integration` and cut and paste everything into the root. Delete. `index.js` in the following folder `src\pages`.
-
 ## Run the site ##
 
-The Gatsby site should run when we fire up the local development server. First we have to go to the root the folder  we run the following command. You will be using this a lot!
+The Gatsby site should run when we fire up the local development server. First we have to navigate to the subfolder Gatsby made. Once we have done that we can go to the folder for we run the following command. You will be using this a lot!
 
 ```
 gatsby develop
@@ -171,6 +159,17 @@ IF that didn't work then you may need the Gatsby development server.
 ```
 npm run develop
 ```
+
+## Copy Joshua's repo into src  ##
+
+From the root of the Gatsby site you go here.
+
+```html
+cd src
+git clone https://github.com/JoshuaFluke/joshuafluke.github.io
+```
+
+Or if you already have the project cloned just copy into the src folder. You can delete the following files. generic.html and elements.html. We will not use them.
 
 ## Transform the raw html to JSX ##
 
@@ -325,11 +324,12 @@ We will take a bottom up approach here. Copy your entire index.html file into th
 You will see the JSX appear on the JSX window. Notice the changes. Some words like class have been changed to className, this is because class is a reserved word for implementing JavaScript
 classes and transform is avoiding those conflict. Also you will notice the bootstrap class image fit
 
-Now go to the settings button and tick the section `Create Function Component` then press confirm. I will do a snapshot to make sure you know where to go just below this next snippet. Keep in mind the component's name is Foo.
+Now go to the settings button and tick the section `Create Function Component` then press confirm. I will do a snapshot to make sure you know where to go just below this next snippet.
 
 <img src="../images/AttachGatsbySSGToWebsite/UsingTransform.gif" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
 
-Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL no longer works the code should look like this. Very similar!
+
+Sorry I forgot to name the component as home and just used the default Foo name, you should see my change in the below code. Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL no longer works the code should look like this. Very similar!
 
 ```jsx
 export const Home = () => (
@@ -537,38 +537,17 @@ export const Home = () => (
 
 ```
 
-## Import the assets ##
+when you run `gatsby develop` in the console it should compile... a 404 error page.
 
-Assets can be images, fonts and files etc. We will use Webpack to import those assets into our component. Webpack is already built into Gatsby. You don't have to npm install more here for that.
+## Import the styles ##
 
-Declare the following in Gatsby now at the top.
+We have to now import the images and styles.
 
-```jsx
-import React from "react"
-import { Helmet } from "react-helmet"
-import { Link } from "gatsby"
-import pic1 from "../images/pic01.jpg"
-import pic2 from "../images/pic02.jpg"
-import pic3 from "../images/pic03.jpg"
-```
 
-Now CTRL + H + F to find and replace the string path for the names of the string identifier for our image source attributes.
+ Now let's create a layout component in the following directory. Run this command.
 
-```html
-<img src="images/pic01.jpg" alt="" />
+ ```
+src/components/l
+ ```
 
-<img src="images/pic02.jpg" alt="" />
-
-<img src="images/pic03.jpg" alt="" />
-```
-
-After you have Each of these attributes will contain will now contain the imported path name and not the actual path...
-
-<img src={pic1} alt="" />
-
-<img src={pic2} alt="" />
-
-<img src={pic3} alt="" />
-
-If you plan to host this later remember your comrades with disabilities and provide some text in the alt attribute to describe what the image means. I haven't done so yet.
-
+ 
