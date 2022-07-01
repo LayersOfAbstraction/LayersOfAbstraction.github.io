@@ -148,28 +148,35 @@ It should tell you if your site got set up.
 
 ## Run the site ##
 
-The Gatsby site should run when we fire up the local development server. First we have to navigate to the subfolder Gatsby made. Once we have done that we can go to the folder for we run the following command. You will be using this a lot!
+From the root in the terminal go to the gatsby-companion-site folder.
+
+```
+cd gatsby-companion-site
+```
+
+Now we want to install the node modules. Say what you want about Node.js all I know is if it wasn't for that backend Javascript language we couldn't easily use the npm package manager to install the modules on any computer we work on which makes it much faster when we are cloning the repository say to a laptop in the library to escape the heat. I do it all the time in Summer.
+
+So now just run `npm install` Once we have done that we run the following command. You will be using this a lot!
 
 ```
 gatsby develop
 ```
 
-IF that didn't work then you may need the Gatsby development server.
+Yes indeed. And it allows mostly live reloading. Except when you manipulate server dependent files like `gatsby-config.js` but you will be given warnings if you do that, that you need to restart the server. 
+
+If that didn't work then you may need to run it from the package manager.
 
 ```
 npm run develop
 ```
 
-## Copy Joshua's repo into src  ##
+Hoped either of those commands worked. When this appears `http://localhost:8000/` in the terminal click on it and it should give you the default gatsby page great. You can keep the Gatsby server running in the background. If you need to restart it just hold Ctrl + c to terminate it. Have a look at the generated boiler plate code in `src/pages/index.js`. After that let's delete all that code in index.js. Keep the file though.
 
-From the root of the Gatsby site you go here.
+## Do NOT move the Gatsby files around ##
 
-```html
-cd src
-git clone https://github.com/JoshuaFluke/joshuafluke.github.io
-```
-
-Or if you already have the project cloned just copy into the src folder. You can delete the following files. generic.html and elements.html. We will not use them.
+I know it might not look preety with all those subfolder you've generated but DO NOT cut and paste all the files out of it into the root. Leave them where they are else  you will get a 404 error and 
+Gatsby will tell you have to have index.js in the default react generated path "src/pages/index.js".
+You can delete the following files.
 
 ## Transform the raw html to JSX ##
 
@@ -316,7 +323,6 @@ We will take a bottom up approach here. Copy your entire index.html file into th
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>
 ```
@@ -329,7 +335,7 @@ Now go to the settings button and tick the section `Create Function Component` t
 <img src="../images/AttachGatsbySSGToWebsite/UsingTransform.gif" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
 
 
-Sorry I forgot to name the component as home and just used the default Foo name, you should see my change in the below code. Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL no longer works the code should look like this. Very similar!
+Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL to the Transform Gitub web app no longer works the code should look like this. Very similar!
 
 ```jsx
 export const Home = () => (
@@ -537,17 +543,84 @@ export const Home = () => (
 
 ```
 
-when you run `gatsby develop` in the console it should compile... a 404 error page.
+## merge the assets and images into our Gatsby site sub folder ##
 
-## Import the styles ##
+I suggest merging everything slowly into the `src` sub folder. You don't have to have like a git submodule or wipe out everything in your root folder! Just to make things a little more maintainable and less confusing. So outside our subfolder we have got the following folders:
 
-We have to now import the images and styles.
+```
+images/
+assets/
+```
 
+Just cut and paste them into the `src` subfolder.
 
- Now let's create a layout component in the following directory. Run this command.
+So we right now have done the declaration side of things. We have declared the structure of our component. Now we have to import the images and styles into our component. We always have to also import the Gatsby plugins which we will do later.
 
- ```
-src/components/l
- ```
+Don't worry if you lose the .ico icon file. You don't want a boiler plate Gatsby icon anyway.
 
- 
+Now let's create a layout component in the following directory.  
+
+the folder structure inside `gatsby-companion-site` should like similar to this:
+
+```
+node_modules
+src
+gatsby-config.js
+package-lock.json
+package.json
+```
+
+Good, now FYI pictures from pic04.jpg to pic09.jpg can be deleted in `images/`. We are not using those. In fact they were never used in the original template!
+
+## Import assets and images into index.js ##
+
+You know how you have to declare style and script elements in the `<head>` tag for html?
+
+Well in Gatsby we don't include any `<html>`, `<head>` or `<body>` tags as you would find in a html document. Gatsby makes a default HTML structure at runtime.
+Most frameworks do.
+
+We're going to be doing something similar in the React file index.js. We have to allow our component to communicate with our assets. So these are the files we are importing.
+
+```jsx
+import pic1 from "../images/pic01.jpg"
+import pic2 from "../images/pic02.jpg"
+import pic3 from "../images/pic03.jpg"
+
+import "../assets/css/font-awesome.min.css"
+import "../assets/css/main.css"
+import "../assets/css/noscript.css"
+```
+
+We must also change any static paths to our images in the actual component to match the image tag name. 
+
+```jsx
+<img src="images/pic01.jpg" alt="" />
+<img src="images/pic02.jpg" alt="" />
+<img src="images/pic03.jpg" alt="" />
+```
+
+So for each of those path including the quotes, do a find and replace (CTRL + F + H) and put the name of the image tags inside curly brackets {} and in the replace box. Should end up with these replaced html tags.
+
+```jsx
+<img src={pic1} alt="" />
+<img src={pic2} alt="" />
+<img src={pic3} alt="" />
+```
+
+You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think.
+
+## Importing React `<head>` elements ##
+
+So what we did just now is not going to help add the HTML child `<head>` elements and HTML attributes to the output page. We have to use the Gatsby Plugin, React Helemet. Install it now.
+
+```
+npm install react-helmet gatsby-plugin-react-helmet
+```
+
+Now we must add it to our Gatsby config file which you should be able to find in the route of the gatsby website. `gatsby-config.js`
+
+```jsx
+module.exports = {
+  plugins: ["gatsby-plugin-react-helmet"],
+}
+```
