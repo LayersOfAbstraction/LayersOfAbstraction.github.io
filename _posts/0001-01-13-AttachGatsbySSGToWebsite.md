@@ -540,7 +540,14 @@ export const Home = () => (
     {/* Scripts */}
   </>
 )
+```
 
+You may get rid of the style sheets at any time as your site will not work with them and clean up the code a bit.
+
+```jsx
+<link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+<link rel="stylesheet" type="text/css" href="../assets/css/noscript.css" />
 ```
 
 ## merge the assets and images into our Gatsby site sub folder ##
@@ -624,3 +631,5 @@ module.exports = {
   plugins: ["gatsby-plugin-react-helmet"],
 }
 ```
+
+We can now import the `<Helmet>` component or plugin (whatever you want to call it) into our home page so we can create the `<header>` and `<main>` when the Gatsby Development Server transforms the page to a HTML document. 
