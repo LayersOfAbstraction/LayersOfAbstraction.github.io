@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-#published: false
+published: false
 layout: post
 ---
 
@@ -646,26 +646,6 @@ So for each of those path including the quotes, do a find and replace (CTRL + F 
 ```
 
 You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think.
-
-## Importing React `<head>` elements - Consider if we require this? Use as little plugins as possible to avoid depreciation - ##
-
-So what we did just now is not going to help add the HTML child `<head>` elements and HTML attributes to the output page. We have to use the Gatsby Plugin, React Helemet. Install it now.
-
-```
-npm install react-helmet gatsby-plugin-react-helmet
-```
-
-Now we must add it to our Gatsby config file which you should be able to find in the route of the gatsby website. `gatsby-config.js`
-
-```jsx
-module.exports = {
-  plugins: ["gatsby-plugin-react-helmet"],
-}
-```
-
-We can now import the `<Helmet>` component or plugin (whatever you want to call it) into our home page so we can create the `<header>` and `<main>` when the Gatsby Development Server transforms the page to a HTML document. 
-
-The `<link>` tags for the CSS files
 
 ## Change from `<a href>` to `<Link to>` ##
 
