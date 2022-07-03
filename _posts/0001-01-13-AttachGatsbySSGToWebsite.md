@@ -601,8 +601,8 @@ Now let's create a layout component in the following directory.
 the folder structure inside `gatsby-companion-site` should like similar to this:
 
 ```
-node_modules
-src
+node_modules/
+src/
 gatsby-config.js
 package-lock.json
 package.json
