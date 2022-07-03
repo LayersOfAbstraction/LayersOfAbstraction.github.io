@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -182,9 +182,11 @@ You can delete the following files.
 
 An arduous task? There is a way to ease the transformation. In fact most what you see will simply get thrown into the <></> section. We would have to rewrite a few key words, for example class is a reserved html word so in JSX it will become className.
 
-We can use Find and Replace for some of these words later which we will do but there is a better way though which takes some of the effort away. [Use transform](https://transform.tools/html-to-jsx).
+We can use Find and Replace for some of these words later which we will do but there is a better way though which takes some of the effort away especially when you are new to React styled blogging frameworks. [Use transform](https://transform.tools/html-to-jsx).
 
-We will take a bottom up approach here. Copy your entire index.html file into the HTML window of the transform page and you should see the resulting transformed code in the JSX section. Here is a copy of the HTML.
+We will take a bottom up approach here. Copy your entire index.html file into the HTML window of the transform page and you should see the resulting transformed code in the JSX section. Here is a copy of the HTML. 
+
+Yes I know, the indentation is off but that's how it came shipped, free.
 
 ```html
 <!DOCTYPE HTML>
@@ -335,10 +337,38 @@ Now go to the settings button and tick the section `Create Function Component` t
 <img src="../images/AttachGatsbySSGToWebsite/UsingTransform.gif" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
 
 
-Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. In case that URL to the Transform Gitub web app no longer works the code should look like this. Very similar!
+Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. 
+
+One thing we need it to not have a constant functional component. We want Gatsby to hold our home "default" component" which will return everything inside it to the the UI.
+
+So we need to make some quick changes.
+
+Change this line from this. 
 
 ```jsx
 export const Home = () => (
+  <>
+  //... Ommited code.  
+  </>
+)
+```
+
+To look like this:
+
+```jsx
+export default function Home() {
+  return(
+  <>
+  //... Ommited code.
+  </>
+  );
+}
+```
+In case that URL to the Transform Gitub web app no longer works the complete code should now look like this. Very similar!
+
+```jsx
+export default function Home() {
+  return (
   <>
     {/*
 	Massively by HTML5 UP
@@ -539,7 +569,8 @@ export const Home = () => (
     </div>
     {/* Scripts */}
   </>
-)
+  );
+}
 ```
 
 You may get rid of the style sheets at any time as your site will not work with them and clean up the code a bit.
@@ -584,7 +615,7 @@ Good, now FYI pictures from pic04.jpg to pic09.jpg can be deleted in `images/`. 
 You know how you have to declare style and script elements in the `<head>` tag for html?
 
 Well in Gatsby we don't include any `<html>`, `<head>` or `<body>` tags as you would find in a html document. Gatsby makes a default HTML structure at runtime.
-Most frameworks do.
+Most web frameworks do.
 
 We're going to be doing something similar in the React file index.js. We have to allow our component to communicate with our assets. So these are the files we are importing.
 
@@ -616,7 +647,7 @@ So for each of those path including the quotes, do a find and replace (CTRL + F 
 
 You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think.
 
-## Importing React `<head>` elements ##
+## Importing React `<head>` elements - Consider if we require this? Use as little plugins as possible to avoid depreciation - ##
 
 So what we did just now is not going to help add the HTML child `<head>` elements and HTML attributes to the output page. We have to use the Gatsby Plugin, React Helemet. Install it now.
 
@@ -633,3 +664,24 @@ module.exports = {
 ```
 
 We can now import the `<Helmet>` component or plugin (whatever you want to call it) into our home page so we can create the `<header>` and `<main>` when the Gatsby Development Server transforms the page to a HTML document. 
+
+The `<link>` tags for the CSS files
+
+## Change from `<a href>` to `<Link to>` ##
+
+Gatsby has in built the `<Link>` component to allow for site navigation.
+All you need to know is it behaviours like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link.
+
+Now rather than swap every single  `<a href >` for `<Link to>` we just use CTRL + F + H. Some of you likely already know this. But I will give a quick rundown.
+
+In your IDE/text editor there should be a Find and replace option and you should have a `match whole word` option selected. I am using Visual Studio Code to do this. Place `a` in the first box and `Link` in the second and press the enter key.
+
+Your IDE/text editior should have replaced `a` for `Link`. Now let us replace `href` for `to` using the same technique.
+
+That will not be enough without importing the link component.  To import it we must use Gatsby's `{Link}` component like so.
+
+```jsx
+import {Link} from "gatsby"
+```
+
+To import the navigation links we must now use 
