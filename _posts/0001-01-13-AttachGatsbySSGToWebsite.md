@@ -612,6 +612,12 @@ Good, now FYI pictures from pic04.jpg to pic09.jpg can be deleted in `images/`. 
 
 ## Import assets and images into index.js ##
 
+First thing's first. Because Gatsby runs on the highest ranking framework currently in teh world, let's ensure the home page is using React.js. Let's import it at the top of index.js.
+
+```jsx
+import React from "react"
+```
+
 You know how you have to declare style and script elements in the `<head>` tag for html?
 
 Well in Gatsby we don't include any `<html>`, `<head>` or `<body>` tags as you would find in a html document. Gatsby makes a default HTML structure at runtime.
@@ -649,6 +655,7 @@ You are getting near to rendering that home page in React. Great job if you made
 
 ## Change from `<a href>` to `<Link to>` ##
 
+
 Gatsby has in built the `<Link>` component to allow for site navigation.
 All you need to know is it behaviours like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link.
 
@@ -664,4 +671,15 @@ That will not be enough without importing the link component.  To import it we m
 import {Link} from "gatsby"
 ```
 
-To import the navigation links we must now use 
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render.
+
+## Integrate the jquery into React ##
+
+This will likely cause upset to people who have made it their mission to prevent people from injecting jquery into anything including Single Page Application frameworks like React. And it is understandable as jquery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled.
+
+However this will be a quick way of porting jquery over when you are short for time. It may be worth learning how to convert jquery code into React code. Their may already be tools that automatically format some of this. In later blogs I plan to show you how to manually convert it as that is best practice.
+
+
+## Link the minimized Navbar button and Home button ##
+
+We will have to link the blog on top right and navbar.
