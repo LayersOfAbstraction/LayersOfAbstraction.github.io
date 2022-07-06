@@ -677,8 +677,9 @@ Now fire up the Gatsby development server and navigate to http://localhost:8000/
 
 This will likely cause upset to people who have made it their mission to prevent people from injecting jquery into anything including Single Page Application frameworks like React. And it is understandable as jquery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled.
 
-However this will be a quick way of porting jquery over when you are short for time. It may be worth learning how to convert jquery code into React code. Their may already be tools that automatically format some of this. In later blogs I plan to show you how to manually convert it as that is best practice.
+However this will be a quick way of porting jquery over when you are short for time. It may be worth learning how to convert jquery code into React code. There may already be tools that automatically format some of this. In later blogs I plan to show you how to manually convert jquery to a component as that is best practice.
 
+For now we will wrap jquery in a React component.
 
 ## Link the minimized Navbar button and Home button ##
 
