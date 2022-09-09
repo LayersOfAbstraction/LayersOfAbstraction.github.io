@@ -22,6 +22,8 @@ They all worked for me!
 
 I honestly just attempted to install the latest versions.
 
+I went to [this forum](https://softans.com/question/error-while-executing-gem-gemfilepermissionerror-you-dont-have-write-permissions-for-the-var-lib-gems-2-7-0-directory/) to work out how to install Ruby effectively as installing it can be a pain.
+
 ```
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-add-repository ppa:brightbox/ruby-ng
@@ -56,9 +58,9 @@ gem install jekyll bundle
 
 Jekyll should now be installed. You can check with, `jekyll -v`  
 
-Now the next error was really annoying. If you have gone to the directory and done bundle init then you will get an error which will look similar to the one [found here.]<https://github.com/jekyll/jekyll/issues/8523>
+Now the next error was really annoying. If you have gone to the directory and done bundle init then you will get an error which will look similar to the one [found here.](https://github.com/jekyll/jekyll/issues/8523)
 
-To fix it just please use this command.
+To fix it use this command to add it as.
 
 ```
 bundle add webrick
