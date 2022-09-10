@@ -1,30 +1,35 @@
 ---
-title: "How to install Jekyll on WSL and add a new site"
+title: "How to install Jekyll on WSL and create a new site"
 date: "2022-05-28"
-published: True
+published: false
 layout: post
 ---
 
 ## Introduction
 
-**Distro used:** I used Ubuntu 20.04 (Focal) as Ubuntu 22.04 (Jammy) isn't compatible with the Brightbox Personal Package Archive or ppa:brightbox/ruby-ng .
-You should have either these or later.
+- In this tutorial you will configure Windows 10 to use the Jekyll SSG (Static Site Generator) on WSL (Windows Subsystem for Linux).
+- If you do not want to install Linux or in a virtual machine just to use Jekyll then good news you can use WSL on Windows!
+- To do this you will have to install Node.js and Ruby in WSL.
+- Should you bother? Only if you're new to blogging and do not already use a content management system that is doing you well.
+  
+Jekyll was the first static site generator I ever used as Github uses it for their site. After writing several blogs I can see why they use it. 10 times better than manually creating
+every single HTML paragraph tag which was what I used to do.
+
+**Distro used:** I used Ubuntu 20.04 (Focal) as Ubuntu 22.04 (Jammy) isn't compatible with the Brightbox Personal Package Archive or ppa:brightbox/ruby-ng
 
 **Used the following libaries, please do NOT install just yet:**
 
-```
+```text
 jekyll 4.2.2
 node v10.19.0
 rbenv 1.2.0-16-gc4395e5
 ```
 
-They all worked for me!
-
 I honestly just attempted to install the latest versions.
 
-I went to [this forum](https://softans.com/question/error-while-executing-gem-gemfilepermissionerror-you-dont-have-write-permissions-for-the-var-lib-gems-2-7-0-directory/) to work out how to install Ruby effectively as installing it can be a pain.
+## All this just to install Ruby
 
-```
+```text
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-add-repository ppa:brightbox/ruby-ng
 sudo apt-get update
@@ -56,14 +61,16 @@ gem update
 gem install jekyll bundle
 ```
 
+## Now we just have to install Jekyll
+
 Jekyll should now be installed. You can check with, `jekyll -v`  
 
 Now the next error was really annoying. If you have gone to the directory and done bundle init then you will get an error which will look similar to the one [found here.](https://github.com/jekyll/jekyll/issues/8523)
 
 To fix it use this command to add it as.
 
-```
+```text
 bundle add webrick
 ```
 
-You should installed Jekyll completely. It can be a pain to install but once it's running, it's god's gift to the world. Anyone can get started and use it.
+You should have installed Jekyll completely. It can be hard to install but once it's running, it's god's gift to the world. Anyone can get started and use it and write really about anything.
