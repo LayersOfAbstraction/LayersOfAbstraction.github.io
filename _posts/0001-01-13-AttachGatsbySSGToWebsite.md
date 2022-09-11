@@ -653,4 +653,4 @@ That will not be enough without importing the link component.  To import it we m
 import {Link} from "gatsby"
 ```
 
-Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to React!
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to Gatsby!
