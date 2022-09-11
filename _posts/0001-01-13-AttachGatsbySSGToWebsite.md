@@ -320,14 +320,14 @@ Yes I know, the indentation is off but that's how it came shipped, free.
 ```
 
 You will see the JSX appear on the JSX window. Notice the changes. Some words like class have been changed to className, this is because class is a reserved word for implementing JavaScript
-classes and transform is avoiding those conflict. Also you will notice the bootstrap class image fit
+classes and Transform is avoiding those conflicts. Also you will notice the bootstrap class image fit
 
 Now go to the settings button and tick the section `Create Function Component` then press confirm. I will do a snapshot to make sure you know where to go just below this next snippet.
 
 <img src="../images/AttachGatsbySSGToWebsite/UsingTransform.gif" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
 
 
-Now copy the entire JSX file contents and create a new file under your pages folder called index.js. As you may have guessed this will hold the JSX code. 
+Now copy the entire JSX file contents and create a new file under your "pages" folder called index.js. As you may have guessed this will hold the JSX code.
 
 One thing we need it to not have a constant functional component. We want Gatsby to hold our home "default" component" which will return everything inside it to the the UI.
 
