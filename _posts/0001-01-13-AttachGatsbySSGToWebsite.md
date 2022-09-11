@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -14,8 +14,8 @@ How cool! To think a few years ago I was paying to host my portfolio on Winhost 
 But you don't want to host the blogs on a hosting service when you have a working domain because:
 
 1. You may want to monetize it.
-2. Even if you don't make anything you can get some street cred in the job's market.
-3. When you have enough content Google will allow you to use google addsense so you can get dime or 2 when someone visits your site.
+2. Even if you don't make anything you can get some reputation in the job market.
+3. When you have enough content Google will allow you to use google Addsense so you can make some money when someone visits your site.
 
 I used my domain on a github Pages repo but because I had no blogging engine I had to manually enclose every single paragraph in html tags.
 
@@ -61,11 +61,9 @@ Make sure you can run the static html files first. If you are using Visual Studi
 
 Then simply open index.html in the root folder and go to the button below on the blue bar that says Go Live. You should see this.  
 <br>
-<img src="../images/AttachGatsbySSGToWebsite/Screen%20Shot%202022-06-01%20at%209.36.28%20pm.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/><br>
+<img src="../images/AttachGatsbySSGToWebsite/joshuaFlukeOriginalPortfolio.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/><br>
 
-It's ok if you don't and are using a different text editor/IDE. Just make sure you can run the static website for now before creating the blogging template. When we open the red encircled hamburger icon and open it we want a to open our blog's table of contents.
-  
-We want that to appear as well in the white section if the screen is not minimized you can't see the white space where I have encircled it but if you were to fully maximize the web page, you would see it.
+
 
 ## Generate the Gatsby site template ##
 
@@ -565,16 +563,7 @@ You may get rid of the link to the style sheets at any time as your site will no
 <link rel="stylesheet" type="text/css" href="../assets/css/noscript.css" />
 ```
 
-## merge the assets and images into our Gatsby site sub folder ##
-
-I suggest merging everything slowly into the `src` sub folder. You don't have to have like a git submodule or wipe out everything in your root folder! Just to make things a little more maintainable and less confusing. So outside our subfolder we have got the following folders:
-
-```
-images/
-assets/
-```
-
-Just cut and paste them into the `src` subfolder.
+## Merge the assets and images into our Gatsby site sub folder ##
 
 So we right now have done the declaration side of things. We have declared the structure of our component. Now we have to import the images and styles into our component. We always have to also import the Gatsby plugins which we will do later.
 
@@ -591,6 +580,15 @@ gatsby-config.js
 package-lock.json
 package.json
 ```
+
+I suggest merging everything slowly into the `src` sub folder. You don't have to have like a git submodule or wipe out everything in your root folder! Just to make things a little more maintainable and less confusing. So outside our subfolder we have got the following folders:
+
+```
+images/
+assets/
+```
+
+Just cut and paste them into the `src` subfolder.
 
 Good, now FYI pictures from pic04.jpg to pic09.jpg can be deleted in `images/`. We are not using those. In fact they were never used in the original template!
 
@@ -637,7 +635,7 @@ So for each of those paths including the quotes, do a find and replace (CTRL + F
 
 You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think. Just put some text in the alt field so their screen reader tells them what the image is about when they hover over it.
 
-## Change from `<a href>` to `<Link to>` ##
+## Change from `a href` to `Link to` ##
 
 
 Gatsby has the `<Link>` component to allow for site navigation.
@@ -655,16 +653,4 @@ That will not be enough without importing the link component.  To import it we m
 import {Link} from "gatsby"
 ```
 
-Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render.
-
-## Integrate the jquery into React ##
-
-This will likely cause upset to people who have made it their mission to prevent people from injecting jquery into anything including Single Page Application frameworks like React. And it is understandable as jquery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled.
-
-However this will be a quick way of porting jquery over when you are short for time. It may be worth learning how to convert jquery code into React code. There may already be tools that automatically format some of this. In later blogs I plan to show you how to manually convert jquery to a component as that is best practice.
-
-For now we will wrap jquery in a React component.
-
-## Link the minimized Navbar button and Home button ##
-
-We will have to link the blog on top right and navbar.
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to React!
