@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -9,7 +9,7 @@ layout: post
 
 A few years back I watched a [video by Joshua Fluke](https://www.youtube.com/watch?v=u-RLu_8kwA0) that taught me how to host a git repo as a GitHub Pages portfolio website without paying any money.
 
-How cool! To think a few years ago I was paying to host my portfolio on Winhost where I was making no revenue. But I wanted to go one step better. I wanted to share the
+How cool! To think a few years ago I was paying to host my portfolio on Winhost where I was making no revenue but paying to host a portfolio site! But I wanted to go one step better. I wanted to share the
 knowledge of people who busted their guts
 trying to assist me. I wanted to make a blog about it.
 
@@ -59,26 +59,18 @@ npm install -g gatsby-cli
 
 Use these tools in whatever text editor or IDE you are comfortable with.
 
-Keep in mind I am running this as a Docker container so if you just
-have Docker you can use that instead to run this project.
-
-But I will not get into how to do that.
-
 ## Watch Joshua Fluke's video or download his portfolio to start with ##
 
 If you did not want to watch the video on how to create the github pages portfolio, that is ok you can just [download this portfolio](https://github.com/JoshuaFluke/joshuafluke.github.io) Joshua Fluke made.
 
-Make sure you can run the static html files first. If you are using Visual Studio For that I advise you install the LiveServer extension.
+Make sure you can run the static html files first. If you are using Visual Studio Code then I advise you install the LiveServer extension.
 
 Then simply open index.html in the root folder and go to the button below on the blue bar that says Go Live. You should see this.  
-
-![]()
-
-<img src="../images/AttachGatsbySSGToWebsite/Screen%20Shot%202022-06-01%20at%209.36.28%20pm.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/>
-
+<br>
+<img src="../images/AttachGatsbySSGToWebsite/Screen%20Shot%202022-06-01%20at%209.36.28%20pm.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/><br>
 
 It's ok if you don't and are using a different text editor/IDE. Just make sure you can run the static website for now before creating the blogging template. When we open the red encircled hamburger icon and open it we want a to open our blog's table of contents.
-
+  
 We want that to appear as well in the white section if the screen is not minimized you can't see the white space where I have encircled it but if you were to fully maximize the web page, you would see it.
 
 ## Generate the Gatsby site template ##
@@ -119,7 +111,7 @@ Will you be using JavaScript or TypeScript?
   TypeScript
 ```
 
-Select no I will add it later. Yes a Content Management System is more powerful than a Static Site Generator but if you are not using something like Wordpress as some sort of back end then there isn't much point especially if you're just trying to write some blogs.
+Select "no (or I will add it later)". Yes a Content Management System is more powerful than a Static Site Generator but if you are not using something like Wordpress as some sort of back end then there isn't much point especially if you're just trying to write some blogs.
 
 ```
 ✔ Will you be using a CMS?
@@ -174,9 +166,7 @@ Hoped either of those commands worked. When this appears `http://localhost:8000/
 
 ## Do NOT move the Gatsby files around ##
 
-I know it might not look preety with all those subfolder you've generated but DO NOT cut and paste all the files out of it into the root. Leave them where they are else  you will get a 404 error and 
-Gatsby will tell you have to have index.js in the default react generated path "src/pages/index.js".
-You can delete the following files.
+I know it might not look pretty with all those subfolders you've generated but DO NOT cut and paste all the files out of it into the root. Leave them where they are else  you will get a 404 error and Gatsby will tell you have to have index.js in the default react generated path "src/pages/index.js".
 
 ## Transform the raw html to JSX ##
 
