@@ -1,7 +1,7 @@
 ---
 title: "How to turn your web portfolio into personal blogging website with Gatsby"
 date: "2022-05-28"
-#published: false
+published: false
 layout: post
 ---
 
@@ -9,19 +9,15 @@ layout: post
 
 A few years back I watched a [video by Joshua Fluke](https://www.youtube.com/watch?v=u-RLu_8kwA0) that taught me how to host a git repo as a GitHub Pages portfolio website without paying any money.
 
-How cool! To think a few years ago I was paying to host my portfolio on Winhost where I was making no revenue but paying to host a portfolio site! But I wanted to go one step better. I wanted to share the
-knowledge of people who busted their guts
-trying to assist me. I wanted to make a blog about it.
+How cool! To think a few years ago I was paying to host my portfolio on Winhost where I was making no revenue but paying to host a portfolio site! But I wanted to go one step better. I wanted to share the knowledge of people who busted their guts trying to assist me. I wanted to make a blog about it.
 
-But I didn't want to host the blogs on someone's 
-platform when I had a working domain because 
+But you don't want to host the blogs on a hosting service when you have a working domain because:
 
-1. I don't have programming job and I want to potentially host them on places later where I can make money.
-2. Even if I don't make anything I can get some street cred.
-3. When I have enough content Google will allow me to use google addsense so I can get dime or 2 when someone visits my site.
+1. You may want to monetize it.
+2. Even if you don't make anything you can get some street cred in the job's market.
+3. When you have enough content Google will allow you to use google addsense so you can get dime or 2 when someone visits your site.
 
-
-I used my domain on a github Pages repo but no blogging engine. Had to manually enclose every single paragrah in html tags. 
+I used my domain on a github Pages repo but because I had no blogging engine I had to manually enclose every single paragraph in html tags.
 
 To get around that I used Jekyll which works well but if you want to learn React or have trouble grasping the concepts that's where
 you can use Gatsby to not only write awesome blogs but also learn about React components on the side and syntax.
@@ -30,15 +26,13 @@ you can use Gatsby to not only write awesome blogs but also learn about React co
 
 So today we are going to use a portfolio website from Joshua Fluke's original tutorial and turn it into a blogging platform.
 
-And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and  plan on making a pull request. It may or may not be accepted. So I will give you [a link to my fork.]()
-
-
+And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I will give you a link to his repository []()
 
 ## Install the dependencies ##
 
 You need to have installed Gatsby, Node.js and git. Run the following commands in your terminal to ensure you have installed them.
 
-```
+```text
 node -v
 git --version
 gatsby --version
