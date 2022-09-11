@@ -30,9 +30,9 @@ you can use Gatsby to not only write awesome blogs but also learn about React co
 
 So today we are going to use a portfolio website from Joshua Fluke's original tutorial and turn it into a blogging platform.
 
-And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and done a pull request. It may or may not be accepted. So I will give you a link to my fork.
+And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I have made my forked version and  plan on making a pull request. It may or may not be accepted. So I will give you [a link to my fork.]()
 
-_______INSERT LINK_______
+
 
 ## Install the dependencies ##
 
@@ -563,7 +563,7 @@ export default function Home() {
 }
 ```
 
-You may get rid of the style sheets at any time as your site will not work with them and clean up the code a bit.
+You may get rid of the link to the style sheets at any time as your site will not work with them and clean up the code a bit.
 
 ```jsx
 <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css" />
@@ -588,9 +588,9 @@ Don't worry if you lose the .ico icon file. You don't want a boiler plate Gatsby
 
 Now let's create a layout component in the following directory.  
 
-the folder structure inside `gatsby-companion-site` should like similar to this:
+The folder structure inside `gatsby-companion-site` should look similar to this:
 
-```
+```text
 node_modules/
 src/
 gatsby-config.js
@@ -602,7 +602,7 @@ Good, now FYI pictures from pic04.jpg to pic09.jpg can be deleted in `images/`. 
 
 ## Import assets and images into index.js ##
 
-First thing's first. Because Gatsby runs on the highest ranking framework currently in teh world, let's ensure the home page is using React.js. Let's import it at the top of index.js.
+First thing's first. Because Gatsby runs on the highest ranking framework currently in the world, let's ensure the home page is using React.js. Let's import it at the top of index.js.
 
 ```jsx
 import React from "react"
@@ -625,7 +625,7 @@ import "../assets/css/main.css"
 import "../assets/css/noscript.css"
 ```
 
-We must also change any static paths to our images in the actual component to match the image tag name. 
+We must also change any static paths to our images in the actual component to match the image tag name.
 
 ```jsx
 <img src="images/pic01.jpg" alt="" />
@@ -633,7 +633,7 @@ We must also change any static paths to our images in the actual component to ma
 <img src="images/pic03.jpg" alt="" />
 ```
 
-So for each of those path including the quotes, do a find and replace (CTRL + F + H) and put the name of the image tags inside curly brackets {} and in the replace box. Should end up with these replaced html tags.
+So for each of those paths including the quotes, do a find and replace (CTRL + F + H) and put the name of the image tags inside curly brackets {} and in the replace box. Should end up with these replaced html tags.
 
 ```jsx
 <img src={pic1} alt="" />
@@ -641,13 +641,13 @@ So for each of those path including the quotes, do a find and replace (CTRL + F 
 <img src={pic3} alt="" />
 ```
 
-You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think.
+You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think. Just put some text in the alt field so their screen reader tells them what the image is about when they hover over it.
 
 ## Change from `<a href>` to `<Link to>` ##
 
 
-Gatsby has in built the `<Link>` component to allow for site navigation.
-All you need to know is it behaviours like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link.
+Gatsby has the `<Link>` component to allow for site navigation.
+All you need to know is it behaves like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link.
 
 Now rather than swap every single  `<a href >` for `<Link to>` we just use CTRL + F + H. Some of you likely already know this. But I will give a quick rundown.
 
