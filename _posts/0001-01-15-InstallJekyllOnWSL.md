@@ -1,5 +1,5 @@
 ---
-title: "How to install Jekyll on WSL and create a new site"
+title: "How to install Jekyll on WSL"
 date: "2022-09-11"
 published: false
 layout: post
