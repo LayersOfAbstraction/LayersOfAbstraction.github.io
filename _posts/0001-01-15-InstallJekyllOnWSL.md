@@ -1,7 +1,7 @@
 ---
 title: "How to install Jekyll on WSL"
 date: "2022-09-11"
-published: false
+#published: false
 layout: post
 ---
 
@@ -79,4 +79,8 @@ You should have installed Jekyll completely. It can be hard to install but once 
 
 ## What should I do now?
 
+<img src="../images/InstallJekyllOnWSL/jasmin-sessler-egqR_zUd4NI-unsplash.jpg" class="image fit" alt="Image toilet paper that says 'don't panic'"/><br>
+
+*Photo by [Jasmin Sessler](https://unsplash.com/ja/@jasmin_sessler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/panic?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)*
+  
 If you don't have a pre existing site then perfect because it will be easier to use Jekyll as you just have to download their themes now. This blog can help you get started in learning how to [publish your own blogs from Jekyll to GithubPages](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/) which allows you to host your static site for free. You might consider getting a domain name though for your site.
