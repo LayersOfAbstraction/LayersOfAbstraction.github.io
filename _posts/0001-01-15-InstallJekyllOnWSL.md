@@ -15,7 +15,7 @@ layout: post
 Jekyll was the first static site generator I ever used as Github uses it for their site. After writing several blogs I can see why they use it. 10 times better than manually creating
 every single HTML paragraph tag which was what I used to do.
 
-**Distro used:** I used Ubuntu 20.04 (Focal) as Ubuntu 22.04 (Jammy) isn't compatible with the Brightbox Personal Package Archive or ppa:brightbox/ruby-ng
+**Distro used:** I used Ubuntu 20.04 (Focal) as Ubuntu 22.04 (Jammy) isn't compatible with the Brightbox Personal Package Archive or ppa:brightbox/ruby-ng which will need to insttall the Ruby language which Jekyll runs on.
 
 **Used the following libaries, please do NOT install just yet:**
 
@@ -74,3 +74,7 @@ bundle add webrick
 ```
 
 You should have installed Jekyll completely. It can be hard to install but once it's running, it is super easy to use. The Gatsby team for example have gone as far as to say that static site generators are more environmentally friendly as they do not use a database. Anyone can get started using it and write really about anything, it doesn't even have to be about programming. Just please, when blogging objectively, do not let it turn to hate.
+
+## What should I do now?
+
+If you don't have a pre existing site then perfect because it will be easier to use Jekyll as you just have to download their themes now. This blog can help you get started in learning how to [publish your own blogs from Jekyll to GithubPages](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/) which allows you to host your static site for free. You might consider getting a domain name though for your site.
