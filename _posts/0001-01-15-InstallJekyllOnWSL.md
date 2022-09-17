@@ -12,10 +12,16 @@ layout: post
 - To do this you will have to install Node.js and Ruby in WSL.
 - Should you bother? Only if you are new to blogging and do not already use a content management system that is doing you well.
   
+
+
 Jekyll was the first static site generator I ever used as Github uses it for their site. After writing several blogs I can see why they use it. 10 times better than manually creating
 every single HTML paragraph tag which was what I used to do.
 
 **Distro used:** I used Ubuntu 20.04 (Focal) as Ubuntu 22.04 (Jammy) isn't compatible with the Brightbox Personal Package Archive or ppa:brightbox/ruby-ng which will need to insttall the Ruby language which Jekyll runs on.
+
+## Perquisites
+
+You should already have installed WSL 2. If not you need to go to the [Windows docs](https://learn.microsoft.com/en-us/windows/wsl/install) to learn how.
 
 **Used the following libaries, please do NOT install just yet:**
 
