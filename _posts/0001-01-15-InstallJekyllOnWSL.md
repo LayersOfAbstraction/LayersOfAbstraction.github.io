@@ -61,6 +61,8 @@ gem update
 gem install jekyll bundle
 ```
 
+Credit goes to the user known as *Jimmy* [link here. Advise, the version of Node he uses is outdated.](https://softans.com/question/error-while-executing-gem-gemfilepermissionerror-you-dont-have-write-permissions-for-the-var-lib-gems-2-7-0-directory/)
+
 ## Now we just have to install Jekyll
 
 Jekyll should now be installed. You can check with, `jekyll -v`  
