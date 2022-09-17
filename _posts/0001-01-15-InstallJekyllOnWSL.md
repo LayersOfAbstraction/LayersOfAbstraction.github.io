@@ -8,9 +8,9 @@ layout: post
 ## Introduction
 
 - In this tutorial you will configure Windows 10 to use the Jekyll SSG (Static Site Generator) on WSL (Windows Subsystem for Linux).
-- If you do not want to install Linux or in a virtual machine just to use Jekyll then good news you can use WSL on Windows!
+- If you do not want to install Linux or in a virtual machine just to use Jekyll, then good news you can use WSL on Windows!
 - To do this you will have to install Node.js and Ruby in WSL.
-- Should you bother? Only if you're new to blogging and do not already use a content management system that is doing you well.
+- Should you bother? Only if you are new to blogging and do not already use a content management system that is doing you well.
   
 Jekyll was the first static site generator I ever used as Github uses it for their site. After writing several blogs I can see why they use it. 10 times better than manually creating
 every single HTML paragraph tag which was what I used to do.
