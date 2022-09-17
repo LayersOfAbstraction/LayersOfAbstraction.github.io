@@ -73,4 +73,4 @@ To fix it use this command to add it as.
 bundle add webrick
 ```
 
-You should have installed Jekyll completely. It can be hard to install but once it's running, it's god's gift to the world. Anyone can get started and use it and write really about anything.
+You should have installed Jekyll completely. It can be hard to install but once it's running, it is super easy to use. The Gatsby team for example have gone as far as to say that static site generators are more environmentally friendly as they do not use a database. Anyone can get started using it and write really about anything, it doesn't even have to be about programming. Just please, when blogging objectively, do not let it turn to hate.
