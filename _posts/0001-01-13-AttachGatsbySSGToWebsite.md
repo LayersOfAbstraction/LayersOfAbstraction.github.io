@@ -39,10 +39,7 @@ gatsby --version
 
 ```
 
-If one of these commands does not return a version number then you need to go here to install the dependencies.
-
-- [Node.js](https://nodejs.dev/download)
-- [git](https://git-scm.com/download/win)
+If one of these commands does not return a version number then you need to [go here to Gatsby's offical website](https://www.gatsbyjs.com/docs/tutorial/part-0/) so you can see how to install the dependencies depending on your operating system.
 
 - For gatsby CLI use this command. Can only be
 done after you have installed Gatsby.
