@@ -24,7 +24,7 @@ In the previous blog we learned how to convert a website from HTML with css to G
 
 jQuery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled. We have to reinvent the wheel with the "sidebar" element as it was written with jQuery. Besides we can use it again later.
 
-I cannot take full credit for how to create the sidebar. I learned how to do it here but had to adjust a few properties and colours that were not present [in the tutorial.](https://www.youtube.com/watch?v=6cb56Luubd4)
+I cannot take full credit for how to create the sidebar. Only how to abstract it! I learned how to do it here but had to adjust a few properties and colours that were not present [in the tutorial.](https://www.youtube.com/watch?v=6cb56Luubd4)
 
 When we open the red encircled hamburger icon and open it we want to open the headings on the page so we can go back to other pages.
   
@@ -50,4 +50,122 @@ module.exports = {
 }
 ```
 
-## Link the minimized Hamburger button ##
+## Create the minimized Hamburger button with styled components ##
+
+We are going to create a styled component inside our index.js file. 
+In your index.js file add this to your imports list.
+
+```jsx
+import styled, {createGlobalStyle} from "styled-components"
+```
+Place this just below your imports. You may find this to be similar to internal CSS styles. We will abstract them later. 
+
+Here we are overriding any default styling using the createGlobalStyle component so it will apply any styles from our sidebar to all the pages we use it in. Hope that makes sense?
+
+```jsx
+const Global = createGlobalStyle`
+  body, html{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+`
+```
+
+Now we create the style component Hamburger button. We will call it MenuIcon.
+
+We are fixing it the page regardless of where user scrolls.
+Keep in mind inside MenuIcon we are setting the z-index value at 999 so when the sidebar is toggled open, the hamburger icon will wrap over it.
+
+The first-child is creating the first bar while nth-child(2) and nth-child(2) donote the 2nd and third hamburger bars.
+
+The transform property is holding instructions for the bars to turn into an x shape upon the user clicking it.
+
+```jsx
+
+const MenuIcon = styled.button`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+z-index: 999;
+
+  div {
+    width: 1.5rem;
+    height: 0.2rem;
+    background: white;
+    border-radius: 5px;
+    transform-origin: 1px;
+    position: relative;
+    transition: opacity 300ms, transform 300ms;
+
+    :first-child{
+      transform: ${({nav}) => (nav ? 'rotate(45deg)': 'rotate(0)')}
+    } 
+    
+    :nth-child(2){
+      opacity: ${({nav}) => (nav ? "0" : "1")}
+    } 
+    
+    :nth-child(3){
+      transform: ${({nav}) => (nav ? 'rotate(-45deg)': 'rotate(0)')}
+    }
+  }  
+`
+```
+
+Make sure it is outside your page component. In the last tutorial it was named the "Home" component.
+
+## Create the menu links in our hamburger button ##
+
+This contains the look and feel of the menu display when we click on the hamburger icon. Important thing to note is we are keeping the
+position of the menu fixed!
+
+Else it will not stay fixed on the page when the user scrolls up and down. Also we I have set the value of z-index to 998 so
+it can wrap over any other elements on the page.
+
+```jsx
+
+
+const Menulinks = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  width: 25%;
+  position: fixed;
+  transition: 300ms;
+  background-color: black;
+  top: 0;
+  right: 0;
+  z-index: 998;
+  transform: ${({ nav }) => (nav ? "translateX(0)" : "translateX(100%)")};
+
+  ul{
+    list-style-type: none;
+  }
+
+  li{
+    margin-top: 1rem
+  }
+
+   a{
+     text-decoration: none; 
+     color: white;
+     font-size: 1.5rem;
+     transition: color 300ms;
+   }
+
+  :hover {
+    color: #6ab4ff    
+  }
+`
+```
