@@ -15,7 +15,7 @@ But you don't want to host the blogs on a hosting service when you have a workin
 
 1. You may want to monetize it.
 2. Even if you don't make anything you can get some reputation in the job market.
-3. When you have enough content Google will allow you to use google Addsense so you can make some money when someone visits your site.
+3. When you have enough content Google will allow you to use google Adsense so you can make some money when someone visits your site.
 
 I used my domain on a github Pages repo but because I had no blogging engine I had to manually enclose every single paragraph in html tags.
 
@@ -60,8 +60,6 @@ Then simply open index.html in the root folder and go to the button below on the
 <br>
 <img src="../images/AttachGatsbySSGToWebsite/joshuaFlukeOriginalPortfolio.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/><br>
 
-
-
 ## Generate the Gatsby site template ##
 
 But first we need to generate the template we are going to use to build the Gatsby site. We do this in the command line.
@@ -78,7 +76,7 @@ This is optional if you want to update the Gatsby CLI.
 npm install -g gatsby-cli
 ```
 
-You will be directed to go through a series of prompts in the once you install.
+You will be directed to go through a series of prompts in the Gatsby template you install.
 
 ```
 What would you like to call your site?
@@ -114,7 +112,7 @@ When it asks if you want to add a styling system, your answer is likely no unles
 · No (or I'll add it later)
 ```
 
-In this case we are using a HTML5Up theme with some Unsplash photos so we want to reuse the theme we made. Not have to create a new one and fiddle with the styling. Select no.
+In this case we are using a HTML5Up theme with some Unsplash photos so we want to reuse the theme we got. Not have to create a new one and fiddle with the styling. Select no.
 
 Now just select done. We can install plugins later.
 
@@ -151,7 +149,7 @@ If that didn't work then you may need to run it from the package manager.
 npm run develop
 ```
 
-Hoped either of those commands worked. When this appears `http://localhost:8000/` in the terminal click on it and it should give you the default gatsby page great. You can keep the Gatsby server running in the background. If you need to restart it just hold Ctrl + c to terminate it. Have a look at the generated boiler plate code in `src/pages/index.js`. After that let's delete all that code in index.js. Keep the file though.
+Hoped either of those commands worked. When this appears `http://localhost:8000/` in the terminal click on it and it should give you the default gatsby page. You can keep the Gatsby server running in the background. If you need to stop it just hold Ctrl + c to terminate it. Have a look at the generated boilerplate code in `src/pages/index.js`. After that let's delete all that code in index.js. Keep the file though.
 
 ## Do NOT move the Gatsby files around ##
 
