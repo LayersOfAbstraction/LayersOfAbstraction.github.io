@@ -17,7 +17,7 @@ In the previous blog we learned how to convert a website from HTML with css to G
 ## Perquisites ##
 
 -You should already know how to compile Gatsby. If you do not then please see [my previous blog.]({% link _posts/../0001-01-14-AttachGatsbySSGToWebsite_p2.md %})
--You should know about CSS especially the difference bettween internal and external style sheets.
+-You should know about CSS especially the difference between internal and external style sheets.
 -You should know about HTML DOM.
 
 ## Sorry no jQuery ##
@@ -26,7 +26,7 @@ jQuery does not know of React's existence so it can cause conflicts as jquery ma
 
 I cannot take full credit for how to create the sidebar. Only how to abstract it! I learned how to do it here but had to adjust a few properties and colours that were not present [in the tutorial.](https://www.youtube.com/watch?v=6cb56Luubd4)
 
-When we open the red encircled hamburger icon and open it we want to open the headings on the page so we can go back to other pages.
+When we open the red encircled hamburger icon we want the sidebar to appear with the headings on the page so we can go back to other pages.
   
 We want that to appear as well in the white section at the top if the screen is not minimized. You can't see the white space where I have encircled it but if you were to fully maximize the web page, you would see it.
 
@@ -52,13 +52,13 @@ module.exports = {
 
 ## Create the minimized Hamburger button with styled components ##
 
-We are going to create a styled component inside our index.js file. 
+We are going to create a styled component inside our index.js file.
 In your index.js file add this to your imports list.
 
 ```jsx
 import styled, {createGlobalStyle} from "styled-components"
 ```
-Place this just below your imports. You may find this to be similar to internal CSS styles. We will abstract them later. 
+Place this just below your imports. You may find this to be similar to internal CSS styles. We will abstract them later.
 
 Here we are overriding any default styling using the createGlobalStyle component so it will apply any styles from our sidebar to all the pages we use it in. Hope that makes sense?
 
@@ -77,7 +77,7 @@ Now we create the style component Hamburger button. We will call it MenuIcon.
 We are fixing it the page regardless of where user scrolls.
 Keep in mind inside MenuIcon we are setting the z-index value at 999 so when the sidebar is toggled open, the hamburger icon will wrap over it.
 
-The first-child is creating the first bar while nth-child(2) and nth-child(2) donote the 2nd and third hamburger bars.
+The first-child is creating the first bar while nth-child(2) and nth-child(2) are the 2nd and third hamburger bars of the icon.
 
 The transform property is holding instructions for the bars to turn into an x shape upon the user clicking it.
 
@@ -169,3 +169,5 @@ const Menulinks = styled.nav`
   }
 `
 ```
+
+We have now finished the initial style of the styled components! Now we have to declare the variables.
