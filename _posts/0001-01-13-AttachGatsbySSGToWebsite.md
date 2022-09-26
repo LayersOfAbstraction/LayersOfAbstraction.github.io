@@ -149,7 +149,7 @@ If that didn't work then you may need to run it from the package manager.
 npm run develop
 ```
 
-Hoped either of those commands worked. When this appears `http://localhost:8000/` in the terminal click on it and it should give you the default gatsby page. You can keep the Gatsby server running in the background. If you need to stop it just hold Ctrl + c to terminate it. Have a look at the generated boilerplate code in `src/pages/index.js`. After that let's delete all that code in index.js. Keep the file though.
+Hoped either of those commands worked. When this appears `http://localhost:8000/` in the terminal click on it and it should give you the default gatsby page. You can keep the Gatsby server running in the background. If you need to stop it just hold Ctrl + c to terminate it. Have a look at the generated boilerplate code in `src/pages/index.js`. After that let's delete all that code in index.js. Keep the file though!
 
 ## Do NOT move the Gatsby files around ##
 
@@ -161,7 +161,7 @@ An arduous task? There is a way to ease the transformation. In fact most what yo
 
 We can use Find and Replace for some of these words later which we will do but there is a better way though which takes some of the effort away especially when you are new to React styled blogging frameworks. [Use transform](https://transform.tools/html-to-jsx).
 
-We will take a bottom up approach here. Copy your entire index.html file into the HTML window of the transform page and you should see the resulting transformed code in the JSX section. Here is a copy of the HTML. 
+We will take a bottom up approach here. Copy your entire index.html file into the HTML window of the transform page and you should see the resulting transformed code in the JSX section. Here is a copy of the HTML.
 
 Yes I know, the indentation is off but that's how it came shipped, free.
 
