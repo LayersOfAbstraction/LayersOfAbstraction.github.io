@@ -170,4 +170,41 @@ const Menulinks = styled.nav`
 `
 ```
 
-We have now finished the initial style of the styled components! Now we have to declare the variables.
+We have now finished the initial style of the styled components! Now we have to declare and export them!
+
+## Declaring and exporting styled components in our sidebar ##
+
+In your page component just under `const Home = () => {` please add the following.
+
+```jsx
+const [nav, showNav] = useState(false)
+```
+
+now under your jsx "wrapper" tag you should add this. Copy and paste it.
+
+```jsx
+<Global />
+<MenuIcon nav={nav} onClick={() => showNav(!nav)}>
+  {/* Each <div> corresponds to the 3 bars*/}
+  <div/>
+  <div/>
+  <div/>
+</MenuIcon>
+
+<Menulinks nav={nav}>
+  <ul>
+    <Link to="#">Blog</Link>
+  </ul>
+  <ul>
+    <Link to="#">home</Link>
+  </ul>
+  <h3>Social</h3>
+  {/* Sidebar Icon list*/}
+  <ul className="icons alt">
+    <li><Link to="#" class="icon alt fa-twitter"><span class="label">Twitter</span></Link></li>
+    <li><Link to="#" class="icon alt fa-facebook"><span class="label">Facebook</span></Link></li>
+    <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+    <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+  </ul>
+</Menulinks> 
+```
