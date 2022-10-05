@@ -208,3 +208,8 @@ now under your jsx "wrapper" tag you should add this. Copy and paste it.
   </ul>
 </Menulinks> 
 ```
+
+When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track.
+
+## Abstract the component to it's own file ##
+
