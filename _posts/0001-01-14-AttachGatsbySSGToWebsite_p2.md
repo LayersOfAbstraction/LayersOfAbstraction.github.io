@@ -209,7 +209,12 @@ now under your jsx "wrapper" tag you should add this. Copy and paste it.
 </Menulinks> 
 ```
 
-When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track.
+When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track. I will not be doing that however for these tutorials.
 
 ## Abstract the component to it's own file ##
 
+In your src folder, create a `Components` folder. Imagine if you had a gaming console with controllers hardwired to it. Wouldn't it be cool if you could have them as a separate component to the console just like with a TV remote control?
+
+Even better what if you could reuse the same wireless gaming controllers for other consoles like at your friends place? That's the great thing with components. We can make the sidebar more portable.
+
+Create a file in the components folder. Call it `sidebar.js`. The code we have created for the sidebar can just be cut and pasted into it. Yep that means all the code in this tutorial from before this heading can be cut and pasted into that file. But what I will do first is show you how to create the component structure to hold the code.
