@@ -8,7 +8,7 @@ layout: post
 ## Introduction
 
 <img src="../images/InstallJekyllOnWSL/software-417880_960_720.jpg" class="image fit" alt="software cardboad pack"/><br>
-*Photo by [Gerd Altmann](https://pixabay.com/users/geralt-9301/) on pixabay*
+*Photo by [Jay S](https://unsplash.com/@jay_s28) on Unsplash*
 
 - In this tutorial you will configure Windows 10 to use the Jekyll SSG (Static Site Generator) on WSL (Windows Subsystem for Linux).
 - If you do not want to install Linux or in a virtual machine just to use Jekyll, then good news you can use WSL on Windows!
