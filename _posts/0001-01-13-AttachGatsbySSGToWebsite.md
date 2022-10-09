@@ -1,11 +1,16 @@
 ---
-title: "How to turn your web portfolio into personal blogging website with Gatsby"
+title: "How to turn your website portfolio into a blogging website with Gatsby"
 date: "2022-05-28"
 published: false
 layout: post
 ---
 
-## What is this for? ##
+## Introduction ##
+
+<img src="../images/AttachGatsbySSGToWebsite/adeolu-eletu-ohh8ROaQSJg-unsplash.jpg" class="image fit" alt="Photo through a window into a green garden in the UK"/><br>
+
+*Photo by <a href="https://unsplash.com/@adeolueletu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Adeolu Eletu</a> on <a href="https://unsplash.com/s/photos/window?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*
+  
 
 A few years back I watched a [video by Joshua Fluke](https://www.youtube.com/watch?v=u-RLu_8kwA0) that taught me how to host a git repo as a GitHub Pages portfolio website without paying any money.
 
@@ -15,12 +20,12 @@ But you don't want to host the blogs on a hosting service when you have a workin
 
 1. You may want to monetize it.
 2. Even if you don't make anything you can get some reputation in the job market.
-3. When you have enough content Google will allow you to use google Adsense so you can make some money when someone visits your site.
+3. When you have enough content Google will allow you to use Google Adsense so you can make some money when someone visits your site.
 
-I used my domain on a github Pages repo but because I had no blogging engine I had to manually enclose every single paragraph in html tags.
+I used my domain on a github Pages repo but because I had no blogging engine. I had to manually enclose every single paragraph in html tags.
 
 To get around that I used Jekyll which works well but if you want to learn React or have trouble grasping the concepts that's where
-you can use Gatsby to not only write awesome blogs but also learn about React components on the side and syntax.
+you can use Gatsby to not only write awesome blogs and learn about React syntax but you can abstract the UI into separate loosely coupled and high cohesive components.
 
 ## Exciting! How to get started? ##
 
