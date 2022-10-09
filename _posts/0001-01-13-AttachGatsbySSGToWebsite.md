@@ -9,8 +9,7 @@ layout: post
 
 <img src="../images/AttachGatsbySSGToWebsite/adeolu-eletu-ohh8ROaQSJg-unsplash.jpg" class="image fit" alt="Photo through a window into a green garden in the UK"/><br>
 
-*Photo by <a href="https://unsplash.com/@adeolueletu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Adeolu Eletu</a> on <a href="https://unsplash.com/s/photos/window?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*
-  
+Photo by [Adeolu Eletu]("https://unsplash.com/@adeolueletu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText") Unsplash.  
 
 A few years back I watched a [video by Joshua Fluke](https://www.youtube.com/watch?v=u-RLu_8kwA0) that taught me how to host a git repo as a GitHub Pages portfolio website without paying any money.
 
@@ -31,7 +30,7 @@ you can use Gatsby to not only write awesome blogs and learn about React syntax 
 
 So today we are going to use a portfolio website from Joshua Fluke's original tutorial and turn it into a blogging platform.
 
-And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I will give you a link to his repository []()
+And who knows maybe he will make a video about that himself. For now we are going to expand on what has already been done. So I will give you a link to his repository.
 
 ## Install the dependencies ##
 
