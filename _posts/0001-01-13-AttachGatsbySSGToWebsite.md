@@ -1,5 +1,5 @@
 ---
-title: "How to turn your website portfolio into a blogging website with Gatsby"
+title: "How to turn your portfolio into a blogging website with Gatsby"
 date: "2022-05-28"
 published: false
 layout: post
