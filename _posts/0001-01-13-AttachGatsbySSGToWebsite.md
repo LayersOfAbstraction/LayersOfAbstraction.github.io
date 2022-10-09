@@ -9,7 +9,7 @@ layout: post
 
 <img src="../images/AttachGatsbySSGToWebsite/adeolu-eletu-ohh8ROaQSJg-unsplash.jpg" class="image fit" alt="Photo through a window into a green garden in the UK"/><br>
 
-Photo by [Adeolu Eletu]("https://unsplash.com/@adeolueletu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText") Unsplash.  
+Photo by [Adeolu Eletu](https://unsplash.com/@adeolueletu?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) Unsplash.  
 
 A few years back I watched a [video by Joshua Fluke](https://www.youtube.com/watch?v=u-RLu_8kwA0) that taught me how to host a git repo as a GitHub Pages portfolio website without paying any money.
 
