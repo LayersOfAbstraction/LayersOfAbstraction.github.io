@@ -1,7 +1,7 @@
 ---
 title: "How to install Jekyll on WSL"
 date: "2022-09-11"
-published: false
+published: true
 layout: post
 ---
 
