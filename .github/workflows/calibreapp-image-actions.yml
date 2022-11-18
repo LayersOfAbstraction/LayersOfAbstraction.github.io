@@ -15,8 +15,6 @@ on:
       - '**.webp'
       - '**.gif'
   push:
-    branches:
-      - compress-images
     paths:
       - '**.jpg'
       - '**.jpeg'
