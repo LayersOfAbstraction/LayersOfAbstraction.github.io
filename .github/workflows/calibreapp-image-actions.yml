@@ -16,7 +16,7 @@ on:
       - '**.gif'
   push:
     branches:
-      - main
+      - compress-images
     paths:
       - '**.jpg'
       - '**.jpeg'
