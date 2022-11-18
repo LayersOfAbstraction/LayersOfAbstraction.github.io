@@ -2,10 +2,10 @@
 # - on Pull Requests containing images (not including forks)
 # - on pushing of images to `main` (for forks)
 # - on demand (https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/)
-# - at 11 PM every Sunday in anything gets missed with any of the above scenarios
 # For Pull Requests, the images are added to the PR.
 # For other scenarios, a new PR will be opened if any images are compressed.
 name: Compress images
+run-name: ${{ github.actor }} is testing out
 on:
   pull_request:
     paths:
@@ -13,6 +13,7 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.webp'
+      - '**.gif'
   push:
     branches:
       - main
@@ -21,6 +22,7 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.webp'
+      - '**.gif'
   workflow_dispatch:
 jobs:
   build:
@@ -38,7 +40,7 @@ jobs:
         id: calibre
         uses: calibreapp/image-actions@main
         with:
-          githubToken: ${{ REPO_PROVIDER_TOKEN }}
+          githubToken: ${{ secrets.REPO_PROVIDER_TOKEN }}
           # For non-Pull Requests, run in compressOnly mode and we'll PR after.
           compressOnly: ${{ github.event_name != 'pull_request' }}
       - name: Create Pull Request
