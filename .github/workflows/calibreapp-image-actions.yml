@@ -23,7 +23,6 @@ on:
       - '**.png'
       - '**.webp'
       - '**.gif'
-  workflow_dispatch:
 jobs:
   build:
     name: calibreapp/image-actions
