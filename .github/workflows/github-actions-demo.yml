@@ -3,8 +3,12 @@ on:
   push:
     branches:
       - compress-images
-    paths:
-          - '**.png'
+#       The workflow does not work when we run 
+    paths: 
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
 jobs:
   build:
     # Only run on Pull Requests within the same repository, and not from forks.
