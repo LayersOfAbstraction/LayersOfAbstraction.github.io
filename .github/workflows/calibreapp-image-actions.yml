@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+      
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
         
