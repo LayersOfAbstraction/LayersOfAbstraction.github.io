@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - compress-images
+    paths:
+          - '**.png'
 jobs:
   build:
     # Only run on Pull Requests within the same repository, and not from forks.
