@@ -637,19 +637,24 @@ You are getting near to rendering that home page in React. Great job if you made
 ## Change from `a href` to `Link to` ##
 
 
-Gatsby has the `<Link>` component to allow for site navigation.
-All you need to know is it behaves like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link.
+Gatsby has the `<Link to>` component to allow for internal site navigation.
 
-Now rather than swap every single  `<a href >` for `<Link to>` we just use CTRL + F + H. Some of you likely already know this. But I will give a quick rundown.
+All you need to know is it behaves like the anchor `<a>` element except there are performance bonuses, and the content from the link is already retrieved before the user clicks on the link as soon as it enters their viewport (which is their screen area).
 
-In your IDE/text editor there should be a Find and replace option and you should have a `match whole word` option selected. I am using Visual Studio Code to do this. Place `a` in the first box and `Link` in the second and press the enter key.
+Keep in mind the `<Link to>` tags are used for internal links only to pages such as our site blogs. So `<a href>` can still be used for external links that may be our social media pages or repositories for projects we put up on Github.
 
-Your IDE/text editior should have replaced `a` for `Link`. Now let us replace `href` for `to` using the same technique.
+Don’t forget to import the link component. To import it we must use Gatsby’s `{Link}` component like so.
 
-That will not be enough without importing the link component.  To import it we must use Gatsby's `{Link}` component like so.
+`import {Link} from "gatsby"`
 
-```jsx
-import {Link} from "gatsby"
-```
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ you should see the page render.
 
-Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to Gatsby!
+Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
+
+[Joshua Fluke’s Github Page Tutorial Video](https://www.youtube.com/watch?v=u-RLu_8kwA0)
+
+[Repo of Joshua Fluke’s Github Pages Portfolio Used for This Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
+[Gatsby’s Official Site for Installing It](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
+[Transform. The Site Helps Convert a HTML Webpage to JSX](https://transform.tools/html-to-jsx)
