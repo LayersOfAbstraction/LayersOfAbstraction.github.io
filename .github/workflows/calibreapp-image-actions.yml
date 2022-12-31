@@ -1,8 +1,8 @@
-name: Compress Images on Push to main branch
+name: Compress Images on Push to compress-image branch
 on:
   push:
     branches:
-      - master
+      - compress-images
     paths:
       - '**.jpg'
       - '**.jpeg'
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Compress Images
         id: calibre
-        uses: calibreapp/image-actions@main
+        uses: calibreapp/image-actions@compress-images
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: true
