@@ -1,13 +1,5 @@
 name: Compress Images on Push to main branch
-on:
-  push:
-    branches:
-      - compress-images
-    paths:
-      - '**.jpg'
-      - '**.jpeg'
-      - '**.png'
-      - '**.webp'
+on: [push]
 jobs:
   build:
     name: calibreapp/image-actions
