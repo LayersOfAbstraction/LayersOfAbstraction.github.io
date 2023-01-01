@@ -634,7 +634,8 @@ So for each of those paths including the quotes, do a find and replace (CTRL + F
 
 You are getting near to rendering that home page in React. Great job if you made it this far! When you start replacing these images with your own, look to see here how you can make it more accessible to people who are vision impaired. The answer is easier than you think. Just put some text in the alt field so their screen reader tells them what the image is about when they hover over it.
 
-## Change from `a href` to `Link to` ##
+## `<a href>` vs `<Link to>` ##
+
 
 
 Gatsby has the `<Link to>` component to allow for internal site navigation.
@@ -650,6 +651,19 @@ Don’t forget to import the link component. To import it we must use Gatsby’s
 Now fire up the Gatsby development server and navigate to http://localhost:8000/ you should see the page render.
 
 Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
+
+[Joshua Fluke’s Github Page Tutorial Video](https://www.youtube.com/watch?v=u-RLu_8kwA0)
+
+[Repo of Joshua Fluke’s Github Pages Portfolio Used for This Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
+[Gatsby’s Official Site for Installing It](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
+
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to Gatsby!
+
+Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
+
+## Resources
 
 [Joshua Fluke’s Github Page Tutorial Video](https://www.youtube.com/watch?v=u-RLu_8kwA0)
 
