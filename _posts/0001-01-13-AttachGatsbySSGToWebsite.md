@@ -637,16 +637,27 @@ You are getting near to rendering that home page in React. Great job if you made
 ## `<a href>` vs `<Link to>` ##
 
 
-Gatsby has the `<Link>` component to allow for site navigation.
-All you need to know is it behaves like the anchor `<a>` element except there are performance bonuses, the content from the link is already retrieved before the user clicks on the link  as soon as it enters their viewport (which is their screen area).
+
+Gatsby has the `<Link to>` component to allow for internal site navigation.
+
+All you need to know is it behaves like the anchor `<a>` element except there are performance bonuses, and the content from the link is already retrieved before the user clicks on the link as soon as it enters their viewport (which is their screen area).
 
 Keep in mind the `<Link to>` tags are used for internal links only to pages such as our site blogs. So `<a href>` can still be used for external links that may be our social media pages or repositories for projects we put up on Github.
 
-Don’t forget to import the link component. To import it we must use Gatsby’s {Link} component like so.
+Don’t forget to import the link component. To import it we must use Gatsby’s `{Link}` component like so.
 
-```jsx
-import {Link} from "gatsby"
-```
+`import {Link} from "gatsby"`
+
+Now fire up the Gatsby development server and navigate to http://localhost:8000/ you should see the page render.
+
+Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
+
+[Joshua Fluke’s Github Page Tutorial Video](https://www.youtube.com/watch?v=u-RLu_8kwA0)
+
+[Repo of Joshua Fluke’s Github Pages Portfolio Used for This Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
+[Gatsby’s Official Site for Installing It](https://www.gatsbyjs.com/docs/tutorial/part-0/)
+
 
 Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to Gatsby!
 
