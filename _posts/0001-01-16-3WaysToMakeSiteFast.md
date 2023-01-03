@@ -1,5 +1,5 @@
 ---
-title: "Top 3 ways to make your website faster in 2023"
+title: "3 ways to make your website faster in 2023"
 date: "2023-01-1"
 published: false
 layout: post
@@ -11,6 +11,8 @@ layout: post
 
 # Minification
 
-# YAGNI (You aren't gonna need it)
+# Reducing unused functionality
 
 A programmer should not add functionality until deemed necessary.
+
+# Google Lighthouse
