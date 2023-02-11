@@ -261,13 +261,13 @@ I am going to install DataTables on the front end which is an open source jQuery
 We just have to reference the jQuery and css libraries from DataTables Content Delivery Network. Add the following code to the head in our _Layout.cshtml file. 
 
 ```html
- <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+ <link rel="stylesheet" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"/>
 ```
 
 In our _Layout.cshtml notice I have added this under the footer in the body with all the other scripts. Make sure you load it AFTER any jquery libraries you have in your project. I put mine just above the `@RenderSection` tag.
 
-```
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+```html
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 ```
 
 ## Call DataTables Library in Views/Home/Index.cshtml ##
@@ -315,17 +315,17 @@ Go to Views under the Home folder open Index.cshtml and match the code with this
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
             <div class="form-group">
                 <label asp-for="UserFirstName" class="control-label"></label>
-                <input id="UFirstNameInput" readonly="true" asp-for="UserFirstName" class="form-control"/>
+                <input id="UFirstNameInput" readonly asp-for="UserFirstName" class="form-control"/>
                 <span asp-validation-for="UserFirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserLastName" class="control-label"></label>
-                <input id="ULastNameInput" readonly="true" asp-for="UserLastName" class="form-control"/>
+                <input id="ULastNameInput" readonly asp-for="UserLastName" class="form-control"/>
                 <span asp-validation-for="UserLastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserContactEmail" class="control-label"></label>
-                <input id="UEmailInput" readonly="true" asp-for="UserContactEmail" class="form-control"/>
+                <input id="UEmailInput" readonly asp-for="UserContactEmail" class="form-control"/>
                 <span asp-validation-for="UserContactEmail" class="text-danger"></span>
             </div>
             <div class="form-group">
