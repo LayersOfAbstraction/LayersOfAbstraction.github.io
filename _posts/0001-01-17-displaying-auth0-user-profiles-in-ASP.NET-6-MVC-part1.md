@@ -18,17 +18,11 @@ Login to Auth0 Dashboard.
 
 If you are new to Auth0 I highly recommend you create a [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
 
-You can learn to use Auth0 by using [the quickstart written in .NET 6.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3) 
+You can learn to use Auth0 by using [the quickstart written in .NET 6.](https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/tree/master/Quickstart/Sample) 
 
-I have migrated it into a [simple starter sample in .NET 6 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part1 dotnet6_p1) you can use alongside this blog. 
+The complete code for this blog is in a our [Solution application called the Auth0UserProfileDisplayStarterKit](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part1 dotnet6_p1) you can use alongside this blog. 
 
-Afterwards you will have two ways of completing this tutorial. 
-
-1. You can attempt to use the quickstart to match all the code I display in this blog. 
-
-2. You can download my Auth0UserProfileDisplayStarterKit and do minimal amount of work to change things around to match.
-
-I recommend you pick option 2 and use my starter kit to complete this tutorial and keep things stupid simple. But if you feel you still don't understand after it, you can pick option 1. 
+You can attempt to use the Auth0 quickstart to match all the code I display in this blog. I recommend you use their quickstart before hand to get an understanding of how their product integrates with ASP.NET 6 if you haven't already. 
 
 ## Create Application on the Auth0 server ##
 
@@ -98,14 +92,13 @@ In case you are starting a project from scratch instead of using my Auth0UserPro
 
 Now it should have installed Auth0 Management API into your project. We have declared the Management API namespace in the C# controller where we are going to render the users. 
 
-We do this in HomeController in the sample you downloaded. Go to `HomeController.cs` now and add the Auth0 Management API namespace.
+We do this in HomeController in the sample you downloaded. Create a `data` folder add a class called `GlobalNamespaces.cs`. We will add global "usings" as .NET 6 allows us to have global namespaces declared once to avoid repetition. The following code is to use the Auth0 Management API namespace. The namespace is going to help us the Auth0 `ManagementApiClient` class. 
 
+```csharp
+global using Auth0.ManagementApi;
 ```
-using Auth0.ManagementApi;
-```
 
-If you have some familiarity with Object Orientated Programming you will know that we need to instance a class in order to use it. We need to do that with the ManagementApiClient class.  
-
+This for example is how we will instance the class with the token and tenant name.
 ```
 // Replace YOUR_AUTH0_DOMAIN with the domain of your Auth0 tenant, e.g. mycompany.auth0.com
 var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN");
@@ -113,8 +106,7 @@ var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN
 
 You should already replace the dummy domain name with the one for your tenant. If you forgot, you just need to go back up the page. I provide all the steps for that. 
 
-
-It's more tricky with generating the API JSON Web Tokens (JWTs) and inputting the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
+Now go to `HomeController.cs` It's more tricky with generating the API JSON Web Tokens (JWTs) and inputting the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
 Let's do that now. 
 
 I assume you want to create a token that auto-renews. For that matter we need to create a production token which I plan to show in the next tutorial. But if you want to create a test token I will already show you how to do that.
@@ -133,11 +125,15 @@ Make sure you set the tokens to a max of 2592000.
 
 ## Create our model fields to bind the Auth0 user data to ##
 
-We are going to start with our ASP.NET application and ensure it can connect to our Auth0 server. Go to the models folder if you're using the start kit I made, it should show this model.
-```
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+In `GlobalNamespaces.cs` add these namespaces.
 
+```csharp
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.ComponentModel.DataAnnotations;
+```
+
+We are going ensure our ASP.NET application can connect to our Auth0 server. Go to the models folder if you're using the starter kit I made, it should show this model. Else create it.
+```csharp
 namespace Auth0UserProfileDisplayStarterKit.ViewModels
 {
     public class User
@@ -186,8 +182,7 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Country")]
         [Column("UserCountry")] 
-        public string UserCountry {get;set;}
-        
+        public string UserCountry {get;set;}        
         
         [Phone()]
         [Display(Name = "Mobile Number")]
@@ -207,17 +202,9 @@ namespace Auth0UserProfileDisplayStarterKit.ViewModels
 
 ## Bind Token to our ASP.NET client application ##
 
-Now that you have generated the token it is time to copy it into a class. Let's create the class in the Models called ConstantString. Yes there are safer methods of doing this which I will cover in the next tutorial. For now let's keep it simple and keep this out of source control at all costs! If you accidentally commit it, you can also rotate the secret in the Auth0 dashboard so the token value is no longer functional.  
+Now that you have generated the token it is time to copy it into a class. Let's create a Models folder the class in the models called ConstantString. Yes there are safer methods of doing this which I will cover in the next tutorial. For now let's keep it simple and keep this out of source control at all costs! If you accidentally commit it, you can also rotate the secret in the Auth0 dashboard so the token value is no longer functional.  
 
-```
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Web;
-
+```csharp
 namespace Auth0UserProfileDisplayStarterKit.Models
 {  
     public static class ConstantStrings
@@ -237,43 +224,47 @@ This is how we are going to do that.
 
 ## Call the token in our controller ##
 
+Make sure you have inserted these statements in our `GlobalNamespaces` at the top of the HomeController.cs class and have inserted this code. 
 
-If you are starting from scratch make sure you have inserted these statements at the top of the HomeController.cs class and have inserted this code. 
+```csharp
+global using Auth0.ManagementApi;
+global using Auth0UserProfileDisplayStarterKit.ViewModels;
+```
 
-```
-using Auth0.ManagementApi;
-using Auth0UserProfileDisplayStarterKit.ViewModels;
-```
-```
-public async Task <IActionResult> GetAllAuth0Users()
-{
-    //Get token
-    var apiClient = new ManagementApiClient(Pitcher.Models.ConstantStrings.strToken, new Uri ("https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"));
-    //Get Auth0 Users
-    var allUsers = await apiClient.Users.GetAllAsync(new Auth0.ManagementApi.Models.GetUsersRequest(), new Auth0.ManagementApi.Paging.PaginationInfo());
-    var renderedUsers = allUsers.Select(u => new User
-    {                
-        UserFirstName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[0] : "no space",
-        UserLastName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[1] : "no space",
-        UserContactEmail = u.Email
-    }).ToList();
+Add the following code
 
-    return Json(renderedUsers);
-}
-```
-The code will act as the bridge between Auth0 and our client application and will retrieve our user profiles from Auth0 when a client sends a request from this client application. So we have created the backend server code. Now we have to create the client View cshtml file. 
+ `HomeController.cs` add this method.
 
-I am going to install DataTables on the front end which is an open source javascript library capable of integrating advanced functionality into the front end of our project. 
+```csharp
+        public async Task<IActionResult> GetAllAuth0Users()
+        {
+            //Get token
+            var apiClient = new ManagementApiClient(Auth0UserProfileDisplayStarterKit.Models.ConstantStrings.strToken, 
+                new Uri("https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"));            
+            //Get Auth0 Users
+            var allUsers = await apiClient.Users.GetAllAsync(new Auth0.ManagementApi.Models.GetUsersRequest(), new Auth0.ManagementApi.Paging.PaginationInfo());
+            var renderedUsers = allUsers.Select(u => new Auth0UserProfileDisplayStarterKit.ViewModels.User
+            {
+                UserFirstName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[0] : "no space",
+                UserLastName = u.FullName.Contains(' ') ? u.FullName.Split(' ')[1] : "no space",
+                UserContactEmail = u.Email
+            }).ToList();
+            return Json(renderedUsers);
+        }
+```
+The code will allow the Auth0 Management API to communicate with ASP.NET and will retrieve our user profiles from Auth0 when a client sends a request. So we have created the backend server code. Now we have to create the client View cshtml file. 
+
+I am going to install DataTables on the front end which is an open source jQuery library capable of integrating advanced functionality into the front end of our project. 
 
 ## Call DataTables library in _Layout ##
 
-We just have to reference the javascript and css libraries from DataTables Content Delivery Network. Add the following code to the head in our _Layout.cshtml file. 
+We just have to reference the jQuery and css libraries from DataTables Content Delivery Network. Add the following code to the head in our _Layout.cshtml file. 
 
-```
+```html
  <link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
 ```
 
-In our starter kit notice I have added this under the footer in the body with all the other scripts. Make sure you load it AFTER any jquery libraries you have in your project. I put mine just above the `@RenderSection` tag.
+In our _Layout.cshtml notice I have added this under the footer in the body with all the other scripts. Make sure you load it AFTER any jquery libraries you have in your project. I put mine just above the `@RenderSection` tag.
 
 ```
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
@@ -281,9 +272,9 @@ In our starter kit notice I have added this under the footer in the body with al
 
 ## Call DataTables Library in Views/Home/Index.cshtml ##
 
-Go to Views in Auth0UserProfileDisplayStarterKit and under the Home folder open Index.cshtml This code should be there.
+Go to Views under the Home folder open Index.cshtml and match the code with this.
 
-```
+```html
 @model Auth0UserProfileDisplayStarterKit.ViewModels.User
 @{
     ViewData["Title"] = "Home Page";
@@ -438,7 +429,7 @@ Go to Views in Auth0UserProfileDisplayStarterKit and under the Home folder open 
 
 I'll break it all down for you. We are creating the cshtml layout of the DataTable that will contain all the Auth0 users. The users are from the Auth0 dashboard that are connected to and can be accessed from this application.
 
-```
+```html
 <h1>Auth0 Users</h1>
 <p>Please select Auth0 user from table and enter any additional information into database.</p>
 <table id ="auth0UsersTable" style="width: 200px;">
@@ -466,7 +457,7 @@ Further along we create a form full of textboxes. The ones you really need to pa
 
 Go down to the asp.net @Section tag and observe this script. 
 
-```
+```js
 $.fn.dataTable.ext.errMode = 'throw';
 var Auth0Table = $('#auth0UsersTable').DataTable({
         "ajax": {
@@ -489,7 +480,7 @@ If you have done everything correctly up to this point, this should occur.
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/CompleteProject.gif" class="image fit" alt="Application_Complete"/>
 
-Simply put this will render the table if you have done two thing:
+Simply put this will render the table if you have done two things:
 
 1. Change the value of strToken with your own token into the the ConstantStrings class we talked about earlier.
 
