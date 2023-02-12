@@ -240,7 +240,7 @@ Add the following code
         {
             //Get token
             var apiClient = new ManagementApiClient(Auth0UserProfileDisplayStarterKit.Models.ConstantStrings.strToken, 
-                new Uri("https://dev-dgdfgfdgf324.au.auth0.com/api/v2/"));            
+                new Uri("{DOMAIN}"));            
             //Get Auth0 Users
             var allUsers = await apiClient.Users.GetAllAsync(new Auth0.ManagementApi.Models.GetUsersRequest(), new Auth0.ManagementApi.Paging.PaginationInfo());
             var renderedUsers = allUsers.Select(u => new Auth0UserProfileDisplayStarterKit.ViewModels.User
