@@ -20,13 +20,13 @@ If you are new to Auth0 I highly recommend you create a [account](https://auth0.
 
 You can learn to use Auth0 by using [the quickstart written in .NET 6.](https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/tree/master/Quickstart/Sample) 
 
-The complete code for this blog is in a our [Solution application called the Auth0UserProfileDisplayStarterKit](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part1 dotnet6_p1) you can use alongside this blog. 
+The complete code for this blog is in a our [Solution application called the Auth0UserProfileDisplayStarterKit](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet6_p1) you can use alongside this blog. 
 
 You can attempt to use the Auth0 quickstart to match all the code I display in this blog. I recommend you use their quickstart before hand to get an understanding of how their product integrates with ASP.NET 6 if you haven't already. 
 
 ## Create Application on the Auth0 server ##
 
-Look at `appsettings.json` in you client app and make sure you replace the Domain Name, ClientID and ClientSecret with the one you have made for your application you have made in the Auth0 server. If you do not know how to do that:
+Look at `appsettings.json` in you client app and make sure you replace the Domain Name and ClientID  with the one you have made for your application you have made in the Auth0 server. If you do not know how to do that:
 
 1. Go to Auth0 Dashboard and select Applications. And under that select Applications and then pick a name like "User_Profile_Client_Display_App"
 or My App.
@@ -99,7 +99,7 @@ global using Auth0.ManagementApi;
 ```
 
 This for example is how we will instance the class with the token and tenant name.
-```
+```csharp
 // Replace YOUR_AUTH0_DOMAIN with the domain of your Auth0 tenant, e.g. mycompany.auth0.com
 var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN");
 ```
@@ -453,7 +453,7 @@ I'll break it all down for you. We are creating the cshtml layout of the DataTab
 
 ```
 
-Further along we create a form full of textboxes. The ones you really need to pay attention to are the ones with the Input id of UFirstNameInput, ULastNameInput and UEmailInput. Why those? I will explain in a second.
+Further along we create a form full of textboxes. The ones you really need to pay attention to are the ones with the Input id of UFirstNameInput, ULastNameInput and UEmailInput. Why those? Because theu will contain the values directly from the Auth0 User Profiles retrieved by the Auth0ManagementAPI.
 
 Go down to the asp.net @Section tag and observe this script. 
 
@@ -484,13 +484,15 @@ Simply put this will render the table if you have done two things:
 
 1. Change the value of strToken with your own token into the the ConstantStrings class we talked about earlier.
 
-2. Changed all the values of "Domain","ClientId" and "ClientSecret"
-to match the values of your Auth0 dashboard by going to "Applications"
-"Your application Name" and going to Settings and then copying the "Domain","ClientId" and "ClientSecret" values from their server to your appsettings.json file. 
+2. Changed all the values of "Domain" and "ClientId" to match the values of your Auth0 dashboard by going to "Applications". Then "Your application Name" and going to Settings and then copying the "Domain" and"ClientId" values from their server to your appsettings.json file. 
 
 
 If you followed along with this tutorial that's really all you need to do in the client application. Most of the work you did was setting up everything in the Auth0 dashboard.
 
-Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the Microsoft tutorials how to handle Data Access in their ASP.NET 5 Contoso University sample application. [Next blog here I will show how to use a Production Token so we don't have to manually renew the Testing token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) Stay tuned I will insert a link here when I'm ready!
+Hoped that worked. You should be able to hook this up to a database easily if you have learned how to already do in the Microsoft tutorials how to handle Data Access in their ASP.NET 5 Contoso University sample application. 
+
+Please advise if you're hooking this to a data base you will want to use explicit authorization code flow (which is where we set the client secret in the ASP.NET client app). Hoping to cover this in the next tutorial. 
+
+[Next blog here I will show how to use a Production Token so we don't have to manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
 This blog will not have been possible without the help of [Herman Starzhynski](https://www.linkedin.com/in/hstarzhynski/) who's input proved invaluable in solving the problem I originally faced before turning this into a blog.
