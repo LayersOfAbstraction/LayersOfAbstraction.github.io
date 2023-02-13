@@ -1,7 +1,7 @@
 ---
 title: "Retrieving Auth0 user profiles in ASP.NET Core 6.0 part 1"
 date: "2023-01-30"
-#published: false
+published: false
 layout: post
 ---
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 6.0, (no longer called .NET Core).
