@@ -12,17 +12,17 @@ I used to use Visual Studio Code but for this blog I used Visual Studio which ha
 
 Make sure you've read through the entire quickstart before going further in this blog. You can start at the beginning of that quickstart if you want to better understand. Download the quickstart and run it to make sure it works. Once you're done we will create all the users in Auth0.
 
-Login to Auth0 Dashboard. 
+Login to Auth0 Dashboard.
 
 ## Login ##
 
-If you are new to Auth0 I highly recommend you create a [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
+If you are new to Auth0 I highly recommend you create a [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you.
 
-You can learn to use Auth0 by using [the quickstart written in .NET 6.](https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/tree/master/Quickstart/Sample) 
+You can learn to use Auth0 by using [the quickstart written in .NET 6.](https://github.com/auth0-samples/auth0-aspnetcore-mvc-samples/tree/master/Quickstart/Sample)
 
-The complete code for this blog is in a our [Solution application called the Auth0UserProfileDisplayStarterKit](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet6_p1) you can use alongside this blog. 
+The complete code for this blog is in a our [Solution application called the Auth0UserProfileDisplayStarterKit](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet6_p1) you can use alongside this blog.
 
-You can attempt to use the Auth0 quickstart to match all the code I display in this blog. I recommend you use their quickstart before hand to get an understanding of how their product integrates with ASP.NET 6 if you haven't already. 
+You can attempt to use the Auth0 quickstart to match all the code I display in this blog. I recommend you use their quickstart before hand to get an understanding of how their product integrates with ASP.NET 6 if you haven't already.
 
 ## Create Application on the Auth0 server ##
 
@@ -49,7 +49,7 @@ We should create email aliases which are basically different user names that lin
 * If you just don’t want to see messages sent to your Gmail account, select the ‘Skip the inbox’ option. If you’ve used a specific address to identify (say) a mailing list, you might want to apply a Gmail label instead.
 * Click on ‘Create Filter’ and you’re done.
 
-## Create database connection in Auth0. ##
+## Create database connection in Auth0 ##
 
 Let's get back to Auth0 dashboard and create the database connection where we can create a bridge between our application and the Auth0 user sample profiles matching this connection look at the strip on the left.
 
@@ -62,13 +62,13 @@ Let's get back to Auth0 dashboard and create the database connection where we ca
 4. If you're not sure select to Disable sign ups then leave the "Disable Sign Ups" switch alone. You may not just want
 anyone to be able to access your application.
 
-5. Hit the Create button. 
+5. Hit the Create button.
 
 ## Create Test user in Auth0 ##
 
 Let's create the users now in the same dashboard.
 
-1. On the left navigate to the User Management tab and select Users and create the following users. 
+1. On the left navigate to the User Management tab and select Users and create the following users.
 
 2. Copy and paste the password you wrote down and email. In this case you could use a password manager like I have or just some password book. NOTE: Might want to make a new folder for your Auth0 users in your password manager if you create them so they don't get mixed up with your real password accounts info.  
 
@@ -80,9 +80,9 @@ Steps clear as mud? Don't know how to navigate? That's why I made an image showi
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC/Create_Auth0_DB_Connection_And_User.gif" class="image fit" alt="Create_Auth0_User_and_DB_conn"/>
 
-## Install and configure Auth0 Authentication Management API ##
+## Install and configure Auth0 Management API ##
 
-To get a list of users from Auth0 and read them in our application we have three ways of doing it. We can use the "export job", "User Import extension" or  the Auth0 Management API they wrote. 
+To get a list of users from Auth0 and read them in our application we have three ways of doing it. We can use the "export job", "User Import extension" or  the Auth0 Management API they wrote.
 
 We will use the API for this tutorial. Please note Auth0 limits the number of users you can return. If you exceed that limit [please click here and wait a few seconds before Auth0 automatically scrolls to the desired heading. No need to scroll.](https://auth0.com/docs/api/management/v2#!/Users/get_users)
 
@@ -90,35 +90,36 @@ In case you are starting a project from scratch instead of using my Auth0UserPro
 
 `dotnet add package Auth0.ManagementApi`
 
-Now it should have installed Auth0 Management API into your project. We have declared the Management API namespace in the C# controller where we are going to render the users. 
+Now it should have installed Auth0 Management API into your project. We have declared the Management API namespace in the C# controller where we are going to render the users.
 
-We do this in HomeController in the sample you downloaded. Create a `data` folder add a class called `GlobalNamespaces.cs`. We will add global "usings" as .NET 6 allows us to have global namespaces declared once to avoid repetition. The following code is to use the Auth0 Management API namespace. The namespace is going to help us the Auth0 `ManagementApiClient` class. 
+We do this in HomeController in the sample you downloaded. Create a `data` folder add a class called `GlobalNamespaces.cs`. We will add global "usings" as .NET 6 allows us to have global namespaces declared once to avoid repetition. The following code is to use the Auth0 Management API namespace. The namespace is going to help us the Auth0 `ManagementApiClient` class.
 
 ```csharp
 global using Auth0.ManagementApi;
 ```
 
 This for example is how we will instance the class with the token and tenant name.
+
 ```csharp
 // Replace YOUR_AUTH0_DOMAIN with the domain of your Auth0 tenant, e.g. mycompany.auth0.com
 var client = new ManagementApiClient("YOUR_MANAGEMENT_TOKEN", "YOUR_AUTH0_DOMAIN");
 ```
 
-You should already replace the dummy domain name with the one for your tenant. If you forgot, you just need to go back up the page. I provide all the steps for that. 
+You should already replace the dummy domain name with the one for your tenant. If you forgot, you just need to go back up the page. I provide all the steps for that.
 
 Now go to `HomeController.cs` It's more tricky with generating the API JSON Web Tokens (JWTs) and inputting the name of it as it is so long and requires that you create and authorize a machine-to-machine application.
-Let's do that now. 
+Let's do that now.
 
 I assume you want to create a token that auto-renews. For that matter we need to create a production token which I plan to show in the next tutorial. But if you want to create a test token I will already show you how to do that.
 
-[This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application). 
+[This link already does a good job of showing how to create and authorize a machine-to-machine application](https://auth0.com/docs/tokens/management-api-access-tokens/create-and-authorize-a-machine-to-machine-application).
 
 Make sure you selected the "Read Users" grant for now or have all the default ones enabled.
 If you don't know which API to use, just use the Auth0 Management API.
 
-## Create a JWT ## 
+## Create a JWT ##
 
-Keep in mind if you commit the JWT to a public version control system like Github make sure you then generate a new token else hackers can use the publicly accessible JWT to access your application when you run it. 
+Keep in mind if you commit the JWT to a public version control system like Github make sure you then generate a new token else hackers can use the publicly accessible JWT to access your application when you run it.
 [Go here to learn how to generate the token and then copy it into memory.](https://auth0.com/docs/tokens/management-api-access-tokens/get-management-api-access-tokens-for-testing)
 
 Make sure you set the tokens to a max of 2592000.
@@ -133,6 +134,7 @@ global using System.ComponentModel.DataAnnotations;
 ```
 
 We are going ensure our ASP.NET application can connect to our Auth0 server. Go to the models folder if you're using the starter kit I made, it should show this model. Else create it.
+
 ```csharp
 namespace Auth0UserProfileDisplayStarterKit.ViewModels
 {
@@ -220,11 +222,11 @@ You possibly had the computer lag when you copied in the string into the class. 
 
 We are merely going to reference that string now so as not to display it.
 
-This is how we are going to do that. 
+This is how we are going to do that.
 
 ## Call the token in our controller ##
 
-Make sure you have inserted these statements in our `GlobalNamespaces` at the top of the HomeController.cs class and have inserted this code. 
+Make sure you have inserted these statements in our `GlobalNamespaces` at the top of the HomeController.cs class and have inserted this code.
 
 ```csharp
 global using Auth0.ManagementApi;
