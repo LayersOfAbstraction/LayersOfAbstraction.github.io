@@ -18,15 +18,15 @@ Or...
 
 We could request a refresh token from the Auth0 Dashboard and use that to generate a brand new token automatically.
 
-Also we left the token string in our project tree which can be dangerous if you commit the token to source control. You want to declare it outside of your project tree using either the ASP.NET Secrets Manager or an environment variable. You will learn this for this blog.   
+Also we left the token string in our project tree which can be dangerous if you commit the token to source control. You want to declare it outside of your project tree using either the ASP.NET Secrets Manager or an environment variable. You will learn this for this blog.
 
 ## Before starting ##
 
 You should have used the Auth0 quickstart for this.
 
-1. Use my complete project from the [part 1 branch](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet6_p1) which is a companion for the part1 tutorial and continue using that to follow along. The project branch in that repository is created solely for this part 2 blog.
+You can also use my complete project from the [part 1 branch](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet6_p1) which is a companion for this part2 tutorial and continue using that to follow along.
 
-The complete code for this code [is in this project in case you get stuck](https://layersofabstraction.github.io/displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.html)
+The complete code for this part 2 project [is in this repository in case you get stuck](https://layersofabstraction.github.io/displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.html)
 
 In this blog you will update your previous logic and use new technologies.
 
@@ -55,14 +55,14 @@ Copy them into your project now.
 
 ## Paste new Auth0ManagementApi and Identity Model logic into our Home Controller ##
 
-Go into Controllers\HomeController and declare these three models at the top of your code above
+Go into Data\GlobalNamespaces and declare these three models at the top of your code above
 the namespace.
 
 ```csharp
-using Auth0.ManagementApi.Paging;
-using Example.Auth0.AuthenticationApi.Services;
-using System.Threading;
-using Auth0.ManagementApi.Models;
+global using Auth0.ManagementApi.Paging;
+global using Example.Auth0.AuthenticationApi.Services;
+global using System.Threading;
+global using Auth0.ManagementApi.Models;
 ```
 
 We need to create a list and tell C# that we are using IUserService. So in the controller
