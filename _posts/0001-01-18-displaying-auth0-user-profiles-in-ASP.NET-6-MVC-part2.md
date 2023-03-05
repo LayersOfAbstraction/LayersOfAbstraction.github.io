@@ -66,10 +66,8 @@ global using Auth0.ManagementApi.Models;
 ```
 
 We need to create a list and tell C# that we are using IUserService. So in the controller
-create an IPagedList, declare that you are using the IUserService and pass it 
-to the constructor. Also use the CancellationToken class to cancel retrieval of Auth0 
-refresh token if unsuccessful. It should be in System.Threading. 
- 
+create an IPagedList, declare that you are using the IUserService and pass it to the constructor. Also use the CancellationToken class to cancel retrieval of Auth0
+refresh token if unsuccessful. It should be in System.Threading.
 
 ```csharp
 public IPagedList<Auth0.ManagementApi.Models.User> Users { get; private set; }
@@ -85,7 +83,7 @@ Now let's get to the action method being passed to the view which is GetAllAuth0
 
 This is what the action method looked like in part one of this tutorial.
 
-```
+```csharp
 public async Task <IActionResult> GetAllAuth0Users()
 {
     //Get token
