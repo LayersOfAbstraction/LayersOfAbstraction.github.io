@@ -51,7 +51,29 @@ Make sure you have cloned and extracted the repository. The folders you need to 
 - AccessTokenManagement
 - Services
 
-Copy them into your project now.
+## Fix namespaces ##
+
+Now that you have done that, you will get errors in ASP.NET that will lie in `Services/IUserService.cs` and `Services/UserService.cs`. To resolve them take a look at the 2 interfaces just mentioned. You will see that ASP.NET doesn't know wether you want to make a HTTP request to a User model in your `ViewModels` directory or `Auth0.ManagementApi.Models.User`. 
+
+All you want to do is rename the `IPagedList` in `IUserService.cs` to:
+
+```csharp
+Task<IPagedList<Auth0.ManagementApi.Models.User>> GetUsersAsync(GetUsersRequest request, PaginationInfo paginationInfo,
+        CancellationToken cancellationToken);
+```
+
+And then in `UserService.cs` just rename it to: 
+
+```csharp
+public async Task<IPagedList<Auth0.ManagementApi.Models.User>> GetUsersAsync(GetUsersRequest request,
+    PaginationInfo paginationInfo, CancellationToken cancellationToken)
+{
+    return await MakeCallAsync(async apiClient => await apiClient.Users.GetAllAsync(request, paginationInfo),
+        cancellationToken);
+}
+```
+
+delete the namespaces that both interfaces lie in or simply rename them to something else. I have simply deleted them. A  
 
 ## Paste new Auth0ManagementApi and Identity Model logic into our Home Controller ##
 
@@ -65,9 +87,7 @@ global using System.Threading;
 global using Auth0.ManagementApi.Models;
 ```
 
-We need to create a list and tell C# that we are using IUserService. So in the controller
-create an IPagedList, declare that you are using the IUserService and pass it to the constructor. Also use the CancellationToken class to cancel retrieval of Auth0
-refresh token if unsuccessful. It should be in System.Threading.
+We need to create a list and tell C# that we are using IUserService. So in the controller create an IPagedList, declare that you are using the IUserService and pass it to the constructor. Also use the CancellationToken class to cancel retrieval of Auth0 refresh token if unsuccessful. It should be in System.Threading.
 
 ```csharp
 public IPagedList<Auth0.ManagementApi.Models.User> Users { get; private set; }
