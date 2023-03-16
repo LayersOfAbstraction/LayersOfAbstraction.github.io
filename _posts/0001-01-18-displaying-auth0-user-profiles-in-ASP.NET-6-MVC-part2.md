@@ -124,9 +124,9 @@ public async Task <IActionResult> GetAllAuth0Users()
 }
 ```
 
-Now change it this.
+Now change it to this.
 
-```
+```csharp
 /// <summary>
 /// Display Auth0 users from list.
 /// </summary>
@@ -151,14 +151,14 @@ A lot of it is self explanatory from the comments I wrote. The big changes are w
 using the Auth0ManagementApiClient class methods or the constant string we made earlier.
 So you can delete that ConstantStrings class.
 
-We are instead using the Auth0ManagementApi methods to get the Users Profiles we have 
-connected to our application in Auth0 Dashboard. And we are using the IUserService which we
+We are instead using the Auth0ManagementApi methods to get the Auth0 dashboard Users Profiles we have 
+connected in our Auth0 Dashboard application. And we are using the IUserService which we
 declared in the constructor to interface with the Identity Model library and get us a 
 refresh token.
 
 We also get the CancellationToken using this method.
 
-```
+```csharp
 public async Task OnGet(CancellationToken cancellationToken)
 {
     Users = await _userService.GetUsersAsync(new GetUsersRequest(), new PaginationInfo(), cancellationToken);
@@ -168,13 +168,13 @@ public async Task OnGet(CancellationToken cancellationToken)
 
 ## Get Access Token ##
 
-Now we need to create two models to help us create access tokens. Here is the code for class LoginAuthentication. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience" with our static method Auth0Token. I will show how we create this value and store it later.
+Now create two models in your `Data` folder to create the access tokens. Here is the code for `LoginAuthentication.cs`. The purpose of the static constructor was so we could allow appsettings.json to communicate the key value pair of "AccessTokenManagement:Audience" with our static method Auth0Token. I will show how we create this value and store it later.
 
-```
+```csharp
 using System.IO;
 using Auth0.AuthenticationApi;
 using Microsoft.Extensions.Configuration;
-namespace Auth0UserProfileDisplayStarterKit.ViewModels
+namespace Auth0UserProfileDisplayStarterKit.Data
 {
     public class LoginAuthentication
     {
