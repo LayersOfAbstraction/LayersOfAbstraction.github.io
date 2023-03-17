@@ -209,7 +209,7 @@ namespace Auth0UserProfileDisplayStarterKit.Data
 
 Add the 2nd model to make our token globally accessible throughout our client side application. 
 
-```
+```csharp
     public class Auth0Token
     {
         public string strAuth0Token {get;set;}
@@ -218,7 +218,7 @@ Add the 2nd model to make our token globally accessible throughout our client si
 
 Now we need to add AccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
 
-```
+```csharp
 // Add the Auth0 HttpClientManagementConnection.
 services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
 // Add JWT renewal references  
