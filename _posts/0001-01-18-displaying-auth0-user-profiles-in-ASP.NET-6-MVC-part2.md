@@ -216,14 +216,15 @@ Add the 2nd model to make our token globally accessible throughout our client si
     }
 ```
 
-Now we need to add AccessTokenManagement references to Startup.ConfigureServices. Code looks like this.
+
+Now we need to add AccessTokenManagement references in `Program.cs`. Code looks like this.
 
 ```csharp
 // Add the Auth0 HttpClientManagementConnection.
-services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
+builder.Services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
 // Add JWT renewal references  
-services.AddAccessTokenManagement(Configuration); 
-services.AddTransient<IUserService, UserService>();
+builder.Services.AddAccessTokenManagement(Configuration); 
+builder.Services.AddTransient<IUserService, UserService>();
 ```
 
 And for those references to work we will have to add our own using statements
