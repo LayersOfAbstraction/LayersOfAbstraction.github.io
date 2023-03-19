@@ -73,7 +73,7 @@ public async Task<IPagedList<Auth0.ManagementApi.Models.User>> GetUsersAsync(Get
 }
 ```
 
-delete the namespaces that both interfaces lie in or simply rename them to something else. I have simply deleted them. A  
+Delete the `Services` folder namespaces that both interfaces lie in or simply rename them to something else. I have simply deleted them. 
 
 ## Paste new Auth0ManagementApi and Identity Model logic into our Home Controller ##
 
@@ -227,12 +227,10 @@ builder.Services.AddAccessTokenManagement(builder.Configuration);
 builder.Services.AddTransient<IUserService, UserService>();
 ```
 
-And for those references to work we will have to add our own using statements
+And for that AccessTokenManagement reference to work we will have to add the using statement for it
 
 ```csharp
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
-using Example.Auth0.AuthenticationApi.Services;
-using Auth0.ManagementApi;
 ```
 
 ## Create machine to machine application and Authorise an API ##
