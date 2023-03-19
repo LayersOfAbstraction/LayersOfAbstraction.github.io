@@ -241,11 +241,11 @@ In the Auth0 Dashboard go to:
 
 1. Applications
 2. Create Application
-3. Select Machine to Machine Applications. We will call it "User_Profile_Service"
-4. Authorize Machine to Machine Application. Select the API in the list. If you don't know
-which to use that's ok. Just use the default Auth0 API which is called Auth0 Management API.
-5. Select one scope to make the 
-5. Hit the Create button. API connection more secure. Select "read:users" and hit authorize. 
+3. Select Machine to Machine Applications. We will call it "User_Profile_Service."
+4. In the "Authorize Machine to Machine Application", select the API in the list. If you don't know
+which to use that's ok. Just use the default Auth0 API which is called Auth0 Management API. 
+5. Hit the Create button.
+6. Now from the list of permissions select "read:users" and hit authorize. 
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/CreateMachineToMachineApp.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
