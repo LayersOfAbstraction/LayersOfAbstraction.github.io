@@ -223,13 +223,13 @@ Now we need to add AccessTokenManagement references in `Program.cs`. Code looks 
 // Add the Auth0 HttpClientManagementConnection.
 builder.Services.AddSingleton<IManagementConnection, HttpClientManagementConnection>();
 // Add JWT renewal references  
-builder.Services.AddAccessTokenManagement(Configuration); 
+builder.Services.AddAccessTokenManagement(builder.Configuration); 
 builder.Services.AddTransient<IUserService, UserService>();
 ```
 
 And for those references to work we will have to add our own using statements
 
-```
+```csharp
 using Example.Auth0.AuthenticationApi.AccessTokenManagement;
 using Example.Auth0.AuthenticationApi.Services;
 using Auth0.ManagementApi;
