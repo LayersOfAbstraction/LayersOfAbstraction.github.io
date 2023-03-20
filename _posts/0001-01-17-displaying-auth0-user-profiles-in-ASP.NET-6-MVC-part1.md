@@ -1,7 +1,7 @@
 ---
 title: "Retrieving Auth0 user profiles in ASP.NET Core 6.0 part 1"
 date: "2023-01-30"
-published: false
+published: true
 layout: post
 ---
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 6.0, (no longer called .NET Core).
@@ -495,6 +495,6 @@ Hoped that worked. You should be able to hook this up to a database easily if yo
 
 Please advise if you're hooking this to a data base you will want to use explicit authorization code flow (which is where we set the client secret in the ASP.NET client app). Hoping to cover this in the next tutorial. 
 
-[Next blog here I will show how to use a Production Token so we don't have to manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
+Next blog here I will show how to use a Production Token so we don't have to manually renew the Testing token. Stay tuned I will insert a link here when I'm ready!
 
 This blog will not have been possible without the help of [Herman Starzhynski](https://www.linkedin.com/in/hstarzhynski/) who's input proved invaluable in solving the problem I originally faced before turning this into a blog.
