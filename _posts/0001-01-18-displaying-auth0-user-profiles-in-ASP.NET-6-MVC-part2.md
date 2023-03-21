@@ -261,7 +261,7 @@ The answer is to use the ASP.NET Core Secret Manager. Warning, this is where it 
 
 Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
 
-```
+```json
   "Auth0": {    
     "ManagementApi": 
       "BaseUri": "{BASE_URI}",
@@ -272,7 +272,7 @@ Open appsettings.json. No no don't set any values yet. Just notice how dangerous
 ```
 
 Look for the Auth0 server application you have made
-for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET5. 
+for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET 6. 
 
 Also you need the value for the Auth0 Management API. To find the value on the dashboard go to: 
 -Applications 
