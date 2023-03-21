@@ -255,11 +255,11 @@ Notice how you can see the ClientSecret? That is something you should not be abl
 
 ## Bind Auth0 API keys to ASP.NET Secret Manager ##
 
-Speaking of ClientSecrets, did you know we can keep the information out of source control without renaming the property values to nonsensical names in appsettings.json?
+Speaking of ClientSecrets, did you know we can keep the information out of source control without renaming the property values to nonsensical names in `appsettings.json`?
 
 The answer is to use the ASP.NET Core Secret Manager. Warning, this is where it can get frustrating if done wrong, advise you backup your project now.
 
-Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
+Open `appsettings.json`. Do not set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
 
 ```json
   "Auth0": {    
