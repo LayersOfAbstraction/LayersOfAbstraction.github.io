@@ -277,7 +277,7 @@ for this client application. Can you see the values for the Domain? ClientID? Cl
 Also you need the value for the Auth0 Management API. To find the value on the dashboard go to: 
 -Applications 
 -APIs
--And you should see the value right there.
+-And you should see the value right there
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/Get ManagementAPIValue.png" class="image fit" alt="Get_ManagementAPI_value"/>
 
@@ -313,7 +313,7 @@ app, we have not inserted the values to connect the Auth0 Management API to the 
   
 In appsetting.json insert this block that we call our _AccessTokenManagement_ code you can insert it just above your Auth0 block. 
 
-```
+```json
   "AccessTokenManagement": {
     "Domain": "{DOMAIN}",
     "Clients": [
@@ -327,16 +327,18 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
   },
 ```
 
-Setting these properties is going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
+Setting these properties is going to look different from the previous code block so here is how can you implement it in the terminal.
 
 ```
-dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 ```
+
+The project paramater and specifiying the project file is needed because not doing so makes dotnet warn us that there are Multiple MSBuild project files found because of  the Identity Model libraries we imported before.
 
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
-In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database. [Part3 blog here!](
+In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database. [Part3 blog here!](
 {% link _posts/0001-01-08-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part3.md %})
