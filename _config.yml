@@ -53,7 +53,7 @@
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-permalink: /:title.html
+permalink: /:title
 defaults:      
   - scope:
       path: ""
