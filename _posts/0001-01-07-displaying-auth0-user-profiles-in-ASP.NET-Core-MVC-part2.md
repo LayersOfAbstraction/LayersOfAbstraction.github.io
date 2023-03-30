@@ -277,10 +277,10 @@ Don't copy and paste these below statements into the terminal.
 Write each value into these properties by hand so as to insert your
 own values. 
 ```
-dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
-dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!"
-dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
-dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
+dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 ```
 
 If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the application from compiling.
@@ -297,7 +297,7 @@ app, we have not inserted the values to connect the Auth0 Management API to the 
   
 In appsetting.json insert this block that we call our _AccessTokenManagement_ code you can insert it just above your Auth0 block. 
 
-```
+```json
   "AccessTokenManagement": {
     "Domain": "{DOMAIN}",
     "Clients": [
@@ -311,7 +311,7 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
   },
 ```
 
-Setting these properties is going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
+Setting these properties is going to look different from the previous code block so here is how we do it in the terminal.
 
 ```
 dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
