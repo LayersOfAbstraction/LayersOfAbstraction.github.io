@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 2)"
-published: False
+date: "2023-03-31"
+#published: False
 ---
 Earlier I showed you [how to Display Auth0 user profiles in ASP.NET Core 5.0]({% link _posts/0001-01-06-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part1.md %}) but did not show you how to automatically renew the token. 
 
@@ -44,7 +45,6 @@ Download this into your project to access the library.
 dotnet add Auth0UserProfileDisplayStarterKit package Auth0.AuthenticationApi --version 7.7.0
 ```
 
-In .NET 6 Specifying your project name prevents confusion where C# advises  it found more than one namespace in the same directory and doesn't know which namespace to look in for your project. All namespaces would have to be the same. The only way it knows otherwise is by specifying the project name when you have different grouped namespaces.
 
 ## Copy these library folders from repository into your project ##
 
