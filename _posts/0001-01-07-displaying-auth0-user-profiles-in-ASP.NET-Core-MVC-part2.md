@@ -246,7 +246,7 @@ The answer is to use the ASP.NET Core Secret Manager. Warning, this is where it 
 
 Open appsettings.json. No no don't set any values yet. Just notice how dangerous it is right now to put especially our client secret (private key) in the file and put it in a public repo. 
 
-```
+```json
   "Auth0": {    
     "ManagementApi": 
       "BaseUri": "{BASE_URI}",
@@ -256,10 +256,9 @@ Open appsettings.json. No no don't set any values yet. Just notice how dangerous
   }
 ```
 
-Look for the Auth0 server application you have made
-for this client application. Can you see the values for the Domain? ClientID? ClientSecret. You should know all this if you've read the Auth0 Quickstart for ASP.NET5. 
+Look for the Auth0 Regular Web Application you made for this client application. See the values for, Domain, ClientID and ClientSecret? 
 
-Also you need the value for the Auth0 Management API. To find the value on the dashboard go to: 
+Also you need to know the values for the Auth0 Management API. To find the values on the dashboard go to: 
 -Applications 
 -APIs
 -And you should see the value right there.
@@ -274,7 +273,7 @@ Fire up the .NET CLI and initialize the Secret Manager Tool which should appear 
 dotnet user-secrets init
 ```
 
-Do NOT copy and paste this into terminal!
+Don't copy and paste these below statements into the terminal.
 Write each value into these properties by hand so as to insert your
 own values. 
 ```
@@ -284,7 +283,7 @@ dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
 dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
 ```
 
-If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
+If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the application from compiling.
 
 
 The data in the table won't load yet and you should get one or two of these errors in the properties inspector.
@@ -315,10 +314,10 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
 Setting these properties is going to look different from the previous code block so here is how we do it in the terminal. If you have trouble 
 
 ```
-dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!"
-dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
+dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 ```
 
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
