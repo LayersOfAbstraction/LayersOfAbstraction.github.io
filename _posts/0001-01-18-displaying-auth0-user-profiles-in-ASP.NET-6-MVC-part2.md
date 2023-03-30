@@ -2,6 +2,7 @@
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 6.0 (part 2)"
 published: true
+date: "2023-03-31"
 ---
 Earlier I showed you [how to Display Auth0 user profiles in ASP.NET Core 6.0]({% link _posts/0001-01-17-displaying-auth0-user-profiles-in-ASP.NET-6-MVC-part1.md %})
 
@@ -38,8 +39,10 @@ We need access to the ClientCredentialsTokenRequest Class which lies in the Auth
 Download this into your project to access the library.
 
 ```
-dotnet add package Auth0.AuthenticationApi --version 7.7.0
+dotnet add Auth0UserProfileDisplayStarterKit package Auth0.AuthenticationApi --version 7.7.0
 ``` 
+
+In .NET 6 Specifying your project name prevents confusion where C# advises  it found more than one namespace in the same directory and doesn't know which namespace to look in for your project. All namespaces would have to be the same. The only way it knows otherwise is by specifying the project name when you have different grouped namespaces.
 
 ## Copy these library folders from repository into your project ##
 
@@ -293,10 +296,10 @@ Do NOT copy and paste this into terminal!
 Write each value into these properties by hand so as to insert your
 own values. 
 ```
-dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!"
-dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!"
-dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!"
-dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!"
+dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 ```
 
 If you mess up, [please click here to understand how to remove the user secrets and start over.](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows) Now run the code to ensure no runtime error occurs that stops the screen from showing.
