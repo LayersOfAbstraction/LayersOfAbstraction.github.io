@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 6.0 (part 2)"
-published: true
+#published: false
 date: "2023-03-31"
 ---
 Earlier I showed you [how to Display Auth0 user profiles in ASP.NET Core 6.0]({% link _posts/0001-01-17-displaying-auth0-user-profiles-in-ASP.NET-6-MVC-part1.md %})
@@ -39,7 +39,7 @@ We need access to the ClientCredentialsTokenRequest Class which lies in the Auth
 Download this into your project to access the library.
 
 ```
-dotnet add Auth0UserProfileDisplayStarterKit package Auth0.AuthenticationApi --version 7.7.0
+dotnet add package Auth0.AuthenticationApi --version 7.7.0
 ``` 
 
 In .NET 6 Specifying your project name prevents confusion where C# advises  it found more than one namespace in the same directory and doesn't know which namespace to look in for your project. All namespaces would have to be the same. The only way it knows otherwise is by specifying the project name when you have different grouped namespaces.
@@ -296,7 +296,7 @@ Do NOT copy and paste this into terminal!
 Write each value into these properties by hand so as to insert your
 own values. 
 ```
-dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE WITH https:// IN FRONT!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
@@ -314,7 +314,7 @@ _jquery.dataTables.js:6522 Uncaught Error: DataTables warning: table id=auth0Use
 All you need to know is that while we have inserted the keys to connect Auth0 to our client
 app, we have not inserted the values to connect the Auth0 Management API to the client.
   
-In appsetting.json insert this block that we call our _AccessTokenManagement_ code you can insert it just above your Auth0 block. 
+In appsetting.json insert this block that we call our _AccessTokenManagement_ code. You can insert it just above your Auth0 code block. 
 
 ```json
   "AccessTokenManagement": {
@@ -330,16 +330,16 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
   },
 ```
 
-Setting these properties is going to look different from the previous code block so here is how can you implement it in the terminal.
+Setting these properties is going to look different from the previous code block so here is how to implement it in the terminal.
 
 ```
-dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE WITH https:// IN FRONT!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "AccessTokenManagement:Clients:0:ClientSecret" "INSERT CLIENTSECRET VALUE VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "AccessTokenManagement:Clients:0:Audience" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 ```
 
-The project paramater and specifiying the project file is needed because not doing so makes dotnet warn us that there are Multiple MSBuild project files found because of  the Identity Model libraries we imported before.
+Again the `--project` parameter and specifying the project file is needed because not doing so makes .NET warn us that there are multiple project files found because of the Identity Model namespaces we imported before.
 
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
