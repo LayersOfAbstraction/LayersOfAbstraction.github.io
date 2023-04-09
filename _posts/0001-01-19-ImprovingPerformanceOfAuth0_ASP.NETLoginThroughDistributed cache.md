@@ -23,7 +23,7 @@ global using Auth0.Core.Exceptions;
 ```
 This is the method where you need to change the exception to be handled in the `catch statement`
 
-```
+```csharp
 private async Task<TResponse> MakeCallAsync<TResponse>(Func<ManagementApiClient, Task<TResponse>> callFunc,
     CancellationToken cancellationToken)
 {
@@ -45,7 +45,7 @@ private async Task<TResponse> MakeCallAsync<TResponse>(Func<ManagementApiClient,
 
 Create the model `AccessTokenCache.cs` with this code so we can store the properties of the token in the database.   
 
-```
+```csharp
 using System;
 internal partial class AccessTokenCache  
 {  
