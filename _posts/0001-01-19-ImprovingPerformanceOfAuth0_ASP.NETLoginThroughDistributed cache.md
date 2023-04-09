@@ -5,9 +5,7 @@ date: "2023-03-31"
 published: false
 ---
 
-[Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance and as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 5 MVC client application and store it in a database.
-
-Do you know what a cache is? It just helps your computer retrieve data faster from a server by using your computer's RAM and keeps the data there until you delete it to make access faster and less load on the server. 
+[Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
 
 But what exactly is a distributed cache? Microsoft puts it nicely.
 
@@ -19,8 +17,10 @@ We are going to use SQL Server to configure that or to be more exact we will con
 
 ## Add ErrorApiException to UserService ##
 
-Go to `Services` folder and then `UserService.cs` and then swap the AuthenticationException for the ErrorApiException then add the namespace Auth0.Core.Exceptions. 
-
+Go to `Services` folder and then `UserService.cs` and then swap the AuthenticationException for the ErrorApiException then add a global  namespace. 
+```csharp
+global using Auth0.Core.Exceptions; 
+```
 This is the method where you need to change the exception to be handled in the `catch statement`
 
 ```
@@ -43,8 +43,6 @@ private async Task<TResponse> MakeCallAsync<TResponse>(Func<ManagementApiClient,
 
 ## Create models to manage JWT data ##
 
-Create a subfolder named `Data` now under our main folder.
-
 Create the model `AccessTokenCache.cs` with this code so we can store the properties of the token in the database.   
 
 ```
@@ -59,6 +57,8 @@ internal partial class AccessTokenCache
 }  
 ```
 
+Now create a subfolder named `Data` under our main folder.
+
 If you are familiar with the DbContext class for dependency injection then know that we will
 not use that to configure the properties of this class. Instead we will use an EF Core interface called IEntityTypeConfiguration to:
 
@@ -66,9 +66,9 @@ not use that to configure the properties of this class. Instead we will use an E
  - Set up some default values and whether they are required.
  - Use it to set up the table name.  
 
-Here is the code for that. Notice the class acts as a child to AccessTokenCache but it uses an EF Core interface. 
+Here is the code for that. Notice the class acts as a child to AccessTokenCache but it uses an EF Core interface. Create it under our Data folder.
 
-```
+```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -97,7 +97,7 @@ telling it what to do.
 
 Here is the code for the TeamContext class. Go ahead and make a new file for it. While we are at it we can build the User class and save the data to it. This is optional.
 
-```
+```csharp
 using Microsoft.EntityFrameworkCore;
 using Auth0UserProfileDisplayStarterKit.ViewModels;
 using Microsoft.EntityFrameworkCore;
