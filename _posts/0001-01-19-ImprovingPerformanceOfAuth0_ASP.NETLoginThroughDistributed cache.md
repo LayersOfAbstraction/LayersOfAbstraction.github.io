@@ -2,7 +2,7 @@
 layout: post
 title:  "Improving Performance of Auth0/ASP.NET login through distributed cache"
 date: "2023-03-31"
-published: false
+# published: false
 ---
 
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
@@ -91,11 +91,11 @@ internal class AccessTokenCacheConfiguration : IEntityTypeConfiguration<AccessTo
 } 
 ```
 
-We still have to use a database context class to set up the AccessTokenCacheConfiguration 
+We still have to use a database context class to set up the `AccessTokenCacheConfiguration` 
 class which will be used to intermediate with the database. AccessTokenCache is just
 telling it what to do.
 
-Here is the code for the TeamContext class. Go ahead and make a new file for it. While we are at it we can build the User class and save the data to it. This is optional.
+Here is the code for the `TeamContext` class. Go ahead and make a new file for it in the `Data` folder. While we are at it we can build the User class and save the data to it. This is optional.
 
 ```csharp
 using Microsoft.EntityFrameworkCore;

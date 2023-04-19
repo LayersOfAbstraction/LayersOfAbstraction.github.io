@@ -74,7 +74,7 @@ const Global = createGlobalStyle`
 
 Now we create the style component Hamburger button. We will call it MenuIcon.
 
-We are fixing it the page regardless of where user scrolls.
+We are fixing it to the page regardless of where user scrolls.
 Keep in mind inside MenuIcon we are setting the z-index value at 999 so when the sidebar is toggled open, the hamburger icon will wrap over it.
 
 The first-child is creating the first bar while nth-child(2) and nth-child(2) are the 2nd and third hamburger bars of the icon.
