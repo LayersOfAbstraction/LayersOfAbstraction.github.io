@@ -16,7 +16,7 @@ In the previous blog we learned how to convert a website from HTML with css to G
 
 ## Perquisites ##
 
--You should already know how to compile Gatsby. If you do not then please see [my previous blog.]({% link _posts/../0001-01-14-AttachGatsbySSGToWebsite_p2.md %})
+-You should already know how to compile Gatsby. If you do not then please see [my previous blog.]({% link _posts/0001-01-13-AttachGatsbySSGToWebsite.md %})
 -You should know about CSS especially the difference between internal and external style sheets.
 -You should know about HTML DOM.
 
