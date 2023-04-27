@@ -2,7 +2,7 @@
 layout: post
 title:  "Improving Performance of Auth0/ASP.NET login through distributed cache"
 date: "2023-03-31"
-# published: false
+published: false
 ---
 
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
@@ -123,7 +123,7 @@ using Microsoft.EntityFrameworkCore;
 
 So you can skip to the next heading if you don't want to a create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
 
-```
+```csharp
         private readonly TeamContext _context;
 
         //Add the context to the constructor. Don't make another constructor. Use the one
