@@ -157,9 +157,9 @@ So you can skip to the next heading if you don't want to a create user in the vi
 
 Also add...
 
-```
-using Auth0UserProfileDisplayStarterKit.Data;
-using Microsoft.EntityFrameworkCore;
+```csharp
+global using Auth0UserProfileDisplayStarterKit.Data;
+global using Microsoft.EntityFrameworkCore;
 ```
 
 ...to the top of the controller.
