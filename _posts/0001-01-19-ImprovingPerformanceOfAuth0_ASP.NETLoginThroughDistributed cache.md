@@ -168,27 +168,25 @@ global using Microsoft.EntityFrameworkCore;
 We have got to add the services to activate the context class and our connection string to the
 database in the `ConfigureServices` method. Enter it where you want in the method I just put it at the top.
 
-```
+```csharp
 services.AddDbContext<TeamContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-services.AddDbContext<TeamContext>(options =>
-    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 ```         
 
 And add...
-```
+```csharp
 using Microsoft.EntityFrameworkCore;
 using Auth0UserProfileDisplayStarterKit.Data;
 ```
 ...at the top of the class to activate the extension 
 methods of EF Core and activate the context globally.  
 
-## Install SQL Server cache packages ##
+## Install SQL Server packages ##
 
 Install the package in the terminal using this command:
 
-`dotnet add package Microsoft.Extensions.Caching.SqlServer --version 5.0.0`
-
+`dotnet add package Microsoft.Extensions.Caching.SqlServer --version --version 6.0.4`
+`dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4`
 In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExtensions.cs`.
 
 We swap the following. Delete this line.
