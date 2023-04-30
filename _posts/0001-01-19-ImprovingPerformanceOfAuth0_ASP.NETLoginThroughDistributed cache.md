@@ -191,22 +191,22 @@ In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExten
 
 We swap the following. Delete this line.
  
-```
+```csharp
 services.AddDistributedMemoryCache();
 ```
 Now add this code for setting up the SQL Server Distributed cache. For setting up an SQL Server IDistributedCache from [this article](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-5.0:)
-```
+```csharp
 services.AddDistributedSqlServerCache(options =>
 {
-options.ConnectionString = configuration.GetConnectionString("DefaultConnection");
-options.SchemaName = "security";
-options.TableName = "tblAccessTokenCache";
+    options.ConnectionString = configuration.GetConnectionString("DefaultConnection");
+    options.SchemaName = "security";
+    options.TableName = "tblAccessTokenCache";
 });
 ```
 
 Now we have to set up the code for the cache. We are going to use code migrations to set the cache and install it with the sql server dotnet commands. Use this terminal tool to install sql-cache.
 
-## Set up SQL Server localdb ##
+## Set up SQL Server via localdb ##
 
 We will need to set up the Microsoft SQL Server database
 to store the JWT. To set it up we will use Entity Framework Core and the scaffolding engine in the terminal.  
