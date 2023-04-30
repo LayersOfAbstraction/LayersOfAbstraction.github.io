@@ -280,7 +280,7 @@ for this client application. Can you see the values for the Domain? ClientID? Cl
 Also you need the value for the Auth0 Management API. To find the value on the dashboard go to: 
 -Applications 
 -APIs
--And you should see the value right there
+-And you should see the value right there.
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p2/Get ManagementAPIValue.png" class="image fit" alt="Get_ManagementAPI_value"/>
 
