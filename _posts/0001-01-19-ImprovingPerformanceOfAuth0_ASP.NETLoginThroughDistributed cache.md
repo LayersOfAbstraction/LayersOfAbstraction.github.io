@@ -215,7 +215,6 @@ Let us now install the packages.
 
 ```
 dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The Diagnostics package is for error checking for EF Core while the other installs the database. This next command will install the cache tool for SQL Server.
@@ -224,6 +223,7 @@ The Diagnostics package is for error checking for EF Core while the other instal
 dotnet tool install --global dotnet-sql-cache
 ```  
 
+I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), else go here for 
 ## Use Dependency Injection to create the models ##
 
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
