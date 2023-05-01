@@ -187,6 +187,7 @@ Install the package in the terminal using this command:
 
 `dotnet add package Microsoft.Extensions.Caching.SqlServer --version --version 6.0.4`
 `dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4`
+`dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4`
 In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExtensions.cs`.
 
 We swap the following. Delete this line.
@@ -223,7 +224,7 @@ The Diagnostics package is for error checking for EF Core while the other instal
 dotnet tool install --global dotnet-sql-cache
 ```  
 
-I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), else go here for 
+I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here]() for Mac 
 ## Use Dependency Injection to create the models ##
 
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
