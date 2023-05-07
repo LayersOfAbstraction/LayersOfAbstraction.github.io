@@ -2,7 +2,7 @@
 layout: post
 title:  "Improving Performance of Auth0/ASP.NET login through distributed cache"
 date: "2023-03-31"
-published: false
+#published: false
 ---
 
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
@@ -215,7 +215,7 @@ to store the JWT. To set it up we will use Entity Framework Core and the scaffol
 Let us now install the packages.
 
 ```
-dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --version 6.0.4
 ```
 
 The Diagnostics package is for error checking for EF Core while the other installs the database. This next command will install the cache tool for SQL Server.
@@ -230,7 +230,7 @@ I prefer to keep SQL Server database engine off my OS. Docker can help with that
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
 
 Here is the connection string we are going to use. Enter it just after the first brace character `{` at the top so you don't get errors.
-```
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PartThree_DB;Trusted_Connection=True;MultipleActiveResultSets=true" 
