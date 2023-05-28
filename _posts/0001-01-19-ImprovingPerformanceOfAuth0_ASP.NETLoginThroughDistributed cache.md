@@ -195,7 +195,7 @@ We swap the following. Delete this line.
 ```csharp
 services.AddDistributedMemoryCache();
 ```
-Now add this code for setting up the SQL Server Distributed cache. For setting up an SQL Server IDistributedCache from [this article](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-5.0:)
+Now add this code for setting up the SQL Server Distributed cache. For setting up an SQL Server IDistributedCache from [this article](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-6.0)
 ```csharp
 services.AddDistributedSqlServerCache(options =>
 {
@@ -207,7 +207,7 @@ services.AddDistributedSqlServerCache(options =>
 
 Now we have to set up the code for the cache. We are going to use code migrations to set the cache and install it with the sql server dotnet commands. Use this terminal tool to install sql-cache.
 
-## Set up SQL Server via localdb ##
+## Set up SQL Server via localdb or Docker ##
 
 We will need to set up the Microsoft SQL Server database
 to store the JWT. To set it up we will use Entity Framework Core and the scaffolding engine in the terminal.  
@@ -224,7 +224,7 @@ The Diagnostics package is for error checking for EF Core while the other instal
 dotnet tool install --global dotnet-sql-cache
 ```  
 
-I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here]() for Mac 
+I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here]() for Mac m1. 
 ## Use Dependency Injection to create the models ##
 
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
@@ -234,6 +234,15 @@ Here is the connection string we are going to use. Enter it just after the first
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PartThree_DB;Trusted_Connection=True;MultipleActiveResultSets=true" 
+  },
+```
+
+If you are learning how to do it on Docker only then the connection string would look like the following:
+
+```json
+
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=localhost,1440;Initial Catalog=MovieDB;Persist Security Info=True;User ID=SA;Password=vV5r9tn0M4@"
   },
 ```
 
