@@ -255,16 +255,10 @@ dotnet ef migrations add DistributedCache
 dotnet ef database update
 ```
 
-If you have done everything correctly the application should still show the ser profiles we got from Auth0 but here is a bonus, the backend database token was generated. 
+If you have done everything correctly the application should still show the server profiles we got from Auth0 but here is a bonus, the backend database token was generated. 
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
-If you want to know how to see the token yourself in the backend of VS Code then you need to install the "SQL Server (mssql)" extension.  
-
-To make things a little easier I will let you know that what server and database values you can use when trying to connect to the database.
-
-Server name: "(localdb)\mssqllocaldb"
-Database name: "PartThree_DB"
 
 And that should work as you have already installed SQL Server. If you don't want to install another VS Code Extension then you can do all this in Visual Studio instead.
 
