@@ -224,7 +224,7 @@ The Diagnostics package is for error checking for EF Core while the other instal
 dotnet tool install --global dotnet-sql-cache
 ```  
 
-I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here]() for Mac m1. 
+I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here](https://medium.com/geekculture/docker-express-running-a-local-sql-server-on-your-m1-mac-8bbc22c49dc9) for Mac m1. 
 ## Use Dependency Injection to create the models ##
 
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
@@ -248,7 +248,14 @@ If you are learning how to do it on Docker only then the connection string would
 
 ## Fire it up! ##
 
-Now run the database. If you have done everything correctly the application should still show the user profiles we got from Auth0 but here is a bonus, the backend database token was generated. 
+Now run the database in the console.
+
+```
+dotnet ef migrations add DistributedCache
+dotnet ef database update
+```
+
+If you have done everything correctly the application should still show the ser profiles we got from Auth0 but here is a bonus, the backend database token was generated. 
 
 <img src="../images/Displaying-auth0-user-profiles-in-ASP.NET-Core-MVC_p3/Display_backend_token_in_tblAccessTokenCache.gif" class="image fit" alt="Create_Machine_To_Machine_App"/>
 
