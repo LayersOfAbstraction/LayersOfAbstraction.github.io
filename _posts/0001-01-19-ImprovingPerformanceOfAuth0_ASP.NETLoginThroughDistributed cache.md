@@ -2,7 +2,7 @@
 layout: post
 title:  "Improving Performance of Auth0/ASP.NET login through distributed cache"
 date: "2023-03-31"
-#published: false
+published: false
 ---
 
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
@@ -185,7 +185,7 @@ methods of EF Core and activate the context globally.
 
 Install the package in the terminal using this command:
 
-`dotnet add package Microsoft.Extensions.Caching.SqlServer --version --version 6.0.4`
+`dotnet add package Microsoft.Extensions.Caching.SqlServer --version 6.0.4`
 `dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4`
 `dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4`
 In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExtensions.cs`.
