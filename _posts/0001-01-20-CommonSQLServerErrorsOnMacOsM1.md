@@ -14,6 +14,8 @@ Am I even using the correct image.
 
 I will explain some of them and what they could mean so you can improve your problem solving skills.
 
+## You cannot connect to SQL Server ##
+
 ```dotnetcli
 A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server: Could not open a connection to SQL Server)
 ```
@@ -25,7 +27,16 @@ CONTAINER ID   IMAGE                              COMMAND                  CREAT
 172708f67480   mcr.microsoft.com/azure-sql-edge   "/opt/mssql/bin/perm…"   13 days ago   Exited (255) About an hour ago   1401/tcp, 0.0.0.0:1433->1433/tcp   sql
 ```
 
-The image doesn't support ARM64.
+## The image doesn't support ARM64. ##
 
+```dotnetcli
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+```
 
-To fix that see this awesome post by Maarten Merken
+If you did this successfully on Windows 10 but not MacOS M1 then you likely tried to use the mssql-server-linux image.
+
+Some people suggest appending `--platform linux/amd64` after `docker run`, which did not help for my case.  
+
+What you really want to use is the [Azure SQL Edge image.](https://hub.docker.com/_/microsoft-azure-sql-edge)
+
+This awesome post by Maarten Merken covers it. 
