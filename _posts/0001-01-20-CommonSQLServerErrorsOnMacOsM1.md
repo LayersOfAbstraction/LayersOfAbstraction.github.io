@@ -39,4 +39,4 @@ Some people suggest appending `--platform linux/amd64` after `docker run`, which
 
 What you really want to use is the [Azure SQL Edge image.](https://hub.docker.com/_/microsoft-azure-sql-edge)
 
-This awesome post by Maarten Merken covers it. 
+This [awesome post](https://medium.com/agilix/docker-express-running-a-local-sql-server-express-204890cff699) by Maarten Merken covers it. 
