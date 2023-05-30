@@ -17,10 +17,23 @@ I will explain some of them and what they could mean so you can make sense of th
 ## You cannot connect to SQL Server ##
 
 ```dotnetcli
-A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server: Could not open a connection to SQL Server)
+A network-related or instance-specific error occurred while establishing a connection to SQL Server.
+
+The server was not found or was not accessible. 
+
+Verify that the instance name is correct and that SQL Server is configured to allow remote connections. 
+
+(provider: TCP Provider, error: 40 - Could not open a connection 
+to SQL Server: Could not open a connection to SQL Server)
 ```
 
 This can be a result of you not having the container running in the backend. To check it is running, use the following command: 
+
+```dotnetcli
+docker ps -a
+```
+
+This will bring up all the containers and their associated ID. As you can see the container we are using was not running.
 
 ```dotnetcli
 CONTAINER ID   IMAGE                              COMMAND                  CREATED       STATUS                           PORTS      NAMES
@@ -31,6 +44,8 @@ It could also be that the image you are using to create the container does not s
 
 ## The image doesn't support ARM64. ##
 
+You may get this after running the initial docker image.
+
 ```dotnetcli
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 ```
@@ -39,10 +54,21 @@ If you did this successfully on Windows 10 but not MacOS M1 then you likely trie
 
 Some people suggest appending `--platform linux/amd64` after `docker run`, which did not help for my case.  
 
-What you really want to use is the [Azure SQL Edge image.](https://hub.docker.com/_/microsoft-azure-sql-edge)
+What you really want is to use the [Azure SQL Edge image.](https://hub.docker.com/_/microsoft-azure-sql-edge)
 
-This [awesome post](https://medium.com/agilix/docker-express-running-a-local-sql-server-express-204890cff699) by Maarten Merken covers it for MacOs M1. 
+This [awesome post](https://medium.com/agilix/docker-express-running-a-local-sql-server-express-204890cff699) by Maarten Merken covers it for Mac OS M1. 
 
 ## Login failed for user 'sa'. ##
 
-This means you can access the SQL Server profile but not the actual database. It's not particularly helpful on it's own. It can mean several things. 
+Arrggh, what does that even mean? This means you can access the SQL Server profile but not the actual database. It's not particularly helpful on it's own. Some things you want to do is ensure the connection string matches what's in your database server settings. Make sure they match!
+
+If you use Windows or Mac like I do then Docker Desktop shows some very handy logs. When you open it just go to the following.
+
+Containers -> Your container. After that you will be able to find the error message. 
+
+![Docker Desktop window showing error](../images/CommonSQLServerErrorsOnMacOsM1/WrongPassword.png)
+
+In our case it showed in verbatim that our password was wrong.
+
+2023-05-29 12:45:28.78 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]
+
