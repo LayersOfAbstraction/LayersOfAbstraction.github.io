@@ -2,8 +2,9 @@
 layout: post
 title:  "Common errors when connecting an SQL Server Docker container to a .NET application on MacOS M1"
 date: "2023-05-29"
-published: false
+#published: false
 ---
+<img src="../images/CommonSQLServerErrorsOnMacOsM1/pexels-markus-spiske-225769.jpg" class="image fit" alt="Title image of Matrix like art."/>
 
 Some errors in SQL Server are clear enough. Abstract that from a Docker Container and suddenly it's a whole new layer of complexity.
 
@@ -66,7 +67,7 @@ If you use Windows or Mac like I do then Docker Desktop shows some very handy lo
 
 Containers -> Your container. After that you will be able to find the error message. 
 
-![Docker Desktop window showing error](../images/CommonSQLServerErrorsOnMacOsM1/WrongPassword.png)
+<img src="../images/CommonSQLServerErrorsOnMacOsM1/WrongPassword.png" class="image fit" alt="Docker Desktop window showing error."/>
 
 In our case it showed in verbatim that our password was wrong.
 
