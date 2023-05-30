@@ -2,7 +2,7 @@
 layout: post
 title:  "Common errors when connecting an SQL Server Docker container to a .NET application on MacOS M1"
 date: "2023-05-29"
-#published: false
+published: true
 ---
 <img src="../images/CommonSQLServerErrorsOnMacOsM1/pexels-markus-spiske-225769.jpg" class="image fit" alt="Title image of Matrix like art."/>
 
