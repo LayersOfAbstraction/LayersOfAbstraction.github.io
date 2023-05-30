@@ -9,7 +9,7 @@ published: true
 > Photo by Markus Spiske from [Pexels](https://www.pexels.com/photo/green-and-white-line-illustration-225769/)
 
 
-Some errors in SQL Server are clear enough. Abstract that from a Docker Container and suddenly it's a whole new layer of complexity.
+Some errors in SQL Server are clear enough. In a Docker Container that adds suddenly a whole new layer of complexity.
 
 Is the docker image compatible?
 Is my connection string off?
@@ -75,5 +75,6 @@ Containers -> Your container. After that you will be able to find the error mess
 
 In our case it showed in verbatim that our password was wrong.
 
+```
 2023-05-29 12:45:28.78 Logon       Login failed for user 'SA'. Reason: Password did not match that for the login provided. [CLIENT: 172.17.0.1]
-
+```
