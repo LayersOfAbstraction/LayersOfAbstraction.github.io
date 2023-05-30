@@ -47,7 +47,7 @@ CONTAINER ID   IMAGE                              COMMAND                  CREAT
 
 It could also be that the image you are using to create the container does not support SQL Server on Mac M1 at all. You may have not finished installing it. This brings me to the next problem.
 
-## The image doesn't support ARM64. ##
+## The image doesn't support ARM64 ##
 
 You may get this after running the initial docker image.
 
@@ -63,7 +63,7 @@ What you really want is to use the [Azure SQL Edge image.](https://hub.docker.co
 
 This [awesome post](https://medium.com/agilix/docker-express-running-a-local-sql-server-express-204890cff699) by Maarten Merken covers it for Mac OS M1. 
 
-## Login failed for user 'sa'. ##
+## Login failed for user 'sa' ##
 
 Arrggh, what does that even mean? This means you can access the SQL Server profile but not the actual database. It's not particularly helpful on it's own. Some things you want to do is ensure the connection string matches what's in your database server settings. Make sure they match!
 
