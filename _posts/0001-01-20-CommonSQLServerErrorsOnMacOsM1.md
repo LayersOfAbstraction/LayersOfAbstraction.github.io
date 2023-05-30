@@ -6,6 +6,9 @@ date: "2023-05-29"
 ---
 <img src="../images/CommonSQLServerErrorsOnMacOsM1/pexels-markus-spiske-225769.jpg" class="image fit" alt="Title image of Matrix like art."/>
 
+> Photo by Markus Spiske from [Pexels](https://www.pexels.com/photo/green-and-white-line-illustration-225769/)
+
+
 Some errors in SQL Server are clear enough. Abstract that from a Docker Container and suddenly it's a whole new layer of complexity.
 
 Is the docker image compatible?
@@ -14,6 +17,7 @@ Does Mac m1 not like SQL Server even in Docker?
 Am I even using the correct image.
 
 I will explain some of them and what they could mean so you can make sense of these errors.
+
 
 ## You cannot connect to SQL Server ##
 
