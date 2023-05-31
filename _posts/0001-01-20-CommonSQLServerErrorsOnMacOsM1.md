@@ -14,7 +14,7 @@ Some errors in SQL Server are clear enough. In a Docker Container that adds sudd
 Is the docker image compatible?
 Is my connection string off?
 Does Mac m1 not like SQL Server even in Docker?
-Am I even using the correct image.
+Am I even using the correct image?
 
 I will explain some of them and what they could mean so you can make sense of these errors.
 
