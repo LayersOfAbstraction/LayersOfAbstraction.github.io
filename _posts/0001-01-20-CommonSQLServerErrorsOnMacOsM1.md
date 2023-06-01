@@ -65,7 +65,7 @@ This [awesome post](https://medium.com/agilix/docker-express-running-a-local-sql
 
 ## Login failed for user 'sa' ##
 
-Arrggh, what does that even mean? This means you can access the SQL Server profile but not the actual database. It's not particularly helpful on it's own. Some things you want to do is ensure the connection string matches what's in your database server settings. Make sure they match!
+Arrggh, what does that even mean? This means you can access the SQL Server profile but not the actual database. It's not particularly helpful on it's own. Some things you want to do is ensure the connection string matches what's in your database server settings. Make sure they match.
 
 If you use Windows or Mac like I do then Docker Desktop shows some very handy logs. When you open it just go to the following.
 
