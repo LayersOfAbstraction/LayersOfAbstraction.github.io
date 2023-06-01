@@ -57,7 +57,7 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
 
 If you did this successfully on Windows 10 but not MacOS M1 then you likely tried to use the official mssql-server-linux image.
 
-Some people suggest appending `--platform linux/amd64` after `docker run`, which did not help for my case.  
+[Some people](https://stackoverflow.com/questions/66662820/m1-docker-preview-and-keycloak-images-platform-linux-amd64-does-not-match-th) suggest appending `--platform linux/amd64` after `docker run`, which did not help for my case.  
 
 What you really want is to use the [Azure SQL Edge image.](https://hub.docker.com/_/microsoft-azure-sql-edge)
 
