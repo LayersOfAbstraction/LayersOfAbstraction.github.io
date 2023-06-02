@@ -224,7 +224,7 @@ The Diagnostics package is for error checking for EF Core while the other instal
 dotnet tool install --global dotnet-sql-cache
 ```  
 
-I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. If you want to learn how to do it in Docker on Windows go [here](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and [here](https://medium.com/geekculture/docker-express-running-a-local-sql-server-on-your-m1-mac-8bbc22c49dc9) for Mac m1. 
+I prefer to keep SQL Server database engine off my OS. Docker can help with that but understand it is optional. You can learn how to do it in [Docker on Windows](https://www.yogihosting.com/docker-aspnet-core-sql-server-crud/#docker-compose-sql), and you can also do it [for for Mac m1.](https://medium.com/geekculture/docker-express-running-a-local-sql-server-on-your-m1-mac-8bbc22c49dc9)
 ## Use Dependency Injection to create the models ##
 
 We have to set up the database connection string now and the context class to allow EF to communicate with our models from the context class. This is so EF Core knows how to create the tables of the database with the given models. 
