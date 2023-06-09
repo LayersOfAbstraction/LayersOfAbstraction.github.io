@@ -20,6 +20,11 @@ So your app may become very big. And you may be pushing a lot of changes to prod
 
 We are going to use SQL Server to configure that or to be more exact we will configure a SQL Server Distributed Cache using the `Microsoft.Extensions.Caching.SqlServer` package.
 
+You can use my sample project here to work along side with. I have divided it into a few branches for each article. You can follow [the version](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/dotnet_p2) for this article or just go to [my master branch](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/master) where I have the completed code.
+
+
+
+
 ## Add ErrorApiException to UserService ##
 
 Go to `Services` folder and then `UserService.cs` and then swap the AuthenticationException for the ErrorApiException then add a global  namespace. 
@@ -272,7 +277,3 @@ If you created the database before inserting the table then you will get an erro
  ```
 dotnet sql-cache create "Server=(localdb)\\mssqllocaldb;Database=part3db;Trusted_Connection=True;MultipleActiveResultSets=true" dbo tblAccessTokenCache
 ```
-
-Hope that helped. Reach out by email if you have problems. Cheers. 
-
-Jordan
