@@ -244,7 +244,6 @@ Here is the connection string we are going to use. Enter it just after the first
 If you are learning how to do it on Docker only then the connection string would look like the following:
 
 ```json
-
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=localhost,1440;Initial Catalog=MovieDB;Persist Security Info=True;User ID=SA;Password=vV5r9tn0M4@"
   },
