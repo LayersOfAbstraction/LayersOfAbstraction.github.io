@@ -168,14 +168,13 @@ global using Microsoft.EntityFrameworkCore;
 ```
 
 ...to the top of the controller.
-## Add services to Startup ##
+## Add services to Program.cs ##
 
-We have got to add the services to activate the context class and our connection string to the
-database in the `ConfigureServices` method. Enter it where you want in the method I just put it at the top.
+We have got to add the services to activate the context class and our connection string to the database. 
 
 ```csharp
-services.AddDbContext<TeamContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<TeamContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 ```         
 
 And add...
@@ -198,15 +197,15 @@ In the AccessTokenManagement folder go to `TokenManagementServiceCollectionExten
 We swap the following. Delete this line.
  
 ```csharp
-services.AddDistributedMemoryCache();
+builder.services.AddDistributedMemoryCache();
 ```
 Now add this code for setting up the SQL Server Distributed cache. For setting up an SQL Server IDistributedCache from [this article](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-6.0)
 ```csharp
-services.AddDistributedSqlServerCache(options =>
+builder.Services.AddDistributedSqlServerCache(options =>
 {
-    options.ConnectionString = configuration.GetConnectionString("DefaultConnection");
-    options.SchemaName = "security";
-    options.TableName = "tblAccessTokenCache";
+    options.ConnectionString = builder.Configuration.GetConnectionString("CacheConnectionString");
+    options.SchemaName = "dbo";
+    options.TableName = "CacheTable";
 });
 ```
 
