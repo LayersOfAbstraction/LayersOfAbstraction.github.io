@@ -5,6 +5,11 @@ date: "2023-03-31"
 published: false
 ---
 
+<img src="../images/0001-01-19/pexels-athena-2582937.jpg" class="image fit" alt="Black and Gray Motherboard
+."/>
+
+> Photo by Athena Spiske from [Pexels](https://www.pexels.com/photo/green-and-white-line-illustration-225769/)
+
 [Previously I showed you how to auto renew a token.]({% link _posts/0001-01-07-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part2.md %}) We can improve the performance as well. We will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database.
 
 But what exactly is a distributed cache? [Microsoft puts it nicely.](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/distributed?view=aspnetcore-5.0)
