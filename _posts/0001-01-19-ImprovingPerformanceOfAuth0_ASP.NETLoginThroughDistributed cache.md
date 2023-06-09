@@ -2,7 +2,7 @@
 layout: post
 title:  "Improving Performance of Auth0/ASP.NET login through distributed cache"
 date: "2023-03-31"
-published: false
+published: true
 ---
 
 <img src="../images/0001-01-19/pexels-athena-2582937.jpg" class="image fit" alt="Black and Gray Motherboard
@@ -129,35 +129,35 @@ using Microsoft.EntityFrameworkCore;
 So you can skip to the next heading if you don't want to a create user in the view as well as store JWT. But if you want to then we are going to use dependency injection to make that happen. In our HomeController add this code.
 
 ```csharp
-        private readonly TeamContext _context;
+private readonly TeamContext _context;
 
-        //Add the context to the constructor. Don't make another constructor. Use the one
-        //that is already there.
-        public HomeController(TeamContext context, IUserService userService)
-        {
-            _context = context;
-            _userService = userService;
-        }
+//Add the context to the constructor. Don't make another constructor. Use the one
+//that is already there.
+public HomeController(TeamContext context, IUserService userService)
+{
+    _context = context;
+    _userService = userService;
+}
 
-        public IActionResult Index()
-        {
-            ViewData["UserID"] = new SelectList(_context.Users, "ID", "UserFullname", null);
-            return View();
-        }
+public IActionResult Index()
+{
+    ViewData["UserID"] = new SelectList(_context.Users, "ID", "UserFullname", null);
+    return View();
+}
 
-        // POST: User/Create        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index([Bind("UserLastName,UserFirstName,UserIsLeader,UserContactEmail,UserPhoneNumber,UserAddress,UserPostCode,UserCountry,UserMobileNumber,UserState,UserLogInName,UserPassword")] Auth0UserProfileDisplayStarterKit.ViewModels.User user)
+// POST: User/Create        
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Index([Bind("UserLastName,UserFirstName,UserIsLeader,UserContactEmail,UserPhoneNumber,UserAddress,UserPostCode,UserCountry,UserMobileNumber,UserState,UserLogInName,UserPassword")] Auth0UserProfileDisplayStarterKit.ViewModels.User user)
+{
+        if (ModelState.IsValid)
         {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(user);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-            return View(user);
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+    return View(user);
+}
 ```
 
 Also add...
