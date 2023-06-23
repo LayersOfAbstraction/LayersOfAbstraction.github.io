@@ -217,4 +217,129 @@ In your src folder, create a `Components` folder. Imagine if you had a gaming co
 
 Even better what if you could reuse the same wireless gaming controllers for other consoles like at your friends place? That's the great thing with components. We can make the sidebar more portable.
 
-Create a file in the components folder. Call it `sidebar.js`. The code we have created for the sidebar can just be cut and pasted into it. Yep that means all the code in this tutorial from before this heading can be cut and pasted into that file. But what I will do first is show you how to create the component structure to hold the code.
+Create a file in the components folder. Call it `sidebar.js`. The code we have created for the sidebar can just be cut and pasted into it. Yep that means all the code in this tutorial from before this heading can be cut and pasted into that file. But what I will do first is show you how to create the component structure to hold the code. Let me break it down.
+
+```jsx
+//sidebar.js
+import styled, {createGlobalStyle} from "styled-components"
+import React, { useState} from "react"
+import { Link } from "gatsby"
+
+const Global = createGlobalStyle`
+  body, html{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+`
+const MenuIcon = styled.button`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+
+  div {
+    width: 1.5rem;
+    height: 0.2rem;
+    background: white;
+    border-radius: 5px;
+    transform-origin: 1px;
+    position: relative;
+    transition: opacity 300ms, transform 300ms;
+
+    :first-child{
+      transform: ${({nav}) => (nav ? 'rotate(45deg)': 'rotate(0)')}
+    } 
+    
+
+    :nth-child(2){
+      opacity: ${({nav}) => (nav ? "0" : "1")}
+    } 
+    
+    :nth-child(3){
+      transform: ${({nav}) => (nav ? 'rotate(-45deg)': 'rotate(0)')}
+    }
+  }  
+`
+
+const Menulinks = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  width: 25%;
+  position: fixed;
+  transition: 300ms;
+  background-color: black;
+  top: 0;
+  right: 0;
+  z-index: 998;
+  transform: ${({ nav }) => (nav ? "translateX(0)" : "translateX(100%)")};
+
+  ul{
+    list-style-type: none;
+  }
+
+  li{
+    margin-top: 1rem
+  }
+
+
+   a{
+     text-decoration: none; 
+     color: white;
+     font-size: 1.5rem;
+     transition: color 300ms;
+   }
+
+  :hover {
+    color: #6ab4ff    
+  }
+`
+
+export const Sidebar =  () => {
+  const [nav, showNav] = useState(false);
+return(
+<>
+<Global />
+          <MenuIcon nav={nav} onClick={() => showNav(!nav)}>
+            <div/>
+            <div/>
+            <div/>
+          </MenuIcon>
+          <Menulinks nav={nav}>
+            <ul>
+              <Link to="#">Blog</Link>
+            </ul>
+            <ul>
+              <Link to="#">home</Link>
+            </ul>
+            <h3>Social</h3>
+            <ul className="icons alt">
+            <li>
+            <a href="https://github.com/LayersOfAbstraction/layersofabstraction.github.io/" className="icon fa-github">
+              <span className="label">GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/jordan-nash-87b042173/" className="icon fa-linkedin">
+              <span className="label">LinkedIn</span>
+            </a>
+          </li>
+            </ul>
+          </Menulinks>
+    </>
+  );
+}
+```
+
+I learned the styling from [this awesome video](https://www.youtube.com/watch?v=6cb56Luubd4) by Chris DeSilva. Please advise I did make some tweaks to it.
