@@ -1,7 +1,7 @@
 ---
 title: "Splitting a Gatsby site into communicative reusable components"
 date: "2022-05-28"
-#published: false
+published: false
 layout: post
 ---
 
