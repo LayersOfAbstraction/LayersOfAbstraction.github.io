@@ -1,7 +1,7 @@
 ---
 title: "Splitting a Gatsby site into communicative reusable components"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -11,34 +11,33 @@ In the previous blog we learned how to convert a website from HTML with css to G
 
 - In this tutorial you will recreate the sidebar in Gatsby and isolate it into a separate styled-component complete with it's own css styles.
 - Learn to share data between components.
-- You will see how great React styled-components are for UI design as they are lowly coupled and highly cohesive. Making them more reusable.
-- Why Should you bother? Well you will be creating your own UI components which you could put online for other people to use such as people in your own project team.
+- You will see how great React styled-components are for UI design as they are lowly coupled and highly cohesive. Making them more reusable.  
+- Why should you bother? Well you will be creating your own UI components which you could put online for other people to use such as people in your own project team.
 
-Imagine if you had a gaming console with controllers hardwired to it. Wouldn't it be cool if you could have them as a separate component to the console just like with a TV remote control?
+Imagine if you had a gaming console with controllers hardwired to it. Wouldn't it be cool if you could have them as a separate wireless component to the console just like with a TV remote control?
 
 Even better what if you could reuse the same wireless gaming controllers for other consoles like at your friends place? That's the great thing with components. We can make the sidebar more portable.
 
 ## Perquisites ##
 
--You should already know how to compile Gatsby. If you do not then please see [my previous blog.]({% link _posts/0001-01-13-AttachGatsbySSGToWebsite.md %})
--You should know about CSS especially the difference between internal and external style sheets.
--You should know about HTML DOM.
+- You should already know how to compile Gatsby. If you do not then please see [my previous blog]({% link _posts/0001-01-13-AttachGatsbySSGToWebsite.md %})
+- You should know about CSS especially the difference between internal and external style sheets.
+- You should know about HTML DOM.
 
 ## Sorry no jQuery ##
 
-jQuery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled. We have to reinvent the wheel with the "sidebar" element as it was written with jQuery. Besides we can use it again later.
+jQuery does not know of Gatsby's existence so it can cause conflicts as jQuery manipulates the DOM directly while Gatsby is more loosely coupled. We have to reinvent the wheel with the "sidebar" element as it was written with jQuery. Besides we can use it again later.
 
-I cannot take full credit for how to create the sidebar. Only how to abstract it! I learned the styling from [this awesome video](https://www.youtube.com/watch?v=6cb56Luubd4) by Chris DeSilva. Please advise I made some tweaks to it.
+I cannot take full credit for how to create the sidebar. Only how to abstract it. I learned the styling from [this awesome video](https://www.youtube.com/watch?v=6cb56Luubd4) by Chris DeSilva. Please advise I made some tweaks to it.
 
 When we open the red encircled hamburger icon we want the sidebar to appear with the headings on the page so we can go back to other pages.
   
-We want that to appear as well in the white section at the top if the screen is not minimized. You can't see the white space where I have encircled it but if you were to fully maximize the web page, you would see it.
+We may want that to appear as well in the white section at the top if the screen is not minimized which I may do in later blogs. You can't see the white space where I have encircled it red but if you were to fully maximize the web page, you would see it.
 
 <img src="../images/AttachGatsbySSGToWebsite/Screen%20Shot%202022-06-01%20at%209.36.28%20pm.png" class="image fit" alt="Image showing we will have link to blog on top right and nav bar"/><br>
 
 ## Install styled components ##
 
-We will have to link the navbar which you cannot see here as it only appears at full size and the sidebar which is controlled by the hamburger icon on the top right.
 
 Install styled components using this command in your local console
 
@@ -350,9 +349,9 @@ export const Sidebar = () => {
     </>
   );
 }
+```
 
 ## How to use the completed code. ##
-```
 
 Simply import the component into your home page like this.
 
