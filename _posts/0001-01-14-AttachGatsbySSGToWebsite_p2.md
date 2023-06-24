@@ -1,7 +1,7 @@
 ---
 title: "Splitting a Gatsby site into communicative reusable components"
 date: "2022-05-28"
-published: false
+#published: false
 layout: post
 ---
 
@@ -177,9 +177,9 @@ return(
 
 We will now declare [the useState hook.](https://react.dev/learn/state-a-components-memory) We use the hook which provides a session state variable to retain the data bettween renders.
 
-So when we toggle the sidebar on and off, the content shown on that sidebar will be re-rendered with an inbuilt state setter function from the hook. That function will tell React to render the component again. 
+What that means is when we toggle the sidebar on and off, the content shown on that sidebar will be re-rendered with an inbuilt state setter function from the hook. That function will tell React to render the component again. 
 
-This code will allow us to toggle the sidebar. As it is a styled component all you need to know is we get to nest 3 div bars inside it to display the hamburger button.
+This is the code that will allow us to toggle the sidebar. As it is a styled component all you need to know is we get to nest 3 div bars inside it to display the hamburger button.
 
 ```jsx
 ...
@@ -191,8 +191,6 @@ This code will allow us to toggle the sidebar. As it is a styled component all y
       </MenuIcon>
 ...
 ```
-
-
 
 When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track. I will not be doing that however for these tutorials.
 
