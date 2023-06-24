@@ -14,6 +14,10 @@ In the previous blog we learned how to convert a website from HTML with css to G
 - You will see how great React styled-components are for UI design as they are lowly coupled and highly cohesive. Making them more reusable.
 - Why Should you bother? Well you will be creating your own UI components which you could put online for other people to use such as people in your own project team.
 
+Imagine if you had a gaming console with controllers hardwired to it. Wouldn't it be cool if you could have them as a separate component to the console just like with a TV remote control?
+
+Even better what if you could reuse the same wireless gaming controllers for other consoles like at your friends place? That's the great thing with components. We can make the sidebar more portable.
+
 ## Perquisites ##
 
 -You should already know how to compile Gatsby. If you do not then please see [my previous blog.]({% link _posts/0001-01-13-AttachGatsbySSGToWebsite.md %})
@@ -24,7 +28,7 @@ In the previous blog we learned how to convert a website from HTML with css to G
 
 jQuery does not know of React's existence so it can cause conflicts as jquery manipulates the DOM directly while React is more loosely coupled. We have to reinvent the wheel with the "sidebar" element as it was written with jQuery. Besides we can use it again later.
 
-I cannot take full credit for how to create the sidebar. Only how to abstract it! I learned how to do it here but had to adjust a few properties and colours that were not present [in the tutorial.](https://www.youtube.com/watch?v=6cb56Luubd4)
+I cannot take full credit for how to create the sidebar. Only how to abstract it! I learned the styling from [this awesome video](https://www.youtube.com/watch?v=6cb56Luubd4) by Chris DeSilva. Please advise I made some tweaks to it.
 
 When we open the red encircled hamburger icon we want the sidebar to appear with the headings on the page so we can go back to other pages.
   
@@ -52,11 +56,14 @@ module.exports = {
 
 ## Create the minimized Hamburger button with styled components ##
 
-We are going to create a styled component inside our index.js file.
-In your index.js file add this to your imports list.
+We are going to create an external styled component outside our index.js file.
+Create a file in the components folder. Call it `sidebar.js` and add this to your imports list. If you watched that video before, please note we will not use global styles in order to keep the component portable and minimize any side affects with global styles. 
 
 ```jsx
-import styled, {createGlobalStyle} from "styled-components"
+
+import styled from "styled-components"
+import React, { useState } from "react"
+import { Link } from "gatsby"
 ```
 Place this just below your imports. You may find this to be similar to internal CSS styles. We will abstract them later.
 
@@ -73,13 +80,6 @@ const Global = createGlobalStyle`
 ```
 
 Now we create the style component Hamburger button. We will call it MenuIcon.
-
-We are fixing it to the page regardless of where user scrolls.
-Keep in mind inside MenuIcon we are setting the z-index value at 999 so when the sidebar is toggled open, the hamburger icon will wrap over it.
-
-The first-child is creating the first bar while nth-child(2) and nth-child(2) are the 2nd and third hamburger bars of the icon.
-
-The transform property is holding instructions for the bars to turn into an x shape upon the user clicking it.
 
 ```jsx
 
@@ -121,19 +121,25 @@ z-index: 999;
 `
 ```
 
-Make sure it is outside your page component. In the last tutorial it was named the "Home" component.
+We are fixing it to the page regardless of where user scrolls with the `position` property set to `fixed`.
+Keep in mind inside MenuIcon we are setting the `z-index` value at `999` so when the sidebar is toggled open, the hamburger icon will wrap over it.
+
+In the div ID we first create the look and feel of it and are nesting 3 bar sub icons to create the hamburger button which is `first-child`, `nth-child(2)` and `nth-child(3)`.
+The `first-child` pseudo-class selector is creating the first bar while `nth-child(2)` and `nth-child(3)` are the 2nd and third hamburger bars of the icon.
+
+i.e
+
+`first-child =  -`
+`nth-child(2) = -`
+`nth-child(3) = -`
+
+The transform property is holding instructions for the bars to turn into an x shape upon the user clicking it.
 
 ## Create the menu links in our hamburger button ##
 
-This contains the look and feel of the menu display when we click on the hamburger icon. Important thing to note is we are keeping the
-position of the menu fixed!
-
-Else it will not stay fixed on the page when the user scrolls up and down. Also we I have set the value of z-index to 998 so
-it can wrap over any other elements on the page.
+This contains the look and feel of the menu display when we click on the hamburger icon. 
 
 ```jsx
-
-
 const Menulinks = styled.nav`
   display: flex;
   flex-direction: column;
@@ -170,54 +176,39 @@ const Menulinks = styled.nav`
 `
 ```
 
-We have now finished the initial style of the styled components! Now we have to declare and export them!
+Important thing to note is we are keeping the position of the menu fixed. Else it will not stay fixed to the viewport (i.e what's on screen) when the user scrolls up and down. Also set the value of `z-index` to `998` so it can wrap over any other elements on the page.
+
+We have now finished the initial style of the styled components. Now we have to declare and export them.
 
 ## Declaring and exporting styled components in our sidebar ##
 
-In your page component just under `const Home = () => {` please add the following.
+In your component please add the following.
 
 ```jsx
-const [nav, showNav] = useState(false)
+export const Sidebar =  () => {
+  const [nav, showNav] = useState(false);
+return(
+...
 ```
 
-now under your jsx "wrapper" tag you should add this. Copy and paste it.
+We will now declare [the useState hook.](https://react.dev/learn/state-a-components-memory) We use the hook which provides a session state variable to retain the data bettween renders.
+
+So when we toggle the sidebar on and off, the content shown on that sidebar will be re-rendered with an inbuilt state setter function from the hook. That function will tell React to render the component again. 
+
+This code will allow us to toggle the sidebar. As it is a styled component all you need to know is we 
 
 ```jsx
-<Global />
-<MenuIcon nav={nav} onClick={() => showNav(!nav)}>
-  {/* Each <div> corresponds to the 3 bars*/}
-  <div/>
-  <div/>
-  <div/>
-</MenuIcon>
-
-<Menulinks nav={nav}>
-  <ul>
-    <Link to="#">Blog</Link>
-  </ul>
-  <ul>
-    <Link to="#">home</Link>
-  </ul>
-  <h3>Social</h3>
-  {/* Sidebar Icon list*/}
-  <ul className="icons alt">
-    <li><Link to="#" class="icon alt fa-twitter"><span class="label">Twitter</span></Link></li>
-    <li><Link to="#" class="icon alt fa-facebook"><span class="label">Facebook</span></Link></li>
-    <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-    <li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
-  </ul>
-</Menulinks> 
+    <>
+      <MenuIcon nav={nav} onClick={() => showNav(!nav)}>
+        <div />
+        <div />
+        <div />
+      </MenuIcon>
 ```
 
 When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track. I will not be doing that however for these tutorials.
 
 ## Abstract the component to it's own file ##
-
-In your src folder, create a `Components` folder. Imagine if you had a gaming console with controllers hardwired to it. Wouldn't it be cool if you could have them as a separate component to the console just like with a TV remote control?
-
-Even better what if you could reuse the same wireless gaming controllers for other consoles like at your friends place? That's the great thing with components. We can make the sidebar more portable.
-
-Create a file in the components folder. Call it `sidebar.js`. The code we have created for the sidebar can just be cut and pasted into it. Yep that means all the code in this tutorial from before this heading can be cut and pasted into that file. But what I will do first is show you how to create the component structure to hold the code. Let me break it down.
 
 ```jsx
 //sidebar.js
@@ -342,4 +333,3 @@ return(
 }
 ```
 
-I learned the styling from [this awesome video](https://www.youtube.com/watch?v=6cb56Luubd4) by Chris DeSilva. Please advise I did make some tweaks to it.
