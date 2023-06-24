@@ -1,7 +1,7 @@
 ---
 title: "Splitting a Gatsby site into communicative reusable components"
 date: "2022-05-28"
-#published: false
+published: false
 layout: post
 ---
 
@@ -38,14 +38,13 @@ We may want that to appear as well in the white section at the top if the screen
 
 ## Install styled components ##
 
-
 Install styled components using this command in your local console
 
 ```text
 npm install gatsby-plugin-styled-components styled-components babel-plugin-styled-components
 ```
 
-After that we need to tell our project to explicitly use it in our gatsby-config.js file. If it is not there, you just need to create it in the root of your Gatsby site folder.
+After that we need to tell our project to explicitly use it in our `gatsby-config.js` file. If it is not there, you just need to create it in the root of your Gatsby site folder.
 
 ```jsx
 module.exports = {
@@ -55,7 +54,7 @@ module.exports = {
 
 ## Import React based libraries ##
 
-We are going to create an external styled component outside our index.js file.
+We are going to create an external styled component outside our `index.js` file.
 Create a file in the components folder. Call it `sidebar.js` and add this to your imports list. 
 
 ```jsx
@@ -112,16 +111,11 @@ z-index: 999;
 ```
 
 We are fixing it to the page regardless of where user scrolls with the `position` property set to `fixed`.
-Keep in mind inside MenuIcon we are setting the `z-index` value at `999` so when the sidebar is toggled open, the hamburger icon will wrap over it.
+
+Keep in mind inside the `MenuIcon` element we are setting the `z-index` value at `999` so when the sidebar is toggled open, the hamburger icon will wrap over it so we can close it.
 
 In the div ID we first create the look and feel of it and are nesting 3 bar sub icons to create the hamburger button which is `first-child`, `nth-child(2)` and `nth-child(3)`.
 The `first-child` pseudo-class selector is creating the first bar while `nth-child(2)` and `nth-child(3)` are the 2nd and third hamburger bars of the icon.
-
-i.e
-
-`first-child =  -`
-`nth-child(2) = -`
-`nth-child(3) = -`
 
 The transform property is holding instructions for the bars to turn into an x shape upon the user clicking it.
 
