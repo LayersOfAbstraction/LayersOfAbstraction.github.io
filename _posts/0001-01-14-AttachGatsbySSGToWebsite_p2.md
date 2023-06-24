@@ -54,10 +54,10 @@ module.exports = {
 }
 ```
 
-## Create the minimized Hamburger button with styled components ##
+## Import React based libraries ##
 
 We are going to create an external styled component outside our index.js file.
-Create a file in the components folder. Call it `sidebar.js` and add this to your imports list. If you watched that video before, please note we will not use global styles in order to keep the component portable and minimize any side affects with global styles. 
+Create a file in the components folder. Call it `sidebar.js` and add this to your imports list. 
 
 ```jsx
 
@@ -65,19 +65,10 @@ import styled from "styled-components"
 import React, { useState } from "react"
 import { Link } from "gatsby"
 ```
-Place this just below your imports. You may find this to be similar to internal CSS styles. We will abstract them later.
 
-Here we are overriding any default styling using the createGlobalStyle component so it will apply any styles from our sidebar to all the pages we use it in. Hope that makes sense?
+If you watched that video before, please note we will not use global styles in order to keep the component portable and minimize any side affects with global styles. 
 
-```jsx
-const Global = createGlobalStyle`
-  body, html{
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-`
-```
+## Create the minimized Hamburger button with styled components ##
 
 Now we create the style component Hamburger button. We will call it MenuIcon.
 
@@ -195,34 +186,63 @@ We will now declare [the useState hook.](https://react.dev/learn/state-a-compone
 
 So when we toggle the sidebar on and off, the content shown on that sidebar will be re-rendered with an inbuilt state setter function from the hook. That function will tell React to render the component again. 
 
-This code will allow us to toggle the sidebar. As it is a styled component all you need to know is we 
+This code will allow us to toggle the sidebar. As it is a styled component all you need to know is we get to nest 3 div bars inside it to display the hamburger button.
 
 ```jsx
+...
     <>
       <MenuIcon nav={nav} onClick={() => showNav(!nav)}>
         <div />
         <div />
         <div />
       </MenuIcon>
+...
 ```
+
+
 
 When you run `gatsby develop` you should see the component appear on the webpage. There should be a hamburger icon on the very top right. It's very important the sidebar remains fixed to the page as you can put a table of contents on it down the track. I will not be doing that however for these tutorials.
 
-## Abstract the component to it's own file ##
+## Create the menu links ##
+
+We are in the final process of declaring our component structure.
 
 ```jsx
-//sidebar.js
-import styled, {createGlobalStyle} from "styled-components"
-import React, { useState} from "react"
+      <Menulinks nav={nav}>
+        <ul>
+          <Link to="#">Blog</Link>
+        </ul>
+        <ul>
+          <Link to="#">home</Link>
+        </ul>
+        <h3>Social</h3>
+        <ul className="icons alt">
+          <li>
+            <Link to="https://github.com/LayersOfAbstraction/layersofabstraction.github.io/" className="icon fa-github">
+              <span className="label">GitHub</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="https://www.linkedin.com/in/jordan-nash-87b042173/" className="icon fa-linkedin">
+              <span className="label">LinkedIn</span>
+            </Link>
+          </li>
+        </ul>
+      </Menulinks>
+    </>
+  );
+}
+```
+For the menu links we want them to all load straight away in the viewport hence the "Link to" tags. We also used the Font Awesome tags to load the icons for Github and LinkedIn. That will complete the code. This is what it all looks like
+
+## The completed code ##
+
+```jsx
+
+import styled from "styled-components"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 
-const Global = createGlobalStyle`
-  body, html{
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-`
 const MenuIcon = styled.button`
   position: fixed;
   top: 2rem;
@@ -247,16 +267,16 @@ const MenuIcon = styled.button`
     transition: opacity 300ms, transform 300ms;
 
     :first-child{
-      transform: ${({nav}) => (nav ? 'rotate(45deg)': 'rotate(0)')}
+      transform: ${({ nav }) => (nav ? 'rotate(45deg)' : 'rotate(0)')}
     } 
     
 
     :nth-child(2){
-      opacity: ${({nav}) => (nav ? "0" : "1")}
+      opacity: ${({ nav }) => (nav ? "0" : "1")}
     } 
     
     :nth-child(3){
-      transform: ${({nav}) => (nav ? 'rotate(-45deg)': 'rotate(0)')}
+      transform: ${({ nav }) => (nav ? 'rotate(-45deg)' : 'rotate(0)')}
     }
   }  
 `
@@ -297,39 +317,50 @@ const Menulinks = styled.nav`
   }
 `
 
-export const Sidebar =  () => {
+export const Sidebar = () => {
   const [nav, showNav] = useState(false);
-return(
-<>
-<Global />
-          <MenuIcon nav={nav} onClick={() => showNav(!nav)}>
-            <div/>
-            <div/>
-            <div/>
-          </MenuIcon>
-          <Menulinks nav={nav}>
-            <ul>
-              <Link to="#">Blog</Link>
-            </ul>
-            <ul>
-              <Link to="#">home</Link>
-            </ul>
-            <h3>Social</h3>
-            <ul className="icons alt">
-            <li>
-            <a href="https://github.com/LayersOfAbstraction/layersofabstraction.github.io/" className="icon fa-github">
+  return (
+    <>
+      <MenuIcon nav={nav} onClick={() => showNav(!nav)}>
+        <div />
+        <div />
+        <div />
+      </MenuIcon>
+      <Menulinks nav={nav}>
+        <ul>
+          <Link to="#">Blog</Link>
+        </ul>
+        <ul>
+          <Link to="#">home</Link>
+        </ul>
+        <h3>Social</h3>
+        <ul className="icons alt">
+          <li>
+            <Link to="https://github.com/LayersOfAbstraction/layersofabstraction.github.io/" className="icon fa-github">
               <span className="label">GitHub</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/jordan-nash-87b042173/" className="icon fa-linkedin">
+            <Link to="https://www.linkedin.com/in/jordan-nash-87b042173/" className="icon fa-linkedin">
               <span className="label">LinkedIn</span>
-            </a>
+            </Link>
           </li>
-            </ul>
-          </Menulinks>
+        </ul>
+      </Menulinks>
     </>
   );
 }
+
+## How to use the completed code. ##
 ```
 
+Simply import the component into your home page like this.
+
+```jsx
+import { Sidebar } from "../components/sidebar"
+```
+
+And declare this inside your page component, inside a wrapper tag for example.
+```jsx
+<Sidebar />
+```
