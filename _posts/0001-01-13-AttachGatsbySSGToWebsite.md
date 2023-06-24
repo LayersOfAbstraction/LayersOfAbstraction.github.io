@@ -650,18 +650,7 @@ Don’t forget to import the link component. To import it we must use Gatsby’s
 
 Now fire up the Gatsby development server and navigate to http://localhost:8000/ you should see the page render.
 
-Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
-
-[Joshua Fluke’s Github Page Tutorial Video](https://www.youtube.com/watch?v=u-RLu_8kwA0)
-
-[Repo of Joshua Fluke’s Github Pages Portfolio Used for This Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-0/)
-
-[Gatsby’s Official Site for Installing It](https://www.gatsbyjs.com/docs/tutorial/part-0/)
-
-
-Now fire up the Gatsby development server and navigate to http://localhost:8000/ You should see the page render. Congratulations you have converted your website to Gatsby!
-
-Congratulations you have converted your website to Gatsby! Hope that helps. Goodbye for now.
+Congratulations you have converted your website to Gatsby! Hope that helps. 
 
 ## Resources
 
