@@ -344,4 +344,4 @@ Again the `--project` parameter and specifying the project file is needed becaus
 Now debug the application. The code should show that we are still getting the same user profiles as in the previous blog for this series. Only this time we don't have to manually reset the JWT after it has expired.
 
 In our next blog we will look at storing our JWT in a distributed cache service to help us improve the performance and scalability of our ASP.NET 6 MVC client application and store it in a database. [Part3 blog here!](
-{% link _posts/0001-01-08-displaying-auth0-user-profiles-in-ASP.NET-Core-MVC-part3.md %})
+{% link _posts/0001-01-19-ImprovingPerformanceOfAuth0_ASP.NETLoginThroughDistributed cache.md %})
