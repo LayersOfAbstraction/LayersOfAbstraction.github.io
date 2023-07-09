@@ -253,8 +253,17 @@ Add the following code
             }).ToList();
             return Json(renderedUsers);
         }
+
+        public IActionResult Index()
+        {
+            ViewData["UserID"] = new SelectList(_context.Users, "ID", "UserFullname", null);
+            return View();
+        }
 ```
-The code will allow the Auth0 Management API to communicate with ASP.NET and will retrieve our user profiles from Auth0 when a client sends a request. So we have created the backend server code. Now we have to create the client View cshtml file. 
+The code will allow the Auth0 Management API to communicate with ASP.NET and will retrieve our user profiles from Auth0 when a client sends a request. So we have created the backend server code. 
+
+The index method will allow us to select a user in the table we will create where UserID is the selected row.
+Now we have to create the client View cshtml file. 
 
 I am going to install DataTables on the front end which is an open source jQuery library capable of integrating advanced functionality into the front end of our project. 
 
