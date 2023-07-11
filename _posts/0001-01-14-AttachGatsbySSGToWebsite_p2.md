@@ -5,7 +5,8 @@ published: true
 layout: post
 ---
 
-<img src="../images/AttachGatsbySSGToWebsite/main-image.jpg" class="image fit" alt="Image is a main image"/><br>
+<img src="../images/AttachGatsbySSGToWebsite/main-image.jpg" class="image fit" alt="Image is a main image"/>
+> Photo by of a Snuffbox by Factory director Claudius Innocentius Du Paquier period from [The Met Museum](https://www.metmuseum.org/art/collection/search/206630?searchField=All&amp;sortBy=Relevance&amp;showOnly=openAccess&amp;ft=code&amp;offset=0&amp;rpp=40&amp;pos=7)<br>
 
 ## Introduction ##
 
