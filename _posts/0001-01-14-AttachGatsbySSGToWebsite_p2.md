@@ -198,7 +198,7 @@ When you run `gatsby develop` you should see the component appear on the webpage
 
 ## Create the menu links ##
 
-We are in the final process of declaring our component structure.
+It's time to personalize the component. We are in the final process of declaring our component structure.
 
 ```jsx
       <Menulinks nav={nav}>
