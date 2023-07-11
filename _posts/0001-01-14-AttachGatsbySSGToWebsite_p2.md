@@ -1,9 +1,11 @@
 ---
 title: "Splitting a Gatsby site into communicative reusable components"
 date: "2022-05-28"
-published: false
+published: true
 layout: post
 ---
+
+<img src="../images/AttachGatsbySSGToWebsite/main-image.jpg" class="image fit" alt="Image is a main image"/><br>
 
 ## Introduction ##
 
@@ -343,7 +345,7 @@ export const Sidebar = () => {
 }
 ```
 
-## How to use the completed code. ##
+## How to use the completed code ##
 
 Simply import the component into your home page like this.
 
