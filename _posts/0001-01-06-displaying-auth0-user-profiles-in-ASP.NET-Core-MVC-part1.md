@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Displaying Auth0 user profiles in ASP.NET Core 5.0 (part 1)"
-date: "2023-03-31"
+#published: False
 ---
 
 So maybe you want the end user to not have to manually enter into the database what they already entered into Auth0 user profile. Instead you may want to automatically display them from Auth0 and select them in your client application and add them into the database. In this blog we will learn how to do that by using the Auth0 Management API and ASP.NET 5.0, (no longer called .NET Core).
@@ -20,13 +20,13 @@ Login to Auth0 Dashboard.
 
 If you are new to Auth0 I highly recommend you create a [account](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D&email=undefined) and tenant for the region nearest to you. 
 
-You can learn to use Auth0 by using [the quickstart written in .NET Core 3.1.](https://auth0.com/docs/quickstart/webapp/aspnet-core-3) Because there is no .NET 5 quickstart 
+You can learn to use Auth0 by using [the quickstart written in .NET Core 6](https://auth0.com/docs/quickstart/webapp/aspnet-core-3)
 
-I have migrated it into a [simple starter sample in .NET 5 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part1) you can use alongside this blog. 
+I have migrated it into a [simple starter sample in .NET 56 called Auth0UserProfileDisplayStarterKit.](https://github.com/LayersOfAbstraction/Auth0UserProfileDisplayStarterKit/tree/part1) you can use alongside this blog. 
 
 Afterwards you will have two ways of completing this tutorial. 
 
-1. You can attempt to migrate the quickstart from .NET Core 3.1 to 5.0 to match this blog and add all the code I display. 
+1. To use their quickstart from .NET 6 to match this blog and add all the code I display. 
 
 2. You can download my Auth0UserProfileDisplayStarterKit and do minimal amount of work to change things around to match.
 
