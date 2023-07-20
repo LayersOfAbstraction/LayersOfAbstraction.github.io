@@ -43,7 +43,7 @@ Eventually after a year and 8 months, work dried up. Nothing is stable in suppor
 <img src="../images/0001-01-21-DoNotRageQuit/me-watching-my-life-fall-apart.jpg" class="image fit" alt="Calm boy drinking tea while cars behind him are on fire."/>
 > Meme by [steverogersgf](https://memes.com/m/me-watching-my-life-fall-apart-b_41Vn_KJEV) on memes.com
 
-Yep I would drink my green tea just like him. I would get out for walks almost everyday around the block during work breaks. Sometimes during every break as we would have to suit in our chairs most of the day.
+Yep I would drink my green tea just like him. I would get out for walks almost everyday around the block during work breaks. Sometimes during every break as we would have to sit in our chairs most of the day.
 
 I worked in a call centre and the turnover rate was so high that the company was bringing new hiring batches usually every fortnight. A colleague turned to me and said "they must not care about retaining their staff if they're always bringing in new people."
 
@@ -90,7 +90,7 @@ The smallest sickness I had I would get a medical certificate for and used to ge
 
 ## Take some pride. Be a pillar. Grow with your team. Fight!
 
-<img src="../images/0001-01-21-DoNotRageQuit/people-gd8ceb60b7_1280.jpg" class="image fit" alt="People bro fisting eachother."/>
+<img src="../images/0001-01-21-DoNotRageQuit/people-gd8ceb60b7_1280.jpg" class="image fit" alt="People bro fisting each other."/>
 > Image by <a href="https://pixabay.com/users/stocksnap-894430/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">StockSnap</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">Pixabay</a>
 
 I had a good team leader who strived for excellence in his staff and never once made me feel like an idiot when asking questions. I feel if it wasn't for him I would not have lasted. He was the workplace pillar and made the job worth staying for. It was just an incentive to fight on.
