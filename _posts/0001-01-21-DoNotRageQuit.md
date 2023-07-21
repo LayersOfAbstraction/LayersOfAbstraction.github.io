@@ -124,7 +124,7 @@ I was very good at troubleshooting the issue and keeping things simple, I mean y
 
 I also listened to cyber security podcasts so when I had an actual cyber security victim (which was extremely rare) I knew how to explain to others in simple terms so the incident could be escalated. 
 
-I learned a common hacking attack for victims was through Bluetooth Tethering where the attacker could log into our client's modem and take remote control of the client's computer regardless of how many times the client factory reset it, as the attacker was close by using bluetooth to attack.
+I learned a common hacking attack for victims was through Bluetooth Tethering where the attacker could log into our client's modem and take remote control of the client's computer regardless of how many times the client factory reset it, as the attacker may have been close by using Bluetooth to attack.
 
 Because of this I was able to cut the IT jargon, and explain to our Fraud Triage team that this wasn't some tech illiterate guy, mistaking scam emails for actual attacks.
 
