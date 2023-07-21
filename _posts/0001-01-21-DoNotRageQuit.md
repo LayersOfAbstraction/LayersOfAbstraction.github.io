@@ -104,6 +104,8 @@ There were days I felt so disorientated that I took a whole day off from work. I
 
 The smallest sickness I had I would get a medical certificate for and used to get time off, paid or unpaid. Going call after call back to back took energy and I wanted to be mentally ready.
 
+I personally respected my company in some ways. They didn't batch hire every fortnight like my previous company and I liked that. It made me feel more valued. Even if the executives skimmed on some resources.
+
 ## Take some pride. Be a pillar. Grow with your team. Fight!
 
 <img src="../images/0001-01-21-DoNotRageQuit/people-gd8ceb60b7_1280.jpg" class="image fit" alt="People bro fisting each other."/>
@@ -128,8 +130,7 @@ I learned a common hacking attack for victims was through Bluetooth Tethering wh
 
 Because of this I was able to cut the IT jargon, and explain to our Fraud Triage team that this wasn't some tech illiterate guy, mistaking scam emails for actual attacks.
 
-But some potential Bluetooth tethering hacking victim. After explaining that the colleague was convinced and escalated it.
-That can be turned into a selling point in the terrifying "tell me about yourself", job interview question.
+But a potential Bluetooth tethering hacking victim. After explaining that, the colleague was convinced and escalated it. That can be turned into a selling point in the terrifying "tell me about yourself", job interview question.
 
 I also knew that actual cyber security researchers who's mission is to prevent attacks, point out a fault in our network or hardware that requires immediate resolution. 
 
@@ -147,13 +148,15 @@ At some point my boss said to not be so hard on myself. There were personal reas
 
 Eventually I found an awesome employer for a customer service IT sales job who would have a consistent schedule, awesome pay and great team culture but I had to go through 3 interviews.
 
+I used AI to generate a list of common interview questions about the role and answered them one by one to prepare my self. I also fact-checked the generated answer against ones recommended in blogs about what I was applying for.
+
 They asked me in the first round what my salary expectations were. I knew when it comes to salary negotiation you do not give a number. I tried to find out the budget so I asked along the lines of:
 
 "I don't have an overall figure in mind as I have never done a particular job like yours. Do you know the budget allocated for this?" 
 
 When they told me I at first I asked for $17,500 more than what I was making. 
 
-Eventually he asked me about salary again upon offering me the job interview again (as he likely forgot due to workload, or maybe out of interest I don't know). I gave my new figure which was $18k more than what I was making and reasons for it. This time I was feeling more confident. Here were my reason.
+Eventually he asked me about salary again upon offering me the job interview again (as he likely forgot due to workload, or maybe out of interest I don't know). I gave my new figure which was $18k more than what I was making and reasons for it. This time I was feeling more confident. Here were my reasons.
 
 - I had a very, very old car that needs replacing. 
 - I lived in a inner city high rent area.
@@ -164,6 +167,7 @@ I ended up getting $19k more which made me realize how lucky I was.
 
 I learned from the team I worked with that some of them like me had stayed in really low-paying jobs for years before coming here.
 
-They toughed it out. Bled it out and reaped the rewards for doing so. You don't want to put in all that effort of leaving your job for something worse. Almost everyone in my team has been in for years and years on end. Some well over a decade. 
+They toughed it out and reaped the rewards for doing so. You don't want to put in all that effort of leaving your job for something worse. Almost everyone in my team has been in for years and years on end. Some well over a decade. 
 
-Not the high turnover I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes you will one day go into an amazing role.
+Not the high turnover I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes and then getting interviews you will learn through trial and error, watching youtube videos, blogs etc. Googling common interview questions, 
+Then you will one day go into an amazing role.
