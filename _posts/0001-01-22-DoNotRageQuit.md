@@ -13,7 +13,7 @@ published: true
 
 I just want to be clear if you believe yourself to be at serious risk of injury then please disregard this blog and do what you must to keep yourself safe. I'll admit, I by no means consider myself an expert on the subject of mental health. 
 
-But as someone who has been a disability support worker who has come across some dangerous and highly stressful behaviors I can with do doubt assure you need but two things to help you survive. Resilience and understanding. I will tell you a bit about my background.
+But as someone who has been a disability support worker who has come across some dangerous and highly stressful behaviors I can with no doubt assure you need but two things to help you survive. Resilience and understanding. I will tell you a bit about my background.
 
 I did odd jobs but support work was really were I started to build... not so much a career, but a behavior. I built grit. Resilience. I had to run from some of my clients and get the retirement village manager to calm them down. Their behavior deescalated overtime by upping their medication as per doctor's orders. No matter how well I tried to do my job it was just part of who they were and in their state I doubt I could help behave the same way. 
 
@@ -120,7 +120,7 @@ They get customer service folk like me who don't know as much and dealing with u
 
 I was so good I could tell when others made huge mistakes and had to debrief their TL privately to prevent repeated mistakes. 
 
-For me it wasn't about pointing the finger, it was about learning and if mistakes were continuously made, the health and saftey of our vulnerable clients could have been at risk.
+For me it wasn't about pointing the finger, it was about learning and if mistakes were continuously made, the health and safety of our vulnerable clients could have been at risk.
 
 If I made a mistake, I would admit fault and take ownership. 
 
