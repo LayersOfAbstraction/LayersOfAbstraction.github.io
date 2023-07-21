@@ -80,11 +80,15 @@ So I went to one of the most complained telcos in the country.
 
 ## Search their intranet for professional free company certificates.
 
-Of course I didn't get the IT job. 
+Of course, 
 
-But now the customers were really angry and no one could blame them. 
+I didn't get the IT job. Now the customers were really angry and no one could blame them.
 
-Eventually I got a Security Champion certificate that the company had up on there intranet. They took Cyber Security very seriously. Our computers were hard to login to especially after a rival company got breached and customer data leaked, including mine. This place, it was a cyber security maximum prison. It came after the hack so the executives likely became very scared about what was going to happen.
+Eventually, I got a Security Champion certificate that the company had up on their intranet, and put it on my LinkedIn profile. 
+
+It should have taken a week or two but it took months to complete. I had no choice but to complete the certificate at work whenever there was downtime which was rare but as soon as it happened I made full use of that time. 
+
+They took Cyber Security very seriously. Our computers were hard to login to especially after a rival company got breached and customer data leaked, including mine. This place, it was a cyber security maximum prison. It came after the hack so the executives likely became very scared about what was going to happen.
 
 ## Can't handle the stress? Take a sickie.
 
