@@ -34,7 +34,7 @@ I was stuck with the same client for a year. At times I just kept my distance st
 
 "No he's out there! And his client was all the way in there."
 
-Obviously that hurt but I really, really needed to hear it because my client was at times a danger too himself. I took the feedback on and did more than other support workers including getting my client into public events, helping him get a companion card to enter venues, public transport, etc as well as seeing to basic quality of life.
+Obviously that hurt but I really, really needed to hear it because my client was at times a danger too himself. I took the feedback on and did more than other support workers including getting my client into public events, helping him get a companion card to enter venues, public transport, etc as well as seeing to his basic quality of life.
 
 The way I survived the job was by doing coding projects in my spare time which mentally energized me from such a boring job and appreciated it more and my responsibilities to my client. He had Alzheimer's after all, and seeing my client loss himself overtime really sucked. I did what I could. Probably at times more than ethical and had to know my professional boundaries. 
 
