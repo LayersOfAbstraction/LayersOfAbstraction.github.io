@@ -76,9 +76,13 @@ To be fair though, they gave you free health insurance, great feedback, positive
 
 I thought, an IT firm! This is my chance. Someone who had worked for the telecommunication provider a few months earlier advises that they left because "they micromanage you like nothing else." He wasn't wrong, the problem was though, they paid a bit better. 
 
-So I went to one of the most complained telcos in the country. Of course I didn't get the IT job. 
+So I went to one of the most complained telcos in the country. 
 
-Now the customers were really angry and no one could blame them. 
+## Search their intranet for professional free company certificates.
+
+Of course I didn't get the IT job. 
+
+But now the customers were really angry and no one could blame them. 
 
 Eventually I got a Security Champion certificate that the company had up on there intranet. They took Cyber Security very seriously. Our computers were hard to login to especially after a rival company got breached and customer data leaked, including mine. This place, it was a cyber security maximum prison. It came after the hack so the executives likely became very scared about what was going to happen.
 
