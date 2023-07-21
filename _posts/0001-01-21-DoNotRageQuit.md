@@ -65,7 +65,10 @@ I could see why everyone wanted to leave.
 
 But I had to ask myself, how does that help me? What does that change?
 
-I didn't want to rage quit like everyone else not because I saw any light at the end of my current job but there had to be something better out there. Also I did learn a lot about taxes. We got to understand Australian taxes better and how to slowly get people into a payment plan. I really learned how to direct people to the online government services for this, and got to understand things about my own debts, how indexation is applied to student loans.
+I didn't want to rage quit like everyone else not because I saw any light at the end of my current job but there had to be something better out there. 
+Compared to seeing someone lose their mental capacity and been helpless to stop it, this wasn't as bad.
+
+Also I did learn a lot about taxes. We got to understand Australian taxes better and how to slowly get people into a payment plan. I really learned how to direct people to the online government services for this, and got to understand things about my own debts, how indexation is applied to student loans.
 
 Stuff anyone can learn but not everyone does. I feel if I hadn't learned this I would not have paid attention to my own debts. I learned about the 7% indexation increase our government imposed this year on college loans which meant I would have to pay $720 on top of my current debt. 
 I paid off the debt and the money came through just a day before indexation kicked in. Phew!
@@ -113,8 +116,11 @@ I personally respected my company in some ways. They didn't batch hire every for
 
 
 I had a good team leader who strived for excellence in his staff and never once made me feel like an idiot when asking questions. I feel if it wasn't for him I would not have lasted. He was the workplace pillar and made the job worth staying for. If my performance was lacking he would inspire to improve. It was just an incentive to fight on.
+
 I also had people looking to me for guidance when they were unsure.
-He always advised me to not think about work during my holiday. I didn't. I just thought of how I could leave sadly. I really liked the team culture. But I was only just surviving with the rent.
+He always advised me to not think about work during my holiday. 
+
+I didn't. I just thought of how I could leave sadly. I really liked the team culture. But I was only just surviving with the rent.
 
 ## That nice feedback can be broken down into selling points on your resume.
 
