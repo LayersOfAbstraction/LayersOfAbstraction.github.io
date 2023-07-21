@@ -169,5 +169,6 @@ I learned from the team I worked with that some of them like me had stayed in re
 
 They toughed it out and reaped the rewards for doing so. You don't want to put in all that effort of leaving your job for something worse. Almost everyone in my team has been in for years and years on end. Some well over a decade. 
 
-Not the high turnover I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes and then getting interviews you will learn through trial and error, watching youtube videos, blogs etc. Googling common interview questions, 
+Not the high turnover I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes and then getting interviews you will learn through trial and error, watching youtube videos, blogs etc. Googling common interview questions.
+ 
 Then you will one day go into an amazing role.
