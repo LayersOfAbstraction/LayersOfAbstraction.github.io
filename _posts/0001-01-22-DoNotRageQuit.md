@@ -15,7 +15,7 @@ I just want to be clear if you believe yourself to be at serious risk of injury 
 
 But as someone who has been a disability support worker who has come across some dangerous and highly stressful behaviors I can with no doubt assure you need but two things to help you survive. Resilience and understanding. I will tell you a bit about my background.
 
-I did odd jobs but support work was really were I started to build... not so much a career, but a behavior. I built grit. Resilience. I had to run from some of my clients and get the retirement village manager to calm them down. Their behavior deescalated overtime by upping their medication as per doctor's orders. No matter how well I tried to do my job it was just part of who they were and in their state I doubt I could help behave the same way. 
+I did odd jobs but support work was really were I started to build... not so much a career, but a behavior. I built grit. Resilience. I had to run from some of my clients and get the retirement village manager to calm them down. Their behavior deescalated overtime by upping their medication as per doctor's orders. No matter how well I tried to do my job it was just part of who they were and in their state, I would likely behave the same way.
 
 It was something I thought I was prepared for though, knowing previous support workers had been assaulted.
 
