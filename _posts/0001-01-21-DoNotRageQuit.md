@@ -7,7 +7,7 @@ published: true
 
 <img src="../images/0001-01-21-DoNotRageQuit/ma-68552-WEB.jpg" class="image fit" alt="Stressed lady picture."/>
 
-> Lu Chi Shen in Drunken Rage Smashing Guardian Figure at Temple on Five-Crested Mountain by [Tsukioka Yoshitoshi from the The Los Angeles County Museum of Art](https://collections.lacma.org/node/191716).
+> Lu Chi Shen in Drunken Rage Smashing Guardian Figure at Temple on Five-Crested Mountain by [Tsukioka Yoshitoshi from The Los Angeles County Museum of Art](https://collections.lacma.org/node/191716).
 
 ## Introduction
 
@@ -112,11 +112,9 @@ I personally respected my company in some ways. They didn't batch hire every for
 > Image by <a href="https://pixabay.com/users/stocksnap-894430/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">StockSnap</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">Pixabay</a>
 
 
-I had a good team leader who strived for excellence in his staff and never once made me feel like an idiot when asking questions. I feel if it wasn't for him I would not have lasted. He was the workplace pillar and made the job worth staying for. It was just an incentive to fight on.
-
+I had a good team leader who strived for excellence in his staff and never once made me feel like an idiot when asking questions. I feel if it wasn't for him I would not have lasted. He was the workplace pillar and made the job worth staying for. If my performance was lacking he would inspire to improve. It was just an incentive to fight on.
 I also had people looking to me for guidance when they were unsure.
-
-He advised me to not think about work during my holiday. I didn't. I just thought of how I could leave sadly. 
+He always advised me to not think about work during my holiday. I didn't. I just thought of how I could leave sadly. I really liked the team culture. But I was only just surviving with the rent.
 
 ## That nice feedback can be broken down into selling points on your resume.
 
