@@ -70,7 +70,7 @@ I didn't want to rage quit like everyone else not because I saw any light at the
 Stuff anyone can learn but not everyone does. I feel if I hadn't learned this I would not have paid attention to my own debts. I learned about the 7% indexation increase our government imposed this year on college loans which meant I would have to pay $720 on top of my current debt. 
 I paid off the debt and the money came through just a day before indexation kicked in. Phew!
 
-Eventually after putting up a few dozen resumes, a recruiter gave me an opportunity at a national telecommunication company/ISP which had outsourced it's services to a foreign IT firm that was all about minimizing costs. 
+Eventually, after putting up a few dozen resumes, a recruiter gave me an opportunity at a national telecommunication company/ISP which had outsourced it's services to a foreign IT firm that was all about minimizing costs. 
 
 To be fair though, they gave you free health insurance, great feedback, positive reinforcement and I made absolute full use of that.
 
