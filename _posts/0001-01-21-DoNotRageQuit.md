@@ -24,6 +24,8 @@ It was something I thought I was prepared for though, knowing previous support w
 <img src="../images/0001-01-21-DoNotRageQuit/bare-knuckled-boxing-match.jpg" class="image fit" alt="A bare-knuckled boxing match between the Prince of Wales and Napoleon, with their supporters including a black man. Coloured etching by Charles Williams, 1815."/>
 > A bare-knuckled boxing match between the Prince of Wales and Napoleon by Charles Williams from the [Welcome Collection](https://wellcomecollection.org/works/pdcba3ae/images?id=vna45cdh)  
 
+Sometimes you got to admit that you're really not doing your job, you got to take the criticism that comes with that. Defensiveness don't pay the bills.
+
 I was stuck with the same client for a year. At times I just kept my distance stayed outside on my phone and some resident in the retirement village said to their partner. 
 
 "That's not care, that's bullshit."
