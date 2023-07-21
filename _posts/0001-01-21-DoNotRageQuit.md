@@ -162,6 +162,8 @@ I ended up getting $19k more which made me realize how lucky I was.
 
 ## Lessons learned.
 
-Experience is such a hard thing to teach because the tests she gives first and the lessons after. In this case I learned on the job that I had people I worked with had stayed in really low paying jobs for years before coming here.
+I learned from the team I worked with that some of them like me had stayed in really low-paying jobs for years before coming here.
 
-They toughed it out. Bled it out and reaped the rewards for doing so. You don't want to put in all that effort of leaving your job for something worse. Almost everyone in my team has been in for years and years on end. Some well over a decade. Not the high turn over I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes you will one day go into an amazing role.
+They toughed it out. Bled it out and reaped the rewards for doing so. You don't want to put in all that effort of leaving your job for something worse. Almost everyone in my team has been in for years and years on end. Some well over a decade. 
+
+Not the high turnover I went with earlier because I knew by staying in the horrible job and focusing on good cover letters/resumes you will one day go into an amazing role.
