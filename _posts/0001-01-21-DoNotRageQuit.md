@@ -147,13 +147,15 @@ At some point my boss said to not be so hard on myself. There were personal reas
 
 Eventually I found an awesome employer for a customer service IT sales job who would have a consistent schedule, awesome pay and great team culture but I had to go through 3 interviews.
 
+I used AI to generate a list of common interview questions about the role and answered them one by one to prepare my self. I also fact-checked the generated answer against ones recommended in blogs about what I was applying for.
+
 They asked me in the first round what my salary expectations were. I knew when it comes to salary negotiation you do not give a number. I tried to find out the budget so I asked along the lines of:
 
 "I don't have an overall figure in mind as I have never done a particular job like yours. Do you know the budget allocated for this?" 
 
 When they told me I at first I asked for $17,500 more than what I was making. 
 
-Eventually he asked me about salary again upon offering me the job interview again (as he likely forgot due to workload, or maybe out of interest I don't know). I gave my new figure which was $18k more than what I was making and reasons for it. This time I was feeling more confident. Here were my reason.
+Eventually he asked me about salary again upon offering me the job interview again (as he likely forgot due to workload, or maybe out of interest I don't know). I gave my new figure which was $18k more than what I was making and reasons for it. This time I was feeling more confident. Here were my reasons.
 
 - I had a very, very old car that needs replacing. 
 - I lived in a inner city high rent area.
