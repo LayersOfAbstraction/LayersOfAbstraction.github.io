@@ -109,6 +109,7 @@ The smallest sickness I had I would get a medical certificate for and used to ge
 <img src="../images/0001-01-21-DoNotRageQuit/people-gd8ceb60b7_1280.jpg" class="image fit" alt="People bro fisting each other."/>
 > Image by <a href="https://pixabay.com/users/stocksnap-894430/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">StockSnap</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2569234">Pixabay</a>
 
+
 I had a good team leader who strived for excellence in his staff and never once made me feel like an idiot when asking questions. I feel if it wasn't for him I would not have lasted. He was the workplace pillar and made the job worth staying for. It was just an incentive to fight on.
 
 I also had people looking to me for guidance when they were unsure.
@@ -123,11 +124,11 @@ I was very good at troubleshooting the issue and keeping things simple, I mean y
 
 I also listened to cyber security podcasts so when I had an actual cyber security victim (which was extremely rare) I knew how to explain to others in simple terms so the incident could be escalated. 
 
-I learned a common hacking attack for victims was through USB Tethering where the attacker could log into our client's modem and take remote control of the client's computer regardless of how many times the client factory reset it, as the attacker was close by using bluetooth to attack.
+I learned a common hacking attack for victims was through Bluetooth Tethering where the attacker could log into our client's modem and take remote control of the client's computer regardless of how many times the client factory reset it, as the attacker was close by using bluetooth to attack.
 
 Because of this I was able to cut the IT jargon, and explain to our Fraud Triage team that this wasn't some tech illiterate guy, mistaking scam emails for actual attacks.
 
-But some actual USB tethering hacking victim. After explaining that the colleague was convinced and escalated it.
+But some potential Bluetooth tethering hacking victim. After explaining that the colleague was convinced and escalated it.
 That can be turned into a selling point in the terrifying "tell me about yourself", job interview question.
 
 I also knew that actual cyber security researchers who's mission is to prevent attacks, point out a fault in our network or hardware that requires immediate resolution. 
