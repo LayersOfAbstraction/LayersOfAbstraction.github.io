@@ -38,7 +38,12 @@ Obviously that hurt but I really, really needed to hear it because my client was
 
 The way I survived the job was by doing coding projects in my spare time which mentally energized me from such a boring job and appreciated it more and my responsibilities to my client. He had Alzheimer's after all, and seeing my client loss himself over time really sucked. I did what I could. Probably at times more than ethical and had to know my professional boundaries. 
 
-Eventually after a year and 8 months, work dried up. Nothing is stable in support work. You could do the best you could and your client will suddenly run out of funding. Eventually I moved into customer service.
+The job also got to me. I wasn't easy to live with at all and Mum had to kick me out of home. I wasn't violent but not nice, cold, distant, swearing, angry. Usually not in a good mood after work. 
+Honestly, I could have shaped up and been better but I don't think anyone would if it was just them watching the same person for hours losing their mind and being helpless to stop it. 
+
+It was a startup I was working for at the time so there were no real counseling resources or anything to help me manage what I was feeling or have any emotional debrief.
+
+I had to start using medication. It was the smart thing. I'm mentally a lot better after that. I've seen good friends who go off there's become whole new people. Eventually, after a year and 8 months, work dried up. I can't believe I even lasted that long! Nothing is stable in support work. It was probably good for me to get out anyway.
 
 ## Analyze the circumstances. Is quitting really the best.
 
