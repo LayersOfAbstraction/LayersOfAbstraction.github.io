@@ -296,7 +296,7 @@ Do NOT copy and paste this into terminal!
 Write each value into these properties by hand so as to insert your
 own values. 
 ```
-dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE WITH https:// IN FRONT!" --project Auth0UserProfileDisplayStarterKit.csproj
+dotnet user-secrets set "Auth0:Domain" "INSERT DOMAIN VALUE HERE WITH NO https:// IN FRONT!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ClientId" "INSERT CLIENTID VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ClientSecret" "INSERT CLIENTSECRET VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
 dotnet user-secrets set "Auth0:ManagementApi:BaseUri" "INSERT THE VALUE FOR THE AUTH0 MANAGEMENT API VALUE HERE!" --project Auth0UserProfileDisplayStarterKit.csproj
@@ -330,7 +330,8 @@ In appsetting.json insert this block that we call our _AccessTokenManagement_ co
   },
 ```
 
-Setting these properties is going to look different from the previous code block so here is how to implement it in the terminal.
+Setting these properties is going to look different from the previous code block so here is how to implement it in the terminal. Please keep in mind we need to
+set `AccessTokenManagement:Domain` with https in front even though it doesn't say that in the Machine to Machine application. That's how it's set in the Quick Start. If you're not sure, always check how the values are set in the Quick Start.
 
 ```
 dotnet user-secrets set "AccessTokenManagement:Domain" "INSERT DOMAIN VALUE HERE WITH https:// IN FRONT!" --project Auth0UserProfileDisplayStarterKit.csproj
