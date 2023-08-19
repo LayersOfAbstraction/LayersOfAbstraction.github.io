@@ -20,7 +20,16 @@ If you are on Windows and don't know how to create a container for an SQL Server
 Once you have created the container, it is time to port the database to it. This is the command to do it.
 
 ```dotnetcli
-docker cp 'C:\Users\Jordan Nash\Pitcher8.mdf' efa4a1650823:/var/opt/mssql/data'
+docker cp 'C:\Users\Jordan Nash\Pitcher8.mdf' efa4a1650823:/var/opt/mssql/data
 ``````
 
-the first value would be the path we are copying it from where's efa4a1650823 can be the Container ID. 
+The first value would be the path we are copying our database from. In this case it is on a local windows file system. Where's efa4a1650823 is the Container ID.
+
+After the colon character is the SQL Server container path where the database will be written to. If you don't know the container ID, simply run the command `docker ps -a`.
+
+## Troubleshooting Read-Only Issues in a SQL Server account
+
+When you open your database in a SQL Server client like Azure Data Studio, SQL Management Studio, Visual Studio etc you'll notice 
+
+According to this awesome blog by [Anthony Nocentino](https://www.nocentino.com/posts/2021-09-25-container-file-permissions-and-sql/) user accounts and groups on the base OS likely don’t sync up with the user accounts and groups inside the container. 
+
