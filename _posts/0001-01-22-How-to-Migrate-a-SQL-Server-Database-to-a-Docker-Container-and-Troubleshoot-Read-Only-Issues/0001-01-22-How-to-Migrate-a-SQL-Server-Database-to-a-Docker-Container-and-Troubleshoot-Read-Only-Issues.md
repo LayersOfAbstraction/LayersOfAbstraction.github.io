@@ -5,6 +5,8 @@ date: "2023-07-13"
 published: false
 ---
 
+<img src="../0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues/s3___eu-west-1_dlcs-storage_2_8_B0005829.jpg" alt="Version_info" class="image fit"/>
+
 ## Introduction:
 
 Every time I had to reformat my computer over the years and re-install SQL Server I felt I was putting in more on my disk then I needed. I also got bogged down with having to keep track of which version of SQL Server I had installed previously. 
