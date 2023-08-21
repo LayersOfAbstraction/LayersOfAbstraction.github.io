@@ -87,6 +87,9 @@ Javier gave his 2 cents.
 
 ![Image of Javier's advice](images\0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues\Javier's_two_cents.png)
 
+<img src="../images\0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues\Javier's_two_cents.png" class="image fit" alt="Javier's advice."/>
+
+
 To simplify things, Javier is saying that this has nothing to do with the database but the account which the database is under. That account in this instance would be the container that generated the account, password, container name, etc.
 
 According to this awesome blog by [Anthony Nocentino](https://www.nocentino.com/posts/2021-09-25-container-file-permissions-and-sql/): 
