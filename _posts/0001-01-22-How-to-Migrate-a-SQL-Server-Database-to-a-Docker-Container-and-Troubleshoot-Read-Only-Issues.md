@@ -85,8 +85,6 @@ So I explained my problem in a Microsoft SQL Server community forum.
 
 Javier gave his 2 cents.
 
-![Image of Javier's advice](images\0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues\Javier's_two_cents.png)
-
 <img src="../images\0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues\Javier's_two_cents.png" class="image fit" alt="Javier's advice."/>
 
 
