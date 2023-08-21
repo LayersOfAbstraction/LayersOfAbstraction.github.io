@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to migrate an SQL Server Database to a Docker Linux Container."
+title:  "Migrating an SQL Server Database to a Docker Linux Container."
 date: "2023-07-13"
 published: true
 ---
