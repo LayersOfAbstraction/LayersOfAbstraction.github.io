@@ -11,7 +11,7 @@ published: true
 
 # Introduction
 
-Every time I had to reformat my computer over the years and re-install SQL Server I felt I was putting in more on my disk then I needed. I also got bogged down with having to keep track of which version of SQL Server I had installed previously. 
+Every time I had to reformat my computer over the years and re-install SQL Server I felt I was putting in more on my disk than I needed. I also got bogged down with having to keep track of which version of SQL Server I had installed previously. 
 
 Docker simplifies this also as I plan on migrating my databases to the cloud. I also want to make it easy to have all dependencies self contained and portable in case I decide it is not worth keeping my database up there just for a pet project.
 
