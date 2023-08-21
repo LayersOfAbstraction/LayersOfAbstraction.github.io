@@ -33,13 +33,13 @@ After the colon character is the SQL Server container path where the database wi
 
 ## Troubleshooting Read-Only Issues in a SQL Server account
 
-### Step 1. set read only to false:
+### Step 1. Set read-only to false:
 
 When you open your database in a SQL Server client like Azure Data Studio, SQL Management Studio, Visual Studio etc you'll notice that the database is read only even though it may have had  write access when you originally didn't create/run the database in a container.
 
 <img src="images\0001-01-22-How-to-Migrate-a-SQL-Server-Database-to-a-Docker-Container-and-Troubleshoot-Read-Only-Issues\database_as_read_only.png"  width="500" height="800"/>
 
-If you attempt to right click on the properties and set the "read-only" value to false you will get this error message box in the SQL Server Management Studio for both the attached log file and mdf database file.
+If you attempt to right click on the properties and set the "read-only" value to false you will get this error message box in the SQL Server Management Studio for both the attached log file and MDF database file.
 
 ```dotnetcli
 Alter failed for Database 'Pitcher8'. (Microsoft.SqlServer.Smo) 
@@ -58,9 +58,9 @@ For help, click: https://learn.microsoft.com/en-us/sql/relational-databases/erro
 ```
 None of the links really helped in my situation as the database was containerized and there were no related scenarios in that Microsoft article that dealt with containerized databases.
 
-### Step 2. run `sp_who2` stored procedure:
+### Step 2. Run `sp_who2` stored procedure:
 
-I tried to run the system stored procedure in the SQL Server query explorer `sp_who2` to find any process that are messing with the permissions. The command showed an output of all available processes and none of them appeared to be the culprit. 
+I tried to run the system stored procedure in the SQL Server query explorer `sp_who2` to find any processes that are messing with the permissions. The command showed an output of all available processes and none of them appeared to be the culprit. 
 
 ### Step 3. Run `xp_readerrorlog` stored procedure:
 
@@ -77,7 +77,7 @@ This command contains both system and user-defined event info. When I ran it to 
 
 ```
 
-Ah nice try. It told me what I already know though which was not helpful.
+Ah, nice try. It told me what I already know though which was not helpful.
 
 ### Step 4. Check the permissions that the docker linux container may have assigned to the database:
 
@@ -96,18 +96,18 @@ According to this awesome blog by [Anthony Nocentino](https://www.nocentino.com/
 
 _The user accounts and groups on the base OS likely don’t sync up with the user accounts and groups inside the container._ 
 
-That never occurred to me so I used one command to display the log and mdf file inside the container:
+That never occurred to me so I used one command to display the log and MDF file inside the container:
 ```
 docker exec contai_Pitcher bash -c 'ls -lan /var/opt/mssql/data/Pitcher8*'
 ```
-This was the output. The permissions show it was read-only in the container. Looks like Javier's hunch was right!
+This was the output. The permissions show it was read-only in the container. It looks like Javier's hunch was right!
 
 ```
 -rw-r----- 1 501 20 21474836480 Sep 24 14:23 Pitcher8.mdf 
 -rw-r----- 1 501 20 1073741824 Sep 24 14:23 Pitcher8_log.ldf
 ```
 
-It seemed somehow the SQL Server Docker image had assigned the read only permissions by default!
+It seemed somehow the SQL Server Docker image had assigned the read-only permissions by default!
 
 I fixed that by running these 2 commands which allowed me to finally write to the database:
 
