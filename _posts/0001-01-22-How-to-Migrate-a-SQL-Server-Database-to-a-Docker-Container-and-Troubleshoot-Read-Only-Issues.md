@@ -33,7 +33,7 @@ After the colon character is the SQL Server container path where the database wi
 
 ## Troubleshooting Read-Only Issues in a SQL Server account
 
-### Step 1. set read only to false:
+### Step 1. Set read-only to false:
 
 When you open your database in a SQL Server client like Azure Data Studio, SQL Management Studio, Visual Studio etc you'll notice that the database is read only even though it may have had  write access when you originally didn't create/run the database in a container.
 
@@ -58,9 +58,9 @@ For help, click: https://learn.microsoft.com/en-us/sql/relational-databases/erro
 ```
 None of the links really helped in my situation as the database was containerized and there were no related scenarios in that Microsoft article that dealt with containerized databases.
 
-### Step 2. run `sp_who2` stored procedure:
+### Step 2. Run `sp_who2` stored procedure:
 
-I tried to run the system stored procedure in the SQL Server query explorer `sp_who2` to find any process that are messing with the permissions. The command showed an output of all available processes and none of them appeared to be the culprit. 
+I tried to run the system stored procedure in the SQL Server query explorer `sp_who2` to find any processes that are messing with the permissions. The command showed an output of all available processes and none of them appeared to be the culprit. 
 
 ### Step 3. Run `xp_readerrorlog` stored procedure:
 
