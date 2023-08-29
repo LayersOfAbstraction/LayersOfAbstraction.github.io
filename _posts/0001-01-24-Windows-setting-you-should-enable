@@ -1,0 +1,25 @@
+---
+layout: post
+title:  "One Windows setting to enable to protect you that you don't know about."
+date: "2023-07-13"
+published: false
+---
+
+## Introduction
+
+I have turned the paywall on for almost every article except this one. Why? Because, based on the amount of scams and how even the most tech savvy IT pros can fall for theses scams, I feel it's best this one remain free. Yes, I heard somewhere on the Darknet Daries podcast how one very smart cyber security penetration tester confessed to falling victim to an Amazon delivery phishing scam. 
+
+Wether you operate server, run a business or surf the net at home, this may very well stop you from clicking that "PDF" file you just downloaded.  
+It's easy to download a file thinking it's word doc or pdf or video when really it's just an executable designed to ransomware encrypt your computer, overload the storage, ram, cpu etc. 
+
+There is one setting though that could mean the difference between: 
+
+A: You reading that "PDF" file with the "PDF" icon...with that exe file extension.
+B: You noticing very quickly and easily that the "PDF" is really just an executable file and through that, likely a virus.
+
+And that is by disabling "Hide extension for known file type". When you do that a file name will go from this:
+
+
+
+
+
