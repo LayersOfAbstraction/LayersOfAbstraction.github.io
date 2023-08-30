@@ -52,13 +52,13 @@ It's very easy. Simply open the Windows File Explorer.
 
 1. Left click on **Options** and then the **Change folder and search options**.
 
-![Left click on "Options (split button)](images/../../0001-01-24/../images/0001-01-24/Left_click_folder_then_Change_folder_options.png)
+<img src="../images/0001-01-24/0001-01-24/../Left_click_folder_then_Change_folder_options.png" class="image fit" alt="Title image"/>
 
 2. Left click on **View** tab in **Folder Options**.
 
 ![Left click on "View" tab in "Folder Options".](../images/0001-01-24/left_click_on_View_tab_in_Folder_Options.png)
 
-3. Left click on the **Hide extensions for known file types** checkbox in Folder Options. Then left click on **Apply** (button).
+1. Left click on the **Hide extensions for known file types** checkbox in Folder Options. Then left click on **Apply** (button).
 ![User left click on "Apply (button)" in "Folder Options"](images/../../images/0001-01-24/left_click_on_Apply_button.png)
 
 And that's it.
