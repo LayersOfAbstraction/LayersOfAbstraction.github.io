@@ -46,7 +46,7 @@ Look again under the file type. You'll notice the file there is really just an e
 
 We cannot count on end users to always look under that column to the right. But by enabling that feature to show the extension at the end of the file name we could prevent a thousand people falling victim.
 
-## How to disable the "Hide extension for known file type" feature?
+## How to disable the "Hide extension for known file type" feature.
 
 It's very easy. Simply open the Windows File Explorer.
 
