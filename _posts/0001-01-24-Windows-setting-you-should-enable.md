@@ -10,7 +10,7 @@ published: true
 ## Introduction
 
 
-![](images/0001-01-24/../../../images/0001-01-24/rc-xyz-nft-gallery-aFdTdWYXFd0-unsplash.jpg)
+![](https://images.unsplash.com/photo-1634586720876-a7c6cb7cedfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80)
 >Photo by <a href="https://unsplash.com/@moneyphotos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">rc.xyz NFT gallery</a> on <a href="https://unsplash.com/photos/1C37UztDU8s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
 
