@@ -5,7 +5,14 @@ date: "2023-08-30"
 published: true
 ---
 
+
+
 ## Introduction
+
+
+![](images/0001-01-24/../../../images/0001-01-24/rc-xyz-nft-gallery-aFdTdWYXFd0-unsplash.jpg)
+>Photo by <a href="https://unsplash.com/@moneyphotos?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">rc.xyz NFT gallery</a> on <a href="https://unsplash.com/photos/1C37UztDU8s?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
 
 I have turned the paywall on for almost every article except this one.
 
