@@ -5,8 +5,7 @@ date: "2023-09-27"
 published: true
 ---
 
-![Alt text](/images/0001-01-25/pexels-andrea-piacquadio-3758105%20(1).jpg)
-
+<img src="../images/0001-01-25/pexels-andrea-piacquadio-3758105%20(1).jpg" class="image fit" alt="Title image"/>
 Photo by [Andrea Piacquadio](https://www.pexels.com/photo/woman-draw-a-light-bulb-in-white-board-3758105/) on Pexels
 
 ## Introduction 
@@ -37,7 +36,8 @@ So I realized I could have 2 images. One for development and one for production.
 
 So in a nutshell, both the development and production workflows could look roughly something like this diagram I made. 
 
-![AWS development environment diagram](../images/0001-01-25/AWS_diagram_for_initial_development.png)
+<img src="../images/0001-01-25/AWS_diagram_for_initial_development.png" class="image fit" alt="Title image"/>
+
 
 So we have solved setting up the initial development environment to host our container. The problem this doesn't solve however is data persistance. AWS has [a great blog](https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/storage.html) about how it works with containers. 
 
@@ -81,10 +81,10 @@ If we continue from our **Initializing development** heading we mentioned a work
 
 And so the result would be like in this image. 
 
-![The complete AWS development workflow](../images/0001-01-25/AWS_diagram_for_initial_development_complete.png)
+<img src="../images/0001-01-25/AWS_diagram_for_initial_development_complete.png" class="image fit" alt="Title image"/>
 
 To recap, the process involves pushing the image to ECR, running the container in ECS, backing up the database to S3, and then downloading it to our local machine.
 
-7. We can then create a new image for production with a different version tag, push it to the same AWS ECR instance and then create a new instance for ECS and S3. It would be very similar to our development environment.
+1. We can then create a new image for production with a different version tag, push it to the same AWS ECR instance and then create a new instance for ECS and S3. It would be very similar to our development environment.
 
 What do you think about this strategy? Good workflow? Let me know in the comments.
