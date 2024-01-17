@@ -1,0 +1,5 @@
+# Google Adsense info on this file. https://support.google.com/adsense/answer/12171612?hl=en
+# Also see page 7 for info on the format of this file https://iabtechlab.com/wp-content/uploads/2019/03/IAB-OpenRTB-Ads.txt-Public-Spec-1.0.2.pdf
+
+google.com, publisher ID, DIRECT, f08c47fec0942fa0
+
