@@ -1,0 +1,16 @@
+name: Delete Zone.Identifier files
+
+on:
+  push:
+    branches: [ main, soc-website ]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Delete Zone.Identifier files
+      run: find . -type f -name "*:Zone.Identifier" -exec rm -f {} \;
