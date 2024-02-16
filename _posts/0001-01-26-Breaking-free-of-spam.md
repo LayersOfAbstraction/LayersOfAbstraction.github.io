@@ -1,12 +1,11 @@
 ---
-{::options parse_block_html="true" /}
 layout: post
-title:  "Breaking Free From Spam. The Power of Disposable Email Generators"
+title: "Breaking Free From Spam. The Power of Disposable Email Generators"
 date: "2023-02-16"
 published: true
 ---
 
-![Alt text](../images/0001-01-26/traffic-signs-464655_1280.jpg)
+<img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Title image"/>
 
 # Introduction
 
@@ -32,22 +31,20 @@ But rather than give your name and email and identify yourself to Cyber Wardens,
 
 Go to https://yopmail.com/en/ and type a easy to read email on screen. You can generate a random one but some sites do not allow us to paste information so you won't be able to copy and paste so click the arrow next to it to take you to the inbox. It’s like entering a secret lair!
 
-<img src="../images/0001-01-26/CreateDisposableEmail.png" class="image fit" alt="Title image"/>
+<img src="../images/0001-01-26/CreateDisposableEmail.png" class="image fit" alt="Picture showing disposable email"/>
 
 ### Step 2: Check inbox
 
 
 As you can see the inbox is there it's been used already. Don't worry about that. Once we fill out the information we can create a new account. 
 
-<img src="../images/0001-01-26/FakeYourIdentity.png" class="image fit" alt="Title image"/>
-
+<img src="../images/0001-01-26/FakeYourIdentity.png" class="image fit" alt="Picture showing disposable email inbox"/>
 ### Step 3: Generate strong password
 
 Easy peasy lemon squeezy. Just use BitWarden. You have no choice but to manually type it into the website though. 
-<img src="../images/0001-01-26/GoToInbox.png" class="image fit" alt="Title image"/>
-
+<img src="../images/0001-01-26/GoToInbox.png" class="image fit" alt="Generating password"/>
 
 The next screen you can skip everything. 
-<img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Title image"/>
+<img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Auto generated account"/>
 
 You should now have access to your incognito Cyber Warden Account and through that, access to some serious inbox decluttering tools!
