@@ -5,7 +5,7 @@ date: "2023-02-16"
 published: true
 ---
 
-<img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Title image"/>
+<img src="../images/0001-01-26/traffic-signs-464655_1280.jpg" class="image fit" alt="Title image"/>
 
 # Introduction
 
