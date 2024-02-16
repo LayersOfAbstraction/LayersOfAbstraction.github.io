@@ -39,13 +39,12 @@ Go to https://yopmail.com/en/ and type a easy to read email on screen. You can g
 As you can see the inbox is there it's been used already. Don't worry about that. Once we fill out the information we can create a new account. 
 
 <img src="../images/0001-01-26/FakeYourIdentity.png" class="image fit" alt="Picture showing disposable email inbox"/>
-
 ### Step 3: Generate strong password
 
 Easy peasy lemon squeezy. Just use BitWarden. You have no choice but to manually type it into the website though. 
-<img src="../images/0001-01-26/GoToInbox.png" class="image fit" alt="Generating password"/>
+<img src="../images/0001-01-26/GenerateStrongPassword.png" class="image fit" alt="Generating password"/>
 
 The next screen you can skip everything. 
-<img src="../images/0001-01-26/GenerateStrongPassword.png" class="image fit" alt="Auto generated account"/>
+<img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Auto generated account"/>
 
 You should now have access to your incognito Cyber Warden Account and through that, access to some serious inbox decluttering tools!
