@@ -51,4 +51,4 @@ Easy as. Just use BitWarden. You have no choice but to manually type it into the
 The next screen you can skip everything. 
 <img src="../images/0001-01-26/AccountGenerated.png" class="image fit" alt="Title image"/>
 
-You should now have access to your unknown Cyber Warden Account and through that access to some serious inbox decluttering tools!
+You should now have access to your unknown Cyber Warden Account and through that, access to some serious inbox decluttering tools!
