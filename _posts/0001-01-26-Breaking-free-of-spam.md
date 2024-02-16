@@ -1,6 +1,7 @@
 ---
+{::options parse_block_html="true" /}
 layout: post
-title:  "Breaking Free From Spam: The Power of Disposable Email Generators"
+title:  "Breaking Free From Spam. The Power of Disposable Email Generators"
 date: "2023-02-16"
 published: true
 ---
