@@ -79,17 +79,23 @@ When selecting the right key to help with your budget and security requirements,
 
 
 ## SETTING UP YOUR YUBI KEY
-Before setting them up, it is wise to trial a single YubiKey you purchased before going any further to slowly roll them out to the organization. You want to do it preferably from a non-administrative account with a single user and then the whole user group that single user resides in before moving on to the next group.
+Before setting them up, it is wise to trial a single YubiKey you purchased before going any further to slowly roll them out to the organization. 
+
+You want to do it preferably from a non-administrative account with a single user and then the whole user group that single user resides in before moving on to the next group.
 
 Setting up the Yubikey involves using the correct software. There’s more than one software tool to achieve this to interface with your Yubikey and set it up in accordance with your workplace security policies. 
 
-There is the YubiKey Manager, YubiKey personalization tool, Yubico Authenticator etc. A popular method involves using the Yubikey Personalization Tool. It can be used to program multiple Yubikeys and set them up with a master admin key and print out the codes on paper as a backup and backed up to a minimal of 3 different secure places in case the Yubi key were to suddenly malfunction.
+There is the YubiKey Manager, YubiKey personalization tool, Yubico Authenticator etc. A popular method involves using the Yubikey Personalization Tool. 
+
+It can be used to program multiple Yubikeys and set them up with a master admin key and print out the codes on paper as a backup and backed up to a minimal of 3 different secure places in case the Yubi key were to suddenly malfunction.
 
 Especially the admin key. This ensures that we have alternatives on the table should the admin key malfunction.
 
 Ensure you follow the steps in the Yubikey quiz to select the authentication method, used to login to the application, operating system etc. For example, one of the popular ones is the Challenge Response Mode. General instructions for setting them up as a single user to unlock KeepassXC can [be found in this video.](https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s)  
 
-If you are deploying many YubiKeys then ensure you tick the “Automatically program YubiKeys when inserted.” Depending on your organization, it can be advisable to enable touch for the Yubikey device but it can be tedious depending on how you set it up. If it is set to always then you will have to touch it each time there is a change to the account configured with the Yubikey. It is far more important that you implement a PIN code for each Yubi key. 
+If you are deploying many YubiKeys then ensure you tick the “Automatically program YubiKeys when inserted.” Depending on your organization, it can be advisable to enable touch for the Yubikey device but it can be tedious depending on how you set it up. 
+
+If it is set to always then you will have to touch it each time there is a change to the account configured with the Yubikey. It is far more important that you implement a PIN code for each Yubi key. 
 
 
 ##	PROVISIONING YUBIKEYS BY ACCESS CONTROL GROUPS 
@@ -116,39 +122,53 @@ Remember that once you are satisfied with the configurations, you can start tria
 
 If you wanted to program a set of keys all at once for say 127 people, you can use USB hubs. The USB specification advices a USB device can support up to 127 USB devices. You may have to do them in several batches depending on the number of ports available.
 
-There are a few other ways to test and optimize the provisioning phase. You can script out the policies to manage Yubikey accounts as well as to assign Yubikeys to specific users using Yubico’s SDKs and APIs. You can do this by integrating the APIs and SDKs with some of the popular scripting languages like JavaScript or Python and use deployment tools such as Docker.
+There are a few other ways to test and optimize the provisioning phase. You can script out the policies to manage Yubikey accounts as well as to assign Yubikeys to specific users using Yubico’s SDKs and APIs. 
+
+You can do this by integrating the APIs and SDKs with some of the popular scripting languages like JavaScript or Python and use deployment tools such as Docker.
 
 The script could read the user data from a data source like a CSV file or database, create the Yubikey configurations based on each user role and program each Yubikey that is connected to your hardware.
 
 Within the script you could map out to each YubiKey the access control policies and user group specific to your organization.
 
-To keep a record of all YubiKey user assignments you can use a database or CSV file that maps YubiKey serial numbers to user roles. Else you can encode this information into the Yubikey configuration so it can be read programmatically via your command line interface. 
+To keep a record of all YubiKey user assignments you can use a database or CSV file that maps YubiKey serial numbers to user roles. 
+
+Else you can encode this information into the Yubikey configuration so it can be read programmatically via your command line interface. 
 
 I already found a 16 port USB hub on Amazon Australia. Each USB device can define up to 32 endpoints. You may need more root USB host controllers to increase the number of endpoints as USB hub chaining does not add more endpoints but rather reduces them. 
 
 You can use the USB Device Tree Viewer to show the number of endpoints a device has taken up but doesn’t show the limit of the root controller.
 
-You should ensure that your system’s power supply can handle the number of endpoints reserved by your USB hubs and each YubiKey inside those hubs. You can consult the hardware reference manual of your microcontroller for this, talk to the power supply manufacture or contact Yubico so they can provide guidance based on the specific model of YubiKey and your hardware specifications used to program the YubiKeys in batch.
+You should ensure that your system’s power supply can handle the number of endpoints reserved by your USB hubs and each YubiKey inside those hubs. 
+
+You can consult the hardware reference manual of your microcontroller for this, talk to the power supply manufacture or contact Yubico so they can provide guidance based on the specific model of YubiKey and your hardware specifications used to program the YubiKeys in batch.
 
  
 ## REFERENCES
 
-Wikipedia. (2022). Password fatigue. [online] Available at: https://en.wikipedia.org/wiki/Password_fatigue [Accessed 22 Feb. 2024].
-Yubico. (n.d.). Quiz. [online] Available at: 
-https://www.yubico.com/quiz/  [Accessed 22 Feb. 2024].
- strongauthworks.com. (n.d.). Yubico Compare Products | StrongAuthWorks.com. [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]. 
-www.youtube.com. (n.d.). How To Use A Yubikey With KeePassXC. [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s  [Accessed 22 Feb. 2024].
+Wikipedia. (2022). Password fatigue. [online] Available at: https://en.wikipedia.org/wiki/Password_fatigue [Accessed 22 Feb. 2024]
 
-Yubico. (n.d.). YubiKey Personalization Tool. [online] Available at: https://www.yubico.com/support/download/yubikey-personalization-tools/ [Accessed 22 Feb. 2024].
+Yubico. (n.d.). Quiz. [online] Available at: 
+https://www.yubico.com/quiz/  [Accessed 22 Feb. 2024]
+
+ strongauthworks.com. (n.d.). Yubico Compare Products | StrongAuthWorks.com. [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]
+
+www.youtube.com. (n.d.). How To Use A Yubikey With KeePassXC. [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s  [Accessed 22 Feb. 2024]
+
+Yubico. (n.d.). YubiKey Personalization Tool. [online] Available at: https://www.yubico.com/support/download/yubikey-personalization-tools/ [Accessed 22 Feb. 2024]
+
 www.youtube.com. (n.d.). How To Use A Yubikey With KeePassXC. [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s. [Accessed 22 Feb. 2024]
+
 YubiKey Personalization Tool User’s Guide. (n.d.). Available at: https://downloads.yubico.com/support/YubiKeyPersonalizationToolUserGuideMarch2016.pdf  [Accessed 22 Feb. 2024].
+
  Yubico (2021). How to select the correct YubiKey. Available at: https://support.yubico.com/hc/en-us/articles/4403770046354-How-to-select-the-correct-YubiKey (Accessed: 24 February 2024).
+
 www.computerhope.com. (n.d.). How to Connect More USB Devices to a Computer. [online] Available at: https://www.computerhope.com/issues/ch000685.html [Accessed 24 Feb. 2024].
 
 
 Super User. (n.d.). windows 11: is there a limit to the number of USB devices? [online] Available at: https://superuser.com/questions/1725434/windows-11-is-there-a-limit-to-the-number-of-usb-devices [Accessed 24 Feb. 2024].
 
 www.amazon.com.au. (n.d.). SABRENT USB 3.0 16-Port Aluminum HUB with Power Switches and LEDs, Power Adapter Included (HB-PU16) : Amazon.com.au: Computers. [online] Available at: https://www.amazon.com.au/Sabrent-Aluminum-Switches-Included-HB-PU16/dp/B07KHRLSTT?th=1 [Accessed 25 Feb. 2024].
+
  Yubico. (n.d.). Works with YubiKey catalog. [online] Available at: https://www.yubico.com/works-with-yubikey/catalog/?sort=popular [Accessed 25 Feb. 2024].
 
 
