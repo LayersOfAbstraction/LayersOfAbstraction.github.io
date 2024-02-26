@@ -2,12 +2,14 @@
 layout: post
 title: "Setting up a passwordless environment"
 date: "2023-02-26"
-published: false
+published: true
 ---
 
 <img src="../images/0001-01-27/andy-kennedy-CpbI_SbiKqs-unsplash.jpg" class="image fit" alt="Title image"/>
+Photo by <a href="https://unsplash.com/@packetdiscards?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Andy Kennedy</a> on <a href="https://unsplash.com/photos/a-wooden-usb-stick-sitting-on-top-of-a-wooden-table-CpbI_SbiKqs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
 
-# INTRODUCTION
+## Introduction
 
 Just a disclaimer, I have independently written this without payment from Yubico or any of their partners.
 
@@ -23,7 +25,7 @@ Wikipedia
 
 Choosing the right kind of YubiKey can prevent this. It is most important before planning anything else. Getting a bulk purchase of incompatible YubiKeys can cost your business thousands of dollars and if taken out of their packaging, will not be refundable as they defeat the purpose of been a secure device.
  
-## CHOOSING THE CORRECT YUBIKEY
+## Choosing the correct yubikey
 
 Keep in mind that many YubiKeys are available. The general term is hardware token. Other brands include Feitian, Thetis, Kensington, Nitrokey and Google.
 
@@ -31,8 +33,11 @@ There is a [YubiKey Quiz](https://www.yubico.com/quiz/) and it is strongly recom
 
 To help narrow it down, if you work in a regulated industry which is typically federal or state government then you may need to check if you are usually FIPS.
 
-When selecting the right key to help with your budget and security requirements, [this table helps with comparison.](https://yubikey.com.ua/en/compare-yubikey) 
+When selecting against your budget and security requirements, [this table helps with that comparison.](https://yubikey.com.ua/en/compare-yubikey) 
 
+All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as it has USB A connection and can get a wireless Near Field Communication connection with my iPhone.
+
+![Alt text](<../images/0001-01-27/Yubikey 5.png>)
 **YubiKey 5 Series:**
 - Price: From $50 USD
 - Communication Support: USB-A, USB-C, NFC, Lightning
@@ -45,6 +50,7 @@ When selecting the right key to help with your budget and security requirements,
 - Authentication Methods: Passwordless, Strong Two Factor, Strong Multi-Factor
 - Manufacturing: Made in USA, Made in Sweden
 
+![Alt text](<../images/0001-01-27/Security key.png>)
 **Security Key Series:**
 - Price: From $25 USD
 - Communication Support: USB-A, USB-C
@@ -55,6 +61,7 @@ When selecting the right key to help with your budget and security requirements,
 - Authentication Methods: Passwordless, Strong Two Factor, Strong Multi-Factor
 - Manufacturing: Made in USA, Made in Sweden
 
+![Alt text](../images/0001-01-27/fips-series.png)
 **YubiKey 5 FIPS Series:**
 - Price: From $80 USD
 - Communication Support: USB-A, USB-C, NFC
@@ -67,6 +74,7 @@ When selecting the right key to help with your budget and security requirements,
 - Authentication Methods: Passwordless, Strong Two Factor, Strong Multi-Factor
 - Manufacturing: Made in USA
 
+![Alt text](../images/0001-01-27/bio-series.png)
 **YubiKey Bio Series:**
 - Price: From $90 USD
 - Communication Support: USB-A, USB-C
@@ -76,7 +84,6 @@ When selecting the right key to help with your budget and security requirements,
 - Design & Durability: Water Resistant, Crush Resistant, Dustproof, No Batteries Required, No Moving Parts
 - Authentication Methods: Passwordless, Strong Two Factor, Strong Multi-Factor
 - Manufacturing: Made in Sweden
-
 
 ## SETTING UP YOUR YUBI KEY
 Before setting them up, it is wise to trial a single YubiKey you purchased before going any further to slowly roll them out to the organization. 
@@ -91,14 +98,16 @@ It can be used to program multiple Yubikeys and set them up with a master admin 
 
 Especially the admin key. This ensures that we have alternatives on the table should the admin key malfunction.
 
-Ensure you follow the steps in the Yubikey quiz to select the authentication method, used to login to the application, operating system etc. For example, one of the popular ones is the Challenge Response Mode. General instructions for setting them up as a single user to unlock KeepassXC can [be found in this video.](https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s)  
+Ensure you follow the steps in the Yubikey quiz to select the authentication method, used to login to the application or operating system etc. 
+
+For example, one of the popular ones is the Challenge Response Mode. General instructions for setting them up as a single user to unlock KeepassXC can [be found in this video.](https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s)  
 
 If you are deploying many YubiKeys then ensure you tick the “Automatically program YubiKeys when inserted.” Depending on your organization, it can be advisable to enable touch for the Yubikey device but it can be tedious depending on how you set it up. 
 
 If it is set to always then you will have to touch it each time there is a change to the account configured with the Yubikey. It is far more important that you implement a PIN code for each Yubi key. 
 
 
-##	PROVISIONING YUBIKEYS BY ACCESS CONTROL GROUPS 
+##	Provisioning yubikeys by access control groups 
 
 Now that you know how to program the YubiKey and use it to login to a computer operating system or application, you may need to understand how to provision them in an Identity Provider (IDP) if your organization uses one. 
 
@@ -113,14 +122,15 @@ Therefore you need to ensure that your YubiKey is provisioned is in accordance w
 
 If you do not have a IDP solution in place then you can still use the YubiKey Personalization Tool to program each YubiKey with the appropriate configuration based on the role. 
 
-
 A warning, this will be a very time consuming manual process as you monitor and manage the YubiKeys and their configurations to ensure compliance with the access control policies. It is better to use your organization's IDP or third-party tools and services to automate the process of configuring and managing YubiKeys at scale.
 
-## AUTOMATION MANAGEMENT OF MASS YUBIKEY PROVISIONING
+## Automation management of mass yubikey provisioning
 
-Remember that once you are satisfied with the configurations, you can start trialing the YubiKey to a single person, preferably through your IDP (if you have one) then through a whole IDP group and then throughout your IDP organization domain. It can provide an effective process for validating and testing YubiKeys prior to deployment.
+Remember that once you are satisfied with the configurations, you can start trialing the YubiKey to a single person, preferably through your IDP (if you have one) then through a whole IDP group and then throughout your IDP organization domain. 
 
-If you wanted to program a set of keys all at once for say 127 people, you can use USB hubs. The USB specification advices a USB device can support up to 127 USB devices. You may have to do them in several batches depending on the number of ports available.
+It can provide an effective process for validating and testing YubiKeys prior to deployment.
+
+If you wanted to program a set of keys all at once for say 127 people, you can use USB hubs. The USB specification advices a USB flash drive can support up to 127 USB devices. You may have to do them in several batches depending on the number of ports available.
 
 There are a few other ways to test and optimize the provisioning phase. You can script out the policies to manage Yubikey accounts as well as to assign Yubikeys to specific users using Yubico’s SDKs and APIs. 
 
@@ -143,7 +153,7 @@ You should ensure that your system’s power supply can handle the number of end
 You can consult the hardware reference manual of your microcontroller for this, talk to the power supply manufacture or contact Yubico so they can provide guidance based on the specific model of YubiKey and your hardware specifications used to program the YubiKeys in batch.
 
  
-## REFERENCES
+## References
 
 Wikipedia. (2022). Password fatigue. [online] Available at: https://en.wikipedia.org/wiki/Password_fatigue [Accessed 22 Feb. 2024]
 
