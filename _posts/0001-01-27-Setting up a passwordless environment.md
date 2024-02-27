@@ -19,8 +19,8 @@ If we want to get this right we can use password managers, which (depending on w
  
 This phenomena is called password fatigue. 
 
-_Password fatigue is the feeling experienced by many people who are required to remember an excessive number of passwords as part of their daily routine, such as to log in to a computer at work, undo a bicycle lock or conduct banking from an automated teller machine. The concept is also known as password chaos, or more broadly as identity chaos.
-_
+_Password fatigue is the feeling experienced by many people who are required to remember an excessive number of passwords as part of their daily routine, such as to log in to a computer at work, undo a bicycle lock or conduct banking from an automated teller machine. The concept is also known as password chaos, or more broadly as identity chaos._
+
 Wikipedia
 
 Choosing the right kind of YubiKey can prevent this. It is most important before planning anything else. Getting a bulk purchase of incompatible YubiKeys can cost your business thousands of dollars and if taken out of their packaging, will not be refundable as they defeat the purpose of been a secure device.
@@ -38,6 +38,7 @@ When selecting against your budget and security requirements, [this table helps 
 All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as it has USB A connection and can get a wireless Near Field Communication connection with my iPhone.
 
 ![Alt text](<../images/0001-01-27/Yubikey 5.png>)
+
 **YubiKey 5 Series:**
 - Price: From $50 USD
 - Communication Support: USB-A, USB-C, NFC, Lightning
@@ -51,6 +52,7 @@ All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as 
 - Manufacturing: Made in USA, Made in Sweden
 
 ![Alt text](<../images/0001-01-27/Security key.png>)
+
 **Security Key Series:**
 - Price: From $25 USD
 - Communication Support: USB-A, USB-C
@@ -62,6 +64,7 @@ All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as 
 - Manufacturing: Made in USA, Made in Sweden
 
 ![Alt text](../images/0001-01-27/fips-series.png)
+
 **YubiKey 5 FIPS Series:**
 - Price: From $80 USD
 - Communication Support: USB-A, USB-C, NFC
@@ -75,6 +78,7 @@ All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as 
 - Manufacturing: Made in USA
 
 ![Alt text](../images/0001-01-27/bio-series.png)
+
 **YubiKey Bio Series:**
 - Price: From $90 USD
 - Communication Support: USB-A, USB-C
@@ -106,8 +110,7 @@ If you are deploying many YubiKeys then ensure you tick the “Automatically pro
 
 If it is set to always then you will have to touch it each time there is a change to the account configured with the Yubikey. It is far more important that you implement a PIN code for each Yubi key. 
 
-
-##	Provisioning yubikeys by access control groups 
+##	Provisioning Yubikeys by access control groups 
 
 Now that you know how to program the YubiKey and use it to login to a computer operating system or application, you may need to understand how to provision them in an Identity Provider (IDP) if your organization uses one. 
 
@@ -155,31 +158,31 @@ You can consult the hardware reference manual of your microcontroller for this, 
  
 ## References
 
-Wikipedia. (2022). Password fatigue. [online] Available at: https://en.wikipedia.org/wiki/Password_fatigue [Accessed 22 Feb. 2024]
+Wikipedia. (2022). _Password fatigue._ [online] Available at: https://en.wikipedia.org/wiki/Password_fatigue [Accessed 22 Feb. 2024]
 
-Yubico. (n.d.). Quiz. [online] Available at: 
+Yubico. (n.d.). _Quiz_. [online] Available at: 
 https://www.yubico.com/quiz/  [Accessed 22 Feb. 2024]
 
- strongauthworks.com. (n.d.). Yubico Compare Products | StrongAuthWorks.com. [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]
+ strongauthworks.com. (n.d.). _Yubico Compare Products | StrongAuthWorks.com._ [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]
 
-www.youtube.com. (n.d.). How To Use A Yubikey With KeePassXC. [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s  [Accessed 22 Feb. 2024]
+www.youtube.com. (n.d.). _How To Use A Yubikey With KeePassXC._ [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s  [Accessed 22 Feb. 2024]
 
-Yubico. (n.d.). YubiKey Personalization Tool. [online] Available at: https://www.yubico.com/support/download/yubikey-personalization-tools/ [Accessed 22 Feb. 2024]
+Yubico. (n.d.). _YubiKey Personalization Tool._ [online] Available at: https://www.yubico.com/support/download/yubikey-personalization-tools/ [Accessed 22 Feb. 2024]
 
-www.youtube.com. (n.d.). How To Use A Yubikey With KeePassXC. [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s. [Accessed 22 Feb. 2024]
+www.youtube.com. (n.d.). _How To Use A Yubikey With KeePassXC._ [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s. [Accessed 22 Feb. 2024]
 
-YubiKey Personalization Tool User’s Guide. (n.d.). Available at: https://downloads.yubico.com/support/YubiKeyPersonalizationToolUserGuideMarch2016.pdf  [Accessed 22 Feb. 2024].
+_YubiKey Personalization Tool User’s Guide._ (n.d.). Available at: https://downloads.yubico.com/support/YubiKeyPersonalizationToolUserGuideMarch2016.pdf  [Accessed 22 Feb. 2024].
 
- Yubico (2021). How to select the correct YubiKey. Available at: https://support.yubico.com/hc/en-us/articles/4403770046354-How-to-select-the-correct-YubiKey (Accessed: 24 February 2024).
+ Yubico (2021). _How to select the correct YubiKey._ Available at: https://support.yubico.com/hc/en-us/articles/4403770046354-How-to-select-the-correct-YubiKey (Accessed: 24 February 2024).
 
-www.computerhope.com. (n.d.). How to Connect More USB Devices to a Computer. [online] Available at: https://www.computerhope.com/issues/ch000685.html [Accessed 24 Feb. 2024].
+www.computerhope.com. (n.d.). _How to Connect More USB Devices to a Computer._ [online] Available at: https://www.computerhope.com/issues/ch000685.html [Accessed 24 Feb. 2024].
 
 
-Super User. (n.d.). windows 11: is there a limit to the number of USB devices? [online] Available at: https://superuser.com/questions/1725434/windows-11-is-there-a-limit-to-the-number-of-usb-devices [Accessed 24 Feb. 2024].
+Super User. (n.d.). _windows 11: is there a limit to the number of USB devices?_ [online] Available at: https://superuser.com/questions/1725434/windows-11-is-there-a-limit-to-the-number-of-usb-devices [Accessed 24 Feb. 2024].
 
-www.amazon.com.au. (n.d.). SABRENT USB 3.0 16-Port Aluminum HUB with Power Switches and LEDs, Power Adapter Included (HB-PU16) : Amazon.com.au: Computers. [online] Available at: https://www.amazon.com.au/Sabrent-Aluminum-Switches-Included-HB-PU16/dp/B07KHRLSTT?th=1 [Accessed 25 Feb. 2024].
+www.amazon.com.au. (n.d.). _SABRENT USB 3.0 16-Port Aluminum HUB with Power Switches and LEDs, Power Adapter Included (HB-PU16) : Amazon.com.au: Computers._ [online] Available at: https://www.amazon.com.au/Sabrent-Aluminum-Switches-Included-HB-PU16/dp/B07KHRLSTT?th=1 [Accessed 25 Feb. 2024].
 
- Yubico. (n.d.). Works with YubiKey catalog. [online] Available at: https://www.yubico.com/works-with-yubikey/catalog/?sort=popular [Accessed 25 Feb. 2024].
+Yubico. (n.d.). _Works with YubiKey catalog._ [online] Available at: https://www.yubico.com/works-with-yubikey/catalog/?sort=popular [Accessed 25 Feb. 2024].
 
 
 
