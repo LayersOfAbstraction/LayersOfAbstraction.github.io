@@ -89,7 +89,7 @@ All images were obtained from Yubico's website. I used the YubiKey 5 NFC key as 
 - Authentication Methods: Passwordless, Strong Two Factor, Strong Multi-Factor
 - Manufacturing: Made in Sweden
 
-## SETTING UP YOUR YUBI KEY
+## Setting up your Yubikey
 Before setting them up, it is wise to trial a single YubiKey you purchased before going any further to slowly roll them out to the organization. 
 
 You want to do it preferably from a non-administrative account with a single user and then the whole user group that single user resides in before moving on to the next group.
