@@ -163,7 +163,7 @@ Wikipedia. (2022). _Password fatigue._ [online] Available at: https://en.wikiped
 Yubico. (n.d.). _Quiz_. [online] Available at: 
 https://www.yubico.com/quiz/  [Accessed 22 Feb. 2024]
 
- strongauthworks.com. (n.d.). _Yubico Compare Products | StrongAuthWorks.com._ [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]
+strongauthworks.com. (n.d.). _Yubico Compare Products StrongAuthWorks.com._ [online] Available at: https://strongauthworks.com/compare.asp  [Accessed 22 Feb. 2024]
 
 www.youtube.com. (n.d.). _How To Use A Yubikey With KeePassXC._ [online] Available at: https://www.youtube.com/watch?v=ATvNK5LKpv8&t=592s  [Accessed 22 Feb. 2024]
 
