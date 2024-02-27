@@ -117,6 +117,9 @@ Now that you know how to program the YubiKey and use it to login to a computer o
 There are many IDPs that Yubico support, including Microsoft Entra ID, AWS Identity and Access Management (IAM) and Auth0 just to name a few. 
 If you go to the Yubico Catalogue online, you can search for your IDP to see if it’s supported. When you find the IDP, click on it and follow any setup instructions associated with the IDP. 
 
+We may set it up for example with the Azure Privileged Identity Manager. 
+Yubico provides a good resource for that in one of their blogs which likely links from their [Azure catalogue.](https://www.yubico.com/blog/enforcing-yubikeys-for-privilege-elevation-with-azure-privileged-identity-manager-pim/) 
+
 Another important thing to consider is implementing each Yubikey inline with your organization’s access control policies. If you don’t know what access control policies are, [this article](https://www.goodaccess.com/blog/access-control-models-explained) shows an in depth analysis of the subject. 
 
 At the core, access is allowed to certain individuals or groups based on the access control policy the organization has decided to implement.
