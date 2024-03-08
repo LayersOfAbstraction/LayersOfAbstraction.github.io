@@ -15,6 +15,22 @@ It automates recording and updating information and eliminates the errors and in
 
 The software also allows us to get info bettween assets and allows us to get data bettween entities. Entities can be anything from the people with the allocated asset to the ProductAssignment.
 
+## ResourceSpace
+
+ResourceSpace open source digital asset management software is the simple, fast, & free way to organise your digital assets. 
+
+You get 10GB free space with unlimited users and no trial cut off. 
+
+Thus, you can manage your digital assets in an extremely simple & quick way without any investment. Also, it's functionality can be customized to meet your requirement through bespoke plugin development or improvising the functionality in the base software.
+
+- Pros
+
+Open source. Highly customizeable.
+
+- Cons
+
+Open source projects have a habit of failing.
+
 ## InvGate Assets
 
 This is great for small to medium-size businesses with limited IT staff because it checks all the boxes, including easy setup, ease of use and advanced reporting. 
@@ -99,15 +115,12 @@ Solid technical support.
 
 - Cons
 
-Longer user learning curve.
+Longer user learning curve. No network discovery.
 
-No network discovery.
 
 ## My Recommendation
 
 For the best choice I highly recommend InvGate Assets which is easy to set up and can support more people.
-
-
 
 ## REFERENCES:
 
@@ -116,4 +129,3 @@ Porter, T. (2024). What Is Asset Management Software? [online] Online Database S
 Reftab LLC. (n.d.). Reftab Asset Management Software. [online] Available at: https://www.reftab.com/?mtm_campaign=forbes [Accessed 7 Mar. 2024].
 
 Reftab LLC. (n.d.). Reftab Asset Management Software. [online] Available at: https://www.investopedia.com/best-asset-management-software-5090064 [Accessed 7 Mar. 2024].
-
