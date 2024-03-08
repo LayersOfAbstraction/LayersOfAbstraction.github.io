@@ -83,6 +83,7 @@ For tracking key data points, Ivanti IT Asset Management offers many pre-built r
 
 ### Pros & Cons
 
+
 - Pros
 
 You can create workspaces locally on Moboile and Desktop
@@ -126,7 +127,7 @@ Longer user learning curve. No network discovery.
 
 ## My Recommendation
 
-For the best choice I highly recommend InvGate Assets which is easy to set up and can support more people.
+For the best choice I highly recommend ResourceSpace Assets which is easy to set up and can support more projects.
 
 ## REFERENCES:
 
