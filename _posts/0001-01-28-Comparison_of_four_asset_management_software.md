@@ -124,7 +124,6 @@ Solid technical support.
 
 Longer user learning curve. No network discovery.
 
-
 ## My Recommendation
 
 For the best choice I highly recommend ResourceSpace Assets which is easy to set up and can support more projects.
