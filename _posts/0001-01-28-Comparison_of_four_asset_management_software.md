@@ -31,7 +31,7 @@ Open source. Highly customizeable.
 
 - Cons
 
-Open source projects have a habit of failing.
+Open source projects have a habit of failing. Because of this there is poor documentation.
 
 ## InvGate Assets
 
@@ -126,7 +126,7 @@ Longer user learning curve. No network discovery.
 
 ## My Recommendation
 
-For the best choice I highly recommend ResourceSpace Assets which is easy to set up and can support more projects.
+For the best choice I highly recommend ResourceSpace Assets which is easy to use and can support more technologies.
 
 ## REFERENCES:
 
