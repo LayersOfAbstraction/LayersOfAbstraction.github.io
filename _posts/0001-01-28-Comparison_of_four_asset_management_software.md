@@ -23,6 +23,8 @@ You get 10GB free space with unlimited users and no trial cut off.
 
 Thus, you can manage your digital assets in an extremely simple & quick way without any investment. Also, it's functionality can be customized to meet your requirement through bespoke plugin development or improvising the functionality in the base software.
 
+### Pros & Cons
+
 - Pros
 
 Open source. Highly customizeable.
@@ -79,6 +81,8 @@ Not for small businesses with limited IT staff.
 
 For tracking key data points, Ivanti IT Asset Management offers many pre-built reports, which we can customized based their query syntax. It makes Ivanti IT Asset Management our choice for the best custom reporting.
 
+### Pros & Cons
+
 - Pros
 
 You can create workspaces locally on Moboile and Desktop
@@ -102,6 +106,8 @@ Lengthy, hardware-heavy installation process
 You can log 500 assets for $1,500 per year, and have unlimited users, 
 
 Has barcode scanning including abilit to import CSV files, have technical support, and custom reporting
+
+### Pros & Cons
 
 - Pros
 
