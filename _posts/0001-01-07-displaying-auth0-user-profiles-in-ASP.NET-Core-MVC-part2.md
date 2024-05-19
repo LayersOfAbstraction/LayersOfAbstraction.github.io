@@ -45,7 +45,6 @@ Download this into your project to access the library.
 dotnet add Auth0UserProfileDisplayStarterKit package Auth0.AuthenticationApi --version 7.7.0
 ```
 
-
 ## Copy these library folders from repository into your project ##
 
 Please, [star this repository if you are logged in and clone it!](https://github.com/nikaburu/Example.Auth0.AuthenticationApi)
