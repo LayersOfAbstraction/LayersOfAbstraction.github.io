@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Comparison of 4 asset management software."
-date: "2023-03-7"
+date: "2024-03-7"
 published: true
 ---
 
