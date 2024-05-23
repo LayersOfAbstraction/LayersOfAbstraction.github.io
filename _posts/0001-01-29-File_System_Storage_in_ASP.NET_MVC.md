@@ -39,6 +39,26 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 
 <img src="../images/0001-01-29/MyClassDiagram.png" class="image fit" alt="Picture showing disposable email"/>
 
+We will create the models, then service and interfaces and after that we will just have the create the Controller and Views.
+
+## FileModel
+
+Create a new folder in Visual Studio called `FileViewModels` and then under that create a model called `FileModel`.
+
+```csharp
+public IFormFile? File { get; set; }
+public string? FileName { get; set; }
+public string? FileExtension { get; set; }
+public long FileSize { get; set; }
+public bool UploadResult { get; set; }
+```
+
+This will be our view model representing a single file running in memory. We'll use the IFormFile primarily for uploading files while the FileName property will be used for reading them.
+
+
+
 ## REFERENCES:
 
 _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.com. Available at: [https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios) [Accessed 21 May 2024]._
+
+_link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: [https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html](https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html) [Accessed 23 May 2024]._
