@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Managing File Storage Part 1. With ASP.NET MVC Service Interface abstractions
+title:  Managing File Storage Part 1. With ASP.NET MVC Service Interface reusability
 date: "2024-05-20"
 published: false
 ---
@@ -10,9 +10,11 @@ Photo by <a href="https://unsplash.com/@maximalfocus?utm_content=creditCopyText&
   
 ## Introduction
 
-In this tutorial you'll learn to create and see an index of files to download in your local filesystem, using ASP.NET 8 MVC and C#. 
+In this tutorial you'll learn to create and see an index of files to download in your local filesystem, using ASP.NET 8 MVC and C#.  
 
-You'll create clean, thin controllers with no model property references, by using service classes and interfaces that interact with your models.
+⚠ I won't be covering large file uploads. Only buffered (small files).
+
+You'll create clean, thin controllers with no model property references, by using service classes and interfaces that interact with your models. This will make your code more reusable.
 
 I will show you this in a moment. I am hopping to make this into a 3 part series, the second one will be for updating and deleting from the View file actions and the last will show how to link file references to a database so their records can track which file in the file system links to what record. 
 
@@ -20,7 +22,7 @@ We generally store files in a file system instead of a database like Access or M
 
 - It can handle larger uploads.
 - Less expensive than using a cloud data storage service, especially if the data is on premises.
-- Images and video files depending on their size are especially heavy and can take the load of the database when stored outside.
+- Images and video files depending on their size are especially heavy on the database unless stored outside.
 
 ## Perquisites and setup
 
@@ -37,13 +39,13 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 
 ## What the structure looks like?
 
-<img src="../images/0001-01-29/MyClassDiagram.png" class="image fit" alt="Picture showing disposable email"/>
+<img src="../images/0001-01-29/MyClassDiagram.jpg" class="image fit" alt="Picture showing disposable email"/>
 
 We will create the models, then service and interfaces and after that we will just have the create the Controller and Views.
 
-## FileModel
+### FileModel
 
-Create a new folder in Visual Studio called `FileViewModels` and then under that create a model called `FileModel`.
+Create a new folder in your project called `FileViewModels` and then under that create a model called `FileModel`.
 
 ```csharp
 public IFormFile? File { get; set; }
@@ -53,12 +55,25 @@ public long FileSize { get; set; }
 public bool UploadResult { get; set; }
 ```
 
-This will be our view model representing a single file running in memory. We'll use the IFormFile primarily for uploading files while the FileName property will be used for reading them.
+This will be our view model representing a single file running in memory. We'll use the IFormFile primarily for uploading buffered files while the FileName property will be used for reading them.
+
+### File list model.
+
+```csharp
+public class FileListModel
+{
+    public List<FileModel> Files {  get; set; } = new List<FileModel>();
+}
+```
 
 
 
-## REFERENCES:
+### REFERENCES:
 
 _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.com. Available at: [https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios) [Accessed 21 May 2024]._
 
 _link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: [https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html](https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html) [Accessed 23 May 2024]._
+
+_Anon, (2022). File Upload in ASP.NET Core 6 - Detailed Guide | Pro Code Guide. [online] Available at: https://procodeguide.com/programming/file-upload-in-aspnet-core/._
+
+‌
