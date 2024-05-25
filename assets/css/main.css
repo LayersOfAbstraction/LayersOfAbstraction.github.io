@@ -29,6 +29,12 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+.subtitle {
+	font-family: 'Courier New', Courier, monospace;
+	font-style: italic;
+	color: #333;
+}
+
 body {
 	line-height: 1;
 }

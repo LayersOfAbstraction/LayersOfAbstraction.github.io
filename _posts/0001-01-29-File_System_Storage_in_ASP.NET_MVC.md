@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  Managing File Storage Part 1. With ASP.NET MVC Service Interface reusability
+title:  Managing File Storage Part 1
+subtitle: "Bridging the Gap: ASP.NET MVC Service Interface Reusability"
 date: "2024-05-20"
 published: false
 ---
@@ -43,30 +44,40 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 
 We will create the models, then service and interfaces and after that we will just have the create the Controller and Views.
 
+First we will break this into a series of tasks. My first one is upload files.
+
+## Uploading files
+
+First we will create a model and interface that will be the intermediary between our controller and service class to upload the files. 
+
 ### FileModel
 
 Create a new folder in your project called `FileViewModels` and then under that create a model called `FileModel`.
 
 ```csharp
-public IFormFile? File { get; set; }
-public string? FileName { get; set; }
-public string? FileExtension { get; set; }
-public long FileSize { get; set; }
-public bool UploadResult { get; set; }
+public class FileModel
+{
+    public IFormFile? File { get; set; }
+    public string? FileName { get; set; }
+    public string? FileExtension { get; set; }
+    public long FileSize { get; set; }
+    public bool UploadResult { get; set; }
+}
 ```
 
 This will be our view model representing a single file running in memory. We'll use the IFormFile primarily for uploading buffered files while the FileName property will be used for reading them.
 
-### File list model.
+## IBufferedFileService
+
+If you are not aware of what an interface is, then there is no shame in checking [this out](https://learn.microsoft.com/en-us/training/paths/get-started-c-sharp-part-1/). That aside this is what it would look like. We will be implementing our service through here as a child and upload more methods later. For now you want to create this method. 
+
 
 ```csharp
-public class FileListModel
+public interface IBufferedFileService
 {
-    public List<FileModel> Files {  get; set; } = new List<FileModel>();
+    Task<bool> UploadFile(IFormFile file);
 }
 ```
-
-
 
 ### REFERENCES:
 
@@ -74,6 +85,5 @@ _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.co
 
 _link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: [https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html](https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html) [Accessed 23 May 2024]._
 
-_Anon, (2022). File Upload in ASP.NET Core 6 - Detailed Guide | Pro Code Guide. [online] Available at: https://procodeguide.com/programming/file-upload-in-aspnet-core/._
-
+_Anon, (2022). File Upload in ASP.NET Core 6 - Detailed Guide | Pro Code Guide. [online] Available at: [https://procodeguide.com/programming/file-upload-in-aspnet-core/](https://procodeguide.com/programming/file-upload-in-aspnet-core/) [Accessed 24 May 2024]._
 ‌
