@@ -186,6 +186,95 @@ return true;
 
 This code simply uploads the file to a relative filepath: `wwwroot/Uploads` in our current dirctory. In production you would normally save the files outside the application tree. Lastly the UploadFile method tells our controller to advise the user the files uploaded with the `return true` statement.
 
+Our Get ContentType method is the next to analyse as it gets called in our UploadFile method. If you go to the GetContentType method, you will see how we analyse for valid extensions.
+
+
+```csharp
+/// <summary>
+/// Checks if extension is in our MimeTypes dictionary and if not throws an error.
+/// </summary>
+/// <param name="path"></param>
+/// <returns></returns>
+/// <exception cref="Exception"></exception>
+public string GetContentType(string path)
+{
+    var allowedExtensions = MimeTypes.GetMimeTypes();
+    var ext = Path.GetExtension(path).ToLowerInvariant();
+    if (allowedExtensions.ContainsKey(path))
+    {
+        return allowedExtensions[ext];
+    }            
+    
+    else
+    {
+        throw new Exception("Extension invalid");
+    }            
+}
+```
+
+After that our MimeTypes dictionary is called which the method is checking.
+
+##MimeTypes
+```csharp
+    public static class MimeTypes
+    {
+        public static Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".png", "image/png"},
+                {".jpg", "image/jpeg"},
+                {".jpeg", "image/jpeg"},
+                {".gif", "image/gif"},
+                {".pdf", "application/pdf"},
+                {".doc", "application/msword"},
+                {".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
+                {".xls", "application/vnd.ms-excel"},
+                {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
+                {".ppt", "application/vnd.ms-powerpoint"},
+                {".pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation"},
+                {".txt", "text/plain"},
+                {".rtf", "application/rtf"},
+                {".csv", "text/csv"},
+                {".bmp", "image/bmp"},
+                {".tif", "image/tiff"},
+                {".tiff", "image/tiff"},
+                {".ico", "image/vnd.microsoft.icon"},
+                {".svg", "image/svg+xml"},
+                {".zip", "application/zip"},
+                {".rar", "application/x-rar-compressed"},
+                {".tar", "application/x-tar"},
+                {".gz", "application/gzip"},
+                {".7z", "application/x-7z-compressed"},
+                {".mp3", "audio/mpeg"},
+                {".wav", "audio/wav"},
+                {".mp4", "video/mp4"},
+                {".avi", "video/x-msvideo"},
+                {".mov", "video/quicktime"},
+                {".flv", "video/x-flv"},
+                {".mkv", "video/x-matroska"},
+                {".html", "text/html"},
+                {".css", "text/css"},
+                {".js", "text/javascript"},
+                {".php", "application/x-httpd-php"},
+                {".py", "text/x-python"},
+                {".java", "text/x-java-source"},
+                {".c", "text/x-csrc"},
+                {".cpp", "text/x-c++src"},
+                {".cs", "text/plain"},
+                {".h", "text/plain"},
+                {".json", "application/json"},
+                {".xml", "application/xml"},
+                {".mhtml", "multipart/related"},
+                {".apk", "application/vnd.android.package-archive"},
+                {".aab", "application/vnd.android.package-archive"},
+                {".ipa", "application/octet-stream"},
+                {".plist", "application/xml"},
+                {".mobileconfig", "application/x-apple-aspen-config"}
+            };
+        }
+    }
+```
 ### REFERENCES:
 
 _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.com. Available at: [https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios) [Accessed 21 May 2024]._
