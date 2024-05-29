@@ -35,7 +35,7 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 2. Select from the available templates: `ASP.NET Core Web App (Model-View-Controller)` and hit next.
 3. Name your project what you want. I named it as `File-Upload-Downloader`, and hit next.
 4. In the Additional Information window, select .NET 8.0. 
-5. (OPTIONAL). Highly recommend you tick `Enable Docker`. The reason beeing is because if you reinstall Windows then it makes your application more portable in the future so you don't have to install .NET 8. Set the Docker OS as `Linux` so you can use it outside of Windows if applicable.
+5. (OPTIONAL). Highly recommend you tick `Enable Docker`. The reason being is because if you reinstall Windows then it makes your application more portable in the future so you don't have to install .NET 8. Set the Docker OS as `Linux` so you can use it outside of Windows if applicable.
 6. Hit Create.
 
 ## What the structure looks like?
@@ -106,49 +106,49 @@ namespace FileUploadDownloader.Services
 Our UploadFile method is quite a long one. Note how we are inputting the model properties in this method to avoid doing so in our Controller. 
 
 ```csharp
-        /// <summary>
-        /// Method uploads file to the wwwroot/Uploads subfolder.
-        /// </summary>
-        /// <param name="file">Represents a file sent with the HttpRequest.</param>
-        /// <returns>Executes upload of file</returns>
-        /// <exception cref="Exception">File Copy Failed</exception>
-        public async Task<bool> UploadFile(IFormFile file)
+/// <summary>
+/// Method uploads file to the wwwroot/Uploads subfolder.
+/// </summary>
+/// <param name="file">Represents a file sent with the HttpRequest.</param>
+/// <returns>Executes upload of file</returns>
+/// <exception cref="Exception">File Copy Failed</exception>
+public async Task<bool> UploadFile(IFormFile file)
+{
+    try
+    {
+        //Bind service to FileUploadModel.
+        FileModel fileUploadModel = new FileModel
         {
-            try
+            File = file,
+            FileName = file.FileName,
+            FileExtension = Path.GetExtension(file.FileName),
+            FileSize = file.Length
+        };
+        //Validate current file extension against dictionary.
+        var allowedExtensions = MimeTypes.GetMimeTypes();
+        
+            var maxFileSize = 5 * 1024 * 1024; // 5MB
+            if (fileUploadModel.FileSize > maxFileSize)
             {
-                //Bind service to FileUploadModel.
-                FileModel fileUploadModel = new FileModel
-                {
-                    File = file,
-                    FileName = file.FileName,
-                    FileExtension = Path.GetExtension(file.FileName),
-                    FileSize = file.Length
-                };
-                //Validate current file extension against dictionary.
-                var allowedExtensions = MimeTypes.GetMimeTypes();
-                
-                    var maxFileSize = 5 * 1024 * 1024; // 5MB
-                    if (fileUploadModel.FileSize > maxFileSize)
-                    {
-                        return false;
-                    }
-
-                    // Save the file to the server.
-                    var fileName = Path.GetFileName(fileUploadModel.File.FileName);
-                    //Get the root path of your application via IWebHostEnvironment.
-                    var path = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", fileName);
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await fileUploadModel.File.CopyToAsync(stream);
-                    }
-
-                    return true;
+                return false;
             }
-            catch (Exception ex) 
+
+            // Save the file to the server.
+            var fileName = Path.GetFileName(fileUploadModel.File.FileName);
+            //Get the root path of your application via IWebHostEnvironment.
+            var path = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads", fileName);
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                throw new Exception("File Copy Failed", ex);
+                await fileUploadModel.File.CopyToAsync(stream);
             }
-        }
+
+            return true;
+    }
+    catch (Exception ex) 
+    {
+        throw new Exception("File Copy Failed", ex);
+    }
+}
 ```
 
 I'm going to explain most of the code except the try catch part. All you need to know is it stops user from seeing an error on screen.
@@ -212,69 +212,79 @@ public string GetContentType(string path)
 }
 ```
 
-After that our MimeTypes dictionary is called which the method is checking.
+After that our MimeTypes dictionary is called to compare that it exists. All you really need to know about it's structure is that a MIME type consists of a type and subtype e.g image/png, application/pdf etc. Type is the general categroy like documents or audio while a subtype identifies the exact kind of data specified that the MIME type holds. [Mozillia Developer Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) has some more greta info on them. So if image/png is the type and subtype then the .png extension would be it's value. 
 
-##MimeTypes
+MimeTypes help the browser figure out how to process a URL since browsers don't use the actual file extension.
+
+## MimeTypes
 ```csharp
-    public static class MimeTypes
+public static class MimeTypes
+{
+    public static Dictionary<string, string> GetMimeTypes()
     {
-        public static Dictionary<string, string> GetMimeTypes()
+        return new Dictionary<string, string>
         {
-            return new Dictionary<string, string>
-            {
-                {".png", "image/png"},
-                {".jpg", "image/jpeg"},
-                {".jpeg", "image/jpeg"},
-                {".gif", "image/gif"},
-                {".pdf", "application/pdf"},
-                {".doc", "application/msword"},
-                {".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
-                {".xls", "application/vnd.ms-excel"},
-                {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},
-                {".ppt", "application/vnd.ms-powerpoint"},
-                {".pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation"},
-                {".txt", "text/plain"},
-                {".rtf", "application/rtf"},
-                {".csv", "text/csv"},
-                {".bmp", "image/bmp"},
-                {".tif", "image/tiff"},
-                {".tiff", "image/tiff"},
-                {".ico", "image/vnd.microsoft.icon"},
-                {".svg", "image/svg+xml"},
-                {".zip", "application/zip"},
-                {".rar", "application/x-rar-compressed"},
-                {".tar", "application/x-tar"},
-                {".gz", "application/gzip"},
-                {".7z", "application/x-7z-compressed"},
-                {".mp3", "audio/mpeg"},
-                {".wav", "audio/wav"},
-                {".mp4", "video/mp4"},
-                {".avi", "video/x-msvideo"},
-                {".mov", "video/quicktime"},
-                {".flv", "video/x-flv"},
-                {".mkv", "video/x-matroska"},
-                {".html", "text/html"},
-                {".css", "text/css"},
-                {".js", "text/javascript"},
-                {".php", "application/x-httpd-php"},
-                {".py", "text/x-python"},
-                {".java", "text/x-java-source"},
-                {".c", "text/x-csrc"},
-                {".cpp", "text/x-c++src"},
-                {".cs", "text/plain"},
-                {".h", "text/plain"},
-                {".json", "application/json"},
-                {".xml", "application/xml"},
-                {".mhtml", "multipart/related"},
-                {".apk", "application/vnd.android.package-archive"},
-                {".aab", "application/vnd.android.package-archive"},
-                {".ipa", "application/octet-stream"},
-                {".plist", "application/xml"},
-                {".mobileconfig", "application/x-apple-aspen-config"}
-            };
-        }
+            {".png", "image/png"},
+            {".jpg", "image/jpeg"},
+            {".jpeg", "image/jpeg"},
+            {".gif", "image/gif"},
+            {".pdf", "application/pdf"},
+            {".doc", "application/msword"},
+            {".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"},
+            {".xls", "application/vnd.ms-excel"},
+            {".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+        };
     }
+}
 ```
+
+## BufferedFileController
+
+To weave it all beautifully together, we access the Controller through our IBufferedFileService interface in the  Controller's constructor. The way we can upload the files here is through the `IFormFile` as shown in the Create action method. You will also notice Create does not need to know anything about our model properties which is delegated to our 
+UploadFile method. 
+
+You won't always be able to do this with a Object Relational Mapping tool but in this case our controller code is abstracted enough to have a reusable service that is not tightly coupled to the controller. 
+
+```csharp
+using System.Diagnostics;
+using System.Net.Mime;
+using Microsoft.Extensions.FileProviders;
+
+   public class BufferedFileController : Controller
+   {
+       readonly IBufferedFileService _bufferedFileUploadInterface;
+
+       public BufferedFileController(IBufferedFileService bufferedFileUploadInterface)
+       {
+           _bufferedFileUploadInterface = bufferedFileUploadInterface;
+       }
+
+       // POST: StreamFileUploadController/Create
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<ActionResult> Create(IFormFile file)
+       {
+           try
+           {
+               //If the file is valid in size and extension. 
+               if (await _bufferedFileUploadInterface.UploadFile(file))
+               {
+                   ViewBag.Message = "File Upload Successful";
+               }
+               else
+               {
+                   ViewBag.Message = "File Upload Failed";
+               }
+           }
+           catch (Exception ex)
+           {
+               ViewBag.Message = "File Upload Failed";
+           }
+           return View();
+       }
+   }
+```
+
 ### REFERENCES:
 
 _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.com. Available at: [https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-8.0#storage-scenarios) [Accessed 21 May 2024]._
@@ -282,4 +292,7 @@ _Rick-Anderson (2023). Upload files in ASP.NET Core. [online] learn.microsoft.co
 _link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: [https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html](https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html) [Accessed 23 May 2024]._
 
 _Anon, (2022). File Upload in ASP.NET Core 6 - Detailed Guide | Pro Code Guide. [online] Available at: [https://procodeguide.com/programming/file-upload-in-aspnet-core/](https://procodeguide.com/programming/file-upload-in-aspnet-core/) [Accessed 24 May 2024]._
+‌
+_developer.mozilla.org. (n.d.). MIME types (IANA media types) - HTTP | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types._
+
 ‌
