@@ -53,8 +53,8 @@
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-kramdown:  
-  parse_block_html: true
+# kramdown:  
+#   parse_block_html: true
   
 permalink: /:title
 defaults:      
