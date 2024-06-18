@@ -33,7 +33,7 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 
 1. Select `Create a new project`. 
 2. Select from the available templates: `ASP.NET Core Web App (Model-View-Controller)` and hit next.
-3. Name your project what you want. I named it as `File-Upload-Downloader`, and hit next.
+3. Name your project what you want. I named it as `FileUploadDownloader`, and hit next.
 4. In the Additional Information window, select .NET 8.0. 
 5. (OPTIONAL). Highly recommend you tick `Enable Docker`. The reason being is because if you reinstall Windows then it makes your application more portable in the future so you don't have to install .NET 8. Set the Docker OS as `Linux` so you can use it outside of Windows if applicable.
 6. Hit Create.
@@ -44,7 +44,7 @@ Visual Studio 2022 should have this already built in so I will quickly walk you 
 
 We will create the models, then service and interfaces and after that we will just have the create the Controller and Views.
 
-First we will break this into a series of tasks. My first one is upload files.
+First we will break this into a series of tasks. My first task is to upload files.
 
 ## Uploading files
 
@@ -173,7 +173,7 @@ if (fileUploadModel.FileSize > maxFileSize)
 }
 ```
 
-We're buffering files so the file upload system does not get abused with very large files like employees, customers... hackers.
+We're buffering files so the server does not get abused with very large files by employees, customers... hackers.
 
 ```csharp
 // Save the file to the server.
@@ -188,10 +188,9 @@ using (var stream = new FileStream(path, FileMode.Create))
 return true;
 ```
 
-This code simply uploads the file to a relative filepath: `wwwroot/Uploads` in our current directory. In production you would normally save the files outside the application tree. Lastly the UploadFile method tells our controller to advise the user the files uploaded with the `return true` statement.
+This code simply uploads the file to a relative filepath: `wwwroot/Uploads` in our current directory. In production you would normally save the files outside the application tree. Lastly the UploadFile method tells our controller to send a HTTP request to advise the user the files were uploaded by a `return true` statement.
 
-Our Get ContentType method is the next to analyse as it gets called in our UploadFile method. If you go to the GetContentType method, you will see how we analyse for valid extensions.
-
+Our GetContentType method is the next to analyse as it gets called in our UploadFile method. If you go to the GetContentType method, you will see how we analyse for valid extensions.
 
 ```csharp
 /// <summary>
@@ -216,7 +215,7 @@ public string GetContentType(string path)
 }
 ```
 
-After that our MimeTypes dictionary is called to compare that it exists. All you really need to know about it's structure is that a MIME type consists of a type and subtype e.g image/png, application/pdf etc. Type is the general categroy like documents or audio while a subtype identifies the exact kind of data specified that the MIME type holds. [Mozillia Developer Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) has some more greta info on them. So if image/png is the type and subtype then the .png extension would be it's value. 
+After that our MimeTypes dictionary is called to compare that it exists. All you really need to know about it's structure is that a MIME type consists of a type and subtype e.g image/png, application/pdf etc. Type is the general categroy like documents or audio while a subtype identifies the exact kind of data specified that the MIME type holds. [Mozillia Developer Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) has some more great info on them. So if image/png is the type and subtype then the .png extension would be it's value. 
 
 MimeTypes help the browser figure out how to process a URL since browsers don't use the actual file extension.
 
@@ -245,11 +244,11 @@ public static class MimeTypes
 ### BufferedFileController.cs
 
 To weave it all beautifully together, we access the Controller through our IBufferedFileService interface in the  Controller's constructor. The way we can upload the files here is through the `IFormFile` as shown in the Create action method. You will also notice Create does not need to know anything about our model properties which is delegated to our 
-UploadFile method. 
+UploadFile method in the service class. 
 
 You won't always be able to do this with a Object Relational Mapping tool but in this case our controller code is abstracted enough to have a reusable service that is not tightly coupled to the controller. Do not ship any features that persist to storage i.e create read, update or deletes without inputting the [ValidateAntiForgeryToken] paramater onto the method. 
 
-Without inputting that your customers will be vulnerbel cross-site-scripting-attacks! Someone could commit identity theft, impersonate someone to social engineer someonelse, etc. 
+Without inputting that, your customers will be vulnerbel to cross-site-scripting-attacks! Someone could commit identity theft, impersonate someone to social engineer someonelse, etc. 
 
 ```csharp
 using System.Diagnostics;
@@ -329,7 +328,7 @@ If you don't understand MVC too well just renember, we use the Create method fro
 
 ### Run the app and upload a file.
 
-Just press F5 and ensure you upload an image before submitting to your local file system.
+Press F5 and navigate to the path displayed in the browser. You should stick to your port number if it is different to mine. Ensure you upload an image before submitting to your local file system. 
 
 <img src="../images/0001-01-29/Upload_File_Animation.gif" class="image fit" alt="The running of the application, showing how the files upload"/>
 
@@ -488,10 +487,11 @@ In our BufferedFile folder we will do a couple of things:
         }
     </tbody>
 </table>
-
 ```
-![alt text](../images/0001-01-29/FinalOutput.png)
 
+And when you run and navigate to the path displayed in the browser, you will see the files on server and that we can download each of them.
+
+<img src="../images/0001-01-29/FinalOutput.png" class="image fit" alt="Show all uploaded files "/>
 
 ## REFERENCES:
 
@@ -501,6 +501,6 @@ _link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core
 
 _Anon, (2022). File Upload in ASP.NET Core 6 - Detailed Guide | Pro Code Guide. [online] Available at: [https://procodeguide.com/programming/file-upload-in-aspnet-core/](https://procodeguide.com/programming/file-upload-in-aspnet-core/) [Accessed 24 May 2024]._
 ‌
-_developer.mozilla.org. (n.d.). MIME types (IANA media types) - HTTP | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types._
+_developer.mozilla.org. (n.d.). MIME types (IANA media types) - HTTP | MDN. [online] Available at: [https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)._
 
-_‌link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html._
+_‌link, G., Facebook, Twitter, Pinterest, Email and Apps, O. (2022). ASP.NET Core 6: Downloading Files from the Server. [online] Available at: [https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html](https://www.webnethelper.com/2022/01/aspnet-core-6-downloading-files-from.html)._
