@@ -5,7 +5,7 @@ subtitle: "Striking the Hydra's heart"
 date: "2024-09-22"
 published: false
 ---
-
+![alt text](../images/0001-01-31/mysterious-keyhole-light.jpg)
 Long ago my details were taken from a data breach and sold online to the highest bidder. This included my DOB, address, email and full name. Since then I have had random people phone me by my real name to help build trust. 
 
 These type of scams can make phishing scams easier as your name and details are not something you give out to everyone. They can also feel more personal when you are been phished when you already know you're been scammed. Just knowing that your identity is no longer your own and used maliciously, leads to a larger loss of innocence... and a larger desire to fight back!
