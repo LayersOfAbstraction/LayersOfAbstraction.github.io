@@ -27,14 +27,29 @@ The domain name is like the central island of your site and the bridge leading t
 
 We could say the website hosting provider builds a bridge to your island to allow people to visit it.
 
-Informing the scammer's web host provider that the website hosted for illegal purposes can result in either a refusal or silence as they will continue to make money. Others are more responsive. But even then it would be like destroying the bridge leading to their island. 
+Informing the scammer's web host provider that the website hosted for illegal purposes can result in either a refusal or silence as they will continue to make money. 
+
+Others are more responsive. But even then it would be like destroying the bridge leading to their island. 
 
 We could anomalously hack the site or set up a botnet to route a DDOS attack through insecure computers that unwitting people own. But if they were discovered by the scammer then they can be at risk of retaliation.
 
-Even then even if we destoryed the site, it could have been backed up elsewhere. It would be like destroying the infrastructure on the island which can always later be rebuilt.
+We could destory all the infastructure on the island. Even if we destoryed the site, it could have been backed up elsewhere. The house, their base of operations can always later be rebuilt and quite easily if they have a backup.
 
-Then there is the domain name provider. We could imagine they own the island which 
+Then there is the domain name provider. We could imagine they own the island which the scammer rents. 
+
+If we can convince the domain name provider that the island (domain name) is being used for illegal purposes, then it can be enough to evict the scammer from the island. 
+
+Once the domain name is taken offline, the scammer will need to find a new provider or change their contact details to find a suitable domain name, and may have to even tailor the website to that domain name.
+
+It's just more stress for them to recover from. Whatever you do, do not taunt the scammer from your own details.
+
+These are criminals, if you make it personal, they will make it personal.    
+
+## Step 2: Gather intelligence about the target
+
+We want to grab some metta data. Find out who hosts the site and who owns the domain.
 
 ## REFERENCES:
 
-Photo by [Dave Salter](https://www.shopify.com/stock-photos/walls?utm_campaign=photo_credit&amp;utm_content=Free+Mysterious+Keyhole+Light+Image%3A+Stunning+Photography&amp;utm_medium=referral&amp;utm_source=credit) from Burst.
+Salter, D. (2018). Mysterious Keyhole Light. [online] Burst. Available at: https://www.shopify.com/stock-photos/photos/mysterious-keyhole-light [Accessed 22 Sep. 2024].
+
