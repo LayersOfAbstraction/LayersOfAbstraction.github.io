@@ -122,7 +122,7 @@ Report to as many as possible. There are likely more that could be included. Try
 
 ## Step 4: Report the domain to the domain name registrar 
 
-I cannot provide specific advise for how to report to each registrar but if you have a email from the scammer, check if you need to include email meta-data header. Be sure not to click any links in the scam email unless you know how to test them in a secure sandbox. If the registrar does want the headers, you can check how to provide them as shown in the 3 most commonly used email clients of which you may be using. 
+I cannot provide specific advice for how to report to each registrar but if you have a email from the scammer, check if you need to include email meta data like the header. Be sure not to click any links in the scam email unless you know how to test them in a secure sandbox. If the registrar does want the headers, you can check how to provide them as shown in the 3 most commonly used email clients of which you may be using. 
 
 [Apple Mail](https://support.apple.com/en-au/guide/mail/mlhlp1089/mac#:~:text=Go%20to%20the%20Mail%20app,View%20%3E%20Message%20%3E%20Default%20Headers.)
 
@@ -130,9 +130,9 @@ I cannot provide specific advise for how to report to each registrar but if you 
 
 [Outlook](https://support.microsoft.com/en-au/office/view-internet-message-headers-in-outlook-cd039382-dc6e-4264-ac74-c048563d212c)
 
-After reporting it will be a waiting game. It took almost two weeks get the scammer domain taken offline for me so I wish you best of luck! Thanks for reading!
+After reporting, it will be a waiting game. It took almost two weeks to get the scammer domain taken offline for me so I wish you the best of luck! Thanks for reading!
 
-I hope you are able to achieve the same success in taking down these criminal domains like I did.
+I hope you are able to achieve the same success in taking down these criminal domains as I did.
 
 ## REFERENCES:
 
