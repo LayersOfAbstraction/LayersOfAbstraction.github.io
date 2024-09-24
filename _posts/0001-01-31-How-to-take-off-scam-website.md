@@ -21,7 +21,7 @@ They can also feel more personal when you already know you're been scammed. Just
 
 But you can legally take down the site and report the phishing email used. 
 
-This blog was inspired by the Darknet Daries episode [Magecart](https://darknetdiaries.com/episode/52/) with interviewee Yonathan Klijnsma. 
+This blog was inspired by the Darknet Daries episode [Magecart](https://darknetdiaries.com/episode/52/) with interviewee Yonathan Klijnsma and Youtube video by [ThioJoe](https://youtu.be/0fIUiv9-UFk)
 
 ## Step 1: Find out what we need to target (DO NOT make this personal!)
 
@@ -97,7 +97,7 @@ Sometimes the registrar's email filters may pick up on the scam domain and throw
 
 Before we try to take the domain down, we want to already try to alert the trusted anti-virus companies so the registrar has more of a reason to take the domain offline. 
 
-Contact the antivirus sites or internet browser companies first. I have added a list them from credited sources.   
+Contact the antivirus sites or internet browser companies first. I have added a list from credited sources.   
 
 Report to as many as possible. There are likely more that could be included. Try at least 5. _You don't have to do them all!_ If it helps the first 2 are the most important as Google and Microsoft will block the site from their internet browsers.
 
