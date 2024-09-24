@@ -6,22 +6,22 @@ date: "2024-09-22"
 published: false
 ---
 
-_<img src="../images/0001-01-31/mysterious-keyhole-light.jpg" class="image fit" alt="Salter, D. (2018). Mysterious Keyhole Light"/>
-Photo by <a href="https://www.shopify.com/stock-photos/@saltyshots">Dave Salter</a> on <a href="https://www.shopify.com/stock-photos">Burst</a>_
-
 ## Introduction
+
+<img src="../images/0001-01-31/russian_house.png" class="image fit" alt="Russian House"/>
+_Screenshot I took from Google Maps of potential scammer house_
 
 Long ago my details were taken from a data breach and sold online to the highest bidder. This included my DOB, address, email and full name. Since then I have had random scammers phone me by my real name to help build trust. 
 
 These type of scams can make phishing scams easier as your name and details are not something you give out to everyone. They can also feel more personal when you are been phished when you already know you're been scammed.
 
-Just knowing that your identity is no longer your own and used maliciously, leads to a larger loss of innocence... and a larger desire to fight back!
+Just knowing that your identity is no longer your own and used maliciously, leads to a larger loss of innocence!
 
-Yes you can take out the hosted site and report the email domains they use. But you cannot afford to make things personal with the scammer. 
+But you can legally can down the site and report the phishing email used. 
 
-This blog was inspired by the Darknet Daries episode [Magecart](https://darknetdiaries.com/episode/52/) with interviewee Yonathan Klijnsma and this [youtube video](https://www.youtube.com/watch?v=0fIUiv9-UFk).   
+This blog was inspired by the Darknet Daries episode [Magecart](https://darknetdiaries.com/episode/52/) with interviewee Yonathan Klijnsma. 
 
-## Step 1: Find out what we need to target
+## Step 1: Find out what we need to target (DO NOT make this personal!)
 
 _<img src="../images/0001-01-31/medium_1983_1462__0006_.jpg" class="image fit" alt="Computer bombsight type T1, mechanical analogue device, by A C Spark Plug Division"/>
 Photo by <a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer">The Science Museum Group Collection</a> of a computer bombsight type T1<a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer"></a>_
@@ -50,16 +50,15 @@ It's just more stress for them to recover from which makes it the best target.
 
 You are best blocking them ASAP if they are in contact with you, now.
 
-## Step 2: Gather intelligence about the target
+## Step 2: Gather information about the target
 
-<img src="../images/0001-01-31/drone-flying-over-road.jpg" class="image fit" alt="A drone flying over road with a car behind it.
-"/>
+<img src="../images/0001-01-31/drone-flying-over-road.jpg" class="image fit" alt="A drone flying over road with a car behind it."/> 
 
-_Photo by <a href="https://www.shopify.com/stock-photos/@matthew_henry?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Drone+Flying+Over+Road+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit" class="image fit" >Matthew Henry</a> from <a href="https://www.shopify.com/stock-photos/drone?utm_campaign=photo_credit&amp;utm_content=Free+Stock+Photo+of+Drone+Flying+Over+Road+%E2%80%94+HD+Images&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>_
+_Photo by <a href="https://www.shopify.com/stock-photos/@matthew_henry?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Drone+View+Of+Car+Driving+Through+Forest&amp;utm_medium=referral&amp;utm_source=credit">Matthew Henry</a> from <a href="https://www.shopify.com/stock-photos/api-nature?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Drone+View+Of+Car+Driving+Through+Forest&amp;utm_medium=referral&amp;utm_source=credit">Burst</a>_
 
 We want to grab some meta data, find out who hosts the site and who owns the domain. I once saw a russian company hosting a scam website. 
 
-Some of these Russian web hosting companies are a favorite among criminals who allow them to act with impunity, so if you are unsuccessful with taking down the domain you will want to contact these guys as a last resort. 
+Some of these Russian web hosting companies are a favorite among criminals who allow them to act with impunity, so if you are unsuccessful with taking down the domain, you will want to contact these guys as a last resort. 
 
 You can go to https://who.is/whois/ and enter the domain there.
 
@@ -69,13 +68,53 @@ You will notice the domain is owned by [publicdomainregistry.com](https://public
 
 Sometimes the domain provider does not have a "report abuse" form. In that case if you go to [https://lookup.icann.org/en/lookup](https://lookup.icann.org/en/lookup) and type the domain, you should be able to see the Abuse contact email under the Registrar Information heading. 
 
-Back to the who.is site if you check the Important Dates section that is a clear indicator that the scammer hasn't been in business long as it was used in 2024/8/23.
+Back to the who.is site if you check the Important Dates section, that can be a clear indicator that the scammer hasn't been in business long, as it was used in 2024/8/23.
 
-If you look at the Name Servers, notice most are within Russia. And if you search for the first ip address it will lead to a house in Russia, Pittsburgh. [https://www.iplocation.net/ip-lookup](https://www.iplocation.net/ip-lookup)
+If you look at the Name Servers, notice most are within Russia. And if you find the geo coordinates of the ip address, it will lead to a house in Russia as shown in the title image. For all I know, the scammer may have used a VPN. So this may be the house of some other person. I am definitely not going to dox anyone. But if this is where the scammer lives, the house's horrid state shows that the scammer themselves may be struggling financially. 
+
+Again this is why you need to avoid dealing with these people directly. A struggling dog backed into a corner can still be very dangerous. 
 
 <img src="../images/0001-01-31/Screenshot 2024-09-23 210607.png" class="image fit" alt="Image of who.is meta data."/>
 
 ## Step 3: Inform antivirus sites of your discovery
+
+_<img src="../images/0001-01-31/mysterious-keyhole-light.jpg" class="image fit" alt="Salter, D. (2018). Mysterious Keyhole Light"/>
+Photo by <a href="https://www.shopify.com/stock-photos/@saltyshots">Dave Salter</a> on <a href="https://www.shopify.com/stock-photos">Burst</a>_
+
+You can use [my template](https://gist.github.com/LayersOfAbstraction/aabca490d4cd60f3dfbbadb32690aac6) for this if preferred. Make it as detailed as needed, you can always trim some details in a tailored copy if there are limits. If you are new to this you can use Notepad++ with the dspellcheck plugin, Libre Office, or if you have some money, you can purchase Microsoft 365. 
+
+Before we try to take the domain down, we want to already try to alert the trusted anti-virus entities so the Domain name provider has more of a reason to take the domain offline. Contact the antivirus sites or internet browser companies. I would definitely watch [Joe's youtube video](https://www.youtube.com/watch?v=0fIUiv9-UFk), on who to report first, he should have provided a list on most of the companies. I have added a few others.   
+
+Report to as many as possible. There are likely more that could be included. Try at least 5. _You don't have to do them all!_ If it helps the first 2 are the most important as Google and Microsoft will block the site from their internet browsers.
+
+* [Google SafeBrowsing](https://safebrowsing.google.com/safebrowsing/report_phish/)
+* [Microsoft](https://www.microsoft.com/en-us/wdsi/support/report-unsafe-site)
+* [Virus Total](https://www.virustotal.com/gui/home/upload)
+* [Palo Alto Networks](https://urlfiltering.paloaltonetworks.com/)
+* [McAfee](https://sitelookup.mcafee.com/)
+* [Symantec](https://sitereview.symantec.com/#/) 
+* [Kaspersky](https://opentip.kaspersky.com/) 
+* [Cisco Talos](https://talosintelligence.com/reputation_center) 
+* [Total AV](https://www.totalav.com/submit-file)
+* [Fortiguard](https://www.fortiguard.com/webfilter) 
+* [BrightCloud](https://www.brightcloud.com/tools/url-ip-lookup.php)
+* [CRDF](https://threatcenter.crdf.fr/submit_url.html)
+* [Netcraft](https://report.netcraft.com/report) 
+* [ESET](https://phishing.eset.com/en-us/report)
+* [Trend Micro](https://global.sitesafety.trendmicro.com/index.php)
+* [BitDefender](https://www.bitdefender.com/consumer/support/answer/29358/)
+* [Spam404](https://www.spam404.com/report.html) 
+
+
+## Step 4: Report the domain to the domain name registrar 
+
+I cannot provide specific advise for how to report to each registrar but if you have a email from the scammer, check if you need to include email meta-data header. Be sure not to click any links in the scam email unless you know how to test them in a secure sandbox. If the registrar does want the headers, you can check how to provide them as shown in the 3 most commonly used email clients of which you may be using. 
+
+[Apple Mail](https://support.apple.com/en-au/guide/mail/mlhlp1089/mac#:~:text=Go%20to%20the%20Mail%20app,View%20%3E%20Message%20%3E%20Default%20Headers.)
+[Gmail](https://support.google.com/mail/answer/29436?hl=en)
+[Outlook](https://support.microsoft.com/en-au/office/view-internet-message-headers-in-outlook-cd039382-dc6e-4264-ac74-c048563d212c)
+
+After reporting it will be a waiting game. It took almost two weeks get the scammer domain taken offline for me so I wish you best of luck! Thanks for reading!
 
 ## REFERENCES:
 
