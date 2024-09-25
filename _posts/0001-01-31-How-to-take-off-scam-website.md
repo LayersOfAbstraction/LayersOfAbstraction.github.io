@@ -3,7 +3,7 @@ layout: post
 title: How to legally destroy a scam website
 subtitle: "Striking the Hydra's heart"
 date: "2024-09-22"
-published: false
+#published: false
 ---
 
 ## Introduction
