@@ -3,7 +3,7 @@ layout: post
 title: How to legally destroy a scam website
 subtitle: "Striking the Hydra's heart"
 date: "2024-09-22"
-published: false
+#published: false
 ---
 
 ## Introduction
@@ -26,7 +26,8 @@ This blog was inspired by the Darknet Daries episode [Magecart](https://darknetd
 ## Step 1: Find out what we need to target (DO NOT make this personal!)
 
 _<img src="../images/0001-01-31/medium_1983_1462__0006_.jpg" class="image fit" alt="Computer bombsight type T1, mechanical analogue device, by A C Spark Plug Division"/>
-Photo by <a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer">The Science Museum Group Collection</a> of a computer bombsight type T1<a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer"></a>_
+Photo by <a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer">The Science Museum Group Collection</a> of a computer bombsight type T1<a href="https://collection.sciencemuseumgroup.org.uk/objects/co62556/aircraft-bomb-aiming-mechanical-computer">
+</a>_
 
 The domain name is like the central island of the scammer's website. 
 
