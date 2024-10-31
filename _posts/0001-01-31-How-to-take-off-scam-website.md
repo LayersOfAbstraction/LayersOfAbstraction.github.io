@@ -11,7 +11,9 @@ date: "2024-09-22"
 <img src="../images/0001-01-31/russian_house.png" class="image fit" alt="Russian House"/>
 _Screenshot I took from Google Maps of alleged Russian scammer's house. Address omitted._
 
-In this blog I'm going to take you on my journey to shutting down a scam website and what was involved. By the end of this you should be 
+By the end of this you will understand what your target would be, what information to gather, how to turn major tech companies into your allies and most importantly, who you should report it to in order to shutdown the site. 
+
+WARNING: If you don't know what you are doing, best read the whole blog, thank you.
 
 Long ago my details were taken from a data breach and sold online. This included my DOB, address, email and full name. Since then I have had random scammers phone me by my real name to help build trust. 
 
