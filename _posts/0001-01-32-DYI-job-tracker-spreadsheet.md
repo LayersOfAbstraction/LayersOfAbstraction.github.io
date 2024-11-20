@@ -22,11 +22,11 @@ Automation. Sometimes you want to hyperlink your tailored resume/cover letter fo
 and not have applied for and navigate through less folders to simply do that. 
 You could use a Visual Basic macro but what if you want to do this outside of Excel?
 
-AutoHotkey is the answer. An open source scripting language made with C++. Very easy to implement.
+AutoHotkey is the answer. An open source scripting language made in C++. Very easy to implement.
 As my Software Development teacher once said "if you are repeatedly doing things several times, 
 there is probably a better way to do it."
 
-# What are we learning?
+# What are we learning other than building a job tracker?
 
 In short we are learning:
 
@@ -43,7 +43,8 @@ Well AutoHotkey can listen for that on startup. If you're interested, let's see 
 
 # Create the spreadsheet (optional)
 
-You can skip this if you want to build your own.
+You can skip this if you want to build your own. Else you can just download my template as provided. I am not going to waste your time showing you how to insert
+data in cells. Rather 
 
 ## REFERENCES:
 
