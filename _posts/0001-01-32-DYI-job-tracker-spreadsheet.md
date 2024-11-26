@@ -1,8 +1,8 @@
 ---
 layout: post
 title: DYI job tracker with AutoHotkey macros
-subtitle: "Striking the Hydra's heart"
-date: "2024-09-22"
+subtitle: "DYI job tracker with AutoHotkey macros"
+date: "2024-11-23"
 published: false
 ---
 
@@ -44,7 +44,145 @@ Well AutoHotkey can listen for that on startup. If you're interested, let's see 
 # Create the spreadsheet (optional)
 
 You can skip this if you want to build your own. Else you can just download my template as provided. I am not going to waste your time showing you how to insert
-data in cells. Rather 
+data in cells. Rather you can do this.
+```csv
+Date Applied,Job Title,Company,Job URL,Application Status,Interview Date,Notes,Cover Letter Link,Resume Link,Job Description
+2024-11-20,Software Engineer,Tech Innovators Inc.,https://www.techinnovators.com/jobs/123,Applied,2024-11-27,Researching company details.,https://link.to/coverletter1,https://link.to/resume1,Developing cutting-edge software solutions.
+2024-11-18,Marketing Specialist,Creative Solutions Ltd.,https://www.creativesolutions.com/jobs/456,Interview Scheduled,2024-11-25,Prepare portfolio.,https://link.to/coverletter2,https://link.to/resume2,Creating and executing marketing campaigns.
+2024-11-15,Data Analyst,Data Crunchers Corp.,https://www.datacrunchers.com/jobs/789,Rejected,,Follow-up for feedback.,https://link.to/coverletter3,https://link.to/resume3,Analyzing and interpreting complex data sets.
+```
 
+Unfortunately you would need to then SAVE AS xlsx format if you want to save any changes made in Excel. This is the path where you could store your docs for example. As you will notice it's in OneDrive.
+
+After you have changed the Spreadsheet format to xlsx, you can then click on the whole row by selecting it's reference letter on the left left which should be number 1. Turn on the Autofilter option, (one of Excel's killer features) by going in the Data Tab and then filter, which should allow you to search for the data you need. 
+
+```
+C:\Users\Jordan Nash\OneDrive\Job Tracking Docs
+```
+
+Documents like our cover letter and resume could be hyperlinked from this folder layout under our "Job Tracking Docs".
+
+Job Tracking Docs            
+│
+├─\[Default]
+|                            
+├─Google                     
+│ │                          
+│ ├─Junior Software Developer
+│ └─Senior Software Developer
+│                            
+└─Amazon                     
+  │                          
+  └─Junior Software Developer                         
+
+You will notice we could also have a default folder at the top in square brackets if we are
+applying to multiple jobs and don't have time to tailor each resume. I put it in square brackets 
+so if we have to find it alphabetically, it is easier. 
+
+You will notice I have created my own script to use any shortcuts globally throughout Windows. 
+That's the beauty of AutoHotkey v2. You don't need to renember the shortcuts of different applications.
+Just make your own. Especially useful for job hunting as I notice a lot of companies block 
+autofill on their websites.
+
+```ahk
+#Requires AutoHotkey v2.0
+
+::_jn::Jordan Nash
+::_jnA:: my address
+::_eo:: my outlook email
+::_eg:: my gmail
+::_dob:: my date of birth
+::_mob:: my mobile number
+::_salary:: ;Expected salary for software developer
+
+;Replace unintended text
+::Swift Computers:: DO NOT APPLY
+
+; Current date and time. Optimized for filename automation.
+::_dt::
+{
+    currentDateTime := FormatTime(A_Now, ' yyyy-MM-dd hhmmtt')
+    
+    ; This ensures that result will always be in english even if user's locale is not.
+    currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy-MM-dd hhmmtt')
+
+	Sendinput currentDateTime
+}
+```
+
+So we have created:  
 ## REFERENCES:
 
+<!-- Used C# denotation for the snippet as there is no ahk tag. -->
+```ahk
+#Requires AutoHotkey v2
+logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.txt"
+targetDir := "C:\Users\Jordan Nash\OneDrive\Job Tracking Docs"
+checkInterval := 1000 ; Time in milliseconds between checks (1 second)
+
+try {
+    currentDateTime := FormatTime(A_Now, ' yyyy/MM/dd hh:mmtt')
+    
+    ; This ensures that result will always be in English even if user's locale is not.
+    currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy/MM/dd hh:mmtt')
+    FileAppend("Script started on " currentDateTime "`n", logFile)
+    SetTimer CheckDirectory, checkInterval
+} 
+catch Error as err { 
+    FileAppend("Error: " err.Message "`n", logFile) 
+}
+
+CheckDirectory() {
+    static hwnd := 0
+    static navigated := false ; Declare static variable within the function
+
+    try {
+        ; Find the File Explorer window with the specified title
+        hwnd := WinExist("ahk_class CabinetWClass ahk_exe explorer.exe")
+        if !hwnd {
+            return
+        }
+
+        for window in ComObject("Shell.Application").Windows {
+            if (window.HWND == hwnd) {
+                currentDir := StrReplace(window.LocationURL, "file:///", "")
+                break
+            }
+        }             
+
+        currentDir := StrReplace(currentDir, "%20", " ") ; Decode URL-encoded spaces
+        currentDir := StrReplace(currentDir, "/", "\") ; Convert to backslashes for consistency
+
+        ; Check if the current directory starts with the target directory
+        if (InStr(currentDir, targetDir) = 1) {
+            if (!navigated) {
+                FileAppend("Current directory starts with the target directory" "`n", logFile)
+                subfolders := []
+                Loop Files, currentDir "\*.*", "D"  ; D = directories only
+                {
+                    subfolders.Push(A_LoopFileFullPath)
+                }
+                if (subfolders.Length = 1) {  ; Check if only one subfolder is present
+                    folder := subfolders[1]
+                    ; Navigate to the subfolder within the same window
+                    for window in ComObject("Shell.Application").Windows {
+                        if (window.HWND == hwnd) {
+                            window.Navigate(folder)
+                            break
+                        }
+                    }
+                    FileAppend("Navigated to: " folder "`n", logFile)
+                } else {
+                    FileAppend("Manual navigation required: multiple subfolders found" "`n", logFile)
+                }
+            }
+        } else {
+            ; Reset the navigated flag if the current directory is not within the target directory
+            navigated := false
+            FileAppend("Current directory does not start with the target directory" "`n", logFile)
+        }
+    } catch Error as err { 
+        FileAppend("Error: " err.Message "`n", logFile) 
+    }
+}
+```
