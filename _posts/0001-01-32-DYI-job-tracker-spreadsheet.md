@@ -8,7 +8,7 @@ published: false
 
 ## Introduction
 
-<img src="../images/0001-01-31/russian_house.png" class="image fit" alt="Russian House"/>
+<img src="../images/0001-01-32/woman-7659866_640.jpg" class="image fit" alt="Russian House"/>
 
 Disclaimer: This is only for people using Windows. The frustration of "messing up" in a job search 
 is too real. Often it is probably not your fault. Only you have several you want to apply for in 
@@ -86,7 +86,7 @@ autofill feature on their websites.
 
 # Installation of AHK tools. 
 
-You can add it to your path in your environment variables. Usually would it to "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe".  
+You can add it to your path in your environment variables. Usually would add it to "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe".  
 
 Ensure you also have Visual Studio code installed. Even it's depreciated extensions will make debugging easier. I have used [Mark Wiemer's](https://marketplace.visualstudio.com/items?itemName=mark-wiemer.vscode-autohotkey-plus-plus) extension so I can set breakpoints to know how my code executes upon compilation, where I screwed up and why.
 
@@ -96,7 +96,7 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 ::_jn::Jordan Nash
 ::_jnA:: my address
 ::_eo:: my outlook email
-::_eg:: my gmailq
+::_eg:: my gmail
 ::_dob:: my date of birth
 ::_mob:: my mobile number
 ::_salary:: ;Expected salary for software developer
@@ -116,7 +116,7 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 }
 ```
 
-You can already use the 
+You can already use _dt to output the automatic naming convention. 
 ## REFERENCES:
 
 <!-- Used C# denotation for the snippet as there is no ahk tag. -->
@@ -192,3 +192,4 @@ CheckDirectory() {
     }
 }
 ```
+
