@@ -96,7 +96,7 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 ::_jn::Jordan Nash
 ::_jnA:: my address
 ::_eo:: my outlook email
-::_eg:: my gmail
+::_eg:: my gmailq
 ::_dob:: my date of birth
 ::_mob:: my mobile number
 ::_salary:: ;Expected salary for software developer
