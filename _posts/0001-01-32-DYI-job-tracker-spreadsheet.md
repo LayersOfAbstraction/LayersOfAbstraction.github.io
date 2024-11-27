@@ -81,8 +81,14 @@ so if we have to find it alphabetically, it is easier.
 
 You will notice I have created my own script to use any shortcuts globally throughout Windows. 
 That's the beauty of AutoHotkey v2. You don't need to renember the shortcuts of different applications.
-Just make your own. Especially useful for job hunting as I notice a lot of companies block 
-autofill on their websites.
+Just make your own. Especially useful for job hunting as I notice a lot of companies block the browser's 
+autofill feature on their websites.
+
+# Installation of AHK tools. 
+
+You can add it to your path in your environment variables. Usually would it to "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe".  
+
+Ensure you also have Visual Studio code installed. Even it's depreciated extensions will make debugging easier. I have used [Mark Wiemer's](https://marketplace.visualstudio.com/items?itemName=mark-wiemer.vscode-autohotkey-plus-plus) extension so I can set breakpoints to know how my code executes upon compilation, where I screwed up and why.
 
 ```ahk
 #Requires AutoHotkey v2.0
@@ -110,7 +116,7 @@ autofill on their websites.
 }
 ```
 
-So we have created:  
+You can already use the 
 ## REFERENCES:
 
 <!-- Used C# denotation for the snippet as there is no ahk tag. -->
