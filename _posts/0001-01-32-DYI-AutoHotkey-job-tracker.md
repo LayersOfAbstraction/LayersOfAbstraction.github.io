@@ -101,9 +101,6 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 ::_mob:: my mobile number
 ::_salary:: ;Expected salary for software developer
 
-;Replace unintended text
-::Swift Computers:: DO NOT APPLY
-
 ; Current date and time. Optimized for filename automation.
 ::_dt::
 {
@@ -134,7 +131,29 @@ logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.
 targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
 ```
 
-As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for   
+# Implement error handling.
+
+As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for. First thing is first, error catching, so we can log it and see
+incremental changes to the bugs in our code.
+
+```ahk
+try
+{
+   currentDateTime := FormatTime(A_Now, ' yyyy/MM/dd hh:mmtt')
+    
+    ; This ensures that result will always be in English even if user's locale is not.
+    currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy/MM/dd hh:mmtt')
+    FileAppend("Script started on " currentDateTime "`n", logFile)
+}
+
+catch Error as err { 
+    FileAppend("Error: " err.Message "`n", logFile) 
+}
+```
+
+The code in our try block is similar to our _dt function. If you wanted to you could inherit the 
+_dt function from our previous script as AHK supports the Object Orientated paradigm. 
+Which means it's reusable.
 
 ## REFERENCES:
 
@@ -211,4 +230,3 @@ CheckDirectory() {
     }
 }
 ```
-
