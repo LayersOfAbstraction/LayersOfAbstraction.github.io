@@ -116,7 +116,26 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 }
 ```
 
-You can already use _dt to output the automatic naming convention. 
+Ensure you rename the values where applicable. You should be able to run the script with CTRL + F9.
+
+## Create new script to skip company folder
+
+This is to automate some actions in our directory that skips to the single job folder that exists in the company folder. 
+Say our current folder is "Amazon" and it's subfolder is "Junior Software Developer". In that case AutoHotkey can auto select that "Junior Software Developer" folder and
+navigate there in the file explorer.  
+
+For now create the following file. SkipCompanyFolder.ahk. 
+
+We will start with the following lines:
+
+```ahk
+#Requires AutoHotkey v2
+logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.txt"
+targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
+```
+
+As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for   
+
 ## REFERENCES:
 
 <!-- Used C# denotation for the snippet as there is no ahk tag. -->
