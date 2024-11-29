@@ -133,8 +133,7 @@ targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
 
 # Implement error handling.
 
-As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for. First thing is first, error catching, so we can log it and see
-incremental changes to the bugs in our code.
+As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for. First thing first, error catching. We can log our bugs and see incremental changes to them in our code and if the output is successful. 
 
 ```ahk
 try
@@ -154,6 +153,20 @@ catch Error as err {
 The code in our try block is similar to our _dt function. If you wanted to you could inherit the 
 _dt function from our previous script as AHK supports the Object Orientated paradigm. 
 Which means it's reusable.
+
+But we won't go into that.
+
+We want to continue the script.
+
+# Create method to check our directory:
+
+We want to check our current directory with creating this initial method body. This shouldn't negatively effect our method body.
+
+```ahk
+CheckDirectory() {
+    static hwnd := 0
+    static navigated := false ; Declare static variable within the function
+```
 
 ## REFERENCES:
 
