@@ -62,6 +62,7 @@ C:\Users\Jordan Nash\OneDrive\Job Tracking Docs
 
 Documents like our cover letter and resume could be hyperlinked from this folder layout under our "Job Tracking Docs".
 
+```
 Job Tracking Docs            
 │
 ├─\[Default]
@@ -74,6 +75,7 @@ Job Tracking Docs
 └─Amazon                     
   │                          
   └─Junior Software Developer                         
+```
 
 You will notice we could also have a default folder at the top in square brackets if we are
 applying to multiple jobs and don't have time to tailor each resume. I put it in square brackets 
@@ -82,7 +84,7 @@ so if we have to find it alphabetically, it is easier.
 You will notice I have created my own script to use any shortcuts globally throughout Windows. 
 That's the beauty of AutoHotkey v2. You don't need to renember the shortcuts of different applications.
 Just make your own. Especially useful for job hunting as I notice a lot of companies block the browser's 
-autofill feature on their websites.
+autofill feature on their websites in such a way that turning autofill off in the developer console doesn't alway work.
 
 # Installation of AHK tools. 
 
@@ -167,6 +169,8 @@ CheckDirectory() {
     static hwnd := 0
     static navigated := false ; Declare static variable within the function
 ```
+
+
 
 ## REFERENCES:
 
