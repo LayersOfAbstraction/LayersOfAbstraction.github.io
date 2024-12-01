@@ -26,7 +26,7 @@ AutoHotkey is the answer. An open source scripting language made in C++. Very ea
 As my Software Development teacher once said "if you are repeatedly doing things several times, 
 there is probably a better way to do it."
 
-# What are we learning other than building a job tracker?
+## What are we learning other than building a job tracker?
 
 In short we are learning:
 
@@ -41,7 +41,7 @@ that folder to make changes. Wouldn't be good if we could make one less click.
 So rather than navigating into Google and then it's only subfolder "Staff Software Engineer" what if it just opens it up automatically?
 Well AutoHotkey can listen for that on startup. If you're interested, let's see how.
 
-# Create the spreadsheet (optional)
+## Create the spreadsheet (optional)
 
 You can skip this if you want to build your own. Else you can just download my template as provided. I am not going to waste your time showing you how to insert
 data in cells. Rather you can do this.
@@ -82,11 +82,13 @@ applying to multiple jobs and don't have time to tailor each resume. I put it in
 so if we have to find it alphabetically, it is easier. 
 
 You will notice I have created my own script to use any shortcuts globally throughout Windows. 
-That's the beauty of AutoHotkey v2. You don't need to renember the shortcuts of different applications.
-Just make your own. Especially useful for job hunting as I notice a lot of companies block the browser's 
+That's the beauty of AutoHotkey v2. 
+
+You don't need to remember the shortcuts of different applications.
+Just make your own. Especially useful for job hunting as I notice some companies block the browser's 
 autofill feature on their websites in such a way that turning autofill off in the developer console doesn't alway work.
 
-# Installation of AHK tools. 
+## Installation of AHK tools. 
 
 You can add it to your path in your environment variables. Usually would add it to "C:\Program Files\AutoHotkey\v2\AutoHotkey64.exe".  
 
@@ -133,7 +135,7 @@ logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.
 targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
 ```
 
-# Implement error handling.
+## Implement error handling.
 
 As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for. First thing first, error catching. We can log our bugs and see incremental changes to them in our code and if the output is successful. 
 
@@ -160,9 +162,7 @@ But we won't go into that.
 
 We want to continue the script.
 
-# Create method to check our directory:
-
-We want to check our current directory with creating this initial method body. This shouldn't negatively effect our method body.
+## Create method to check our directory:
 
 ```ahk
 CheckDirectory() {
@@ -170,9 +170,17 @@ CheckDirectory() {
     static navigated := false ; Declare static variable within the function
 ```
 
+The two variables set the WindowsTitle to 0 and navigated is a flag to tell our program if we navigated to our target directory.
 
+To give more context, in Windows 11, `ahk_id HWND` is each window with a unique ID. The ID can be used to keep track of the specific window even if it's text or title were to change. But the ID is not unique to each individual program or window. It helps us identify the type of window. 
+
+Wether it is the ID of the Windows File Explorer or Firefox. Do not confuse it with ahk_pid which is 
+the process id.
 
 ## REFERENCES:
+
+Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
+Available at: https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id \[Accessed 1 Dec. 2024].
 
 <!-- Used C# denotation for the snippet as there is no ahk tag. -->
 ```ahk
