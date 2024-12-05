@@ -8,7 +8,7 @@ published: false
 
 ## Introduction
 
-<img src="../images/0001-01-32/woman-7659866_640.jpg" class="image fit" alt="Russian House"/>
+<img src="../images/0001-01-32/woman-7659866_640.jpg" class="image fit" alt="Woman with working on flowers"/>
 
 Disclaimer: This is only for people using Windows. The frustration of "messing up" in a job search 
 is too real. Often it is probably not your fault. Only you have several you want to apply for in 
@@ -62,6 +62,7 @@ C:\Users\Jordan Nash\OneDrive\Job Tracking Docs
 
 Documents like our cover letter and resume could be hyperlinked from this folder layout under our "Job Tracking Docs".
 
+<img src="../images/0001-01-32/woman-7659866_640.jpg" class="image fit" alt="Russian House"/>
 ```
 Job Tracking Docs            
 │
@@ -172,17 +173,44 @@ CheckDirectory() {
 
 The two variables set the WindowsTitle to 0 and navigated is a flag to tell our program if we navigated to our target directory.
 
-To give more context, in Windows 11, `ahk_id HWND` is each window with a unique ID. The ID can be used to keep track of the specific window even if it's text or title were to change. But the ID is not unique to each individual program or window. It helps us identify the type of window. 
+To give more context, in Windows 11, `ahk_id HWND` is each window with a unique ID. The ID can be used to keep track of the specific window even if it's text or title were to change. But the ID is not unique to each individual program or window. 
 
-Wether it is the ID of the Windows File Explorer or Firefox. Do not confuse it with ahk_pid which is 
-the process id.
+It helps us identify the type of window wether it is the ID of the Windows File Explorer or Firefox. Do not confuse it with ahk_pid which is the process id.
+
+If this is starting to feel very confusing and abstract, do not worry! It will make a lot more sense when you see how Windows Spy works, an amazing AHK tool which comes packaged with the programming language. 
+
+Shows the backend values of the currently selected window. Stops us from having to figure out what is the identification value of the selected file explorer window that we need to search for.
+
+<img src="../images/0001-01-32/WindowsSpyValues.png" class="image fit" alt="Russian House"/>
+
+So I have used my mouse to select
+
+```ahk
+    try 
+    {
+        ; Find the File Explorer window with the specified title
+        hwnd := WinExist("ahk_class CabinetWClass ahk_exe explorer.exe")
+        if !hwnd {
+            return
+        }
+        
+        for window in ComObject("Shell.Application").Windows {
+            if (window.HWND == hwnd) {
+                currentDir := StrReplace(window.LocationURL, "file:///", "")
+                break
+            }
+        }             
+```
+
+So we are going through a process of elimination. Making sure the Windows Spy values match up. So for the Windows Explorer we can help ensure we choose the right objects where object could be ahkclass and it's value could be CabinetWClass.
+
+
 
 ## REFERENCES:
 
 Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
 Available at: https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id \[Accessed 1 Dec. 2024].
 
-<!-- Used C# denotation for the snippet as there is no ahk tag. -->
 ```ahk
 #Requires AutoHotkey v2
 logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.txt"
@@ -206,12 +234,6 @@ CheckDirectory() {
     static navigated := false ; Declare static variable within the function
 
     try {
-        ; Find the File Explorer window with the specified title
-        hwnd := WinExist("ahk_class CabinetWClass ahk_exe explorer.exe")
-        if !hwnd {
-            return
-        }
-
         for window in ComObject("Shell.Application").Windows {
             if (window.HWND == hwnd) {
                 currentDir := StrReplace(window.LocationURL, "file:///", "")
