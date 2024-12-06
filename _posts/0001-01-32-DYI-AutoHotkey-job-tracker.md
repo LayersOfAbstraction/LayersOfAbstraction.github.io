@@ -183,7 +183,8 @@ Shows the backend values of the currently selected window. Stops us from having 
 
 <img src="../images/0001-01-32/WindowsSpyValues.png" class="image fit" alt="Russian House"/>
 
-So I have used my mouse to select
+So I have used my mouse to select the file explorer and made sure I am in the target path and that the window is in focus so that I
+can grab all the info needed to id it.
 
 ```ahk
     try 
@@ -204,8 +205,26 @@ So I have used my mouse to select
 
 So we are going through a process of elimination. Making sure the Windows Spy values match up. So for the Windows Explorer we can help ensure we choose the right objects where object could be ahkclass and it's value could be CabinetWClass.
 
+c
 
+Wre checked we are getting the correct object which is the File Explorer.
 
+Now all that is required is to ensure it is scanning for when we have selected the target path and that it matches our currently selected folder in the File Explorer.
+
+```ahk
+; Check if the current directory starts with the target directory
+        if (InStr(currentDir, targetDir) = 1) {
+            if (!navigated) {
+                FileAppend("Current directory starts with the target directory" "`n", logFile)
+                subfolders := []
+                Loop Files, currentDir "\*.*", "D"  ; D = directories only
+                {
+                    subfolders.Push(A_LoopFileFullPath)
+                }
+```
+
+I will not explain what the first line is doing. The second line will check that we are not in the target directory anymore and have 
+navigated to one of the subdirectories.
 ## REFERENCES:
 
 Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
