@@ -140,6 +140,8 @@ targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
 
 As you can see this is where I have decided to declare the log file and directory where AutoHotkey will scan for. First thing first, error catching. We can log our bugs and see incremental changes to them in our code and if the output is successful. 
 
+## Process the File Explore's selected paths.
+
 ```ahk
 try
 {
@@ -205,7 +207,7 @@ can grab all the info needed to id it.
 
 So we are going through a process of elimination. Making sure the Windows Spy values match up. So for the Windows Explorer we can help ensure we choose the right objects where object could be ahkclass and it's value could be CabinetWClass.
 
-c
+## Process the File Explore's selected paths.
 
 Wre checked we are getting the correct object which is the File Explorer.
 
