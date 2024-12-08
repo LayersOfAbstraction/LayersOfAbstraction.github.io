@@ -108,9 +108,7 @@ Ensure you also have Visual Studio code installed. Even it's depreciated extensi
 
 ; Current date and time. Optimized for filename automation.
 ::_dt::
-{
-    currentDateTime := FormatTime(A_Now, ' yyyy-MM-dd hhmmtt')
-    
+{    
     ; This ensures that result will always be in english even if user's locale is not.
     currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy-MM-dd hhmmtt')
 
@@ -132,7 +130,7 @@ We will start with the following lines:
 
 ```ahk
 #Requires AutoHotkey v2
-logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.txt"
+_logFile := "SkipCompanyFolder_logFile.txt"
 targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
 ```
 
@@ -170,10 +168,9 @@ We want to continue the script.
 ```ahk
 CheckDirectory() {
     static hwnd := 0
-    static navigated := false ; Declare static variable within the function
 ```
 
-The two variables set the WindowsTitle to 0 and navigated is a flag to tell our program if we navigated to our target directory.
+In here we set the WindowsTitle to 0.
 
 To give more context, in Windows 11, `ahk_id HWND` is each window with a unique ID. The ID can be used to keep track of the specific window even if it's text or title were to change. But the ID is not unique to each individual program or window. 
 
@@ -207,7 +204,7 @@ can grab all the info needed to id it.
 
 So we are going through a process of elimination. Making sure the Windows Spy values match up. So for the Windows Explorer we can help ensure we choose the right objects where object could be ahkclass and it's value could be CabinetWClass.
 
-## Process the File Explore's selected paths.
+## Find the File Explore's in focus path.
 
 Wre checked we are getting the correct object which is the File Explorer.
 
@@ -215,18 +212,30 @@ Now all that is required is to ensure it is scanning for when we have selected t
 
 ```ahk
 ; Check if the current directory starts with the target directory
-        if (InStr(currentDir, targetDir) = 1) {
-            if (!navigated) {
-                FileAppend("Current directory starts with the target directory" "`n", logFile)
-                subfolders := []
-                Loop Files, currentDir "\*.*", "D"  ; D = directories only
-                {
-                    subfolders.Push(A_LoopFileFullPath)
-                }
+if (InStr(currentDir, targetDir) = 1) {
+    FileAppend("Current directory starts with the target directory" _currentDateTime "`n", _logFile)           
+    subfolders := []
+    Loop Files, currentDir "\*.*", "D"  ; D = directories only
+    {
+        subfolders.Push(A_LoopFileFullPath)
+    }
 ```
 
-I will not explain what the first line is doing. The second line will check that we are not in the target directory anymore and have 
-navigated to one of the subdirectories.
+I will not explain what the first line is doing. If the current directory does contain our target, we will log that to our log file.
+Next we are creating an empty array and are using the Loop Files command to [retrieve a list directories.](https://www.autohotkey.com/docs/v2/lib/LoopFiles.htm) inside our current directory. We are doing by:
+
+- Using a blank wild card pattern to search our subfolder via the FilePattern: "\*.*"
+- Specifying the D parameter allows our wild card FilePattern to scan our whole directory specifically for folders only.
+
+The loop body command will check every absolute path in our current directory until it has found the one that matches the in focus directory and then write that to our empty subfolder array with the string method.
+
+## Process the in focus path.
+
+Now that the program has found the in focus directory, we need to know a few things:
+
+- Who and what: Is there more than one child folder in our subfolder array?
+- Where and why: Per each scanned folder in our path. 
+
 ## REFERENCES:
 
 Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
@@ -234,27 +243,30 @@ Available at: https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id \[Acce
 
 ```ahk
 #Requires AutoHotkey v2
-logFile := "E:\Work\ProgrammingExperiments\AutoHotKey\SkipCompanyFolder_logFile.txt"
+_logFile := "SkipCompanyFolder_logFile.txt"
 targetDir := "C:\Users\Jordan Nash\OneDrive\Job Tracking Docs"
 checkInterval := 1000 ; Time in milliseconds between checks (1 second)
 
-try {
-    currentDateTime := FormatTime(A_Now, ' yyyy/MM/dd hh:mmtt')
-    
+try {    
     ; This ensures that result will always be in English even if user's locale is not.
-    currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy/MM/dd hh:mmtt')
-    FileAppend("Script started on " currentDateTime "`n", logFile)
+    _currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy/MM/dd hh:mmtt')
+    FileAppend("Script started" _currentDateTime "`n", _logFile)
     SetTimer CheckDirectory, checkInterval
 } 
 catch Error as err { 
-    FileAppend("Error: " err.Message "`n", logFile) 
+    FileAppend("Error: " err.Message "`n", _logFile) 
 }
 
 CheckDirectory() {
     static hwnd := 0
-    static navigated := false ; Declare static variable within the function
 
     try {
+        ; Find the File Explorer window with the specified title
+        hwnd := WinExist("ahk_class CabinetWClass ahk_exe explorer.exe")
+        if !hwnd {
+            return
+        }
+
         for window in ComObject("Shell.Application").Windows {
             if (window.HWND == hwnd) {
                 currentDir := StrReplace(window.LocationURL, "file:///", "")
@@ -266,35 +278,36 @@ CheckDirectory() {
         currentDir := StrReplace(currentDir, "/", "\") ; Convert to backslashes for consistency
 
         ; Check if the current directory starts with the target directory
-        if (InStr(currentDir, targetDir) = 1) {
-            if (!navigated) {
-                FileAppend("Current directory starts with the target directory" "`n", logFile)
-                subfolders := []
-                Loop Files, currentDir "\*.*", "D"  ; D = directories only
-                {
-                    subfolders.Push(A_LoopFileFullPath)
-                }
-                if (subfolders.Length = 1) {  ; Check if only one subfolder is present
-                    folder := subfolders[1]
-                    ; Navigate to the subfolder within the same window
-                    for window in ComObject("Shell.Application").Windows {
-                        if (window.HWND == hwnd) {
-                            window.Navigate(folder)
-                            break
-                        }
-                    }
-                    FileAppend("Navigated to: " folder "`n", logFile)
-                } else {
-                    FileAppend("Manual navigation required: multiple subfolders found" "`n", logFile)
-                }
+        if (InStr(currentDir, targetDir) = 1) 
+        {
+            FileAppend("Current directory starts with the target directory" _currentDateTime "`n", _logFile)                
+            subfolders := []
+            Loop Files, currentDir "\*.*", "D"  ; D = directories only
+            {
+                subfolders.Push(A_LoopFileFullPath) 
             }
-        } else {
-            ; Reset the navigated flag if the current directory is not within the target directory
-            navigated := false
-            FileAppend("Current directory does not start with the target directory" "`n", logFile)
+            if (subfolders.Length = 1) {  ; Check if only one subfolder is present
+                folder := subfolders[1]
+                ; Navigate to the subfolder within the same window
+                for window in ComObject("Shell.Application").Windows {
+                    if (window.HWND == hwnd) {
+                        window.Navigate(folder)
+                        break
+                    }
+                }
+                FileAppend("Navigated to: " folder " " _currentDateTime "`n", _logFile)
+            } 
+            else {
+                FileAppend("Manual navigation required: multiple subfolders found" _currentDateTime "`n", _logFile)                              
+            }            
+        } 
+        else
+        {
+            FileAppend("Current directory does not start with target directory" _currentDateTime "`n", _logFile)
         }
+
     } catch Error as err { 
-        FileAppend("Error: " err.Message "`n", logFile) 
+        FileAppend("Error: " err.Message " " _currentDateTime "`n", _logFile) 
     }
 }
 ```
