@@ -227,14 +227,39 @@ Next we are creating an empty array and are using the Loop Files command to [ret
 - Using a blank wild card pattern to search our subfolder via the FilePattern: "\*.*"
 - Specifying the D parameter allows our wild card FilePattern to scan our whole directory specifically for folders only.
 
-The loop body command will check every absolute path in our current directory until it has found the one that matches the in focus directory and then write that to our empty subfolder array with the string method.
+The loop body command will check every absolute path only in our current directory until it has found 
+the one that matches the in focus directory and then write that to our empty subfolder array with the 
+string method ["Push(...)".](https://www.autohotkey.com/docs/v2/lib/Array.htm#Push) 
 
 ## Process the in focus path.
 
-Now that the program has found the in focus directory, we need to know a few things:
+We have sorted out a lot of the How. Now that the program has found the in focus directory, we need to know a few things:
 
 - Who and what: Is there more than one child folder in our subfolder array?
-- Where and why: Per each scanned folder in our path. 
+- Where and why: Where are we redirecting the user to, and why is it feasible? 
+
+Let's see why.
+
+```ahk
+if (subfolders.Length = 1) {  ; Check if only one subfolder is present
+    folder := subfolders[1]
+    ; Navigate to the subfolder within the same window
+    for window in ComObject("Shell.Application").Windows {
+        if (window.HWND == hwnd) {
+            window.Navigate(folder)
+            break
+        }
+    }
+    FileAppend("Navigated to: " folder " " _currentDateTime "`n", _logFile)
+} 
+else {
+    FileAppend("Manual navigation required: multiple subfolders found" _currentDateTime "`n", _logFile)                              
+}   
+```
+
+The first if statement should be self explanatory. The others show that we are only assigning one extra folder to our redirect folder.
+Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user
+who is job hunting from jumping back and forth through folder paths.
 
 ## REFERENCES:
 
