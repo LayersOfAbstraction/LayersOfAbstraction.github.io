@@ -257,9 +257,14 @@ else {
 }   
 ```
 
-The first if statement should be self explanatory. The others show that we are only assigning one extra folder to our redirect folder.
+The first if statement should be self explanatory. The others show that we are only assigning the one subfolder found  to our path.
 Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user
 who is job hunting from jumping back and forth through folder paths.
+
+Else of course the else statment will output something like:
+```
+Manual navigation required: multiple subfolders found 2024/12/07 05:17PM
+```
 
 ## REFERENCES:
 
