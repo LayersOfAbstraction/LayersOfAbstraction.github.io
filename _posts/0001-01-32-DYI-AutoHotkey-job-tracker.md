@@ -254,17 +254,37 @@ if (subfolders.Length = 1) {  ; Check if only one subfolder is present
 } 
 else {
     FileAppend("Manual navigation required: multiple subfolders found" _currentDateTime "`n", _logFile)                              
-}   
+}
 ```
 
 The first if statement should be self explanatory. The others show that we are only assigning the one subfolder found  to our path.
 Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user
 who is job hunting from jumping back and forth through folder paths.
 
-Else of course the else statment will output something like:
+Else of course the else statement will output something like:
 ```
 Manual navigation required: multiple subfolders found 2024/12/07 05:17PM
 ```
+
+You can also see this reflected in the log file we made. 
+
+## Debugging any problems
+
+Things should work so far as long as you are in the targetPath that was created initially.
+You will notice we are prepared that the expected conditions may fail such as the fact that no targetPath is not in the File Explorer at all. 
+
+```ahk
+        else
+        {
+            FileAppend("Current directory does not start with target directory" _currentDateTime "`n", _logFile)
+        }
+
+    } catch Error as err { 
+        FileAppend("Error: " err.Message " " _currentDateTime "`n", _logFile) 
+    }
+}
+```
+
 
 ## REFERENCES:
 
