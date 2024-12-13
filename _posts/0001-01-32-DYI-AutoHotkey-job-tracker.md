@@ -241,30 +241,79 @@ We have sorted out a lot of the How. Now that the program has found the in focus
 Let's see why.
 
 ```ahk
-if (subfolders.Length = 1) {  ; Check if only one subfolder is present
-    folder := subfolders[1]
-    ; Navigate to the subfolder within the same window
-    for window in ComObject("Shell.Application").Windows {
-        if (window.HWND == hwnd) {
-            window.Navigate(folder)
-            break
+    if (subfolders.Length = 1) {  ; Check if only one subfolder is present
+        folder := subfolders[1]
+        ; Navigate to the subfolder within the same window
+    `    for window in ComObject("Shell.Application").Windows {
+            if (window.HWND == hwnd) {
+                window.Navigate(folder)
+                break
+            }
         }
-    }
-    FileAppend("Navigated to: " folder " " _currentDateTime "`n", _logFile)
-} 
-else {
-    FileAppend("Manual navigation required: multiple subfolders found" _currentDateTime "`n", _logFile)                              
-}   
+        FileAppend("Navigated to: " folder " " _currentDateTime "`n", _logFile)
+    } 
+    else {
+        FileAppend("Manual navigation required: multiple subfolders found" _currentDateTime "`n", _logFile)                              
+    }   
+};End of first IF in IF nest.
 ```
 
 The first if statement should be self explanatory. The others show that we are only assigning the one subfolder found  to our path.
-Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user
-who is job hunting from jumping back and forth through folder paths.
+Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user who is job hunting from jumping back and forth through folder paths.
 
 Else of course the else statment will output something like:
 ```
 Manual navigation required: multiple subfolders found 2024/12/07 05:17PM
 ```
+
+You will also notice we can see the output of this in our log file which will help us see a record of our debugging and in realtime.
+
+## Debugging techniques used:
+
+We just have one else and catch statment and our program is complete. 
+
+```ahk
+        else
+        {
+            FileAppend("Current directory does not start with target directory" _currentDateTime "`n", _logFile)
+        }
+
+    } catch Error as err { 
+        FileAppend("Error: " err.Message " " _currentDateTime "`n", _logFile) 
+    }
+};End off CheckDirectory()
+```
+
+It's preety basic. If we are not in the target directory then our else statement would advise us and log the problem to the a a log file to see with the date and time. If we had a bug in either of our statements for example, a genric AHKv2 error would be thrown and caught by the catch statement, diriving from the Error object [which are thrown by built-in code when a runtime error occurs, and may also be thrown explicitly by the script](https://www.autohotkey.com/docs/v2/lib/Error.htm).  
+
+So for example this could be the generic error thrown to our log file by the Error object.
+
+```
+Error: Divide by zero.
+```
+
+So you cannot divide by 0. Let's make make up some code that will break when we press the F12 key.
+
+```ahk
+result := 1 / 0
+```
+
+Now let's put it in the first try statement we made.
+
+```ahk
+try {    
+    ; Intentional runtime error
+    result := 1 / 0
+    ; This ensures that result will always be in English even if user's locale is not.
+    _currentDateTime := FormatTime(A_Now . ' L0x809', ' yyyy/MM/dd hh:mmtt')
+    FileAppend("Script started" _currentDateTime "`n", _logFile)
+    SetTimer CheckDirectory, checkInterval
+} 
+```
+
+But how can we make a proven asumption that the broken code was responsible for our program breaking?
+
+Breakpoints. Breakpoints are what break the problem down instead of us mearly staring at it in frustration.
 
 ## REFERENCES:
 
