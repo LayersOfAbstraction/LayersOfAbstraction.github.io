@@ -62,11 +62,10 @@ C:\Users\Jordan Nash\OneDrive\Job Tracking Docs
 
 Documents like our cover letter and resume could be hyperlinked from this folder layout under our "Job Tracking Docs".
 
-<img src="../images/0001-01-32/woman-7659866_640.jpg" class="image fit" alt="Russian House"/>
 ```
 Job Tracking Docs            
 │
-├─\[Default]
+├─[Default]
 |                            
 ├─Google                     
 │ │                          
@@ -284,7 +283,7 @@ We just have one else and catch statment and our program is complete.
 };End off CheckDirectory()
 ```
 
-It's preety basic. If we are not in the target directory then our else statement would advise us and log the problem to the a a log file to see with the date and time. If we had a bug in either of our statements for example, a genric AHKv2 error would be thrown and caught by the catch statement, diriving from the Error object [which are thrown by built-in code when a runtime error occurs, and may also be thrown explicitly by the script](https://www.autohotkey.com/docs/v2/lib/Error.htm).  
+It's preety basic. If we are not in the target directory then our else statement would advise us and log the problem to the log file to see with the date and time. If we had a bug in either of our statements for example, a genric AHKv2 error would be thrown and caught by the catch statement, diriving from the Error object [which are thrown by built-in code when a runtime error occurs, and may also be thrown explicitly by the script](https://www.autohotkey.com/docs/v2/lib/Error.htm).  
 
 So for example this could be the generic error thrown to our log file by the Error object.
 
@@ -311,9 +310,11 @@ try {
 } 
 ```
 
-But how can we make a proven asumption that the broken code was responsible for our program breaking?
+But how can we make a proven asumption that the particular line was responsible for our program breaking? What if there's thounds of lines to go through?
 
 Breakpoints. Breakpoints are what break the problem down instead of us mearly staring at it in frustration.
+
+<iframe width="420" height="315" src="https://youtu.be/oS261hvfsXE" frameborder="0" allowfullscreen></iframe>
 
 ## REFERENCES:
 
