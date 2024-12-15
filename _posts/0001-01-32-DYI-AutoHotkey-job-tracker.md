@@ -3,7 +3,7 @@ layout: post
 title: DYI job tracker with AutoHotkey macros
 subtitle: "DYI job tracker with AutoHotkey macros"
 date: "2024-11-23"
-published: false
+#published: false
 ---
 
 ## Introduction
@@ -62,7 +62,7 @@ C:\Users\Jordan Nash\OneDrive\Job Tracking Docs
 
 Documents like our cover letter and resume could be hyperlinked from this folder layout under our "Job Tracking Docs".
 
-```
+```txt
 Job Tracking Docs            
 │
 ├─[Default]
@@ -94,7 +94,7 @@ You can add it to your path in your environment variables. Usually would add it 
 
 Ensure you also have Visual Studio code installed. Even it's depreciated extensions will make debugging easier. I have used [Mark Wiemer's](https://marketplace.visualstudio.com/items?itemName=mark-wiemer.vscode-autohotkey-plus-plus) extension so I can set breakpoints to know how my code executes upon compilation, where I screwed up and why.
 
-```ahk
+```txt
 #Requires AutoHotkey v2.0
 
 ::_jn::Jordan Nash
@@ -127,7 +127,7 @@ For now create the following file. SkipCompanyFolder.ahk.
 
 We will start with the following lines:
 
-```ahk
+```txt
 #Requires AutoHotkey v2
 _logFile := "SkipCompanyFolder_logFile.txt"
 targetDir := "C:\Users\<Username>\OneDrive\Documents\Job Tracking Docs"
@@ -139,7 +139,7 @@ As you can see this is where I have decided to declare the log file and director
 
 ## Process the File Explore's selected paths.
 
-```ahk
+```txt
 try
 {
    currentDateTime := FormatTime(A_Now, ' yyyy/MM/dd hh:mmtt')
@@ -164,7 +164,7 @@ We want to continue the script.
 
 ## Create method to check our directory:
 
-```ahk
+```txt
 CheckDirectory() {
     static hwnd := 0
 ```
@@ -179,12 +179,12 @@ If this is starting to feel very confusing and abstract, do not worry! It will m
 
 Shows the backend values of the currently selected window. Stops us from having to figure out what is the identification value of the selected file explorer window that we need to search for.
 
-<img src="../images/0001-01-32/WindowsSpyValues.png" class="image fit" alt="Russian House"/>
+<img src="../images/0001-01-32/WindowsSpyValues.png" class="image fit" alt="Windows spy values"/>
 
 So I have used my mouse to select the file explorer and made sure I am in the target path and that the window is in focus so that I
 can grab all the info needed to id it.
 
-```ahk
+```txt
     try 
     {
         ; Find the File Explorer window with the specified title
@@ -203,13 +203,22 @@ can grab all the info needed to id it.
 
 So we are going through a process of elimination. Making sure the Windows Spy values match up. So for the Windows Explorer we can help ensure we choose the right objects where object could be ahkclass and it's value could be CabinetWClass.
 
+You will notice we used StrReplace to ommitt the generic "file:///" which is generated  at runtime. We also have to do a bit more work there. The generic runtime file path is URL-encoded with forward slashes instead off back slashes so Windows won't recognize that. It will also output %20 characters. 
+
+The code below will clean up our in focus file path before AHKv2 attempts the process it so as to avoid errors.
+
+```txt
+        currentDir := StrReplace(currentDir, "%20", " ") ; Decode URL-encoded spaces
+        currentDir := StrReplace(currentDir, "/", "\") ; Convert to backslashes for consistency
+```
+
 ## Find the File Explore's in focus path.
 
 Wre checked we are getting the correct object which is the File Explorer.
 
 Now all that is required is to ensure it is scanning for when we have selected the target path and that it matches our currently selected folder in the File Explorer.
 
-```ahk
+```txt
 ; Check if the current directory starts with the target directory
 if (InStr(currentDir, targetDir) = 1) {
     FileAppend("Current directory starts with the target directory" _currentDateTime "`n", _logFile)           
@@ -239,7 +248,7 @@ We have sorted out a lot of the How. Now that the program has found the in focus
 
 Let's see why.
 
-```ahk
+```txt
     if (subfolders.Length = 1) {  ; Check if only one subfolder is present
         folder := subfolders[1]
         ; Navigate to the subfolder within the same window
@@ -261,7 +270,7 @@ The first if statement should be self explanatory. The others show that we are o
 Again we are checking to ensure the in focus window will navigate to the next path if the ahk id is the same. Again this saves the user who is job hunting from jumping back and forth through folder paths.
 
 Else of course the else statement will output something like:
-```
+```txt
 Manual navigation required: multiple subfolders found 2024/12/07 05:17PM
 ```
 
@@ -271,7 +280,7 @@ You will also notice we can see the output of this in our log file which will he
 
 We just have one else and catch statment and our program is complete. 
 
-```ahk
+```txt
         else
         {
             FileAppend("Current directory does not start with target directory" _currentDateTime "`n", _logFile)
@@ -287,19 +296,19 @@ It's preety basic. If we are not in the target directory then our else statement
 
 So for example this could be the generic error thrown to our log file by the Error object.
 
-```
+```txt
 Error: Divide by zero.
 ```
 
 So you cannot divide by 0. Let's make make up some code that will break when we press the F12 key.
 
-```ahk
+```txt
 result := 1 / 0
 ```
 
 Now let's put it in the first try statement we made.
 
-```ahk
+```txt
 try {    
     ; Intentional runtime error
     result := 1 / 0
@@ -314,14 +323,23 @@ But how can we make a proven asumption that the particular line was responsible 
 
 Breakpoints. Breakpoints are what break the problem down instead of us mearly staring at it in frustration.
 
-<iframe width="420" height="315" src="https://youtu.be/oS261hvfsXE" frameborder="0" allowfullscreen></iframe>
+<!-- <iframe width="420" height="315" src="https://youtu.be/oS261hvfsXE" frameborder="0" allowfullscreen></iframe> -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oS261hvfsXE?si=5WuPWfwDhHKMM2QB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## REFERENCES:
+Make sure you installed the AHK++ extension. It is what I use. Click to the left of the line marked number (you may not have line numbers enabled which shouldn't matter). A breakpoint should appear like this little record button 🔴. Hold `CTRL + ALT + F9` to start debugging and then press F11 which I am doing in the video.   
 
-Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
-Available at: https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id \[Accessed 1 Dec. 2024].
+I haven't shown how the catch statement executes with a breakpoint, in order to keep things simple.
 
-```ahk
+You can now delete this line:
+
+```txt
+result := 1 / 0
+```
+
+Your code should be ready to easily auto navigate through single folders in the file path defined. I hope you have as much joy with
+AHKv2 as I have!
+
+```txt
 #Requires AutoHotkey v2
 _logFile := "SkipCompanyFolder_logFile.txt"
 targetDir := "C:\Users\Jordan Nash\OneDrive\Job Tracking Docs"
@@ -391,3 +409,16 @@ CheckDirectory() {
     }
 }
 ```
+
+## REFERENCES:
+
+Note I have not included all references. Rather I included a few to help you on your journey in using the documentation. Note while I used AI to generate the code, I still had to do a lot of debugging and setting of breakpoints to identify initial errors it generated. Also had to ommit code that provided no functionality. 
+
+Autohotkey.com. (2024). WinTitle & Last Found Window | AutoHotkey v2. \[online] 
+Available at: https://www.autohotkey.com/docs/v2/misc/WinTitle.htm#ahk_id \[Accessed 1 Dec. 2024].
+
+Autohotkey.com. (2024). Error Object | AutoHotkey v2. \[online] 
+Available at: [Error Object](https://www.autohotkey.com/docs/v2/lib/Error.htm) \[Accessed 15 Dec. 2024].
+
+Autohotkey.com. (2024). Array Object - Methods & Properties | AutoHotkey v2. \[online] 
+Available at: https://www.autohotkey.com/docs/v2/lib/Array.htm \[Accessed December 15, 2024].
